@@ -33,6 +33,9 @@ public class OrcamentoController {
     }
     
      public void editOrcamento(int id,String cliente,String cpf, String veiculo, String modelo, String placa,String servico, String atendente, Date cInicio, Date cPrevisao, double valor, String situacao, String observacoes) throws Exception {
+         
+         
+         
          Component rootPane = null;
          Calendar caInicio = Calendar.getInstance();
          Calendar cFinal = Calendar.getInstance();
@@ -42,19 +45,27 @@ public class OrcamentoController {
          UsuarioController us = new UsuarioController();
          Usuario usuario = new Usuario();
          usuario.setId(us.getId());
-         getOrcamentos().get(id).setCliente(cliente);
-         getOrcamentos().get(id).setCpf(cpf);
-         getOrcamentos().get(id).setVeiculo(veiculo);
-         getOrcamentos().get(id).setModelo(modelo);
-         getOrcamentos().get(id).setServico(servico);
-         getOrcamentos().get(id).setAtendente(atendente);
-         getOrcamentos().get(id).setDataInicio(caInicio);
-         getOrcamentos().get(id).setPrevisaoEntrega(cFinal);
-         getOrcamentos().get(id).setValor(valor);
-         getOrcamentos().get(id).setSituacao(situacao);
-         getOrcamentos().get(id).setObservacoes(observacoes);
+         
+         if(veiculo.equals("Selecionar")){
+            orcamento=null;
+            JOptionPane.showMessageDialog(null, "Verifique se o campo Veículo está preenchido", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
+         
+         orcamento.setId(id);
+         orcamento.setCliente(cliente);
+         orcamento.setCpf(cpf);
+         orcamento.setVeiculo(veiculo);
+         orcamento.setModelo(modelo);
+         orcamento.setPlaca(placa);
+         orcamento.setServico(servico);
+         orcamento.setAtendente(atendente);
+         orcamento.setDataInicio(caInicio);
+         orcamento.setPrevisaoEntrega(cFinal);
+         orcamento.setValor(valor);
+         orcamento.setSituacao(situacao);
+         orcamento.setObservacoes(observacoes);
          orcamento.setUsuario(usuario);
-         dao.edit(getOrcamentos().get(id));
+         dao.edit(orcamento);
         JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
         
      }
@@ -69,6 +80,11 @@ public class OrcamentoController {
     private void pesquisar(){
         orcamentos.clear();
         orcamentos.addAll(dao.findOrcamentoEntities());
+    }
+    
+    public List<Orcamento> pesquisarUnico(int id) {
+        orcamentos.clear();
+        return dao.orcamentoUnico(id);
     }
     
     public void salvar() throws NoSuchAlgorithmException{
@@ -88,6 +104,11 @@ public class OrcamentoController {
     
         public void salvarOrcamento(String cliente,String cpf, String veiculo, String modelo,String placa,String servico,String atendente,Date dtInicio, Date pvEntrega, double valor, String situacao,String observacoes) {
         
+        if(veiculo.equals("Selecionar")){
+            orcamento=null;
+            JOptionPane.showMessageDialog(null, "Verifique se o campo Veículo está preenchido", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
+            
         Component rootPane = null;
         Calendar caInicio = Calendar.getInstance();
         Calendar cFinal = Calendar.getInstance();
@@ -136,6 +157,7 @@ public class OrcamentoController {
     }
     
     
+    
 
     public void setOrcamento(Orcamento orcamento) {
         this.orcamento = orcamento;
@@ -154,9 +176,6 @@ public class OrcamentoController {
     }
     public void cancelar(){
         orcamento = new Orcamento();
-    }
-    public int primeiroPasso() throws Exception{
-        return dao.primeiroPasso();
     }
     
     public void relatorioOrcamentosGeral(int id){

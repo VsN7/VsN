@@ -155,7 +155,6 @@ public class UsuarioDAO implements Serializable {
            em.getTransaction().commit();
            return query.getSingleResult();
        }catch (Exception ex){
-           Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
            return null;
        }
     }

@@ -26,7 +26,7 @@ public class CalendarView extends javax.swing.JInternalFrame {
         return c;
     }
     
-    public void setaCalendar1(){
+    public void setaCalendarClienteNascimento(){
         
         jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
 
@@ -40,51 +40,51 @@ public class CalendarView extends javax.swing.JInternalFrame {
         });
     }
 //    
-//    public void setaCalendar2(){
-//        
-//        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
-//
-//            @Override
-//            public void propertyChange(PropertyChangeEvent e) {
-//                
-//                c= jCalendar1.getCalendar();
-//                filtroDataRelatorioView.inputDataFinal.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
-//                dispose();
-//            }
-//        });
-//        
-//    }
+    public void setaCalendarOrcamentoDtInicio(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                OrcamentoView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+        
+    }
 //    
-//    public void setaCalendar3(){
-//        
-//        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
-//
-//            @Override
-//            public void propertyChange(PropertyChangeEvent e) {
-//                
-//                c= jCalendar1.getCalendar();
-//                OrcamentoView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
-//                dispose();
-//            }
-//        });
-//        
-//    }
-//    
-//    public void setaCalendar4(){
-//        
-//        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
-//
-//            @Override
-//            public void propertyChange(PropertyChangeEvent e) {
-//                
-//                c= jCalendar1.getCalendar();
-//                OrcamentoView.inputPrevisaoEntrega.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
-//                dispose();
-//            }
-//        });
-//        
-//    }
-//    
+    public void setaCalendarOrcamentoPvEntrega(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                OrcamentoView.inputPrevisaoEntrega.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+        
+    }
+    
+    public void setaCalendarFuncionarioDtNascimento(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                FuncionarioView.inputDtNascimento.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+        
+    }
+    
     
     public CalendarView() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();

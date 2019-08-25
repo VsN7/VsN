@@ -158,6 +158,21 @@ public class OrcamentoDAO implements Serializable {
         }
     }
 
+    public List<Orcamento> orcamentoUnico(int id) {
+        List<Orcamento> orcamentos = null;
+        EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
+        try{
+           orcamentos = em.createNamedQuery("Orcamento.buscaPorId").setParameter("id",id)
+                                                                   .getResultList();
+           return orcamentos;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public Orcamento findOrcamento(Integer id) {
         EntityManager em = getEntityManager();
         try {

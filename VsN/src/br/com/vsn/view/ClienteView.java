@@ -52,7 +52,15 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/30);
         initComponents();
         
-        this.exibirDados();
+        if(cc.getClientes().size()<=0){
+            this.desativarTudo();
+            this.ativarButtonCadastrar();
+            if(buttonCadastrar.getText().equals("Salvar"))
+                this.ativarInputCadastrar();
+        }else{
+            this.exibirDados();
+        }
+        
     }
     
     
@@ -68,6 +76,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
+            inputCpf = new javax.swing.JFormattedTextField(cpf);
+        }
+        catch (Exception e){
+        }
         buttonFinal = new javax.swing.JButton();
         buttonProximo = new javax.swing.JButton();
         buttonAnterior = new javax.swing.JButton();
@@ -87,7 +101,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputCep = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        imagemCliente = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
@@ -105,7 +119,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel24 = new javax.swing.JLabel();
         comboSexo = new javax.swing.JComboBox<>();
         ImageIcon iconOrcamento = new ImageIcon(getClass().getResource("/icon/calendario.jpg")); Image imagem = iconOrcamento.getImage();
-        jLabel4 = new javax.swing.JLabel(){
+        calendarioDtNascimentoCliente = new javax.swing.JLabel(){
             public void paintComponent(Graphics g){
                 g.drawImage(imagem,0,0,getWidth(),getHeight(),this);
             }
@@ -122,6 +136,11 @@ public class ClienteView extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Cadastro de Clientes");
         setToolTipText("");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ID");
@@ -139,6 +158,16 @@ public class ClienteView extends javax.swing.JInternalFrame {
         });
 
         inputNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputNomeActionPerformed(evt);
+            }
+        });
+        inputNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputNomeKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nome");
@@ -246,8 +275,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Sexo");
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        imagemCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        imagemCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -263,7 +292,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel20.setText("Numero");
 
         comboEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Acre – AC", "Alagoas – AL", "Amapá – AP", "Amazonas – AM", "Bahia – BA", "Ceará – CE", "Distrito Federal – DF", "Espírito Santo – ES", "Goiás – GO", "Maranhão – MA", "Mato Grosso – MT", "Mato Grosso do Sul – MS", "Minas Gerais – MG", "Pará – PA", "Paraíba – PB", "Paraná – PR", "Pernambuco – PE", "Piauí – PI", "Roraima – RR", "Rondônia – RO", "Rio de Janeiro – RJ", "Rio Grande do Norte – RN", "Rio Grande do Sul – RS", "Santa Catarina – SC", "São Paulo – SP", "Sergipe – SE", "Tocantins – TO" }));
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Acre – AC", "Alagoas – AL", "Amapá – AP", "Amazonas – AM", "Bahia – BA", "Ceará – CE", "Distrito Federal – DF", "Espírito Santo – ES", "Goiás – GO", "Maranhão – MA", "Mato Grosso – MT", "Mato Grosso do Sul – MS", "Minas Gerais – MG", "Pará – PA", "Paraíba – PB", "Paraná – PR", "Pernambuco – PE", "Piauí – PI", "Roraima – RR", "Rondônia – RO", "Rio de Janeiro – RJ", "Rio Grande do Norte – RN", "Rio Grande do Sul – RS", "Santa Catarina – SC", "São Paulo – SP", "Sergipe – SE", "Tocantins – TO" }));
         comboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEstadoActionPerformed(evt);
@@ -293,21 +322,21 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel24.setText("Situação");
 
         comboSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Outro" }));
+        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Masculino", "Feminino", "Outro" }));
 
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        calendarioDtNascimentoCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        calendarioDtNascimentoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                calendarioDtNascimentoClienteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
+                calendarioDtNascimentoClienteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
+                calendarioDtNascimentoClienteMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel4MousePressed(evt);
+                calendarioDtNascimentoClienteMousePressed(evt);
             }
         });
 
@@ -349,23 +378,18 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(inputCpf))
+                                    .addComponent(jLabel3)
+                                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(calendarioDtNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(jLabel5))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16)
-                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -377,7 +401,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(inputNome))))
                         .addGap(33, 33, 33)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(imagemCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -398,7 +422,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                             .addComponent(inputCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboEstado, 0, 260, Short.MAX_VALUE)
+                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -434,40 +458,34 @@ public class ClienteView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imagemCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(inputNome))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel16)
-                                        .addGap(4, 4, 4))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                                        .addComponent(jLabel5))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(comboSexo)
+                                        .addComponent(inputDtNascimento))))
+                            .addComponent(calendarioDtNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(22, 22, 22)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
@@ -514,25 +532,26 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
                     .addComponent(buttonProximo)
                     .addComponent(buttonAnterior)
                     .addComponent(buttonFinal))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCadastrar)
-                    .addComponent(buttonExcluir)
-                    .addComponent(buttonSelecionar)
-                    .addComponent(buttonEditar)
-                    .addComponent(buttonImprimir))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonCadastrar)
+                        .addComponent(buttonExcluir)
+                        .addComponent(buttonSelecionar)
+                        .addComponent(buttonImprimir))
+                    .addComponent(buttonEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
                     .addComponent(jLabel19)
-                    .addContainerGap(507, Short.MAX_VALUE)))
+                    .addContainerGap(535, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -543,7 +562,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -578,7 +597,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
         if(buttonEditar.getText().equals("Salvar")){
             try {
                 this.valoresInput();
-                cc.editCliente(index, nome, cpf, sexo, dtNascimento, longradouro, numero, bairro, cidade, estado, cep, telefone, email);
+                cc = new ClienteController();
+                cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento, longradouro, numero, bairro, cidade, estado, cep, telefone, email,cc.getClientes().get(index).getSituacao());
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
                 this.exibirDados();
@@ -614,13 +634,16 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 }while (iterator.hasNext());
                 this.exibirDados();
                 buttonSelecionar.setText("Selecionar");
-                this.ativarTudo();
             } catch (Exception ex) {
-                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+        
             }
         }else{
-            
+            this.desativarTudo();
+            this.ativarButtonSelecionar();
+            this.limparCampos();
             inputId.setEnabled(true);
+            inputNome.setEnabled(true);
             buttonSelecionar.setText("Buscar");
         }
     }//GEN-LAST:event_buttonSelecionarActionPerformed
@@ -629,11 +652,13 @@ public class ClienteView extends javax.swing.JInternalFrame {
         if(buttonCadastrar.getText().equals("Salvar")){
             try {
                 this.valoresInput();
+                cc = new ClienteController();
                 cc.salvarCliente(this.nome, this.cpf, this.sexo, this.dtNascimento, this.longradouro, this.numero, this.bairro, this.cidade, this.estado, this.cep, this.telefone, this.email);
                 buttonCadastrar.setText("Novo");
-                this.ativarTudo();
+                index = cc.getClientes().size()-1;
+                this.exibirDados();
             } catch (Exception ex) {
-                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             this.limparCampos();
@@ -646,25 +671,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonImprimirActionPerformed
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        jLabel4.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        jLabel4.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
-    }//GEN-LAST:event_jLabel4MouseEntered
-
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-        jLabel4.setBorder(new LineBorder(Color.BLACK, 2, true));
-    }//GEN-LAST:event_jLabel4MouseExited
-
-    private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
-        CalendarView cv = new CalendarView();
-        this.getParent().add(cv);
-        cv.setVisible(true);
-        cv.setaCalendar1();
-    }//GEN-LAST:event_jLabel4MousePressed
 
     private void inputDtNascimentoinputTitulo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDtNascimentoinputTitulo5ActionPerformed
         // TODO add your handling code here:
@@ -679,18 +685,75 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_inputIdActionPerformed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {                    
-            try {
-                PesquisarClienteView pv = new PesquisarClienteView();
-                this.getParent().add(pv);
-                pv.setVisible(true);
-                
-                   
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == evt.VK_F1) {
+                if(buttonSelecionar.getText().equals("Buscar")){   
+                    try {
+                        PesquisarClienteView pv = new PesquisarClienteView();
+                        this.getParent().add(pv);
+                        pv.setVisible(true);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_inputIdKeyPressed
+
+    private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == evt.VK_F1) {
+                if(buttonSelecionar.getText().equals("Buscar")){   
+                    try {
+                        PesquisarClienteView pv = new PesquisarClienteView();
+                        this.getParent().add(pv);
+                        pv.setVisible(true);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_inputNomeKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == evt.VK_F1) {
+                if(buttonSelecionar.getText().equals("Buscar")){   
+                    try {
+                        PesquisarClienteView pv = new PesquisarClienteView();
+                        this.getParent().add(pv);
+                        pv.setVisible(true);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void inputNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputNomeActionPerformed
+
+    private void calendarioDtNascimentoClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMousePressed
+        CalendarView cv = new CalendarView();
+        this.getParent().add(cv);
+        cv.setVisible(true);
+        cv.setaCalendarClienteNascimento();
+    }//GEN-LAST:event_calendarioDtNascimentoClienteMousePressed
+
+    private void calendarioDtNascimentoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseExited
+        calendarioDtNascimentoCliente.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseExited
+
+    private void calendarioDtNascimentoClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseEntered
+        calendarioDtNascimentoCliente.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
+    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseEntered
+
+    private void calendarioDtNascimentoClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseClicked
+        calendarioDtNascimentoCliente.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
+    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -703,20 +766,22 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonProximo;
     private javax.swing.JButton buttonSelecionar;
-    private javax.swing.JComboBox<String> comboEstado;
-    private javax.swing.JComboBox<String> comboSexo;
-    private javax.swing.JTextField inputBairro;
-    private javax.swing.JTextField inputCep;
-    private javax.swing.JTextField inputCidade;
-    private javax.swing.JTextField inputCpf;
+    private javax.swing.JLabel calendarioDtNascimentoCliente;
+    public static javax.swing.JComboBox<String> comboEstado;
+    public static javax.swing.JComboBox<String> comboSexo;
+    public static javax.swing.JLabel imagemCliente;
+    public static javax.swing.JTextField inputBairro;
+    public static javax.swing.JTextField inputCep;
+    public static javax.swing.JTextField inputCidade;
+    public static javax.swing.JTextField inputCpf;
     public static javax.swing.JTextField inputDtNascimento;
-    private javax.swing.JTextField inputEmail;
-    private javax.swing.JTextField inputId;
-    private javax.swing.JTextField inputLongradouro;
-    private javax.swing.JTextField inputNome;
-    private javax.swing.JTextField inputNumero;
-    private javax.swing.JTextField inputSituacao;
-    private javax.swing.JTextField inputTelefone;
+    public static javax.swing.JTextField inputEmail;
+    public static javax.swing.JTextField inputId;
+    public static javax.swing.JTextField inputLongradouro;
+    public static javax.swing.JTextField inputNome;
+    public static javax.swing.JTextField inputNumero;
+    public static javax.swing.JTextField inputSituacao;
+    public static javax.swing.JTextField inputTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -724,7 +789,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -734,7 +798,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
@@ -799,7 +862,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     
     public void valoresInput() throws ParseException{
         
-        this.id = Integer.parseInt(inputId.getText());
+//        this.id = Integer.parseInt(inputId.getText());
         this.nome = inputNome.getText();
         this.cpf = inputCpf.getText();
         this.dtNascimento = sdf.parse(inputDtNascimento.getText());
@@ -854,6 +917,19 @@ public class ClienteView extends javax.swing.JInternalFrame {
         buttonImprimir.setEnabled(false);
         buttonSelecionar.setEnabled(false);
         buttonEditar.setEnabled(false);
+        buttonExcluir.setEnabled(false);
+        buttonInicio.setEnabled(false);
+        buttonAnterior.setEnabled(false);
+        buttonProximo.setEnabled(false);
+        buttonFinal.setEnabled(false);
+    }
+    
+    public void ativarButtonSelecionar(){
+        buttonSelecionar.setEnabled(true);
+        buttonCadastrar.setEnabled(false);
+        buttonImprimir.setEnabled(false);
+        buttonEditar.setEnabled(false);
+        buttonExcluir.setEnabled(false);
         buttonInicio.setEnabled(false);
         buttonAnterior.setEnabled(false);
         buttonProximo.setEnabled(false);
@@ -902,6 +978,38 @@ public class ClienteView extends javax.swing.JInternalFrame {
         buttonAnterior.setEnabled(true);
         buttonProximo.setEnabled(true);
         buttonFinal.setEnabled(true);
+    }
+    
+    public void desativarTudo(){
+        
+        //Inputs
+        
+        inputId.setEnabled(false);
+        inputNome.setEnabled(false);
+        inputCpf.setEnabled(false);
+        inputDtNascimento.setEnabled(false);
+        comboSexo.setEnabled(false);
+        inputLongradouro.setEnabled(false);
+        inputNumero.setEnabled(false);
+        inputBairro.setEnabled(false);
+        inputCidade.setEnabled(false);
+        comboEstado.setEnabled(false);
+        inputCep.setEnabled(false);
+        inputTelefone.setEnabled(false);
+        inputEmail.setEnabled(false);
+        inputSituacao.setEnabled(false);
+        
+        //Botões
+        
+        buttonCadastrar.setEnabled(false);
+        buttonImprimir.setEnabled(false);
+        buttonSelecionar.setEnabled(false);
+        buttonEditar.setEnabled(false);
+        buttonExcluir.setEnabled(false);
+        buttonInicio.setEnabled(false);
+        buttonAnterior.setEnabled(false);
+        buttonProximo.setEnabled(false);
+        buttonFinal.setEnabled(false);
     }
 
 

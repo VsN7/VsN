@@ -91,7 +91,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel24 = new javax.swing.JLabel();
         comboSexo = new javax.swing.JComboBox<>();
         ImageIcon iconOrcamento = new ImageIcon(getClass().getResource("/icon/calendario.jpg")); Image imagem = iconOrcamento.getImage();
-        jLabel4 = new javax.swing.JLabel(){
+        calendarioDtNascimento = new javax.swing.JLabel(){
             public void paintComponent(Graphics g){
                 g.drawImage(imagem,0,0,getWidth(),getHeight(),this);
             }
@@ -110,7 +110,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastro de Usuários");
+        setTitle("Cadastro de Funcionarios");
         setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -245,19 +245,19 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         comboSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Outro" }));
 
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        calendarioDtNascimento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        calendarioDtNascimento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                calendarioDtNascimentoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
+                calendarioDtNascimentoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
+                calendarioDtNascimentoMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel4MousePressed(evt);
+                calendarioDtNascimentoMousePressed(evt);
             }
         });
 
@@ -327,15 +327,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel3)
                                         .addGap(0, 174, Short.MAX_VALUE))
                                     .addComponent(inputCpf))
+                                .addGap(21, 21, 21)
+                                .addComponent(calendarioDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(72, 72, 72)
-                                        .addComponent(jLabel5))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16)
@@ -386,24 +383,21 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                                 .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jLabel16)
-                                        .addGap(4, 4, 4))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41)
+                                .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(calendarioDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -497,7 +491,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         if(buttonEditar.getText().equals("Salvar")){
             try {
                 this.valoresInput();
-                cc.editCliente(index, nome, cpf, sexo, dtNascimento, longradouro, numero, bairro, cidade, estado, cep, telefone, email);
+                cc.editCliente(index, nome, cpf, sexo, dtNascimento, longradouro, numero, bairro, cidade, estado, cep, telefone, email,cc.getClientes().get(index).getSituacao());
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
                 this.exibirDados();
@@ -566,24 +560,24 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        jLabel4.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
-    }//GEN-LAST:event_jLabel4MouseClicked
+    private void calendarioDtNascimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoMouseClicked
+        calendarioDtNascimento.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
+    }//GEN-LAST:event_calendarioDtNascimentoMouseClicked
 
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        jLabel4.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
-    }//GEN-LAST:event_jLabel4MouseEntered
+    private void calendarioDtNascimentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoMouseEntered
+        calendarioDtNascimento.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
+    }//GEN-LAST:event_calendarioDtNascimentoMouseEntered
 
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-        jLabel4.setBorder(new LineBorder(Color.BLACK, 2, true));
-    }//GEN-LAST:event_jLabel4MouseExited
+    private void calendarioDtNascimentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoMouseExited
+        calendarioDtNascimento.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_calendarioDtNascimentoMouseExited
 
-    private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
+    private void calendarioDtNascimentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoMousePressed
         CalendarView cv = new CalendarView();
         this.getParent().add(cv);
         cv.setVisible(true);
-        cv.setaCalendar1();
-    }//GEN-LAST:event_jLabel4MousePressed
+        cv.setaCalendarFuncionarioDtNascimento();
+    }//GEN-LAST:event_calendarioDtNascimentoMousePressed
 
     private void inputDtNascimentoinputTitulo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDtNascimentoinputTitulo5ActionPerformed
         // TODO add your handling code here:
@@ -618,6 +612,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonProximo;
     private javax.swing.JButton buttonSelecionar;
+    private javax.swing.JLabel calendarioDtNascimento;
     private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JTextField inputCpf;
     public static javax.swing.JTextField inputDtNascimento;
@@ -638,7 +633,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

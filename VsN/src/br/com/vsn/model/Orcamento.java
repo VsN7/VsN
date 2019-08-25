@@ -3,6 +3,7 @@ package br.com.vsn.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,9 @@ import javax.persistence.TemporalType;
 @NamedQueries({
         @NamedQuery(name = "Orcamento.selecionar", 
                 query = "SELECT o FROM Orcamento o WHERE o.usuario.id = :id "),
+                
+        @NamedQuery(name = "Orcamento.buscaPorId", 
+                query = "SELECT o FROM Orcamento o WHERE o.id = :id "),
         
         @NamedQuery(name = "Orcamento.valorTotal", 
                 query = "SELECT SUM(o.valor) FROM Orcamento o"),
@@ -45,14 +49,19 @@ public class Orcamento implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(nullable = false)
     private double valor;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Calendar dataInicio;
     @Temporal(TemporalType.DATE)
     private Calendar dataFinalizacao;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Calendar previsaoEntrega;
+    @Column(nullable = false)
     private String servico;
+    @Column(nullable = false)
     private String cliente;
     private String observacoes;
     private String situacao;

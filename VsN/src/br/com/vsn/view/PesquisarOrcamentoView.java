@@ -5,7 +5,8 @@
  */
 package br.com.vsn.view;
 
-import br.com.vsn.controller.ClienteController;
+import br.com.vsn.controller.OrcamentoController;
+import br.com.vsn.model.Orcamento;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
 
     private static int id;
+    static Orcamento orcamento;
+    SimpleDateFormat sdf;
 
     public static int getId() {
         return id;
@@ -35,11 +38,12 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
      */
     public PesquisarOrcamentoView() {
         initComponents();
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double lar =d.getWidth();
         int alt = (int) d.getHeight();
-        this.setLocation((int) ((lar - this.getSize().width) / 3), (alt - this.getSize().height)/10);
+        this.setLocation((int) ((lar - this.getSize().width) / 2), (alt - this.getSize().height)/2);
         initComponents();
         
         try {
@@ -61,53 +65,51 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Pesquisar Cliente");
+        setTitle("Pesquisar Orçamento");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome", "Telefone", "CPF", "Situação"
+                "ID", "Cliente", "Serviço", "D. Inicio", "P. Entrega", "Valor", "Situação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setText("Carregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(15);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(15);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(15);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,18 +126,23 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            ClienteView.index = this.valorCollun();
-            this.dispose();
-        } catch (Exception ex) {
-            Logger.getLogger(PesquisarOrcamentoView.class.getName()).log(Level.SEVERE, null, ex);
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if(evt.getClickCount() == 2){
+          try {
+              
+                this.id = this.valorCollun();
+                OrcamentoController co = new OrcamentoController();
+                orcamento = co.pesquisarUnico(id).get(0);
+                this.valoresInputOrcamento();
+                this.dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(PesquisarOrcamentoView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -143,16 +150,18 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
     
     public void preencherTabela() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        ClienteController cc = new ClienteController();
+        OrcamentoController oc = new OrcamentoController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
-        for(int i=0; i<cc.getClientes().size(); i++){
+        for(int i=0; i<oc.getOrcamentos().size(); i++){
             modelo.addRow(new Object[]{
-             cc.getClientes().get(i).getId(),
-             cc.getClientes().get(i).getNome(),
-             cc.getClientes().get(i).getTelefone(),
-             cc.getClientes().get(i).getCpf(),
-             cc.getClientes().get(i).getSituacao()
+             oc.getOrcamentos().get(i).getId(),
+             oc.getOrcamentos().get(i).getCliente(),
+             oc.getOrcamentos().get(i).getServico(),
+             sdf.format(oc.getOrcamentos().get(i).getDataInicio().getTime()),
+             sdf.format(oc.getOrcamentos().get(i).getPrevisaoEntrega().getTime()),
+             oc.getOrcamentos().get(i).getValor(),
+             oc.getOrcamentos().get(i).getSituacao()
              });
         }
         
@@ -169,5 +178,21 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
          id = Integer.parseInt(converteValueString);
          return id;
    }
+    
+    public void valoresInputOrcamento(){
+        OrcamentoView.inputId.setText(""+orcamento.getId());
+        OrcamentoView.inputCliente.setText(""+orcamento.getCliente());
+        OrcamentoView.inputCpf.setText(""+orcamento.getCpf());
+        OrcamentoView.comboVeiculo.setSelectedItem((String) orcamento.getVeiculo());
+        OrcamentoView.inputModelo.setText(""+orcamento.getModelo());
+        OrcamentoView.inputPlaca.setText(""+orcamento.getPlaca());
+        OrcamentoView.inputServico.setText(""+orcamento.getServico());
+        OrcamentoView.inputAtendente.setText(""+orcamento.getAtendente());
+        OrcamentoView.inputDataInicio.setText(""+sdf.format(orcamento.getDataInicio().getTime()));
+        OrcamentoView.inputPrevisaoEntrega.setText(""+sdf.format(orcamento.getPrevisaoEntrega().getTime()));
+        OrcamentoView.inputValor.setText(""+orcamento.getValor());
+        OrcamentoView.inputSituacao.setText(""+orcamento.getSituacao());   
+        OrcamentoView.inputObservacoes.setText(""+orcamento.getObservacoes());    
+    }
 
 }

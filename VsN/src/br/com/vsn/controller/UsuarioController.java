@@ -5,9 +5,11 @@ package br.com.vsn.controller;
 import br.com.vsn.dao.UsuarioDAO;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.util.CriptografiaUtil;
+import java.awt.Component;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.jdesktop.observablecollections.ObservableCollections;
 
 /*
@@ -70,6 +72,15 @@ public class UsuarioController {
             return true;
         }
         else return false;
+    }
+    
+    public void destroy(int id) throws Exception{
+        Component rootPane = null;
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuario?", "Pergunta", JOptionPane.YES_NO_OPTION);
+        
+        if (resposta == JOptionPane.YES_OPTION) {
+            dao.destroy(id);
+        }
     }
 
     public void setUsuario(Usuario usuario) {

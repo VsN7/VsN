@@ -59,6 +59,12 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         cancelarButton = new javax.swing.JButton();
         senhaLabel1 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
+            inputCpf = new javax.swing.JFormattedTextField(cpf);
+        }
+        catch (Exception e){
+        }
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -204,9 +210,13 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_salvarButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-        LoginView lv = new LoginView();
-        lv.setVisible(true);
-        this.dispose();
+    try {
+            uc.destroy(valorCollun());
+            uc = new UsuarioController();
+            this.preencherTabela();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Primeiro selecione algum usuário", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
 
@@ -238,5 +248,18 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         }
         
     }
+    
+    public int valorCollun(){
+        int row = jTable1.getSelectedRow();
+        Object value = null;
+        String converteValueString = "";
+        int id;
+         if (row > -1) { //então tem ítem selecionado
+             value = jTable1.getValueAt(row, 0);
+         }
+         converteValueString = ""+value;
+         id = Integer.parseInt(converteValueString);
+         return id;
+   }
 
 }

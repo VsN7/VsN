@@ -13,6 +13,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -50,14 +52,17 @@ public class ClienteDAO implements Serializable {
         }
     }
     
-    public List<Cliente> clienteUnico( int id) {
+    
+    
+    public List<Cliente> clienteUnico(int id) {
         List<Cliente> clientes = null;
         EntityManager em = getEntityManager();
         try{
            clientes = em.createNamedQuery("Cliente.buscaPorId").setParameter("id",id).getResultList();
            return clientes;
         }catch(Exception e){
-            System.out.println("Erro na linha 147 (ContaDAO)!");
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -128,24 +133,6 @@ public class ClienteDAO implements Serializable {
             }
         }
     }
-    
-    public int primeiroPasso() throws Exception{
-        EntityManager em = getEntityManager();
-        ClienteController cc = new ClienteController();
-        List<Cliente> clientes = null;
-       try{
-           clientes = em.createNamedQuery("Cliente.selecionar").getResultList();
-           cc.setClientes(clientes);
-           if(cc.getClientes().get(0).getId()!=0){
-                return 1;
-           }
-           else
-               return 0;
-       } catch (Exception e){
-           return 0;
-       }
-       
-   }
 
     public List<Cliente> findClienteEntities() {
         return findClienteEntities(true, -1, -1);
