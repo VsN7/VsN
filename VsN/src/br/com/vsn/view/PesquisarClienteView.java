@@ -137,8 +137,9 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
                 cliente = cc.pesquisarUnico(id).get(0);
                 try{
                     this.valoresInputCliente();
+                    ClienteView.ativarInputCadastrar();
+                    ClienteView.inputId.setEnabled(true);
                 }catch(Exception e){
-                    System.out.println("AQUI");
                     this.valoresInputOrcamento();
                 }
                 this.dispose();

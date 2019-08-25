@@ -619,7 +619,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
         if(buttonSelecionar.getText().equals("Buscar")){
             try {
-                this.valoresInput();
                 int i = 0;
                 int id = Integer.parseInt(inputId.getText());
                 Iterator iterator = cc.getClientes().iterator();
@@ -895,7 +894,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputSituacao.setText("");
     }
     
-    public void ativarInputCadastrar(){
+    public static void ativarInputCadastrar(){
         inputId.setEnabled(false);
         inputNome.setEnabled(true);
         inputCpf.setEnabled(true);

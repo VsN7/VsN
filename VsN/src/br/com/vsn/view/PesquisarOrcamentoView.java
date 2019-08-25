@@ -134,6 +134,8 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
                 OrcamentoController co = new OrcamentoController();
                 orcamento = co.pesquisarUnico(id).get(0);
                 this.valoresInputOrcamento();
+                OrcamentoView.ativarInputCadastrar();
+                OrcamentoView.inputId.setEnabled(true);
                 this.dispose();
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarOrcamentoView.class.getName()).log(Level.SEVERE, null, ex);

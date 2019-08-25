@@ -512,7 +512,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
         if(buttonSelecionar.getText().equals("Buscar")){
             try {
-                this.valoresInput();
                 int i = 0;
                 int id = Integer.parseInt(inputId.getText());
                 Iterator iterator = cc.getClientes().iterator();
@@ -662,23 +661,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             inputId.setEnabled(false);
             inputSituacao.setEnabled(false);
             this.valoresInput();
-        } catch (Exception ex) {
-            Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-        
-        
-    public void exibirDadosBusca(int valor){
-        cc = new ClienteController();
-        try {
-            inputId.setText(""+cc.getClientes().get(valor).getId());
-            inputNome.setText(""+cc.getClientes().get(valor).getNome());
-            inputCpf.setText(""+cc.getClientes().get(valor).getCpf());
-            inputDtNascimento.setText(""+sdf.format(cc.getClientes().get(valor).getDataNascimento().getTime()));
-            comboSexo.setSelectedItem(""+cc.getClientes().get(valor).getSexo());
-            inputTelefone.setText(""+cc.getClientes().get(valor).getTelefone());
-            inputEmail.setText(""+cc.getClientes().get(valor).getEmail());
-            inputSituacao.setText(""+cc.getClientes().get(valor).getSituacao());
         } catch (Exception ex) {
             Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
         }
