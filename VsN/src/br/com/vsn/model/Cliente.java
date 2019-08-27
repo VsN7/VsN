@@ -37,6 +37,7 @@ public class Cliente implements Serializable {
     private String nome;
     @Column(nullable = false, unique = true)
     private String cpf;
+    private String caminhoImg;
     private String longradouro;
     private int numero;
     private String bairro;
@@ -74,6 +75,16 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
+    public String getCaminhoImg() {
+        return caminhoImg;
+    }
+
+    public void setCaminhoImg(String caminhoImg) {
+        this.caminhoImg = caminhoImg;
+    }
+    
+    
+    
     public String getLongradouro() {
         return longradouro;
     }

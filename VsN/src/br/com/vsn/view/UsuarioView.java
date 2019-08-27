@@ -56,7 +56,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         loginField = new javax.swing.JTextField();
         senhaField = new javax.swing.JPasswordField();
         salvarButton = new javax.swing.JButton();
-        cancelarButton = new javax.swing.JButton();
+        removerButton = new javax.swing.JButton();
         senhaLabel1 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
         try{
@@ -92,11 +92,11 @@ public class UsuarioView extends javax.swing.JInternalFrame {
             }
         });
 
-        cancelarButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cancelarButton.setText("Remover");
-        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+        removerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        removerButton.setText("Remover");
+        removerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarButtonActionPerformed(evt);
+                removerButtonActionPerformed(evt);
             }
         });
 
@@ -137,7 +137,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
                 .addGroup(novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                     .addGroup(novoUsuarioPanelLayout.createSequentialGroup()
-                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(removerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(novoUsuarioPanelLayout.createSequentialGroup()
@@ -169,7 +169,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
                     .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarButton)
+                    .addComponent(removerButton)
                     .addComponent(salvarButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,7 +209,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_salvarButtonActionPerformed
 
-    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+    private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
     try {
             uc.destroy(valorCollun());
             uc = new UsuarioController();
@@ -217,17 +217,17 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Primeiro selecione algum usuário", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_cancelarButtonActionPerformed
+    }//GEN-LAST:event_removerButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelarButton;
     private javax.swing.JTextField inputCpf;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField loginField;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel novoUsuarioPanel;
+    private javax.swing.JButton removerButton;
     private javax.swing.JButton salvarButton;
     private javax.swing.JPasswordField senhaField;
     private javax.swing.JLabel senhaLabel;

@@ -161,6 +161,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         });
 
         inputCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputClienteActionPerformed(evt);
+            }
+        });
         inputCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 inputClienteKeyPressed(evt);
@@ -560,7 +565,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(buttonOS, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
                     .addComponent(buttonProximo)
@@ -805,10 +810,14 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_inputClienteKeyPressed
 
+    private void inputClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAnterior;
-    private javax.swing.JButton buttonCadastrar;
+    public static javax.swing.JButton buttonCadastrar;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinal;
@@ -890,18 +899,18 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     public void valoresInput() throws ParseException{
         
 //        this.id = Integer.parseInt(inputId.getText());
-        this.cliente = inputCliente.getText();
+        this.cliente = inputCliente.getText().toUpperCase();
         this.cpf = inputCpf.getText();
         this.veiculo = (String) comboVeiculo.getSelectedItem();
-        this.modelo = inputModelo.getText();
+        this.modelo = inputModelo.getText().toUpperCase();
         this.placa = inputPlaca.getText();
-        this.servico = inputServico.getText();
-        this.atendente = inputAtendente.getText();
+        this.servico = inputServico.getText().toUpperCase();
+        this.atendente = inputAtendente.getText().toUpperCase();
         this.dtInicio = sdf.parse(inputDataInicio.getText());
         this.pvEntrega = sdf.parse(inputPrevisaoEntrega.getText());
         this.valor = Double.parseDouble(inputValor.getText().replace(",", "."));
         this.situacao = inputSituacao.getText();
-        this.observacoes = inputObservacoes.getText();
+        this.observacoes = inputObservacoes.getText().toUpperCase();
     }
     
     

@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -26,12 +28,13 @@ public class ClienteView extends javax.swing.JInternalFrame {
     ClienteController cc;
     SimpleDateFormat sdf;
     static int index = 0;
-    
+    String diretorio = "C:\\DuEvan\\fotos\\clientes\\";
     int id;
     String nome;
     String cpf;
     Date dtNascimento;
     String sexo;
+    String caminhoImg;
     String longradouro;
     int numero;
     String bairro;
@@ -101,7 +104,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputCep = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        imagemCliente = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
@@ -131,6 +133,10 @@ public class ClienteView extends javax.swing.JInternalFrame {
         }
         catch (Exception e){
         }
+        inputImagem = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        buttonCaminhoImg = new javax.swing.JToggleButton();
+        fotografiaCliente = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -275,9 +281,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Sexo");
 
-        imagemCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        imagemCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Endereço do Cliente");
@@ -347,6 +350,36 @@ public class ClienteView extends javax.swing.JInternalFrame {
             }
         });
 
+        inputImagem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputImagem.setText("semFoto.png");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Caminho da Foto");
+
+        buttonCaminhoImg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttonCaminhoImg.setText("...");
+        buttonCaminhoImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCaminhoImgActionPerformed(evt);
+            }
+        });
+
+        fotografiaCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        fotografiaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fotografiaClienteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                fotografiaClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fotografiaClienteMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fotografiaClienteMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -374,34 +407,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(calendarioDtNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(inputNome))))
-                        .addGap(33, 33, 33)
-                        .addComponent(imagemCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -445,47 +450,90 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
-                            .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(44, 44, 44))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(calendarioDtNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(inputImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(buttonCaminhoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(inputNome))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(fotografiaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imagemCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputNome))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel16)
-                                        .addComponent(jLabel5))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(comboSexo)
-                                        .addComponent(inputDtNascimento))))
-                            .addComponent(calendarioDtNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(22, 22, 22)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(fotografiaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(101, 101, 101)
+                                .addComponent(buttonCaminhoImg))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(calendarioDtNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel16))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(inputImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
@@ -529,9 +577,9 @@ public class ClienteView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel23)
                             .addComponent(jLabel24))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
@@ -547,11 +595,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addComponent(buttonImprimir))
                     .addComponent(buttonEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jLabel19)
-                    .addContainerGap(535, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -598,7 +641,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
             try {
                 this.valoresInput();
                 cc = new ClienteController();
-                cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento, longradouro, numero, bairro, cidade, estado, cep, telefone, email,cc.getClientes().get(index).getSituacao());
+                cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg, longradouro, numero, bairro, cidade, estado, cep, telefone, email,cc.getClientes().get(index).getSituacao());
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
                 this.exibirDados();
@@ -652,7 +695,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
             try {
                 this.valoresInput();
                 cc = new ClienteController();
-                cc.salvarCliente(this.nome, this.cpf, this.sexo, this.dtNascimento, this.longradouro, this.numero, this.bairro, this.cidade, this.estado, this.cep, this.telefone, this.email);
+                cc.salvarCliente(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg, this.longradouro, this.numero, this.bairro, this.cidade, this.estado, this.cep, this.telefone, this.email);
                 buttonCadastrar.setText("Novo");
                 index = cc.getClientes().size()-1;
                 this.exibirDados();
@@ -754,21 +797,54 @@ public class ClienteView extends javax.swing.JInternalFrame {
         calendarioDtNascimentoCliente.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
     }//GEN-LAST:event_calendarioDtNascimentoClienteMouseClicked
 
+    private void buttonCaminhoImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminhoImgActionPerformed
+        try{
+            JFileChooser buscarImg = new JFileChooser();
+            buscarImg.setCurrentDirectory(new java.io.File("C:\\DuEvan\\VsN\\VsN\\src\\imagens"));
+            buscarImg.setDialogTitle("Carregar Foto do Cliente");
+            buscarImg.showOpenDialog(this);
+            String foto = ""+buscarImg.getSelectedFile().getName();
+            inputImagem.setText(foto);
+            this.preencherImagem();
+            
+        }catch(Exception e){
+            Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+    }//GEN-LAST:event_buttonCaminhoImgActionPerformed
+
+    private void fotografiaClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fotografiaClienteMousePressed
+
+    private void fotografiaClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fotografiaClienteMouseExited
+
+    private void fotografiaClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fotografiaClienteMouseEntered
+
+    private void fotografiaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fotografiaClienteMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAnterior;
-    private javax.swing.JButton buttonCadastrar;
+    public static javax.swing.JButton buttonCadastrar;
+    private javax.swing.JToggleButton buttonCaminhoImg;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinal;
     private javax.swing.JButton buttonImprimir;
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonProximo;
-    private javax.swing.JButton buttonSelecionar;
+    public static javax.swing.JButton buttonSelecionar;
     private javax.swing.JLabel calendarioDtNascimentoCliente;
     public static javax.swing.JComboBox<String> comboEstado;
     public static javax.swing.JComboBox<String> comboSexo;
-    public static javax.swing.JLabel imagemCliente;
+    private javax.swing.JLabel fotografiaCliente;
     public static javax.swing.JTextField inputBairro;
     public static javax.swing.JTextField inputCep;
     public static javax.swing.JTextField inputCidade;
@@ -776,6 +852,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField inputDtNascimento;
     public static javax.swing.JTextField inputEmail;
     public static javax.swing.JTextField inputId;
+    public static javax.swing.JTextField inputImagem;
     public static javax.swing.JTextField inputLongradouro;
     public static javax.swing.JTextField inputNome;
     public static javax.swing.JTextField inputNumero;
@@ -798,6 +875,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -819,6 +897,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
             inputCpf.setText(""+cc.getClientes().get(index).getCpf());
             inputDtNascimento.setText(""+sdf.format(cc.getClientes().get(index).getDataNascimento().getTime()));
             comboSexo.setSelectedItem(""+cc.getClientes().get(index).getSexo());
+            inputImagem.setText(""+cc.getClientes().get(index).getCaminhoImg());
             inputLongradouro.setText(""+cc.getClientes().get(index).getLongradouro());
             inputNumero.setText(""+cc.getClientes().get(index).getNumero());
             inputBairro.setText(""+cc.getClientes().get(index).getBairro());
@@ -831,49 +910,36 @@ public class ClienteView extends javax.swing.JInternalFrame {
             inputId.setEnabled(false);
             inputSituacao.setEnabled(false);
             this.valoresInput();
+            this.preencherImagem();
         } catch (Exception ex) {
             Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
         
-        
-    public void exibirDadosBusca(int valor){
-        cc = new ClienteController();
-        try {
-            inputId.setText(""+cc.getClientes().get(valor).getId());
-            inputNome.setText(""+cc.getClientes().get(valor).getNome());
-            inputCpf.setText(""+cc.getClientes().get(valor).getCpf());
-            inputDtNascimento.setText(""+sdf.format(cc.getClientes().get(valor).getDataNascimento().getTime()));
-            comboSexo.setSelectedItem(""+cc.getClientes().get(valor).getSexo());
-            inputLongradouro.setText(""+cc.getClientes().get(valor).getLongradouro());
-            inputNumero.setText(""+cc.getClientes().get(valor).getNumero());
-            inputBairro.setText(""+cc.getClientes().get(valor).getBairro());
-            inputCidade.setText(""+cc.getClientes().get(valor).getCidade());
-            comboEstado.setSelectedItem(""+cc.getClientes().get(valor).getEstado());
-            inputCep.setText(""+cc.getClientes().get(valor).getCep());
-            inputTelefone.setText(""+cc.getClientes().get(valor).getTelefone());
-            inputEmail.setText(""+cc.getClientes().get(valor).getEmail());
-            inputSituacao.setText(""+cc.getClientes().get(valor).getSituacao());
-        } catch (Exception ex) {
-            Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void preencherImagem(){
+        fotografiaCliente.setIcon(new ImageIcon(diretorio+inputImagem.getText()));
+        ImageIcon img = new ImageIcon(diretorio+inputImagem.getText());
+        Image image = img.getImage();  
+        Image newimg = image.getScaledInstance(158, 133, java.awt.Image.SCALE_SMOOTH);  
+        fotografiaCliente.setIcon(new ImageIcon(newimg));
     }
-    
+        
     public void valoresInput() throws ParseException{
         
 //        this.id = Integer.parseInt(inputId.getText());
-        this.nome = inputNome.getText();
+        this.nome = inputNome.getText().toUpperCase();
         this.cpf = inputCpf.getText();
         this.dtNascimento = sdf.parse(inputDtNascimento.getText());
         this.sexo = (String) comboSexo.getSelectedItem();
-        this.longradouro = inputLongradouro.getText();
+        this.caminhoImg = inputImagem.getText();
+        this.longradouro = inputLongradouro.getText().toUpperCase();
         this.numero = Integer.parseInt(inputNumero.getText());
-        this.bairro = inputBairro.getText();
-        this.cidade = inputCidade.getText();
+        this.bairro = inputBairro.getText().toUpperCase();
+        this.cidade = inputCidade.getText().toUpperCase();
         this.estado = (String) comboEstado.getSelectedItem();
         this.cep = inputCep.getText();
         this.telefone = inputTelefone.getText();
-        this.email = inputEmail.getText();
+        this.email = inputEmail.getText().toUpperCase();
     }
     
     
@@ -883,6 +949,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputCpf.setText("");
         inputDtNascimento.setText("");
         comboSexo.setSelectedIndex(0);
+        inputImagem.setText("semFoto.png");
+        this.preencherImagem();
         inputLongradouro.setText("");
         inputNumero.setText("");
         inputBairro.setText("");
@@ -900,6 +968,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputCpf.setEnabled(true);
         inputDtNascimento.setEnabled(true);
         comboSexo.setEnabled(true);
+        inputImagem.setEditable(false);
         inputLongradouro.setEnabled(true);
         inputNumero.setEnabled(true);
         inputBairro.setEnabled(true);
@@ -956,6 +1025,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputCpf.setEnabled(true);
         inputDtNascimento.setEnabled(true);
         comboSexo.setEnabled(true);
+        inputImagem.setEditable(false);
         inputLongradouro.setEnabled(true);
         inputNumero.setEnabled(true);
         inputBairro.setEnabled(true);
@@ -967,7 +1037,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputSituacao.setEnabled(true);
         
         //Botões
-        
+        buttonCaminhoImg.setEnabled(true);
         buttonCadastrar.setEnabled(true);
         buttonImprimir.setEnabled(true);
         buttonSelecionar.setEnabled(true);
@@ -999,7 +1069,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         inputSituacao.setEnabled(false);
         
         //Botões
-        
+        buttonCaminhoImg.setEnabled(false);
         buttonCadastrar.setEnabled(false);
         buttonImprimir.setEnabled(false);
         buttonSelecionar.setEnabled(false);

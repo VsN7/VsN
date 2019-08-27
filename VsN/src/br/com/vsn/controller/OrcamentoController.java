@@ -121,7 +121,6 @@ public class OrcamentoController {
         orcamento.setModelo(modelo);
         orcamento.setPlaca(placa);
         orcamento.setServico(servico);
-        atendente = "teste";
         orcamento.setAtendente(atendente);
         orcamento.setDataInicio(caInicio);
         orcamento.setPrevisaoEntrega(cFinal);

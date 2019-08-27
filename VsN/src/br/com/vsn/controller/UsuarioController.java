@@ -61,14 +61,15 @@ public class UsuarioController {
         pesquisar();
     }
     
-    public boolean efetuarLogin(String login, String senha) throws NoSuchAlgorithmException{
+    public boolean efetuarLogin(String lg, String senha) throws NoSuchAlgorithmException{
         encriptografarSenhaUsuario(senha);
-        usuario.setLogin(login);
+        usuario.setLogin(lg);
         usuario.setSenha(usuario.getSenha());
         if(dao.efetuarLogin(usuario) != null){
             id = dao.retornaId(usuario);
-            login = usuario.getLogin();
+            lg = usuario.getLogin();
             usuario.setId(dao.retornaId(usuario));
+            login = lg;
             return true;
         }
         else return false;

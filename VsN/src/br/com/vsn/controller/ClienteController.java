@@ -59,7 +59,7 @@ public class ClienteController {
         this.cliente = cliente;
     }
 
-    public void salvarCliente(String nome, String cpf, String sexo, Date dtNascimento, String longradouro, int numero, String bairro, String cidade, String estado, String cep, String telefone, String email) {
+    public void salvarCliente(String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg, String longradouro, int numero, String bairro, String cidade, String estado, String cep, String telefone, String email) {
         
         if(sexo.equals("Selecionar")||estado.equals("Selecionar")){
             cliente=null;
@@ -74,6 +74,7 @@ public class ClienteController {
         cliente.setCpf(cpf);
         cliente.setSexo(sexo);
         cliente.setDataNascimento(c);
+        cliente.setCaminhoImg(caminhoImg);
         cliente.setLongradouro(longradouro);
         cliente.setNumero(numero);
         cliente.setBairro(bairro);
@@ -92,7 +93,7 @@ public class ClienteController {
         novo();
     }
 
-    public void editCliente(int id,String nome, String cpf, String sexo, Date dtNascimento, String longradouro, int numero, String bairro, String cidade, String estado, String cep, String telefone, String email, String situacao) throws Exception {
+    public void editCliente(int id,String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg, String longradouro, int numero, String bairro, String cidade, String estado, String cep, String telefone, String email, String situacao) throws Exception {
         Calendar c = Calendar.getInstance();
         c.setTime(dtNascimento);
         Component rootPane = null;
@@ -108,6 +109,7 @@ public class ClienteController {
         cliente.setCpf(cpf);
         cliente.setSexo(sexo);
         cliente.setDataNascimento(c);
+        cliente.setCaminhoImg(caminhoImg);
         cliente.setLongradouro(longradouro);
         cliente.setNumero(numero);
         cliente.setBairro(bairro);

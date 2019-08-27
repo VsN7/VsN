@@ -441,10 +441,11 @@ public class FornecedorView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboIcms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputCnpj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboIcms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inputInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -490,7 +491,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
                     .addComponent(buttonProximo)
@@ -764,19 +765,19 @@ public class FornecedorView extends javax.swing.JInternalFrame {
     public void valoresInput() throws ParseException{
         
 //        this.id = Integer.parseInt(inputId.getText());
-        this.razaoSocial = inputRazaoSocial.getText();
-        this.nomeFantasia = inputNomeFantasia.getText();
+        this.razaoSocial = inputRazaoSocial.getText().toUpperCase();
+        this.nomeFantasia = inputNomeFantasia.getText().toUpperCase();
         this.icms = (String) comboIcms.getSelectedItem();
         this.cnpj = inputCnpj.getText();
         this.inscricaoEstadual = inputInscricaoEstadual.getText();
-        this.longradouro = inputLongradouro.getText();
+        this.longradouro = inputLongradouro.getText().toUpperCase();
         this.numero = Integer.parseInt(inputNumero.getText());
-        this.bairro = inputBairro.getText();
-        this.cidade = inputCidade.getText();
+        this.bairro = inputBairro.getText().toUpperCase();
+        this.cidade = inputCidade.getText().toUpperCase();
         this.estado = (String) comboEstado.getSelectedItem();
         this.cep = inputCep.getText();
         this.telefone = inputTelefone.getText();
-        this.email = inputEmail.getText();
+        this.email = inputEmail.getText().toUpperCase();
         this.situacao = inputSituacao.getText();
     }
     
