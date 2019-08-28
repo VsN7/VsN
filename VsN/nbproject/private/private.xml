@@ -3,9 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/vsn/VsN/VsN/src/br/com/vsn/view/LoginView.java</file>
-            <file>file:/C:/vsn/VsN/VsN/src/br/com/vsn/view/ClienteView.java</file>
-            <file>file:/C:/vsn/VsN/VsN/src/br/com/vsn/view/OrcamentoView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/ClienteView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/UsuarioView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/EstoqueView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/FornecedorView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/MenuView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/META-INF/persistence.xml</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/model/Cliente.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/OrcamentoView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/FuncionarioView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/OrdemServicoView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/view/LoginView.java</file>
+            <file>file:/C:/DuEvan/VsN/VsN/src/br/com/vsn/controller/ClienteController.java</file>
         </group>
     </open-files>
 </project-private>
