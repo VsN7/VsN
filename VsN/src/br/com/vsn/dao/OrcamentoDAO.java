@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.vsn.dao;
 
 import br.com.vsn.conectaRelatorio.ConnectionFactory;
@@ -116,7 +112,7 @@ public class OrcamentoDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Orcamento orcamento;
+            Orcamento orcamento = new Orcamento();
             try {
                 orcamento = em.getReference(Orcamento.class, id);
                 orcamento.getId();
@@ -173,6 +169,20 @@ public class OrcamentoDAO implements Serializable {
         }
     }
     
+    public int retornaOSId(int id){
+            EntityManager em = getEntityManager();
+            int idOS;
+            System.out.println("ID ORCAMENTO:::"+id);
+            try{
+                Query query = em.createNamedQuery("Orcamento.ordemServicoOrcamentoId").setParameter("id",id);
+                idOS = (int) query.getSingleResult();
+                return idOS;
+            }catch (Exception ex){
+                Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                return 0;
+            }
+        }
+    
     public Orcamento findOrcamento(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -197,25 +207,6 @@ public class OrcamentoDAO implements Serializable {
     }
     
     
-
-    public int primeiroPasso() throws Exception{
-        EntityManager em = getEntityManager();
-        UsuarioController uc = new UsuarioController();
-        OrcamentoController oc = new OrcamentoController();
-        List<Orcamento> orcamentos = null;
-       try{
-           orcamentos = em.createNamedQuery("Orcamento.selecionar").setParameter("id",uc.getId()).getResultList();
-           oc.setOrcamentos(orcamentos);
-           if(oc.getOrcamentos().get(0).getId()!=0){
-                return 1;
-           }
-           else
-               return 0;
-       } catch (Exception e){
-           return 0;
-       }
-       
-   }
     
         public double retornaValorTotal(){
             EntityManager em = getEntityManager();

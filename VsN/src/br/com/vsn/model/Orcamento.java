@@ -24,6 +24,8 @@ import javax.persistence.TemporalType;
         @NamedQuery(name = "Orcamento.selecionar", 
                 query = "SELECT o FROM Orcamento o WHERE o.usuario.id = :id "),
                 
+        @NamedQuery(name = "Orcamento.ordemServicoOrcamentoId", 
+                query = "SELECT os.id FROM OrdemServico os WHERE os.orcamento_id = :id "),
         @NamedQuery(name = "Orcamento.buscaPorId", 
                 query = "SELECT o FROM Orcamento o WHERE o.id = :id "),
         
@@ -39,13 +41,6 @@ import javax.persistence.TemporalType;
 
 public class Orcamento implements Serializable{
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -71,6 +66,29 @@ public class Orcamento implements Serializable{
     private String placa;
     private String atendente;
 
+    private int ordemServico_id;
+    
+    @ManyToOne
+    private Usuario usuario;
+    
+
+    public int getOrdemServico_id() {
+        return ordemServico_id;
+    }
+
+    public void setOrdemServico_id(int ordemServico_id) {
+        this.ordemServico_id = ordemServico_id;
+    }
+    
+    
+    
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
     public String getAtendente() {
         return atendente;
     }
@@ -131,8 +149,6 @@ public class Orcamento implements Serializable{
         this.situacao = situacao;
     }
 
-    @ManyToOne
-    private Usuario usuario;
 
     public int getId() {
         return id;

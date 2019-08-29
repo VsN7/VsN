@@ -70,6 +70,37 @@ public class CalendarView extends javax.swing.JInternalFrame {
         
     }
     
+    // Ordem de Serviço
+    public void setaCalendarOrdemServicoPvEntrega(){
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                OrdemServicoView.inputPrevisaoEntrega.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+    }
+    
+    public void setaCalendarOrdemServicoDtInicio(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                OrdemServicoView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+        
+    }
+    
+    //Funcionario
+    
     public void setaCalendarFuncionarioDtNascimento(){
         
         jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
@@ -84,6 +115,7 @@ public class CalendarView extends javax.swing.JInternalFrame {
         });
         
     }
+    
     
     public void setaCalendarCadastroConta(){
         

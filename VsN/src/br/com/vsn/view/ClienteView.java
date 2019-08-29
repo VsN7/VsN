@@ -28,7 +28,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     ClienteController cc;
     SimpleDateFormat sdf;
     static int index = 0;
-    String diretorio = "C:\\DuEvan\\fotos\\clientes\\";
+    String diretorio = "C:\\VsN\\fotos\\clientes\\";
     int id;
     String nome;
     String cpf;
@@ -800,7 +800,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private void buttonCaminhoImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminhoImgActionPerformed
         try{
             JFileChooser buscarImg = new JFileChooser();
-            buscarImg.setCurrentDirectory(new java.io.File("C:\\DuEvan\\VsN\\VsN\\src\\imagens"));
+            buscarImg.setCurrentDirectory(new java.io.File("C:\\VsN\\VsN\\src\\imagens"));
             buscarImg.setDialogTitle("Carregar Foto do Cliente");
             buscarImg.showOpenDialog(this);
             String foto = ""+buscarImg.getSelectedFile().getName();

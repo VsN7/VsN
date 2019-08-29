@@ -4,6 +4,7 @@ import br.com.vsn.dao.OrcamentoDAO;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Orcamento;
 import br.com.vsn.model.Usuario;
+import br.com.vsn.view.OrcamentoView;
 import java.awt.Component;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class OrcamentoController {
     private List<Orcamento> orcamentos;
     static int id;
     static String login;
+    public static int conta=0;
 
     public int getId() {
         return id;
@@ -32,42 +34,28 @@ public class OrcamentoController {
         return login;
     }
     
-     public void editOrcamento(int id,String cliente,String cpf, String veiculo, String modelo, String placa,String servico, String atendente, Date cInicio, Date cPrevisao, double valor, String situacao, String observacoes) throws Exception {
-         
-         
+     public void editOrcamento(int id,Orcamento orcamento) throws Exception {
          
          Component rootPane = null;
-         Calendar caInicio = Calendar.getInstance();
-         Calendar cFinal = Calendar.getInstance();
-         caInicio.setTime(cInicio);
-         cFinal.setTime(cPrevisao);
-         Orcamento orcamento = new Orcamento();
          UsuarioController us = new UsuarioController();
          Usuario usuario = new Usuario();
          usuario.setId(us.getId());
          
-         if(veiculo.equals("Selecionar")){
+         if(orcamento.getVeiculo().equals("Selecionar")){
             orcamento=null;
             JOptionPane.showMessageDialog(null, "Verifique se o campo Veículo está preenchido", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
          
          orcamento.setId(id);
-         orcamento.setCliente(cliente);
-         orcamento.setCpf(cpf);
-         orcamento.setVeiculo(veiculo);
-         orcamento.setModelo(modelo);
-         orcamento.setPlaca(placa);
-         orcamento.setServico(servico);
-         orcamento.setAtendente(atendente);
-         orcamento.setDataInicio(caInicio);
-         orcamento.setPrevisaoEntrega(cFinal);
-         orcamento.setValor(valor);
-         orcamento.setSituacao(situacao);
-         orcamento.setObservacoes(observacoes);
          orcamento.setUsuario(usuario);
          dao.edit(orcamento);
-        JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-        
+         if(conta==0){
+             JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+         }  
+         else{
+             conta = 0;
+         }
+             
      }
 
     public OrcamentoController() {
@@ -101,7 +89,10 @@ public class OrcamentoController {
         pesquisar();
     }
     
-    
+        public int retornaOSId(int id){
+            return dao.retornaOSId(id);
+        }
+        
         public void salvarOrcamento(String cliente,String cpf, String veiculo, String modelo,String placa,String servico,String atendente,Date dtInicio, Date pvEntrega, double valor, String situacao,String observacoes) {
         
         if(veiculo.equals("Selecionar")){
@@ -149,7 +140,7 @@ public class OrcamentoController {
         
         if (resposta == JOptionPane.YES_OPTION) {
             dao.destroy(id);
-            
+            OrcamentoView.index--; 
             JOptionPane.showMessageDialog(rootPane, "Exclusão realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
         
         }
@@ -194,24 +185,21 @@ public class OrcamentoController {
         }
     }
     
-    public void editSituacao(int index, Calendar c, String situacao) throws Exception{
+    public void editSituacao(int id, Calendar c, String situacao) throws Exception{
         Component rootPane = null;
         Orcamento orcamento = new Orcamento();
-        UsuarioController us = new UsuarioController();
-        Usuario usuario = new Usuario();
-        usuario.setId(us.getId());
-        getOrcamentos().get(index).setDataFinalizacao(c);
-        getOrcamentos().get(index).setSituacao(situacao);
-        dao.edit(getOrcamentos().get(index));
-        if(getOrcamentos().get(index).getSituacao().equals("ABERTO")){
-            
-            JOptionPane.showMessageDialog(rootPane, "Orçamento reaberto com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-        
-        }else{
-            
-            JOptionPane.showMessageDialog(rootPane, "Orçamento Finalizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-        
-        }
+        orcamento.setId(id);
+        orcamento.setSituacao(situacao);
+        dao.edit(orcamento);
+//        if(getOrcamentos().get(index).getSituacao().equals("ABERTO")){
+//            
+//            JOptionPane.showMessageDialog(rootPane, "Orçamento reaberto com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+//        
+//        }else{
+//            
+//            JOptionPane.showMessageDialog(rootPane, "Orçamento Finalizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+//        
+//        }
     }
     
     public void relatorioSituacao(int comboBox){

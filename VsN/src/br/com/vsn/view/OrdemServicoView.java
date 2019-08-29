@@ -2,6 +2,7 @@
 package br.com.vsn.view;
 
 import br.com.vsn.controller.OrcamentoController;
+import br.com.vsn.controller.OrdemServicoController;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -25,10 +26,10 @@ import javax.swing.border.LineBorder;
  */
 public class OrdemServicoView extends javax.swing.JInternalFrame {
     
-    OrcamentoController oc;
+    OrdemServicoController osc;
     SimpleDateFormat sdf;
     NumberFormat formatter;
-    static int index = 0;
+    public static int index = 0;
     
     
     int id;
@@ -48,7 +49,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     public OrdemServicoView() throws Exception {
         sdf = new SimpleDateFormat("dd/MM/yyyy");
         formatter = new DecimalFormat("#0.00");
-        oc = new OrcamentoController();
+        osc = new OrdemServicoController();
         
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int lar = (int) d.getWidth();
@@ -56,7 +57,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/64);
         initComponents();
         
-        if(oc.getOrcamentos().size()<=0){
+        if(osc.getOrdemServicos().size()<=0){
             this.desativarTudo();
             this.ativarButtonCadastrar();
             if(buttonCadastrar.getText().equals("Salvar"))
@@ -391,13 +392,13 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator3)
-                    .addComponent(jSeparator1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -411,9 +412,9 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboVeiculo, 0, 287, Short.MAX_VALUE)
+                            .addComponent(comboVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -425,7 +426,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addComponent(inputPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputServico, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -435,11 +436,11 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,17 +458,17 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buttonOS, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                         .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(calendarPvEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(calendarPvEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                             .addComponent(jLabel14))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,18 +483,15 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addGap(178, 178, 178))
-                            .addComponent(inputSituacao))))
+                            .addComponent(inputSituacao)))
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -563,9 +561,9 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(buttonOS, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
                     .addComponent(buttonProximo)
@@ -579,36 +577,29 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                     .addComponent(buttonEditar)
                     .addComponent(buttonImprimir))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jLabel19)
-                    .addContainerGap(507, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
-        index = oc.getOrcamentos().size()-1;
+        index = osc.getOrdemServicos().size()-1;
         exibirDados();
     }//GEN-LAST:event_buttonFinaljButton8ActionPerformed
 
     private void buttonProximojButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProximojButton7ActionPerformed
-        if(index < oc.getOrcamentos().size()-1){
+        if(index < osc.getOrdemServicos().size()-1){
             posterior();
         }
         exibirDados();
@@ -631,8 +622,8 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         if(buttonEditar.getText().equals("Salvar")){
             try {
                 this.valoresInput();
-                oc = new OrcamentoController();
-                oc.editOrcamento(Integer.parseInt(inputId.getText()), cliente, cpf, veiculo, modelo, placa, servico, atendente, dtInicio, pvEntrega, valor, situacao, observacoes);
+                osc = new OrdemServicoController();
+                osc.editOrdemServico(Integer.parseInt(inputId.getText()), cliente, cpf, veiculo, modelo, placa, servico, atendente, dtInicio, pvEntrega, valor, situacao, observacoes);
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
                 this.exibirDados();
@@ -646,7 +637,32 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        
+        if(inputSituacao.getText().equals("ABERTO")){
+            try {
+                osc.destroy(Integer.parseInt(inputId.getText()),osc.getOrdemServicos().get(index).getOrcamento_id());
+                
+                if(index<0 &&osc.getOrdemServicos().size()>0){
+                    index++;
+                }
+                osc = new OrdemServicoController();
+                if(osc.getOrdemServicos().size()<=0){
+                    this.limparCampos();
+                    this.desativarTudo();
+                    this.ativarButtonCadastrar();
+                    if(buttonCadastrar.getText().equals("Salvar"))
+                        this.ativarInputCadastrar();
+                }else{
+                    System.out.println("val size::"+osc.getOrdemServicos().size());
+                    osc = new OrdemServicoController();
+                    this.exibirDados();
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(OrcamentoView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+                JOptionPane.showMessageDialog(null, "Imposivel Excluir Orçamento Vinculado", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }        
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
@@ -654,13 +670,13 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             try {
                 int i = 0;
                 int id = Integer.parseInt(inputId.getText());
-                Iterator iterator = oc.getOrcamentos().iterator();
+                Iterator iterator = osc.getOrdemServicos().iterator();
                 do{
-                    if(id == oc.getOrcamentos().get(i).getId()){
+                    if(id == osc.getOrdemServicos().get(i).getId()){
                         index=i;
                     }
                     iterator.next();
-                    if(i<oc.getOrcamentos().size()-1)
+                    if(i<osc.getOrdemServicos().size()-1)
                         i++;
                 
                 }while (iterator.hasNext());
@@ -685,14 +701,15 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         if(buttonCadastrar.getText().equals("Salvar")){
             try {
                 this.valoresInput();
-                oc = new OrcamentoController();
-                oc.salvarOrcamento(this.cliente, this.cpf, this.veiculo, this.modelo, this.placa, this.servico, this.atendente, this.dtInicio, this.pvEntrega, this.valor, this.situacao, this.observacoes);
+                osc = new OrdemServicoController();
+                osc.salvarOrdemServico(0,this.cliente, this.cpf, this.veiculo, this.modelo, this.placa, this.servico, this.atendente, this.dtInicio, this.pvEntrega, this.valor, this.situacao, this.observacoes);
                 buttonCadastrar.setText("Novo");
-                index = oc.getOrcamentos().size()-1;
+                index = osc.getOrdemServicos().size()-1;
                 this.ativarTudo();
                 this.exibirDados();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(OrdemServicoView.class.getName()).log(Level.SEVERE, null, ex);
+             //JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             this.limparCampos();
@@ -713,7 +730,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
         if (evt.getKeyCode() == evt.VK_F1) {                    
             try {
-                PesquisarOrcamentoView pv = new PesquisarOrcamentoView();
+                PesquisarOrdemServicoView pv = new PesquisarOrdemServicoView();
                 this.getParent().add(pv);
                 pv.setVisible(true);
                 
@@ -748,7 +765,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         CalendarView cv = new CalendarView();
         this.getParent().add(cv);
         cv.setVisible(true);
-        cv.setaCalendarOrcamentoPvEntrega();
+        cv.setaCalendarOrdemServicoPvEntrega();
     }//GEN-LAST:event_calendarPvEntregaMousePressed
 
     private void calendarPvEntregaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMouseExited
@@ -782,7 +799,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         CalendarView cv = new CalendarView();
         this.getParent().add(cv);
         cv.setVisible(true);
-        cv.setaCalendarOrcamentoDtInicio();
+        cv.setaCalendarOrdemServicoDtInicio();
     }//GEN-LAST:event_calendarDtInicioMousePressed
 
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
@@ -790,7 +807,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             if (evt.getKeyCode() == evt.VK_F1) {
                 if(buttonSelecionar.getText().equals("Buscar")){
                     try {
-                        PesquisarOrcamentoView pov = new PesquisarOrcamentoView();
+                        PesquisarOrdemServicoView pov = new PesquisarOrdemServicoView();
                         this.getParent().add(pov);
                         pov.setVisible(true);
                     } catch (Exception ex) {
@@ -871,22 +888,22 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     }
     
         public void exibirDados(){
-        oc = new OrcamentoController();
+        osc = new OrdemServicoController();
         try {
             this.ativarTudo();
-            inputId.setText(""+oc.getOrcamentos().get(index).getId());
-            inputCliente.setText(""+oc.getOrcamentos().get(index).getCliente());
-            inputCpf.setText(""+oc.getOrcamentos().get(index).getCpf());
-            comboVeiculo.setSelectedItem(""+oc.getOrcamentos().get(index).getVeiculo());
-            inputModelo.setText(""+oc.getOrcamentos().get(index).getModelo());
-            inputPlaca.setText(""+oc.getOrcamentos().get(index).getPlaca());
-            inputServico.setText(""+oc.getOrcamentos().get(index).getServico());
-            inputAtendente.setText(""+oc.getOrcamentos().get(index).getAtendente());
-            inputDataInicio.setText(""+sdf.format(oc.getOrcamentos().get(index).getDataInicio().getTime()));
-            inputPrevisaoEntrega.setText(""+sdf.format(oc.getOrcamentos().get(index).getPrevisaoEntrega().getTime()));
-            inputValor.setText(""+formatter.format(oc.getOrcamentos().get(index).getValor()));
-            inputSituacao.setText(""+oc.getOrcamentos().get(index).getSituacao());
-            inputObservacoes.setText(""+oc.getOrcamentos().get(index).getObservacoes());
+            inputId.setText(""+osc.getOrdemServicos().get(index).getId());
+            inputCliente.setText(""+osc.getOrdemServicos().get(index).getCliente());
+            inputCpf.setText(""+osc.getOrdemServicos().get(index).getCpf());
+            comboVeiculo.setSelectedItem(""+osc.getOrdemServicos().get(index).getVeiculo());
+            inputModelo.setText(""+osc.getOrdemServicos().get(index).getModelo());
+            inputPlaca.setText(""+osc.getOrdemServicos().get(index).getPlaca());
+            inputServico.setText(""+osc.getOrdemServicos().get(index).getServico());
+            inputAtendente.setText(""+osc.getOrdemServicos().get(index).getAtendente());
+            inputDataInicio.setText(""+sdf.format(osc.getOrdemServicos().get(index).getDataInicio().getTime()));
+            inputPrevisaoEntrega.setText(""+sdf.format(osc.getOrdemServicos().get(index).getPrevisaoEntrega().getTime()));
+            inputValor.setText(""+formatter.format(osc.getOrdemServicos().get(index).getValor()));
+            inputSituacao.setText(""+osc.getOrdemServicos().get(index).getSituacao());
+            inputObservacoes.setText(""+osc.getOrdemServicos().get(index).getObservacoes());
             inputId.setEnabled(false);
             inputSituacao.setEditable(false);
             this.valoresInput();
@@ -942,6 +959,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         inputDataInicio.setEnabled(true);
         inputValor.setEnabled(true);
         inputPrevisaoEntrega.setEnabled(true);
+        inputSituacao.setEnabled(false);
         inputObservacoes.setEnabled(true);
     }
     
