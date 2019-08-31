@@ -41,23 +41,12 @@ public class Usuario implements Serializable {
     @Column(nullable = false, unique = true)
     private String login;
     
-    @Column(nullable = false, unique = true)
-    private String cpf;
-    
     @Column(nullable = false)
     private String senha;
     
     
     public Integer getId() {
         return id;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
     
     public Usuario(){

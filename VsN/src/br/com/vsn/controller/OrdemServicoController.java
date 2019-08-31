@@ -35,38 +35,20 @@ public class OrdemServicoController {
         return login;
     }
     
-     public void editOrdemServico(int id,String cliente,String cpf, String veiculo, String modelo, String placa,String servico, String atendente, Date cInicio, Date cPrevisao, double valor, String situacao, String observacoes) throws Exception {
+     public void editOrdemServico(int id,OrdemServico ordemServico) throws Exception {
          
          
          
          Component rootPane = null;
-         Calendar caInicio = Calendar.getInstance();
-         Calendar cFinal = Calendar.getInstance();
-         caInicio.setTime(cInicio);
-         cFinal.setTime(cPrevisao);
-         OrdemServico ordemServico = new OrdemServico();
          UsuarioController us = new UsuarioController();
          Usuario usuario = new Usuario();
          usuario.setId(us.getId());
-         
-         if(veiculo.equals("Selecionar")){
+        if(ordemServico.getDataInicio().getTime().after(ordemServico.getPrevisaoEntrega().getTime())){
             ordemServico=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Veículo está preenchido", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data de inicio do serviço é maior do que a previsão de entrega", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
          
          ordemServico.setId(id);
-         ordemServico.setCliente(cliente);
-         ordemServico.setCpf(cpf);
-         ordemServico.setVeiculo(veiculo);
-         ordemServico.setModelo(modelo);
-         ordemServico.setPlaca(placa);
-         ordemServico.setServico(servico);
-         ordemServico.setAtendente(atendente);
-         ordemServico.setDataInicio(caInicio);
-         ordemServico.setPrevisaoEntrega(cFinal);
-         ordemServico.setValor(valor);
-         ordemServico.setSituacao(situacao);
-         ordemServico.setObservacoes(observacoes);
          ordemServico.setUsuario(usuario);
          dao.edit(ordemServico);
         JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
@@ -107,11 +89,11 @@ public class OrdemServicoController {
     
         public void salvarOrdemServico(int idOrcamento,String cliente,String cpf, String veiculo, String modelo,String placa,String servico,String atendente,Date dtInicio, Date pvEntrega, double valor, String situacao,String observacoes) {
         
-        if(veiculo.equals("Selecionar")){
+        if(dtInicio.after(pvEntrega)){
             ordemServico=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Veículo está preenchido", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data de inicio do serviço é maior do que a previsão de entrega", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-            
+        
         Component rootPane = null;
         Calendar caInicio = Calendar.getInstance();
         Calendar cFinal = Calendar.getInstance();

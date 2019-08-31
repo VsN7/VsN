@@ -3,6 +3,7 @@ package br.com.vsn.view;
 
 import br.com.vsn.controller.OrcamentoController;
 import br.com.vsn.controller.OrdemServicoController;
+import br.com.vsn.model.OrdemServico;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,6 +13,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -30,7 +32,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     SimpleDateFormat sdf;
     NumberFormat formatter;
     public static int index = 0;
-    
+    public static OrdemServico ordemServico;
     
     int id;
     String cliente;
@@ -50,7 +52,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         sdf = new SimpleDateFormat("dd/MM/yyyy");
         formatter = new DecimalFormat("#0.00");
         osc = new OrdemServicoController();
-        
+        ordemServico = new OrdemServico();
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int lar = (int) d.getWidth();
         int alt = (int) d.getHeight();
@@ -292,7 +294,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         jLabel20.setText("Serviço");
 
         comboVeiculo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Carro", "Moto", "Ônibus", "Caminhão", "Outro" }));
+        comboVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carro", "Moto", "Ônibus", "Caminhão", "Outro" }));
 
         inputPlaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -341,6 +343,14 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         buttonOS.setForeground(new java.awt.Color(255, 255, 255));
         buttonOS.setText("Efetuar Pagamento");
         buttonOS.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buttonOS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonOSMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonOSMouseExited(evt);
+            }
+        });
         buttonOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOSActionPerformed(evt);
@@ -623,7 +633,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             try {
                 this.valoresInput();
                 osc = new OrdemServicoController();
-                osc.editOrdemServico(Integer.parseInt(inputId.getText()), cliente, cpf, veiculo, modelo, placa, servico, atendente, dtInicio, pvEntrega, valor, situacao, observacoes);
+                osc.editOrdemServico(Integer.parseInt(inputId.getText()),ordemServico);
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
                 this.exibirDados();
@@ -652,7 +662,6 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                     if(buttonCadastrar.getText().equals("Salvar"))
                         this.ativarInputCadastrar();
                 }else{
-                    System.out.println("val size::"+osc.getOrdemServicos().size());
                     osc = new OrdemServicoController();
                     this.exibirDados();
                 }
@@ -671,18 +680,24 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 int i = 0;
                 int id = Integer.parseInt(inputId.getText());
                 Iterator iterator = osc.getOrdemServicos().iterator();
+                int condicaoErro = 0;
                 do{
                     if(id == osc.getOrdemServicos().get(i).getId()){
                         index=i;
+                        condicaoErro = 1;
                     }
                     iterator.next();
                     if(i<osc.getOrdemServicos().size()-1)
                         i++;
-                
                 }while (iterator.hasNext());
-                this.exibirDados();
-                buttonSelecionar.setText("Selecionar");
-                this.exibirDados();
+                if(condicaoErro==0){
+                    
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                   
+                }else{
+                    this.exibirDados();
+                    buttonSelecionar.setText("Selecionar");
+                }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
         
@@ -692,6 +707,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             this.ativarButtonSelecionar();
             this.limparCampos();
             inputCliente.setEnabled(true);
+            inputId.setEditable(true);
             inputId.setEnabled(true);
             buttonSelecionar.setText("Buscar");
         }
@@ -708,8 +724,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 this.ativarTudo();
                 this.exibirDados();
             } catch (Exception ex) {
-                Logger.getLogger(OrdemServicoView.class.getName()).log(Level.SEVERE, null, ex);
-             //JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+               JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             this.limparCampos();
@@ -831,6 +846,14 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputClienteActionPerformed
 
+    private void buttonOSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOSMouseEntered
+        buttonOS.setBorder(new LineBorder(new Color(52, 126, 164), 2, true));
+    }//GEN-LAST:event_buttonOSMouseEntered
+
+    private void buttonOSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOSMouseExited
+        buttonOS.setBorder(new LineBorder(new Color(8, 90, 0), 1, true));
+    }//GEN-LAST:event_buttonOSMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAnterior;
@@ -904,7 +927,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             inputValor.setText(""+formatter.format(osc.getOrdemServicos().get(index).getValor()));
             inputSituacao.setText(""+osc.getOrdemServicos().get(index).getSituacao());
             inputObservacoes.setText(""+osc.getOrdemServicos().get(index).getObservacoes());
-            inputId.setEnabled(false);
+            inputId.setEditable(false);
             inputSituacao.setEditable(false);
             this.valoresInput();
         } catch (Exception ex) {
@@ -928,6 +951,23 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         this.valor = Double.parseDouble(inputValor.getText().replace(",", "."));
         this.situacao = inputSituacao.getText();
         this.observacoes = inputObservacoes.getText().toUpperCase();
+        ordemServico = new OrdemServico();
+        ordemServico.setCliente(cliente);
+        ordemServico.setCpf(cpf);
+        ordemServico.setVeiculo(veiculo);
+        ordemServico.setModelo(modelo);
+        ordemServico.setPlaca(placa);
+        ordemServico.setServico(servico);
+        ordemServico.setAtendente(atendente);
+        Calendar c = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c.setTime(dtInicio);
+        ordemServico.setDataInicio(c);
+        c2.setTime(pvEntrega);
+        ordemServico.setPrevisaoEntrega(c2);
+        ordemServico.setValor(valor);
+        ordemServico.setSituacao(situacao);
+        ordemServico.setObservacoes(observacoes);
     }
     
     
@@ -948,7 +988,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     }
     
     public static void ativarInputCadastrar(){
-        inputId.setEnabled(false);
+        inputId.setEditable(false);
         inputCliente.setEnabled(true);
         inputCpf.setEnabled(true);
         inputPlaca.setEnabled(true);
@@ -959,7 +999,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         inputDataInicio.setEnabled(true);
         inputValor.setEnabled(true);
         inputPrevisaoEntrega.setEnabled(true);
-        inputSituacao.setEnabled(false);
+        inputSituacao.setEditable(false);
         inputObservacoes.setEnabled(true);
     }
     
@@ -1035,7 +1075,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         
         //Inputs
         
-        inputId.setEnabled(false);
+        inputId.setEditable(false);
         inputCliente.setEnabled(false);
         inputCpf.setEnabled(false);
         inputPlaca.setEnabled(false);

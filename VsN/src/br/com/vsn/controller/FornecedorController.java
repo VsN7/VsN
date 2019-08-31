@@ -59,11 +59,6 @@ public class FornecedorController {
 
     public void salvarFornecedor(String razaoSocial, String nomeFantasia, String icms, String cnpj, String inscricaoEstadual, String longradouro, int numero, String bairro, String cidade, String estado, String cep, String telefone, String email) {
         
-        if(icms.equals("Selecionar")||estado.equals("Selecionar")){
-            fornecedor=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Sexo ou/e o campo Estado está/estão preenchidos", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
-        
         Component rootPane = null;
         fornecedor.setRazaoSocial(razaoSocial);
         fornecedor.setNomeFantasia(nomeFantasia);
@@ -92,12 +87,7 @@ public class FornecedorController {
         
         Component rootPane = null;
         Fornecedor fornecedor = new Fornecedor();
-        
-        if(icms.equals("Selecionar")||estado.equals("Selecionar")){
-            fornecedor=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Sexo ou/e o campo Estado está/estão preenchidos", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
-        
+      
         fornecedor.setId(id);
         fornecedor.setRazaoSocial(razaoSocial);
         fornecedor.setNomeFantasia(nomeFantasia);

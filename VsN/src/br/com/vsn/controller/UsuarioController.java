@@ -51,11 +51,10 @@ public class UsuarioController {
         usuarios.addAll(dao.findUsuarioEntities());
     }
     
-    public void salvar(String login, String senha, String cpf) throws NoSuchAlgorithmException{
+    public void salvar(String login, String senha) throws NoSuchAlgorithmException{
         encriptografarSenhaUsuario(senha);
         usuario.setLogin(login);
         usuario.setSenha(usuario.getSenha());
-        usuario.setCpf(cpf);
         dao.create(usuario);
         usuario = new Usuario();
         pesquisar();

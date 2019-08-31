@@ -61,11 +61,6 @@ public class ClienteController {
 
     public void salvarCliente(String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg, String longradouro, int numero, String bairro, String cidade, String estado, String cep, String telefone, String email) {
         
-        if(sexo.equals("Selecionar")||estado.equals("Selecionar")){
-            cliente=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Sexo ou/e o campo Estado está/estão preenchidos", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
-        
         Calendar c = Calendar.getInstance();
         c.setTime(dtNascimento);
         
@@ -98,11 +93,6 @@ public class ClienteController {
         c.setTime(dtNascimento);
         Component rootPane = null;
         Cliente cliente = new Cliente();
-        
-        if(sexo.equals("Selecionar")||estado.equals("Selecionar")){
-            cliente=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Sexo ou/e o campo Estado está/estão preenchidos", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
         
         cliente.setId(id);
         cliente.setNome(nome);

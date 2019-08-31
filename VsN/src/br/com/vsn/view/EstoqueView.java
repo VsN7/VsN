@@ -157,7 +157,7 @@ public class EstoqueView extends javax.swing.JInternalFrame {
         jLabel26.setText("Estado");
 
         comboEstado1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboEstado1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Acre – AC", "Alagoas – AL", "Amapá – AP", "Amazonas – AM", "Bahia – BA", "Ceará – CE", "Distrito Federal – DF", "Espírito Santo – ES", "Goiás – GO", "Maranhão – MA", "Mato Grosso – MT", "Mato Grosso do Sul – MS", "Minas Gerais – MG", "Pará – PA", "Paraíba – PB", "Paraná – PR", "Pernambuco – PE", "Piauí – PI", "Roraima – RR", "Rondônia – RO", "Rio de Janeiro – RJ", "Rio Grande do Norte – RN", "Rio Grande do Sul – RS", "Santa Catarina – SC", "São Paulo – SP", "Sergipe – SE", "Tocantins – TO" }));
+        comboEstado1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acre – AC", "Alagoas – AL", "Amapá – AP", "Amazonas – AM", "Bahia – BA", "Ceará – CE", "Distrito Federal – DF", "Espírito Santo – ES", "Goiás – GO", "Maranhão – MA", "Mato Grosso – MT", "Mato Grosso do Sul – MS", "Minas Gerais – MG", "Pará – PA", "Paraíba – PB", "Paraná – PR", "Pernambuco – PE", "Piauí – PI", "Roraima – RR", "Rondônia – RO", "Rio de Janeiro – RJ", "Rio Grande do Norte – RN", "Rio Grande do Sul – RS", "Santa Catarina – SC", "São Paulo – SP", "Sergipe – SE", "Tocantins – TO" }));
         comboEstado1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEstado1ActionPerformed(evt);
@@ -548,7 +548,6 @@ public class EstoqueView extends javax.swing.JInternalFrame {
                             .addComponent(inputIdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -658,8 +657,10 @@ public class EstoqueView extends javax.swing.JInternalFrame {
                 int i = 0;
                 int id = Integer.parseInt(inputId.getText());
                 Iterator iterator = cc.getClientes().iterator();
+                int condicaoErro = 0;
                 do{
                     if(id == cc.getClientes().get(i).getId()){
+                        condicaoErro=1;
                         index=i;
                     }
                     iterator.next();
@@ -667,8 +668,14 @@ public class EstoqueView extends javax.swing.JInternalFrame {
                         i++;
                 
                 }while (iterator.hasNext());
-                this.exibirDados();
-                buttonSelecionar.setText("Selecionar");
+                if(condicaoErro==0){
+                    
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                   
+                }else{
+                    this.exibirDados();
+                    buttonSelecionar.setText("Selecionar");
+                }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
         
@@ -677,6 +684,7 @@ public class EstoqueView extends javax.swing.JInternalFrame {
             this.desativarTudo();
             this.ativarButtonSelecionar();
             this.limparCampos();
+            inputId.setEditable(true);
             inputId.setEnabled(true);
             inputDescrição.setEnabled(true);
             buttonSelecionar.setText("Buscar");
@@ -915,8 +923,8 @@ public class EstoqueView extends javax.swing.JInternalFrame {
             inputTelefone.setText(""+cc.getClientes().get(index).getTelefone());
             inputEmail.setText(""+cc.getClientes().get(index).getEmail());
             inputSituacao.setText(""+cc.getClientes().get(index).getSituacao());
-            inputId.setEnabled(false);
-            inputSituacao.setEnabled(false);
+            inputId.setEditable(false);
+            inputSituacao.setEditable(false);
             this.valoresInput();
             this.preencherImagem();
         } catch (Exception ex) {
@@ -971,7 +979,7 @@ public class EstoqueView extends javax.swing.JInternalFrame {
     }
     
     public static void ativarInputCadastrar(){
-        inputId.setEnabled(false);
+        inputId.setEditable(false);
         inputDescrição.setEnabled(true);
         inputCpf.setEnabled(true);
        // inputDtNascimento.setEnabled(true);
@@ -985,7 +993,7 @@ public class EstoqueView extends javax.swing.JInternalFrame {
         inputValor.setEnabled(true);
         inputTelefone.setEnabled(true);
         inputEmail.setEnabled(true);
-        inputSituacao.setEnabled(false);
+        inputSituacao.setEditable(false);
     }
     
     public void ativarButtonCadastrar(){
@@ -998,6 +1006,7 @@ public class EstoqueView extends javax.swing.JInternalFrame {
         buttonAnterior.setEnabled(false);
         buttonProximo.setEnabled(false);
         buttonFinal.setEnabled(false);
+        buttonCaminhoImg.setEnabled(true);
     }
     
     public void ativarButtonSelecionar(){
@@ -1061,7 +1070,7 @@ public class EstoqueView extends javax.swing.JInternalFrame {
         
         //Inputs
         
-        inputId.setEnabled(false);
+        inputId.setEditable(false);
         inputDescrição.setEnabled(false);
         inputCpf.setEnabled(false);
       //  inputDtNascimento.setEnabled(false);
@@ -1074,7 +1083,7 @@ public class EstoqueView extends javax.swing.JInternalFrame {
         inputValor.setEnabled(false);
         inputTelefone.setEnabled(false);
         inputEmail.setEnabled(false);
-        inputSituacao.setEnabled(false);
+        inputSituacao.setEditable(false);
         
         //Botões
         buttonCaminhoImg.setEnabled(false);

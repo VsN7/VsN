@@ -180,7 +180,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
         jLabel19.setText("Dados do Fornecedor");
 
         comboIcms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboIcms.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Sim", "Não" }));
+        comboIcms.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
 
         inputInscricaoEstadual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -205,7 +205,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
         jLabel15.setText("CEP");
 
         comboEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Acre – AC", "Alagoas – AL", "Amapá – AP", "Amazonas – AM", "Bahia – BA", "Ceará – CE", "Distrito Federal – DF", "Espírito Santo – ES", "Goiás – GO", "Maranhão – MA", "Mato Grosso – MT", "Mato Grosso do Sul – MS", "Minas Gerais – MG", "Pará – PA", "Paraíba – PB", "Paraná – PR", "Pernambuco – PE", "Piauí – PI", "Roraima – RR", "Rondônia – RO", "Rio de Janeiro – RJ", "Rio Grande do Norte – RN", "Rio Grande do Sul – RS", "Santa Catarina – SC", "São Paulo – SP", "Sergipe – SE", "Tocantins – TO" }));
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acre – AC", "Alagoas – AL", "Amapá – AP", "Amazonas – AM", "Bahia – BA", "Ceará – CE", "Distrito Federal – DF", "Espírito Santo – ES", "Goiás – GO", "Maranhão – MA", "Mato Grosso – MT", "Mato Grosso do Sul – MS", "Minas Gerais – MG", "Pará – PA", "Paraíba – PB", "Paraná – PR", "Pernambuco – PE", "Piauí – PI", "Roraima – RR", "Rondônia – RO", "Rio de Janeiro – RJ", "Rio Grande do Norte – RN", "Rio Grande do Sul – RS", "Santa Catarina – SC", "São Paulo – SP", "Sergipe – SE", "Tocantins – TO" }));
         comboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEstadoActionPerformed(evt);
@@ -579,8 +579,10 @@ public class FornecedorView extends javax.swing.JInternalFrame {
                 int i = 0;
                 int id = Integer.parseInt(inputId.getText());
                 Iterator iterator = fc.getFornecedores().iterator();
+                int condicaoErro = 0;
                 do{
                     if(id == fc.getFornecedores().get(i).getId()){
+                        condicaoErro=1;
                         index=i;
                     }
                     iterator.next();
@@ -588,8 +590,14 @@ public class FornecedorView extends javax.swing.JInternalFrame {
                         i++;
                 
                 }while (iterator.hasNext());
-                this.exibirDados();
-                buttonSelecionar.setText("Selecionar");
+                if(condicaoErro==0){
+                    
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                   
+                }else{
+                    this.exibirDados();
+                    buttonSelecionar.setText("Selecionar");
+                }
                 this.exibirDados();
             }  catch (Exception ex) {
             Logger.getLogger(FornecedorView.class.getName()).log(Level.SEVERE, null, ex);
@@ -605,6 +613,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
             this.ativarButtonSelecionar();
             this.limparCampos();
             inputRazaoSocial.setEnabled(true);
+            inputId.setEditable(true);
             inputId.setEnabled(true);
             buttonSelecionar.setText("Buscar");
         }
@@ -756,8 +765,8 @@ public class FornecedorView extends javax.swing.JInternalFrame {
             inputTelefone.setText(""+fc.getFornecedores().get(index).getTelefone());
             inputEmail.setText(""+fc.getFornecedores().get(index).getEmail());
             inputSituacao.setText(""+fc.getFornecedores().get(index).getSituacao());
-            inputId.setEnabled(false);
-            inputSituacao.setEnabled(false);
+            inputId.setEditable(false);
+            inputSituacao.setEditable(false);
             this.valoresInput();
         } catch (Exception ex) {
             Logger.getLogger(FornecedorView.class.getName()).log(Level.SEVERE, null, ex);
@@ -804,7 +813,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
     }
     
     public static void ativarInputCadastrar(){
-        inputId.setEnabled(false);
+        inputId.setEditable(false);
         inputRazaoSocial.setEnabled(true);
         inputNomeFantasia.setEnabled(true);
         inputInscricaoEstadual.setEnabled(true);
@@ -818,7 +827,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
         inputCep.setEnabled(true);
         inputTelefone.setEnabled(true);
         inputEmail.setEnabled(true);
-        inputSituacao.setEnabled(false);
+        inputSituacao.setEditable(false);
     }
     
     public void ativarButtonCadastrar(){
@@ -893,7 +902,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
         
         //Inputs
         
-        inputId.setEnabled(false);
+        inputId.setEditable(false);
         inputRazaoSocial.setEnabled(false);
         inputNomeFantasia.setEnabled(false);
         inputInscricaoEstadual.setEnabled(false);

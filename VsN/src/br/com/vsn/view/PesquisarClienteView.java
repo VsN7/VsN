@@ -146,7 +146,11 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
                     }
                 }
                 }catch(Exception e){
-                    this.valoresInputOrcamento();
+                    try{
+                        this.valoresInputOrcamento();
+                    }catch(Exception ex){
+                        this.valoresInputOS();
+                    }
                 }
                 this.dispose();
             } catch (Exception ex) {
@@ -213,5 +217,9 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
         OrcamentoView.inputCliente.setText(""+cliente.getNome());
         OrcamentoView.inputCpf.setText(""+cliente.getCpf());
     } 
+    public void valoresInputOS(){
+        OrdemServicoView.inputCliente.setText(""+cliente.getNome());
+        OrdemServicoView.inputCpf.setText(""+cliente.getCpf());
+    }
 
 }

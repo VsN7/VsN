@@ -35,17 +35,14 @@ public class OrcamentoController {
     }
     
      public void editOrcamento(int id,Orcamento orcamento) throws Exception {
-         
          Component rootPane = null;
          UsuarioController us = new UsuarioController();
          Usuario usuario = new Usuario();
          usuario.setId(us.getId());
-         
-         if(orcamento.getVeiculo().equals("Selecionar")){
+        if(orcamento.getDataInicio().getTime().after(orcamento.getPrevisaoEntrega().getTime())){
             orcamento=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Veículo está preenchido", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data de inicio do serviço é maior do que a previsão de entrega", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-         
          orcamento.setId(id);
          orcamento.setUsuario(usuario);
          dao.edit(orcamento);
@@ -93,33 +90,13 @@ public class OrcamentoController {
             return dao.retornaOSId(id);
         }
         
-        public void salvarOrcamento(String cliente,String cpf, String veiculo, String modelo,String placa,String servico,String atendente,Date dtInicio, Date pvEntrega, double valor, String situacao,String observacoes) {
-        
-        if(veiculo.equals("Selecionar")){
+        public void salvarOrcamento(Orcamento orcamento) {
+        if(orcamento.getDataInicio().getTime().after(orcamento.getPrevisaoEntrega().getTime())){
             orcamento=null;
-            JOptionPane.showMessageDialog(null, "Verifique se o campo Veículo está preenchido", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data de inicio do serviço é maior do que a previsão de entrega", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-            
         Component rootPane = null;
-        Calendar caInicio = Calendar.getInstance();
-        Calendar cFinal = Calendar.getInstance();
-        caInicio.setTime(dtInicio);
-        cFinal.setTime(pvEntrega);
-        
-        orcamento.setCliente(cliente);
-        orcamento.setCpf(cpf);
-        orcamento.setVeiculo(veiculo);
-        orcamento.setModelo(modelo);
-        orcamento.setPlaca(placa);
-        orcamento.setServico(servico);
-        orcamento.setAtendente(atendente);
-        orcamento.setDataInicio(caInicio);
-        orcamento.setPrevisaoEntrega(cFinal);
-        orcamento.setValor(valor);
-        situacao = "ABERTO";
-        orcamento.setSituacao(situacao);
-        orcamento.setObservacoes(observacoes);
-        
+        orcamento.setSituacao("ABERTO");
         UsuarioController uc = new UsuarioController();
         Usuario usuario = new Usuario();
         usuario.setId(uc.getId());
