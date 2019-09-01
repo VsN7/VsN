@@ -2,6 +2,7 @@
 package br.com.vsn.controller;
 
 
+import static br.com.vsn.controller.FuncionarioController.estouraErroNulo;
 import br.com.vsn.dao.UsuarioDAO;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.util.CriptografiaUtil;
@@ -9,6 +10,8 @@ import java.awt.Component;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.observablecollections.ObservableCollections;
 
@@ -50,28 +53,51 @@ public class UsuarioController {
         usuarios.clear();
         usuarios.addAll(dao.findUsuarioEntities());
     }
+    public List<Usuario> pesquisarUnico(String cpf) {
+        usuarios.clear();
+        return dao.usuarioUnico(cpf);
+    }
     
-    public void salvar(String login, String senha) throws NoSuchAlgorithmException{
+    public List<Usuario> pesquisarUnicoId(int id) {
+        usuarios.clear();
+        return dao.usuarioUnicoId(id);
+    }
+    
+    public void salvar(String login, String senha,String cpf, String palavraSeguranca) throws Exception{
         encriptografarSenhaUsuario(senha);
+        encriptografarPalavraSegurancaUsuario(palavraSeguranca.toUpperCase());
         usuario.setLogin(login);
         usuario.setSenha(usuario.getSenha());
+        usuario.setCpf(cpf);
+        usuario.setPalavraSeguranca(usuario.getPalavraSeguranca());
         dao.create(usuario);
         usuario = new Usuario();
         pesquisar();
     }
     
-    public boolean efetuarLogin(String lg, String senha) throws NoSuchAlgorithmException{
+    
+    
+    public boolean efetuarLogin(String lg, String senha) throws Exception{
         encriptografarSenhaUsuario(senha);
         usuario.setLogin(lg);
         usuario.setSenha(usuario.getSenha());
         if(dao.efetuarLogin(usuario) != null){
             id = dao.retornaId(usuario);
             lg = usuario.getLogin();
-            usuario.setId(dao.retornaId(usuario));
+            usuario.setId(id);
             login = lg;
             return true;
         }
         else return false;
+    }
+    
+    public void editUsuario(Usuario usuario){
+        try {
+            dao.edit(usuario);
+        } catch (Exception ex) {
+            FuncionarioController.estouraErroNulo = 1;
+            JOptionPane.showMessageDialog(null, "Login ou CPF já existente", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void destroy(int id) throws Exception{
@@ -99,8 +125,11 @@ public class UsuarioController {
         return usuarios;
     }
 
-    private void encriptografarSenhaUsuario(String senha) throws NoSuchAlgorithmException {
+    private void encriptografarSenhaUsuario(String senha) throws Exception {
         usuario.setSenha(CriptografiaUtil.encriptografarSenha(senha));
+    }
+    private void encriptografarPalavraSegurancaUsuario(String palavra) throws Exception {
+        usuario.setPalavraSeguranca(CriptografiaUtil.encriptografarSenha(palavra).toUpperCase());
     }
     
     public void cancelar(){

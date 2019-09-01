@@ -15,6 +15,7 @@ public abstract class Orcamento_ {
 	public static volatile SingularAttribute<Orcamento, Double> valor;
 	public static volatile SingularAttribute<Orcamento, String> modelo;
 	public static volatile SingularAttribute<Orcamento, Calendar> dataFinalizacao;
+	public static volatile SingularAttribute<Orcamento, Integer> ordemServico_id;
 	public static volatile SingularAttribute<Orcamento, String> cliente;
 	public static volatile SingularAttribute<Orcamento, String> observacoes;
 	public static volatile SingularAttribute<Orcamento, String> atendente;

@@ -28,7 +28,17 @@ import javax.persistence.NamedQuery;
         @NamedQuery(name = "Usuario.getId", 
                 query = "SELECT u.id FROM Usuario u "
                         + "WHERE u.login = :login "
-                        + "AND u.senha = :senha")
+                        + "AND u.senha = :senha"),
+        @NamedQuery(name = "Usuario.getIdFunc", 
+                query = "SELECT u.id FROM Usuario u "
+                        + "WHERE u.login = :login "),
+        @NamedQuery(name = "Usuario.getCpf", 
+                query = "SELECT u FROM Usuario u "
+                        + "WHERE u.cpf = :cpf "),
+        
+        @NamedQuery(name = "Usuario.getId2", 
+                query = "SELECT u FROM Usuario u "
+                        + "WHERE u.id = :id ")
 })
 public class Usuario implements Serializable {
 
@@ -44,6 +54,27 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private String senha;
     
+    @Column(nullable = false, unique = true)
+    private String cpf;
+    
+    @Column(nullable = false)
+    String palavraSeguranca;
+
+    public String getPalavraSeguranca() {
+        return palavraSeguranca;
+    }
+
+    public void setPalavraSeguranca(String palavraSeguranca) {
+        this.palavraSeguranca = palavraSeguranca;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
     
     public Integer getId() {
         return id;

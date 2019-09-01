@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
  * @author vitor
  */
 public class CriptografiaUtil {
-    public static String encriptografarSenha(String password) throws NoSuchAlgorithmException{
+    public static String encriptografarSenha(String password) throws Exception{
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(password.getBytes());
         

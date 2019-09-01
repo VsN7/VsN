@@ -24,6 +24,15 @@ import javax.persistence.TemporalType;
     
      @NamedQuery(name = "Funcionario.buscaPorId", 
                 query = "SELECT f FROM Funcionario f WHERE f.id = :id "),
+     
+        @NamedQuery(name = "Funcionario.getIdCpf", 
+                query = "SELECT f.id FROM Funcionario f "
+                        + "WHERE f.cpf = :cpf "),
+        
+        @NamedQuery(name = "Funcionario.getAll", 
+                query = "SELECT f.id FROM Funcionario f "
+                        + "WHERE f.nome = :nome "
+                        + "AND f.funcao = :funcao ")
     
 })
 public class Funcionario implements Serializable {
@@ -38,6 +47,7 @@ public class Funcionario implements Serializable {
     private String caminhoImg;
     @Column(nullable = false, unique = true)
     private String login;
+    @Column(nullable = false)
     private String funcao;
     private String telefone;
     @Temporal(TemporalType.DATE)
@@ -45,7 +55,18 @@ public class Funcionario implements Serializable {
     private String sexo;
     private String email;
     private String situacao;
+    private int Usuario_id;
 
+    public int getUsuario_id() {
+        return Usuario_id;
+    }
+
+    public void setUsuario_id(int Usuario_id) {
+        this.Usuario_id = Usuario_id;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }

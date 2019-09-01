@@ -2,6 +2,8 @@
 package br.com.vsn.view;
 
 import br.com.vsn.controller.FuncionarioController;
+import br.com.vsn.controller.UsuarioController;
+import br.com.vsn.model.Usuario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -27,7 +29,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     FuncionarioController fc;
     SimpleDateFormat sdf;
     static int index = 0;
+    static int verificaButtonSenha = 0;
+    public static int validadorCadUsuario = 0;
     String diretorio = "C:\\VsN\\fotos\\usuarios\\";
+    public static Usuario user = new Usuario();
+    InformarSenhaView ifv;
     
     int id;
     String nome;
@@ -40,6 +46,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     String telefone;
     String email;
     String situacao;
+    public static String senha;
+    public static String palavraSergurnca;
     
     public FuncionarioView() throws Exception {
         sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -50,6 +58,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         int alt = (int) d.getHeight();
         this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/30);
         initComponents();
+        
+        ifv = new InformarSenhaView();
         
         if(fc.getFuncionarios().size()<=0){
             this.desativarTudo();
@@ -141,6 +151,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         });
 
         inputNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputNomeKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nome");
@@ -549,17 +564,51 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         if(buttonEditar.getText().equals("Salvar")){
             try {
                 this.valoresInput();
-               // fc.editFuncionario(index, nome, cpf, sexo, dtNascimento, longradouro, numero, bairro, cidade, estado, cep, telefone, email,fc.getFuncionarios().get(index).getSituacao());
-                buttonEditar.setText("Editar");
-                this.ativarTudo();
-                this.exibirDados();
+                UsuarioController uc = new UsuarioController();
+                if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
+                    
+                    fc.editFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca);
+                    if(FuncionarioController.estouraErroNulo == 0){
+                        buttonEditar.setText("Editar");
+                        buttonSenha.setText("Informar Senha");
+                        this.exibirDados();
+                    }
+                }
+                else{ 
+                    if(verificaButtonSenha == 0 || InformarSenhaView.inputSenha.getText().isEmpty() || InformarSenhaView.inputPalavraSeguranca.getText().isEmpty()){
+                        user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);    
+                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),user.getSenha(),user.getPalavraSeguranca());
+                        verificaButtonSenha=0;
+                        if(FuncionarioController.estouraErroNulo == 0){
+                            JOptionPane.showMessageDialog(rootPane, "Não houveram alterações na senha!", "Aviso", JOptionPane.INFORMATION_MESSAGE, null);                       
+                            buttonEditar.setText("Editar");
+                            buttonSenha.setText("Informar Senha");
+                            this.exibirDados();
+                        }
+                    }else{
+                        user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);
+                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca);     
+                        if(FuncionarioController.estouraErroNulo == 0){
+                            buttonEditar.setText("Editar");
+                            buttonSenha.setText("Informar Senha");
+                            this.exibirDados();
+                        }
+                    }
+                }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
-
-            }
+            Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }else{
             this.ativarButtonEditar();
+            buttonSenha.setText("Alterar Senha");
             buttonEditar.setText("Salvar");
+            if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
+                buttonSenha.setEnabled(false);
+                inputLogin.setEditable(false);
+            }else{
+                buttonSenha.setEnabled(true);
+                inputLogin.setEditable(true);
+            }
         }
     }//GEN-LAST:event_buttonEditarActionPerformed
 
@@ -591,10 +640,10 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 }else{
                     this.exibirDados();
                     buttonSelecionar.setText("Selecionar");
+                    this.ativarTudo();
                 }
-                this.ativarTudo();
             } catch (Exception ex) {
-                Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }else{this.desativarTudo();
             this.ativarButtonSelecionar();
@@ -608,14 +657,13 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
         if(buttonCadastrar.getText().equals("Salvar")){
-            try {
-                this.valoresInput();
-                fc.salvarFuncionario(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg,this.login,this.funcao, this.telefone, this.email);
+            this.valoresInput();
+            fc.salvarFuncionario(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg,this.login,this.funcao, this.telefone, this.email,this.senha,this.palavraSergurnca);
+            if(FuncionarioController.estouraErroNulo != 1){
                 buttonCadastrar.setText("Novo");
+                fc = new FuncionarioController();
                 index = fc.getFuncionarios().size()-1;
                 this.exibirDados();
-            } catch (Exception ex) {
-                Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             this.limparCampos();
@@ -657,16 +705,18 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_inputIdActionPerformed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {                    
-            try {
-                PesquisarFuncionarioView pv = new PesquisarFuncionarioView();
-                this.getParent().add(pv);
-                pv.setVisible(true);
-                
-                   
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == evt.VK_F1) {                    
+                try {
+                    PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
+                    this.getParent().add(pfv);
+                    pfv.setVisible(true);
+
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }//GEN-LAST:event_inputIdKeyPressed
 
@@ -681,7 +731,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             this.preencherImagem();
 
         }catch(Exception e){
-            Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, e);
+            
         }
 
     }//GEN-LAST:event_buttonCaminhoImgActionPerformed
@@ -703,22 +753,52 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fotografiaFuncionarioMousePressed
 
     private void buttonSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSenhaActionPerformed
-        try {
-            if(!inputLogin.getText().isEmpty()){
-                UsuarioView uv = new UsuarioView();
-                this.getParent().add(uv);
-                uv.setVisible(true);
-                UsuarioView.loginField.setText(inputLogin.getText());
-                UsuarioView.loginField.setEditable(false);
-                UsuarioView.removerButton.setEnabled(false);
-            }else{
-                JOptionPane.showMessageDialog(null, "É necessário preencher o campo Login primeiro!", "Aviso", JOptionPane.ERROR_MESSAGE);
+        verificaButtonSenha = 1;
+        if(buttonSenha.getText().equals("Informar Senha")){
+            try {
+                if(!inputLogin.getText().isEmpty() && !inputCpf.getText().isEmpty()){
+                    this.getParent().add(ifv);
+                    ifv.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "É necessário preencher o campo Login e CPF primeiro!", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
-                   
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
+        if(buttonSenha.getText().equals("Alterar Senha")){
+            try {
+                if(!inputLogin.getText().isEmpty() && !inputCpf.getText().isEmpty()){
+                    InformarSenhaView isv = new InformarSenhaView();
+                    isv.salvarButton.setText("Alterar");
+                    this.getParent().add(isv);
+                    isv.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "É necessário preencher o campo Login e CPF corretamente primeiro!", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_buttonSenhaActionPerformed
+
+    private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == evt.VK_F1) {                    
+                try {
+                    PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
+                    this.getParent().add(pfv);
+                    pfv.setVisible(true);
+
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_inputNomeKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -789,7 +869,10 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             inputId.setEditable(false);
             inputSituacao.setEditable(false);
             buttonSenha.setEnabled(false);
-            if(!inputImagem.getText().equals("semFoto.png"))
+            if(inputId.getText().equals("Sem Acesso ao Sistema")){
+                inputLogin.setEditable(false);
+                buttonSenha.setEnabled(false);
+            }
                 this.preencherImagem();
             this.valoresInput();
         } catch (Exception ex) {
@@ -797,18 +880,35 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         }
     }
     
-    public void valoresInput() throws ParseException{     
+    public void valoresInput(){     
 //        this.id = Integer.parseInt(inputId.getText());
-        this.nome = inputNome.getText().toUpperCase();
-        this.cpf = inputCpf.getText();
-        this.dtNascimento = sdf.parse(inputDtNascimento.getText());
-        this.sexo = (String) comboSexo.getSelectedItem();
-        this.caminhoImg = inputImagem.getText();
-        this.login = inputLogin.getText();
-        this.funcao = inputFuncao.getText();
-        this.situacao = inputSituacao.getText();
-        this.telefone = inputTelefone.getText();
-        this.email = inputEmail.getText().toUpperCase();
+    try{
+        if(!inputLogin.getText().isEmpty()){
+            this.nome = inputNome.getText().toUpperCase();
+            this.cpf = inputCpf.getText();
+            this.dtNascimento = sdf.parse(inputDtNascimento.getText());
+            this.sexo = (String) comboSexo.getSelectedItem();
+            this.caminhoImg = inputImagem.getText();
+            this.login = inputLogin.getText();
+            this.funcao = inputFuncao.getText();
+            this.situacao = inputSituacao.getText();
+            this.telefone = inputTelefone.getText();
+            this.email = inputEmail.getText().toUpperCase();
+        }else{
+            this.nome = inputNome.getText().toUpperCase();
+            this.cpf = inputCpf.getText();
+            this.dtNascimento = sdf.parse(inputDtNascimento.getText());
+            this.sexo = (String) comboSexo.getSelectedItem();
+            this.caminhoImg = inputImagem.getText();
+            this.login = "Sem Acesso ao Sistema";
+            this.funcao = inputFuncao.getText();
+            this.situacao = inputSituacao.getText();
+            this.telefone = inputTelefone.getText();
+            this.email = inputEmail.getText().toUpperCase();
+        }
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Data de Nascimento Inválida", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void preencherImagem(){
@@ -854,6 +954,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         buttonCadastrar.setEnabled(true);
         buttonImprimir.setEnabled(false);
         buttonSelecionar.setEnabled(false);
+        buttonExcluir.setEnabled(false);
         buttonEditar.setEnabled(false);
         buttonInicio.setEnabled(false);
         buttonAnterior.setEnabled(false);
@@ -929,6 +1030,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         inputImagem.setEnabled(true);
         inputDtNascimento.setEnabled(true);
         inputLogin.setEnabled(true);
+        inputLogin.setEditable(true);
         inputFuncao.setEnabled(true);
         comboSexo.setEnabled(true);
         inputTelefone.setEnabled(true);

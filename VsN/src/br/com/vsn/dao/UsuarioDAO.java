@@ -159,6 +159,32 @@ public class UsuarioDAO implements Serializable {
        }
     }
     
+    public List<Usuario> usuarioUnico(String cpf) {
+        List<Usuario> usuarios = null;
+        EntityManager em = getEntityManager();
+        try{
+           usuarios = em.createNamedQuery("Usuario.getCpf").setParameter("cpf",cpf).getResultList();
+           return usuarios;
+        }catch(Exception e){
+            
+            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public List<Usuario> usuarioUnicoId(int id) {
+        List<Usuario> usuarios = null;
+        EntityManager em = getEntityManager();
+        try{
+           usuarios = em.createNamedQuery("Usuario.getId2").setParameter("id",id).getResultList();
+           return usuarios;
+        }catch(Exception e){
+            
+            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public int retornaId(Usuario usuario){
        EntityManager em = getEntityManager();
        int id;
@@ -172,6 +198,20 @@ public class UsuarioDAO implements Serializable {
            return 0;
        }
     }
+    
+    public int retornaIdFunc(String login){
+       EntityManager em = getEntityManager();
+       int id;
+       try{
+           Query query = em.createNamedQuery("Usuario.getIdFunc");
+           query.setParameter("login", login);
+           id = (int) query.getSingleResult();
+           return id;
+       }catch (Exception e){
+           return 0;
+       }
+    }
+    
     
     public void relatorioUsuariosGeral(){
         Connection conn;

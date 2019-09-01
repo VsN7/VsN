@@ -67,7 +67,7 @@ public class PesquisarFuncionarioView extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Pesquisar Cliente");
+        setTitle("Pesquisar Funcionarios");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,8 +133,8 @@ public class PesquisarFuncionarioView extends javax.swing.JInternalFrame {
           try {
               
                 this.id = this.valorCollun();
-                FuncionarioController cc = new FuncionarioController();
-                funcionario = cc.pesquisarUnico(id).get(0);
+                FuncionarioController fc = new FuncionarioController();
+                funcionario = fc.pesquisarUnico(id).get(0);
                 try{
                     if(FuncionarioView.buttonSelecionar.getText().equals("Buscar")){
                         this.valoresInputFuncionario();
@@ -162,16 +162,16 @@ public class PesquisarFuncionarioView extends javax.swing.JInternalFrame {
     
     public void preencherTabela() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        FuncionarioController cc = new FuncionarioController();
+        FuncionarioController fc = new FuncionarioController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
-        for(int i=0; i<cc.getFuncionarios().size(); i++){
+        for(int i=0; i<fc.getFuncionarios().size(); i++){
             modelo.addRow(new Object[]{
-             cc.getFuncionarios().get(i).getId(),
-             cc.getFuncionarios().get(i).getNome(),
-             cc.getFuncionarios().get(i).getCpf(),
-             cc.getFuncionarios().get(i).getTelefone(),
-             cc.getFuncionarios().get(i).getSituacao()
+             fc.getFuncionarios().get(i).getId(),
+             fc.getFuncionarios().get(i).getNome(),
+             fc.getFuncionarios().get(i).getCpf(),
+             fc.getFuncionarios().get(i).getTelefone(),
+             fc.getFuncionarios().get(i).getSituacao()
              });
         }
         
@@ -198,6 +198,7 @@ public class PesquisarFuncionarioView extends javax.swing.JInternalFrame {
         FuncionarioView.inputTelefone.setText(""+funcionario.getTelefone());
         FuncionarioView.inputEmail.setText(""+funcionario.getEmail());
         FuncionarioView.inputSituacao.setText(""+funcionario.getSituacao());  
+        FuncionarioView.inputLogin.setText(""+funcionario.getLogin());  
     }
 
 }

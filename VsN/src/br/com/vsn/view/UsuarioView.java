@@ -5,6 +5,7 @@
  */
 package br.com.vsn.view;
 
+import br.com.vsn.controller.FuncionarioController;
 import br.com.vsn.controller.UsuarioController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -59,6 +60,10 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         removerButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        palavraField = new javax.swing.JTextField();
+        loginLabel1 = new javax.swing.JLabel();
+        cpfField = new javax.swing.JTextField();
+        loginLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -98,11 +103,11 @@ public class UsuarioView extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Login"
+                "ID", "Login", "CPF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -113,8 +118,21 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(130);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
+
+        palavraField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        loginLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        loginLabel1.setText("Palavra de Segurança");
+
+        cpfField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        loginLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        loginLabel2.setText("CPF");
 
         javax.swing.GroupLayout novoUsuarioPanelLayout = new javax.swing.GroupLayout(novoUsuarioPanel);
         novoUsuarioPanel.setLayout(novoUsuarioPanelLayout);
@@ -128,34 +146,45 @@ public class UsuarioView extends javax.swing.JInternalFrame {
                         .addComponent(removerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loginField)
+                    .addComponent(senhaField)
+                    .addComponent(cpfField)
+                    .addComponent(palavraField)
                     .addGroup(novoUsuarioPanelLayout.createSequentialGroup()
                         .addGroup(novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(loginLabel)
-                            .addComponent(senhaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(senhaField)
-                            .addComponent(loginField))))
+                            .addComponent(senhaLabel)
+                            .addComponent(loginLabel2)
+                            .addComponent(loginLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         novoUsuarioPanelLayout.setVerticalGroup(
             novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(novoUsuarioPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loginLabel)
-                    .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(loginLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(loginLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cpfField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(loginLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(palavraField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(novoUsuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removerButton)
                     .addComponent(salvarButton))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,20 +202,29 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
-        try {
-            if (!loginField.getText().isEmpty()) {
-                uc.salvar(loginField.getText(),senhaField.getText());
-                loginField.setText("");
-                senhaField.setText("");
-                this.preencherTabela();
-                JOptionPane.showMessageDialog(null, "Novo usuario cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+        FuncionarioController fc = new FuncionarioController();
+        int idFunc = 0;
+        idFunc = fc.retornaCpf(cpfField.getText());
+        if(idFunc != 0){
+            JOptionPane.showMessageDialog(null, "Esse CPF já esta cadastrado e vinculado a um funcionário com o id "+idFunc+" !\nSó é possivel fazer o cadastramento de usuário através do cadastro do funcionário", "Erro", 0);
+        }else{
+            try {
+                if (!loginField.getText().isEmpty() && !senhaField.getText().isEmpty() && !palavraField.getText().isEmpty() && !cpfField.getText().isEmpty() ) {
+                    uc.salvar(loginField.getText(),senhaField.getText(),cpfField.getText(),palavraField.getText().toUpperCase());
+                    loginField.setText("");
+                    senhaField.setText("");
+                    cpfField.setText("");
+                    palavraField.setText("");
+                    this.preencherTabela();
+                    JOptionPane.showMessageDialog(null, "Novo usuario cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Os campos senha e login não devem estar vazios!", "Erro", 0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Os campos não devem estar vazios!", "Erro", 0);
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Login ou CPF ja existentes", "Erro", 0);
             }
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "O campo Login deve ser unico", "Erro", 0);
         }
     }//GEN-LAST:event_salvarButtonActionPerformed
 
@@ -202,11 +240,15 @@ public class UsuarioView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField cpfField;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTable1;
     public static javax.swing.JTextField loginField;
     private javax.swing.JLabel loginLabel;
+    private javax.swing.JLabel loginLabel1;
+    private javax.swing.JLabel loginLabel2;
     private javax.swing.JPanel novoUsuarioPanel;
+    public static javax.swing.JTextField palavraField;
     public static javax.swing.JButton removerButton;
     public static javax.swing.JButton salvarButton;
     public static javax.swing.JPasswordField senhaField;
@@ -222,6 +264,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{
              uc.getUsuarios().get(i).getId(),
              uc.getUsuarios().get(i).getLogin(),
+             uc.getUsuarios().get(i).getCpf(),
              });
         }
         

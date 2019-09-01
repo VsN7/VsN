@@ -70,6 +70,33 @@ public class FuncionarioDAO {
             }
         }
     }
+    
+    public int retornaCpf(String cpf){
+       EntityManager em = getEntityManager();
+       int id;
+       try{
+           Query query = em.createNamedQuery("Funcionario.getIdCpf");
+           query.setParameter("cpf", cpf);
+           id = (int) query.getSingleResult();
+           return id;
+       }catch (Exception e){
+           return 0;
+       }
+    }
+    
+    public int retornaNulo(String nome, String funcao){
+       EntityManager em = getEntityManager();
+       List <Funcionario> func = null;
+       try{
+           Query query = em.createNamedQuery("Funcionario.getAll");
+           query.setParameter("nome", nome);
+           query.setParameter("funcao", funcao);
+           func = query.getResultList();
+           return 1;
+       }catch (Exception e){
+           return 0;
+       }
+    }
 
     public void edit(Funcionario funcionario) throws NonexistentEntityException, Exception {
         EntityManager em = null;
