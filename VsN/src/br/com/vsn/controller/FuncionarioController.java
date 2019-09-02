@@ -72,11 +72,15 @@ public class FuncionarioController {
     public void salvarFuncionario(String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg, String login, String funcao,String telefone, String email,String senha, String palavraSeguranca) {
         int usuario_id = 0;
         UsuarioController uc = new UsuarioController();
-        if(funcao.isEmpty()){
-            funcao = null;
-        }
-        if(nome.isEmpty()){
-            nome = null;
+        try{
+            if(funcao.isEmpty()){
+                funcao = null;
+            }
+            if(nome.isEmpty()){
+                nome = null;
+            }
+        }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Existem campos nulos", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
         Calendar c = Calendar.getInstance();
         c.setTime(dtNascimento);

@@ -87,7 +87,7 @@ public class OrdemServicoController {
     }
     
     
-        public void salvarOrdemServico(int idOrcamento,String cliente,String cpf, String veiculo, String modelo,String placa,String servico,String atendente,Date dtInicio, Date pvEntrega, double valor, String situacao,String observacoes) {
+        public void salvarOrdemServico(int idOrcamento,String cliente,String cpf, String veiculo, String modelo,String marca, int ano, String placa,String servico,String atendente,Date dtInicio, Date pvEntrega, double valor, String situacao,String observacoes) {
         
         if(dtInicio.after(pvEntrega)){
             ordemServico=null;
@@ -104,6 +104,8 @@ public class OrdemServicoController {
         ordemServico.setCpf(cpf);
         ordemServico.setVeiculo(veiculo);
         ordemServico.setModelo(modelo);
+        ordemServico.setMarca(marca);
+        ordemServico.setAno(ano);
         ordemServico.setPlaca(placa);
         ordemServico.setServico(servico);
         ordemServico.setAtendente(atendente);

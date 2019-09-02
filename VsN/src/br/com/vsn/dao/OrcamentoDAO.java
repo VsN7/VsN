@@ -266,8 +266,7 @@ public class OrcamentoDAO implements Serializable {
         try {
             conn = ConnectionFactory.getInstance().getConnection();
         
-        
-        String src = "C:\\Refrival\\relatorios\\orcamentos.jasper";
+        String src = "C:\\VsN\\relatorios\\relatorioOrcamentoIndividual.jasper";
         Map param = new HashMap();
         param.put("id",id);
         jasperPrint = JasperFillManager.fillReport(src, param, conn);

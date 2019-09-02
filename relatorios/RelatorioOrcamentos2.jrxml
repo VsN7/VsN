@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioOrcamentos2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d08e0bc6-bf67-4cb2-b03a-9953ef63fb26">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="14"/>
+	<property name="ireport.y" value="39"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT * FROM orcamento]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ano" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="atendente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataFinalizacao" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataInicio" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacoes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ordemServico_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="placa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="previsaoEntrega" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="servico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="veiculo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="87" backcolor="#000000" uuid="af2c3bd2-fa97-4a25-8c8c-d60be68f3c8f"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="496" height="87" uuid="dec9d9cb-4bc8-410b-a7b7-c7b62a683c63"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="103" y="43" width="393" height="23" forecolor="#FFFFFF" uuid="16086a3c-60d3-441a-946a-690fc8d154b4"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Rua Pirambóia, numero 660, Rosana - SP]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="103" y="66" width="393" height="21" forecolor="#FFFFFF" uuid="dd2e226e-16e1-4553-82ac-983d4da0e569"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Telefone: (67) 99138-2836  Email: vitor7_sn@hotmail.com]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="103" y="0" width="393" height="43" forecolor="#FFFFFF" uuid="2b3f2913-d9d2-4472-8124-a78e149bdbe1"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ESTÉTICAR FUNILÁRIA E PINTURA]]></text>
+				</staticText>
+				<image>
+					<reportElement x="0" y="0" width="103" height="87" uuid="324ea6d7-204f-4149-8679-092009c28392"/>
+					<imageExpression><![CDATA["C:\\VsN\\relatorios\\logo\\logo.jpeg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="496" y="0" width="306" height="87" forecolor="#FFFFFF" uuid="7cfa1453-c692-4d84-bbf2-5cba03ec75b0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CADA CLIENTE UM AMIGO]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="87" width="802" height="32" forecolor="#000000" backcolor="#CC0000" uuid="1c09e849-cef0-4dba-b153-bc21785d5635"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="553" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="37616359-7f80-4ffc-9123-8d1539ba7e01"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="99" y="30" width="100" height="20" uuid="e71d0815-296c-4558-b659-2ffb0e231fdc"/>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="146" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="385" y="73" width="316" height="29" uuid="ee244744-91a2-4a84-a973-71affffb894c"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cherry SubTitle]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="15" y="25" width="585" height="25" forecolor="#D0B48E" backcolor="#000000" uuid="6fb25674-c78b-4ede-87ff-746044ef3b49"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF" uuid="585ce191-9c7c-40e2-96dd-2dae20beed1a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="e07d86ca-a3e8-48d7-b450-353dcffd83b2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

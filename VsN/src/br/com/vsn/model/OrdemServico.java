@@ -62,14 +62,27 @@ public class OrdemServico implements Serializable{
     private String cpf;
     private String veiculo;
     private String modelo;
+    private String marca;
+    private int ano;
     private String placa;
     private String atendente;
+    private int pagamento_id;
     
     @ManyToOne
     private Usuario usuario;
     
     private int orcamento_id;
 
+    public int getPagamento_id() {
+        return pagamento_id;
+    }
+
+    public void setPagamento_id(int pagamento_id) {
+        this.pagamento_id = pagamento_id;
+    }
+
+    
+    
     public int getOrcamento_id() {
         return orcamento_id;
     }
@@ -95,6 +108,22 @@ public class OrdemServico implements Serializable{
 
     public void setAtendente(String atendente) {
         this.atendente = atendente;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
     }
 
     

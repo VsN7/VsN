@@ -12,11 +12,14 @@ public abstract class OrdemServico_ {
 	public static volatile SingularAttribute<OrdemServico, String> veiculo;
 	public static volatile SingularAttribute<OrdemServico, Calendar> previsaoEntrega;
 	public static volatile SingularAttribute<OrdemServico, String> situacao;
+	public static volatile SingularAttribute<OrdemServico, Integer> ano;
 	public static volatile SingularAttribute<OrdemServico, Double> valor;
 	public static volatile SingularAttribute<OrdemServico, String> modelo;
 	public static volatile SingularAttribute<OrdemServico, Calendar> dataFinalizacao;
+	public static volatile SingularAttribute<OrdemServico, Integer> pagamento_id;
 	public static volatile SingularAttribute<OrdemServico, String> cliente;
 	public static volatile SingularAttribute<OrdemServico, String> observacoes;
+	public static volatile SingularAttribute<OrdemServico, String> marca;
 	public static volatile SingularAttribute<OrdemServico, String> atendente;
 	public static volatile SingularAttribute<OrdemServico, String> cpf;
 	public static volatile SingularAttribute<OrdemServico, Usuario> usuario;

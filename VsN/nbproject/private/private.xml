@@ -4,29 +4,26 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/PagamentoOsView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/model/Pagamento.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/InformarSenhaView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/controller/FuncionarioController.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/dao/FuncionarioDAO.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/FormularioRecuperarAcessoView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/controller/EmpresaController.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/dao/UsuarioDAO.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/RecuperarAcessoView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/model/Usuario.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/dao/EmpresaDAO.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/controller/OrdemServicoController.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/controller/FornecedorController.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/FornecedorView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/FuncionarioView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/model/OrdemServico.java</file>
             <file>file:/C:/VsN/VsN/src/META-INF/persistence.xml</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/PesquisarFuncionarioView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/LoginView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/model/Funcionario.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/controller/UsuarioController.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/OrdemServicoView.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/dao/FornecedorDAO.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/util/CriptografiaUtil.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/PesquisarFornecedorView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/PesquisarClienteView.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/PagamentoView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/model/Empresa.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/model/Fornecedor.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/MenuView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/ClienteView.java</file>
-            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/UsuarioView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/dao/OrcamentoDAO.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/model/Orcamento.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/EmpresaView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/OrcamentoView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/controller/OrcamentoController.java</file>
         </group>
     </open-files>
 </project-private>

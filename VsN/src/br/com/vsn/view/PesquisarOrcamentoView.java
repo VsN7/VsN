@@ -189,7 +189,7 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         OrcamentoView.inputModelo.setText(""+orcamento.getModelo());
         OrcamentoView.inputPlaca.setText(""+orcamento.getPlaca());
         OrcamentoView.inputServico.setText(""+orcamento.getServico());
-        OrcamentoView.inputAtendente.setText(""+orcamento.getAtendente());
+        //OrcamentoView.inputAtendente.setText(""+orcamento.getAtendente());
         OrcamentoView.inputDataInicio.setText(""+sdf.format(orcamento.getDataInicio().getTime()));
         OrcamentoView.inputPrevisaoEntrega.setText(""+sdf.format(orcamento.getPrevisaoEntrega().getTime()));
         OrcamentoView.inputValor.setText(""+orcamento.getValor());

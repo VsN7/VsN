@@ -40,7 +40,9 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     String cliente;
     String cpf;
     String veiculo;
+    String marca;
     String modelo;
+    int ano;
     String placa;
     String servico;
     String atendente;
@@ -49,6 +51,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     double valor;
     String situacao;
     String observacoes;
+    
     
     public OrcamentoView() throws Exception {
         os = new OrdemServico(); 
@@ -99,14 +102,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         inputModelo = new javax.swing.JTextField();
-        inputAtendente = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
-        inputServico = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         comboVeiculo = new javax.swing.JComboBox<>();
         inputPlaca = new javax.swing.JTextField();
@@ -147,6 +147,12 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 g.drawImage(imagem,0,0,getWidth(),getHeight(),this);
             }
         };
+        inputMarca = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        inputAno = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        inputServico = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
@@ -274,11 +280,6 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
 
         inputModelo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        inputAtendente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Atendente");
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Data de Inicio");
 
@@ -287,19 +288,17 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Dados do Serviços");
+        jLabel18.setText("Dados do Serviço");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Dados do Cliente");
 
-        inputServico.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setText("Serviço");
 
         comboVeiculo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carro", "Moto", "Ônibus", "Caminhão", "Outro" }));
+        comboVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CARRO", "MOTO", "ÔNIBUS", "CAMINHÃO", "OUTRO" }));
 
         inputPlaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -340,6 +339,8 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         jLabel27.setText("Observações");
 
         inputObservacoes.setColumns(20);
+        inputObservacoes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputObservacoes.setLineWrap(true);
         inputObservacoes.setRows(5);
         jScrollPane1.setViewportView(inputObservacoes);
 
@@ -402,18 +403,34 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
             }
         });
 
+        inputMarca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setText("Marca");
+
+        inputAno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setText("Ano");
+
+        inputServico.setColumns(20);
+        inputServico.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputServico.setLineWrap(true);
+        inputServico.setRows(5);
+        jScrollPane2.setViewportView(inputServico);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator3)
-                    .addComponent(jSeparator1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -427,37 +444,10 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(inputPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputServico, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputAtendente)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel27)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonInicio))
@@ -473,17 +463,42 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buttonOS, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(comboVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(inputMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inputAno, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(inputPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(calendarPvEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                                .addComponent(calendarPvEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel14))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,14 +506,16 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel26))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addGap(178, 178, 178))
-                            .addComponent(inputSituacao))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(554, 554, 554))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -527,50 +544,45 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel25)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel5))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel23)
                     .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel12))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(calendarPvEntrega, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(calendarPvEntrega, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -578,10 +590,10 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonOS, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
                     .addComponent(buttonProximo)
@@ -594,12 +606,12 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                     .addComponent(buttonSelecionar)
                     .addComponent(buttonEditar)
                     .addComponent(buttonImprimir))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
                     .addComponent(jLabel19)
-                    .addContainerGap(507, Short.MAX_VALUE)))
+                    .addContainerGap(591, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -610,7 +622,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -750,7 +762,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
-        // TODO add your handling code here:
+        oc.relatorioOrcamentosGeral(Integer.parseInt(inputId.getText()));
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
     private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
@@ -773,7 +785,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
 
     private void buttonOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOSActionPerformed
         OrdemServicoController osc = new OrdemServicoController();
-        osc.salvarOrdemServico(Integer.parseInt(inputId.getText()),cliente, cpf, veiculo, modelo, placa, servico, atendente, dtInicio, pvEntrega, valor, situacao, observacoes);
+        osc.salvarOrdemServico(Integer.parseInt(inputId.getText()),cliente, cpf, veiculo, modelo, marca, ano, placa, servico, atendente, dtInicio, pvEntrega, valor, situacao, observacoes);
        
         osc = new OrdemServicoController();
         OrdemServicoView.index = osc.getOrdemServicos().size()-1;
@@ -902,21 +914,21 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel calendarDtInicio;
     private javax.swing.JLabel calendarPvEntrega;
     public static javax.swing.JComboBox<String> comboVeiculo;
-    public static javax.swing.JTextField inputAtendente;
+    public static javax.swing.JTextField inputAno;
     public static javax.swing.JTextField inputCliente;
     public static javax.swing.JTextField inputCpf;
     public static javax.swing.JTextField inputDataInicio;
     public static javax.swing.JTextField inputId;
+    public static javax.swing.JTextField inputMarca;
     public static javax.swing.JTextField inputModelo;
     public static javax.swing.JTextArea inputObservacoes;
     public static javax.swing.JTextField inputPlaca;
     public static javax.swing.JTextField inputPrevisaoEntrega;
-    public static javax.swing.JTextField inputServico;
+    public static javax.swing.JTextArea inputServico;
     public static javax.swing.JTextField inputSituacao;
     public static javax.swing.JTextField inputValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -925,6 +937,8 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -932,6 +946,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
@@ -952,9 +967,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
             inputCpf.setText(""+oc.getOrcamentos().get(index).getCpf());
             comboVeiculo.setSelectedItem(""+oc.getOrcamentos().get(index).getVeiculo());
             inputModelo.setText(""+oc.getOrcamentos().get(index).getModelo());
+            inputMarca.setText(""+oc.getOrcamentos().get(index).getMarca());
+            inputAno.setText(""+oc.getOrcamentos().get(index).getAno());
             inputPlaca.setText(""+oc.getOrcamentos().get(index).getPlaca());
             inputServico.setText(""+oc.getOrcamentos().get(index).getServico());
-            inputAtendente.setText(""+oc.getOrcamentos().get(index).getAtendente());
+            //inputAtendente.setText(""+oc.getOrcamentos().get(index).getAtendente());
             inputDataInicio.setText(""+sdf.format(oc.getOrcamentos().get(index).getDataInicio().getTime()));
             inputPrevisaoEntrega.setText(""+sdf.format(oc.getOrcamentos().get(index).getPrevisaoEntrega().getTime()));
             inputValor.setText(""+formatter.format(oc.getOrcamentos().get(index).getValor()));
@@ -982,9 +999,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         this.cpf = inputCpf.getText();
         this.veiculo = (String) comboVeiculo.getSelectedItem();
         this.modelo = inputModelo.getText().toUpperCase();
+        this.marca = inputMarca.getText().toUpperCase();
+        this.ano = Integer.parseInt(inputAno.getText());
         this.placa = inputPlaca.getText();
         this.servico = inputServico.getText().toUpperCase();
-        this.atendente = inputAtendente.getText().toUpperCase();
+        //this.atendente = inputAtendente.getText().toUpperCase();
         this.dtInicio = sdf.parse(inputDataInicio.getText());
         this.pvEntrega = sdf.parse(inputPrevisaoEntrega.getText());
         this.valor = Double.parseDouble(inputValor.getText().replace(",", "."));
@@ -995,6 +1014,8 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         orcamento.setCpf(cpf);
         orcamento.setVeiculo(veiculo);
         orcamento.setModelo(modelo);
+        orcamento.setMarca(marca);
+        orcamento.setAno(ano);
         orcamento.setPlaca(placa);
         orcamento.setServico(servico);
         orcamento.setAtendente(atendente);
@@ -1016,9 +1037,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         inputCpf.setText("");
         inputPlaca.setText("");
         comboVeiculo.setSelectedIndex(0);
+        inputMarca.setText("");
+        inputAno.setText("");
         inputModelo.setText("");
         inputServico.setText("");
-        inputAtendente.setText("");
+        //inputAtendente.setText("");
         inputDataInicio.setText("");
         inputValor.setText("");
         inputPrevisaoEntrega.setText("");
@@ -1033,8 +1056,10 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         OrdemServicoView.comboVeiculo.setSelectedItem((String) os.getVeiculo());
         OrdemServicoView.inputModelo.setText(""+os.getModelo());
         OrdemServicoView.inputPlaca.setText(""+os.getPlaca());
+        OrdemServicoView.inputMarca.setText(""+os.getMarca());
+        OrdemServicoView.inputAno.setText(""+os.getAno());
         OrdemServicoView.inputServico.setText(""+os.getServico());
-        OrdemServicoView.inputAtendente.setText(""+os.getAtendente());
+        //OrdemServicoView.inputAtendente.setText(""+os.getAtendente());
         OrdemServicoView.inputDataInicio.setText(""+sdf.format(os.getDataInicio().getTime()));
         OrdemServicoView.inputPrevisaoEntrega.setText(""+sdf.format(os.getPrevisaoEntrega().getTime()));
         OrdemServicoView.inputValor.setText(""+os.getValor());
@@ -1048,9 +1073,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         inputCpf.setEnabled(true);
         inputPlaca.setEnabled(true);
         comboVeiculo.setEnabled(true);
+        inputMarca.setEnabled(true);
+        inputAno.setEnabled(true);
         inputModelo.setEnabled(true);
         inputServico.setEnabled(true);
-        inputAtendente.setEnabled(true);
+        //inputAtendente.setEnabled(true);
         inputDataInicio.setEnabled(true);
         inputValor.setEnabled(true);
         inputPrevisaoEntrega.setEnabled(true);
@@ -1104,9 +1131,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         inputCpf.setEnabled(true);
         inputPlaca.setEnabled(true);
         comboVeiculo.setEnabled(true);
+        inputMarca.setEnabled(true);
+        inputAno.setEnabled(true);
         inputModelo.setEnabled(true);
         inputServico.setEnabled(true);
-        inputAtendente.setEnabled(true);
+        //inputAtendente.setEnabled(true);
         inputDataInicio.setEnabled(true);
         inputValor.setEnabled(true);
         inputPrevisaoEntrega.setEnabled(true);
@@ -1135,9 +1164,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         inputCpf.setEnabled(false);
         inputPlaca.setEnabled(false);
         comboVeiculo.setEnabled(false);
+        inputMarca.setEnabled(false);
+        inputAno.setEnabled(false);
         inputModelo.setEnabled(false);
         inputServico.setEnabled(false);
-        inputAtendente.setEnabled(false);
+        //inputAtendente.setEnabled(false);
         inputDataInicio.setEnabled(false);
         inputValor.setEnabled(false);
         inputPrevisaoEntrega.setEnabled(false);

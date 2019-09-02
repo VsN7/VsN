@@ -63,6 +63,8 @@ public class Orcamento implements Serializable{
     private String cpf;
     private String veiculo;
     private String modelo;
+    private String marca;
+    private int ano;
     private String placa;
     private String atendente;
 
@@ -95,6 +97,22 @@ public class Orcamento implements Serializable{
 
     public void setAtendente(String atendente) {
         this.atendente = atendente;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
     }
 
     

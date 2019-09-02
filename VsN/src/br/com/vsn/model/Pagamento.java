@@ -46,12 +46,31 @@ public class Pagamento implements Serializable{
     private int id;
     @Column(nullable = false)
     private double valor;
+    private double valorPago;
+    private int vezes;
     @Temporal(TemporalType.DATE)
     private Calendar dataFinalizacao;
     private int ordemServico_id;
     private String situacao;
     @ManyToOne
     private Usuario usuario;
+
+    public double getValorPago() {
+        return valorPago;
+    }
+
+    public void setValorPago(double valorPago) {
+        this.valorPago = valorPago;
+    }
+
+    public int getVezes() {
+        return vezes;
+    }
+
+    public void setVezes(int vezes) {
+        this.vezes = vezes;
+    }
+    
     
 
     public int getOrdemServico_id() {

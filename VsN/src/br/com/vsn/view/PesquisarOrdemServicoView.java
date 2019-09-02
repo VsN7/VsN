@@ -189,7 +189,7 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         OrdemServicoView.inputModelo.setText(""+ordemServico.getModelo());
         OrdemServicoView.inputPlaca.setText(""+ordemServico.getPlaca());
         OrdemServicoView.inputServico.setText(""+ordemServico.getServico());
-        OrdemServicoView.inputAtendente.setText(""+ordemServico.getAtendente());
+        //OrdemServicoView.inputAtendente.setText(""+ordemServico.getAtendente());
         OrdemServicoView.inputDataInicio.setText(""+sdf.format(ordemServico.getDataInicio().getTime()));
         OrdemServicoView.inputPrevisaoEntrega.setText(""+sdf.format(ordemServico.getPrevisaoEntrega().getTime()));
         OrdemServicoView.inputValor.setText(""+ordemServico.getValor());
