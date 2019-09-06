@@ -12,6 +12,7 @@
     <class>br.com.vsn.model.Funcionario</class>
     <class>br.com.vsn.model.Pagamento</class>
     <class>br.com.vsn.model.Empresa</class>
+    <class>br.com.vsn.model.PagamentoTabela</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/vsn?createDatabaseIfNotExist=true"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -51,8 +51,9 @@ public class OrdemServicoController {
          ordemServico.setId(id);
          ordemServico.setUsuario(usuario);
          dao.edit(ordemServico);
-        JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-        
+        if(OrdemServicoView.buttonEditar.getText().equals("Salvar")){
+            JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        }
      }
 
     public OrdemServicoController() {

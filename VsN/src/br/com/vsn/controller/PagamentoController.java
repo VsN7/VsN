@@ -25,7 +25,7 @@ public class PagamentoController {
     static int id;
     static String login;
     public static int conta=0;
-
+    public static int resp;
     public int getId() {
         return id;
     }
@@ -41,14 +41,22 @@ public class PagamentoController {
          usuario.setId(us.getId());
          pagamento.setId(id);
          pagamento.setUsuario(usuario);
-         dao.edit(pagamento);
-         if(conta==0){
-             JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+         if(conta==0 && pagamento.getSituacao().equals("ABERTO")){
+                resp = JOptionPane.showConfirmDialog(null, "Deseja realmente reabrir o pagamento?", "Excluir", JOptionPane.YES_NO_OPTION);
+        
+                if (resp == JOptionPane.YES_OPTION) {
+                    dao.edit(pagamento);    
+                    JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+                    conta = 0;
+                }
          }  
          else{
-             conta = 0;
+             dao.edit(pagamento);
          }
+            
+         
              
+         
      }
 
     public PagamentoController() {
@@ -98,18 +106,17 @@ public class PagamentoController {
         pagamento = new Pagamento();
         pesquisar();
         
-        JOptionPane.showMessageDialog(rootPane, "Cadastro realizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-        
-        pesquisar();
+        JOptionPane.showMessageDialog(rootPane, "Novo pagamento gerado!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+
     }
     
     public void destroy(int id) throws NonexistentEntityException{
         Component rootPane = null;
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o orçamento?", "Excluir", JOptionPane.YES_NO_OPTION);
+        resp = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o pagamento?", "Excluir", JOptionPane.YES_NO_OPTION);
         
-        if (resposta == JOptionPane.YES_OPTION) {
+        if (resp == JOptionPane.YES_OPTION) {
             dao.destroy(id);
-            JOptionPane.showMessageDialog(rootPane, "Exclusão realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+            JOptionPane.showMessageDialog(rootPane, "Pagamento excluido com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
         
         }
     }

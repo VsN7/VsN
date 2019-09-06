@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c15adeb-84a7-4701-b32c-957f98c82e84">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     empresa.`id` AS empresa_id,
+     empresa.`bairro` AS empresa_bairro,
+     empresa.`cep` AS empresa_cep,
+     empresa.`cidade` AS empresa_cidade,
+     empresa.`cnpj` AS empresa_cnpj,
+     empresa.`contribuinteIcms` AS empresa_contribuinteIcms,
+     empresa.`email` AS empresa_email,
+     empresa.`estado` AS empresa_estado,
+     empresa.`inscricaoEstadual` AS empresa_inscricaoEstadual,
+     empresa.`longradouro` AS empresa_longradouro,
+     empresa.`nomeFantasia` AS empresa_nomeFantasia,
+     empresa.`numero` AS empresa_numero,
+     empresa.`razaoSocial` AS empresa_razaoSocial,
+     empresa.`situacao` AS empresa_situacao,
+     empresa.`telefone` AS empresa_telefone
+FROM
+     `empresa` empresa]]>
+	</queryString>
+	<field name="empresa_id" class="java.lang.Integer"/>
+	<field name="empresa_bairro" class="java.lang.String"/>
+	<field name="empresa_cep" class="java.lang.String"/>
+	<field name="empresa_cidade" class="java.lang.String"/>
+	<field name="empresa_cnpj" class="java.lang.String"/>
+	<field name="empresa_contribuinteIcms" class="java.lang.String"/>
+	<field name="empresa_email" class="java.lang.String"/>
+	<field name="empresa_estado" class="java.lang.String"/>
+	<field name="empresa_inscricaoEstadual" class="java.lang.String"/>
+	<field name="empresa_longradouro" class="java.lang.String"/>
+	<field name="empresa_nomeFantasia" class="java.lang.String"/>
+	<field name="empresa_numero" class="java.lang.Integer"/>
+	<field name="empresa_razaoSocial" class="java.lang.String"/>
+	<field name="empresa_situacao" class="java.lang.String"/>
+	<field name="empresa_telefone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -11,9 +11,7 @@ public abstract class Pagamento_ {
 
 	public static volatile SingularAttribute<Pagamento, Integer> ordemServico_id;
 	public static volatile SingularAttribute<Pagamento, String> situacao;
-	public static volatile SingularAttribute<Pagamento, Integer> vezes;
 	public static volatile SingularAttribute<Pagamento, Double> valor;
-	public static volatile SingularAttribute<Pagamento, Double> valorPago;
 	public static volatile SingularAttribute<Pagamento, Usuario> usuario;
 	public static volatile SingularAttribute<Pagamento, Integer> id;
 	public static volatile SingularAttribute<Pagamento, Calendar> dataFinalizacao;

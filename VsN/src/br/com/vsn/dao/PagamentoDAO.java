@@ -159,7 +159,7 @@ public class PagamentoDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           pagamentos = em.createNamedQuery("Pagamento.buscaPorId").setParameter("id",id)
+           pagamentos = em.createNamedQuery("Pagamento.ordemServicoPagamentoId").setParameter("id",id)
                                                                    .getResultList();
            return pagamentos;
         }catch(Exception e){

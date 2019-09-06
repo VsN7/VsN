@@ -10,6 +10,7 @@ import br.com.vsn.model.Usuario;
 import br.com.vsn.util.CriptografiaUtil;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,6 +43,8 @@ public class RecuperarAcessoView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VsN");
+        setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
+            getImage());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Digite o seu CPF");
@@ -52,6 +55,11 @@ public class RecuperarAcessoView extends javax.swing.JFrame {
         jLabel4.setText("Digite a sua Palavra de Segurança");
 
         inputPalavra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputPalavra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputPalavraKeyPressed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Cancelar");
@@ -155,6 +163,27 @@ public class RecuperarAcessoView extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void inputPalavraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputPalavraKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            if(!inputPalavra.getText().isEmpty() && !inputCpf.getText().isEmpty()){
+                try {
+                 usuario = uc.pesquisarUnico(inputCpf.getText()).get(0);
+
+                 this.encriptografarPalavraSegurancaUsuario(inputPalavra.getText().toUpperCase());
+                 if(usuario.getPalavraSeguranca().equals(palavra)){
+                     this.dispose();
+                     FormularioRecuperarAcessoView frav = new FormularioRecuperarAcessoView();
+                     frav.setVisible(true);
+                 }else{
+                     JOptionPane.showMessageDialog(null, "a palavra de segurança está errada!!", "Aviso", JOptionPane.ERROR_MESSAGE);
+                 }
+                 } catch (Exception ex) {
+                     JOptionPane.showMessageDialog(null, "CPF não cadastrado!!", "Aviso", JOptionPane.ERROR_MESSAGE);
+                 } 
+            }
+        }
+    }//GEN-LAST:event_inputPalavraKeyPressed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

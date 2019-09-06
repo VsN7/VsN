@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23b5881a-8ddb-4675-94e8-33577093461c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     empresa.`id` AS empresa_id,
+     empresa.`bairro` AS empresa_bairro,
+     empresa.`cep` AS empresa_cep,
+     empresa.`cidade` AS empresa_cidade,
+     empresa.`cnpj` AS empresa_cnpj,
+     empresa.`contribuinteIcms` AS empresa_contribuinteIcms,
+     empresa.`email` AS empresa_email,
+     empresa.`estado` AS empresa_estado,
+     empresa.`inscricaoEstadual` AS empresa_inscricaoEstadual,
+     empresa.`longradouro` AS empresa_longradouro,
+     empresa.`nomeFantasia` AS empresa_nomeFantasia,
+     empresa.`numero` AS empresa_numero,
+     empresa.`razaoSocial` AS empresa_razaoSocial,
+     empresa.`situacao` AS empresa_situacao,
+     empresa.`telefone` AS empresa_telefone
+FROM
+     `empresa` empresa]]>
+	</queryString>
+	<field name="empresa_id" class="java.lang.Integer"/>
+	<field name="empresa_bairro" class="java.lang.String"/>
+	<field name="empresa_cep" class="java.lang.String"/>
+	<field name="empresa_cidade" class="java.lang.String"/>
+	<field name="empresa_cnpj" class="java.lang.String"/>
+	<field name="empresa_contribuinteIcms" class="java.lang.String"/>
+	<field name="empresa_email" class="java.lang.String"/>
+	<field name="empresa_estado" class="java.lang.String"/>
+	<field name="empresa_inscricaoEstadual" class="java.lang.String"/>
+	<field name="empresa_longradouro" class="java.lang.String"/>
+	<field name="empresa_nomeFantasia" class="java.lang.String"/>
+	<field name="empresa_numero" class="java.lang.Integer"/>
+	<field name="empresa_razaoSocial" class="java.lang.String"/>
+	<field name="empresa_situacao" class="java.lang.String"/>
+	<field name="empresa_telefone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="1a5910e8-60e4-4cad-96a0-b848b1f7ffe2"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="ada20f6b-5ee8-42a2-9ed8-bb6e5c23fb2e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Wood Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="cfc5ae1f-5717-4ba7-98fb-b8223d489574"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Wood SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="d970d78d-a360-47a7-8f51-435aab96ac0a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="37" height="15" uuid="f497b4d3-6223-4553-8255-5bf797ff46b4"/>
+				<text><![CDATA[empresa_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="37" y="19" width="37" height="15" uuid="cf10e1cd-20f9-4eea-8dff-a61c99410279"/>
+				<text><![CDATA[empresa_bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="74" y="19" width="37" height="15" uuid="f5f59498-fb51-4672-a81b-170ed74e79ee"/>
+				<text><![CDATA[empresa_cep]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="19" width="37" height="15" uuid="4a6fb181-5363-4d7e-af7f-17f0d879d3fa"/>
+				<text><![CDATA[empresa_cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="148" y="19" width="37" height="15" uuid="be676cce-7163-4911-ad62-d9ea505fff5e"/>
+				<text><![CDATA[empresa_cnpj]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="185" y="19" width="37" height="15" uuid="692fb52b-9bd8-40a6-a273-13070ab019ba"/>
+				<text><![CDATA[empresa_contribuinteIcms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="19" width="37" height="15" uuid="5ac16170-9a91-4430-8982-8b406cccbe76"/>
+				<text><![CDATA[empresa_email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="259" y="19" width="37" height="15" uuid="14792b2d-74f0-49f7-adcf-2e41653d28fb"/>
+				<text><![CDATA[empresa_estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="296" y="19" width="37" height="15" uuid="0f46fd3a-1a4e-4921-a652-e8edbcf8595d"/>
+				<text><![CDATA[empresa_inscricaoEstadual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="19" width="37" height="15" uuid="e4dd6f38-9eb8-4e3f-acce-5ddfe93d77ac"/>
+				<text><![CDATA[empresa_longradouro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="370" y="19" width="37" height="15" uuid="cf22cc1e-25d9-4376-aebb-bffb93a2bcdf"/>
+				<text><![CDATA[empresa_nomeFantasia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="407" y="19" width="37" height="15" uuid="fde75089-c8d6-4966-9a68-1c2aa88ba681"/>
+				<text><![CDATA[empresa_numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="19" width="37" height="15" uuid="1acea1f6-c5fe-489e-8a4c-7459fda1514d"/>
+				<text><![CDATA[empresa_razaoSocial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="481" y="19" width="37" height="15" uuid="8cf3f6d1-7a12-46cf-b687-4bdb9492c5c8"/>
+				<text><![CDATA[empresa_situacao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="518" y="19" width="37" height="15" uuid="8364a2a8-bb0c-43a4-9f8a-f7664c7bf373"/>
+				<text><![CDATA[empresa_telefone]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="332cb145-1042-475b-aa79-5d0c91b25090"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="37" height="15" uuid="dc0b4b61-27d7-4f16-84b9-3b704f0a8402"/>
+				<textFieldExpression><![CDATA[$F{empresa_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="37" y="0" width="37" height="15" uuid="f571ba6a-7767-443b-9257-ff0f529d9857"/>
+				<textFieldExpression><![CDATA[$F{empresa_bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="74" y="0" width="37" height="15" uuid="b08aa98a-02dc-4d6b-ae4b-69cda20d6583"/>
+				<textFieldExpression><![CDATA[$F{empresa_cep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="111" y="0" width="37" height="15" uuid="578b34a5-98df-4e5a-9b1a-66c1b47ad41c"/>
+				<textFieldExpression><![CDATA[$F{empresa_cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="148" y="0" width="37" height="15" uuid="532a33db-605f-4cfa-948b-d6805abc5b3f"/>
+				<textFieldExpression><![CDATA[$F{empresa_cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="185" y="0" width="37" height="15" uuid="f3585b3e-8696-454f-86b8-1c07c2ef8803"/>
+				<textFieldExpression><![CDATA[$F{empresa_contribuinteIcms}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="222" y="0" width="37" height="15" uuid="6551468a-27a3-48c1-928f-ffb7442d4d5c"/>
+				<textFieldExpression><![CDATA[$F{empresa_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="259" y="0" width="37" height="15" uuid="7fac904f-7976-4369-b059-2fd8946eae36"/>
+				<textFieldExpression><![CDATA[$F{empresa_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="296" y="0" width="37" height="15" uuid="404a46b1-d582-4724-adf8-b88c6e5ebd4b"/>
+				<textFieldExpression><![CDATA[$F{empresa_inscricaoEstadual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="333" y="0" width="37" height="15" uuid="81b6fa36-b82a-4222-950d-ef95a7e98cb8"/>
+				<textFieldExpression><![CDATA[$F{empresa_longradouro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="370" y="0" width="37" height="15" uuid="00e3a31d-047d-4d67-8835-5ec6296db3c2"/>
+				<textFieldExpression><![CDATA[$F{empresa_nomeFantasia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="407" y="0" width="37" height="15" uuid="21dc0f46-621b-49b5-a579-5a0ca3a2228a"/>
+				<textFieldExpression><![CDATA[$F{empresa_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="444" y="0" width="37" height="15" uuid="e128c075-c657-4cac-81f2-9447a41530f9"/>
+				<textFieldExpression><![CDATA[$F{empresa_razaoSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="481" y="0" width="37" height="15" uuid="efaa52c5-ea9b-4960-b2fb-4a20c60aa6e7"/>
+				<textFieldExpression><![CDATA[$F{empresa_situacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="518" y="0" width="37" height="15" uuid="18f46be2-79d4-4d53-8244-186dc28d6806"/>
+				<textFieldExpression><![CDATA[$F{empresa_telefone}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="93117f9d-d377-42cc-83d3-e7c01e7015cb"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="92f9791d-cb6e-4c55-be9c-d9209cb07ccd"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="b3b81127-7ece-4e97-85d0-c3ead86a6d91"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="b7eca34a-dcc9-42dc-bcc5-cf985c6ea158"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -735,6 +735,7 @@ public class EmpresaView extends javax.swing.JInternalFrame {
             inputSituacao.setText(""+ec.getEmpresas().get(index).getSituacao());
             inputId.setEditable(false);
             inputSituacao.setEditable(false);
+            buttonExcluir.setEnabled(false);
             this.valoresInput();
         } catch (Exception ex) {
             Logger.getLogger(EmpresaView.class.getName()).log(Level.SEVERE, null, ex);

@@ -45,7 +45,7 @@ public class Funcionario implements Serializable {
     @Column(nullable = false, unique = true)
     private String cpf;
     private String caminhoImg;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String login;
     @Column(nullable = false)
     private String funcao;

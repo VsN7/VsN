@@ -1,1 +1,11 @@
+br/com/vsn/model/OrdemServico_.java
+br/com/vsn/model/Fornecedor_.java
+br/com/vsn/model/Orcamento_.java
+br/com/vsn/model/Conta_.java
+br/com/vsn/model/Cliente_.java
 br/com/vsn/model/Empresa_.java
+br/com/vsn/model/Funcionario_.java
+br/com/vsn/model/Usuario_.java
+br/com/vsn/model/Estoque_.java
+br/com/vsn/model/Pagamento_.java
+br/com/vsn/model/PagamentoTabela_.java

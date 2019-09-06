@@ -10,6 +10,7 @@ import br.com.vsn.util.CriptografiaUtil;
 import static br.com.vsn.view.RecuperarAcessoView.palavra;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,9 +55,12 @@ public class FormularioRecuperarAcessoView extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         inputPalavraSeguranca = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        salvarButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Recuperação de Acesso");
+        setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
+            getImage());
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Informe a Nova Senha");
@@ -91,6 +95,14 @@ public class FormularioRecuperarAcessoView extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Sua Palavra Chave");
 
+        salvarButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        salvarButton4.setText("Cancelar");
+        salvarButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -100,20 +112,21 @@ public class FormularioRecuperarAcessoView extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputCpf, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(inputLogin3)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 159, Short.MAX_VALUE)
-                        .addComponent(salvarButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(inputSenha)
                     .addComponent(inputSenhaNovamente)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                     .addComponent(inputPalavraSeguranca)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jLabel14)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel13))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel13)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(salvarButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(salvarButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +152,9 @@ public class FormularioRecuperarAcessoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputSenhaNovamente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(salvarButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salvarButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salvarButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -188,38 +203,32 @@ public class FormularioRecuperarAcessoView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_salvarButton3ActionPerformed
 
+    private void salvarButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButton4ActionPerformed
+        LoginView lv;
+        try {
+            this.dispose();
+            lv = new LoginView();
+            lv.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_salvarButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField inputCpf;
-    public static javax.swing.JTextField inputLogin;
-    public static javax.swing.JTextField inputLogin1;
-    public static javax.swing.JTextField inputLogin2;
-    private javax.swing.JTextField inputLogin3;
-    private javax.swing.JTextField inputPalavraSeguranca;
-    private javax.swing.JPasswordField inputSenha;
-    private javax.swing.JPasswordField inputSenhaNovamente;
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JTextField inputCpf;
+    public static javax.swing.JTextField inputLogin3;
+    public static javax.swing.JTextField inputPalavraSeguranca;
+    public static javax.swing.JPasswordField inputSenha;
+    public static javax.swing.JPasswordField inputSenhaNovamente;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    public static javax.swing.JButton salvarButton;
-    public static javax.swing.JButton salvarButton1;
-    public static javax.swing.JButton salvarButton2;
-    private javax.swing.JButton salvarButton3;
+    public static javax.swing.JButton salvarButton3;
+    public static javax.swing.JButton salvarButton4;
     // End of variables declaration//GEN-END:variables
 
     private void encriptografarPalavraSegurancaUsuario(String sen) throws Exception {

@@ -25,7 +25,8 @@ import javax.persistence.TemporalType;
                 query = "SELECT o FROM Pagamento o WHERE o.usuario.id = :id "),
                 
         @NamedQuery(name = "Pagamento.ordemServicoPagamentoId", 
-                query = "SELECT os.id FROM OrdemServico os WHERE os.pagamento_id = :id "),
+                query = "SELECT p FROM Pagamento p WHERE p.ordemServico_id = :id "),
+        
         @NamedQuery(name = "Pagamento.buscaPorId", 
                 query = "SELECT o FROM Pagamento o WHERE o.id = :id "),
         
@@ -46,39 +47,27 @@ public class Pagamento implements Serializable{
     private int id;
     @Column(nullable = false)
     private double valor;
-    private double valorPago;
-    private int vezes;
     @Temporal(TemporalType.DATE)
     private Calendar dataFinalizacao;
     private int ordemServico_id;
     private String situacao;
     @ManyToOne
     private Usuario usuario;
-
-    public double getValorPago() {
-        return valorPago;
-    }
-
-    public void setValorPago(double valorPago) {
-        this.valorPago = valorPago;
-    }
-
-    public int getVezes() {
-        return vezes;
-    }
-
-    public void setVezes(int vezes) {
-        this.vezes = vezes;
-    }
     
-    
-
     public int getOrdemServico_id() {
         return ordemServico_id;
     }
 
     public void setOrdemServico_id(int ordemServico_id) {
         this.ordemServico_id = ordemServico_id;
+    }
+
+    public Calendar getDataFinalizacao() {
+        return dataFinalizacao;
+    }
+
+    public void setDataFinalizacao(Calendar dataFinalizacao) {
+        this.dataFinalizacao = dataFinalizacao;
     }
     
     
@@ -90,15 +79,7 @@ public class Pagamento implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    public Calendar getDataFinalizacao() {
-        return dataFinalizacao;
-    }
-
-    public void setDataFinalizacao(Calendar dataFinalizacao) {
-        this.dataFinalizacao = dataFinalizacao;
-    }
-
+  
     public String getSituacao() {
         return situacao;
     }

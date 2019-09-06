@@ -757,6 +757,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         if(buttonSenha.getText().equals("Informar Senha")){
             try {
                 if(!inputLogin.getText().isEmpty() && !inputCpf.getText().isEmpty()){
+                    InformarSenhaView.inputCpf.setText(inputCpf.getText());
+                    InformarSenhaView.inputLogin.setText(inputLogin.getText());
                     this.getParent().add(ifv);
                     ifv.setVisible(true);
                 }else{
