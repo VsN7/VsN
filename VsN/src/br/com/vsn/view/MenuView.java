@@ -18,6 +18,7 @@ public class MenuView extends javax.swing.JFrame {
         initComponents();
         jMenu4.setEnabled(false);
         jMenu15.setEnabled(false);
+        jMenu5.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,17 +38,16 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu19 = new javax.swing.JMenu();
+        jMenuItem26 = new javax.swing.JMenuItem();
+        jMenu17 = new javax.swing.JMenu();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenu18 = new javax.swing.JMenu();
+        jMenuItem25 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu15 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu14 = new javax.swing.JMenu();
-        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -55,6 +55,13 @@ public class MenuView extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu14 = new javax.swing.JMenu();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -131,6 +138,42 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenu19.setText("Cliente");
+
+        jMenuItem26.setText("Cadastro de Clientes");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu19.add(jMenuItem26);
+
+        jMenu1.add(jMenu19);
+
+        jMenu17.setText("Orçamento");
+
+        jMenuItem24.setText("Cadastro de Orçamentos");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu17.add(jMenuItem24);
+
+        jMenu1.add(jMenu17);
+
+        jMenu18.setText("Ordem de Serviço");
+
+        jMenuItem25.setText("Cadastro de O.S");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu18.add(jMenuItem25);
+
+        jMenu1.add(jMenu18);
+
         jMenu4.setText("Fornecedor");
 
         jMenuItem6.setText("Cadastro de Fornecedores");
@@ -154,6 +197,45 @@ public class MenuView extends javax.swing.JFrame {
         jMenu15.add(jMenuItem20);
 
         jMenu1.add(jMenu15);
+
+        jMenu5.setText("Contas");
+
+        jMenu6.setText("Contas a Pagar");
+
+        jMenuItem7.setText("Cadastro de Contas");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem7);
+
+        jMenuItem8.setText("Pagamento de Contas");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
+        jMenu5.add(jMenu6);
+
+        jMenu7.setText("Contas a Receber");
+
+        jMenuItem9.setText("Cadastro de Contas");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem9);
+
+        jMenuItem10.setText("Acerto de Contas");
+        jMenu7.add(jMenuItem10);
+
+        jMenu5.add(jMenu7);
+
+        jMenu1.add(jMenu5);
 
         jMenuItem5.setText("Logout");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -200,45 +282,6 @@ public class MenuView extends javax.swing.JFrame {
         jMenu14.add(jMenuItem19);
 
         jMenuBar1.add(jMenu14);
-
-        jMenu5.setText("Contas");
-
-        jMenu6.setText("Contas a Pagar");
-
-        jMenuItem7.setText("Cadastro de Contas");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem7);
-
-        jMenuItem8.setText("Pagamento de Contas");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem8);
-
-        jMenu5.add(jMenu6);
-
-        jMenu7.setText("Contas a Receber");
-
-        jMenuItem9.setText("Cadastro de Contas");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu7.add(jMenuItem9);
-
-        jMenuItem10.setText("Acerto de Contas");
-        jMenu7.add(jMenuItem10);
-
-        jMenu5.add(jMenu7);
-
-        jMenuBar1.add(jMenu5);
 
         jMenu11.setText("Relatórios");
 
@@ -430,9 +473,9 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        PagamentoView pv;
+        PagamentoContasPagarView pv;
         try {
-            pv = new PagamentoView();
+            pv = new PagamentoContasPagarView();
             pv.setVisible(true);
             this.desktopPane.add(pv);
         } catch (Exception ex) {
@@ -501,6 +544,39 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        OrcamentoView ov;
+        try {
+            ov = new OrcamentoView();
+            ov.setVisible(true);
+            this.desktopPane.add(ov);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        OrdemServicoView osv;
+        try {
+            osv = new OrdemServicoView();
+            osv.setVisible(true);
+            this.desktopPane.add(osv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        ClienteView cv;
+        try {
+            cv = new ClienteView();
+            cv.setVisible(true);
+            this.desktopPane.add(cv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
@@ -513,6 +589,9 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu14;
     private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu16;
+    private javax.swing.JMenu jMenu17;
+    private javax.swing.JMenu jMenu18;
+    private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -538,6 +617,9 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

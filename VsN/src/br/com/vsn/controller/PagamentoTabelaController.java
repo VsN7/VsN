@@ -72,12 +72,18 @@ public class PagamentoTabelaController {
     
     public void destroy(int id) throws NonexistentEntityException{
         Component rootPane = null;
-        dao.destroy(id);
+        
         if(PagamentoOsView.validaDestroy == 1){
-                
+            dao.destroy(id);
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);                
-            pesquisar();
+            
+            int resp = JOptionPane.showConfirmDialog(null, "Deseja realmente reabrir o pagamento?", "Excluir", JOptionPane.YES_NO_OPTION);
+        
+                if (resp == JOptionPane.YES_OPTION) {
+                    dao.destroy(id);
+                    JOptionPane.showMessageDialog(rootPane, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);                
+                    pesquisar();
+                }
         }
         
     }

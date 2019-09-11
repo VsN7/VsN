@@ -8,14 +8,11 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(PagamentoTabela.class)
 public abstract class PagamentoTabela_ {
 
-	public static volatile SingularAttribute<PagamentoTabela, String> formaPagamento;
+	public static volatile SingularAttribute<PagamentoTabela, String> parcelas;
 	public static volatile SingularAttribute<PagamentoTabela, Integer> ordemServico_id;
-	public static volatile SingularAttribute<PagamentoTabela, Double> troco;
-	public static volatile SingularAttribute<PagamentoTabela, Integer> vezes;
-	public static volatile SingularAttribute<PagamentoTabela, Double> valorPago;
+	public static volatile SingularAttribute<PagamentoTabela, String> finalizador;
+	public static volatile SingularAttribute<PagamentoTabela, Double> valor;
 	public static volatile SingularAttribute<PagamentoTabela, Integer> id;
-	public static volatile SingularAttribute<PagamentoTabela, Pagamento> pagamento;
-	public static volatile SingularAttribute<PagamentoTabela, Integer> vezesPagar;
 
 }
 

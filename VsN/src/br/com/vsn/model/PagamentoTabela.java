@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 @Entity(name = "PagamentoTabela")
 @NamedQueries({
         @NamedQuery(name = "PagamentoTabela.selecionar", 
-                query = "SELECT pt FROM PagamentoTabela pt WHERE pt.pagamento_id = :id "),
+                query = "SELECT pt FROM PagamentoTabela pt WHERE pt.ordemServico_id = :id "),
     })
 
 
@@ -36,7 +36,7 @@ public class PagamentoTabela implements Serializable{
     private String finalizador;
     @Column(length = 8)
     private String parcelas;
-    private int pagamento_id;
+    private int ordemServico_id;
 
     public int getId() {
         return id;
@@ -70,13 +70,15 @@ public class PagamentoTabela implements Serializable{
         this.parcelas = parcelas;
     }
 
-    public int getPagamento_id() {
-        return pagamento_id;
+    public int getOrdemServico_id() {
+        return ordemServico_id;
     }
 
-    public void setPagamento_id(int pagamento_id) {
-        this.pagamento_id = pagamento_id;
+    public void setOrdemServico_id(int ordemServico_id) {
+        this.ordemServico_id = ordemServico_id;
     }
+
+    
 
     
     

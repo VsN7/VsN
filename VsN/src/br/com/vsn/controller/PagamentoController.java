@@ -4,7 +4,8 @@ import br.com.vsn.dao.PagamentoDAO;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Pagamento;
 import br.com.vsn.model.Usuario;
-import br.com.vsn.view.PagamentoView;
+import br.com.vsn.view.OrdemServicoView;
+import br.com.vsn.view.PagamentoContasPagarView;
 import java.awt.Component;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -46,6 +47,10 @@ public class PagamentoController {
         
                 if (resp == JOptionPane.YES_OPTION) {
                     dao.edit(pagamento);    
+                    OrdemServicoView.ordemServico.setSituacao("O.S EM PAGAMENTO");
+                    OrdemServicoController osc = new OrdemServicoController();
+                    osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
+                    OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
                     JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                     conta = 0;
                 }
@@ -143,8 +148,11 @@ public class PagamentoController {
         pagamento = new Pagamento();
     }
     
-    public void relatorioPagamentosGeral(int id){
-        dao.relatorioPagamentosGeral(id);
+    public void relatorioReciboPadrao(int id){
+        dao.relatorioReciboPadrao(id);
+    }
+    public void relatorioReciboManual(){
+        dao.relatorioReciboManual();
     }
     
     public void relatorioPagamentoAll(){

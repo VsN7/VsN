@@ -449,6 +449,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonImprimirMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonImprimirActionPerformed"/>
           </Events>
         </Component>

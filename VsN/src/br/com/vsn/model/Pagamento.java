@@ -51,8 +51,19 @@ public class Pagamento implements Serializable{
     private Calendar dataFinalizacao;
     private int ordemServico_id;
     private String situacao;
+    private double troco;
     @ManyToOne
     private Usuario usuario;
+
+    public double getTroco() {
+        return troco;
+    }
+
+    public void setTroco(double troco) {
+        this.troco = troco;
+    }
+    
+    
     
     public int getOrdemServico_id() {
         return ordemServico_id;

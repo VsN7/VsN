@@ -4,6 +4,7 @@ package br.com.vsn.view;
 import br.com.vsn.controller.FuncionarioController;
 import br.com.vsn.controller.UsuarioController;
 import br.com.vsn.model.Usuario;
+import br.com.vsn.util.JanelaDialogo;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -761,6 +762,9 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     InformarSenhaView.inputLogin.setText(inputLogin.getText());
                     this.getParent().add(ifv);
                     ifv.setVisible(true);
+                    JanelaDialogo jd = new JanelaDialogo();
+                    jd.geraDialogo(ifv);
+                    
                 }else{
                     JOptionPane.showMessageDialog(null, "É necessário preencher o campo Login e CPF primeiro!", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }
@@ -776,6 +780,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     isv.salvarButton.setText("Alterar");
                     this.getParent().add(isv);
                     isv.setVisible(true);
+                    JanelaDialogo jd = new JanelaDialogo();
+                    jd.geraDialogo(isv);
                 }else{
                     JOptionPane.showMessageDialog(null, "É necessário preencher o campo Login e CPF corretamente primeiro!", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }

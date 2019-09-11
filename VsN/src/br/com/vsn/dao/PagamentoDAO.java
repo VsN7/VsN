@@ -6,6 +6,7 @@ import br.com.vsn.controller.PagamentoController;
 import br.com.vsn.controller.UsuarioController;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Pagamento;
+import br.com.vsn.util.JanelaDialogo;
 import java.awt.Component;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.Serializable;
@@ -260,14 +261,14 @@ public class PagamentoDAO implements Serializable {
             }
         }
     
-    public void relatorioPagamentosGeral(int id){
+    public void relatorioReciboPadrao(int id){
         Connection conn;
         JasperPrint jasperPrint = null;
         try {
             conn = ConnectionFactory.getInstance().getConnection();
         
         
-        String src = "C:\\Refrival\\relatorios\\pagamentos.jasper";
+        String src = "C:\\VsN\\relatorios\\RelatorioRecibo.jasper";
         Map param = new HashMap();
         param.put("id",id);
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
@@ -279,6 +280,28 @@ public class PagamentoDAO implements Serializable {
         
         jv.setVisible(true);
         jv.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
+    public void relatorioReciboManual(){
+        Connection conn;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        
+        String src = "C:\\VsN\\relatorios\\RelatorioReciboManual.jasper";
+        jasperPrint = JasperFillManager.fillReport(src, null, conn);
+        } catch (Exception ex) {
+            Logger.getLogger(PagamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+        
+//            JanelaDialogo jd = new JanelaDialogo();
+//            jd.geraDialogoR(jv);
     }
     
     public void relatorioPagamentosAll(){

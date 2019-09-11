@@ -349,7 +349,7 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            PagamentoView pv = new PagamentoView();
+            PagamentoContasPagarView pv = new PagamentoContasPagarView();
             cc.destroy(valorCollun());
             pv.setIndex(0);
             cc.pesquisar();
@@ -381,7 +381,7 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                 
                 conta = cc.contaUnico(this.valorCollun()).get(0);
                 try{
-                    PagamentoView pv = new PagamentoView();
+                    PagamentoContasPagarView pv = new PagamentoContasPagarView();
                     this.getParent().add(pv);
                     pv.setVisible(true);
                     this.valoresInputConta();
@@ -445,16 +445,16 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
 
     
     public void valoresInputConta(){
-        PagamentoView.inputTitulo.setText(""+conta.getTitulo());
-        PagamentoView.inputValor.setText(""+formatter.format(conta.getValor()));
-        PagamentoView.inputDataCompra.setText(""+sdf.format(conta.getDataCompra().getTime()));
-        PagamentoView.comboBoxVezes.setSelectedItem((String) ""+conta.getVezes());
-        PagamentoView.inputValorParcela.setText(""+formatter.format((conta.getValor()/conta.getVezes())));
-        PagamentoView.comboBoxVezesRestantes.setSelectedItem((String) ""+conta.getVezesPagar());
-        PagamentoView.inputValorRestante.setText(""+formatter.format(conta.getValorPagar()));
-        PagamentoView.inputDataVencimento.setText(""+sdf.format(conta.getDataVencimento().getTime()));
-        PagamentoView.inputSituacao.setText(""+conta.getSituacao());
-        PagamentoView.inputValorRestante.setText(""+formatter.format(conta.getValorPagar()));
+        PagamentoContasPagarView.inputTitulo.setText(""+conta.getTitulo());
+        PagamentoContasPagarView.inputValor.setText(""+formatter.format(conta.getValor()));
+        PagamentoContasPagarView.inputDataCompra.setText(""+sdf.format(conta.getDataCompra().getTime()));
+        PagamentoContasPagarView.comboBoxVezes.setSelectedItem((String) ""+conta.getVezes());
+        PagamentoContasPagarView.inputValorParcela.setText(""+formatter.format((conta.getValor()/conta.getVezes())));
+        PagamentoContasPagarView.comboBoxVezesRestantes.setSelectedItem((String) ""+conta.getVezesPagar());
+        PagamentoContasPagarView.inputValorRestante.setText(""+formatter.format(conta.getValorPagar()));
+        PagamentoContasPagarView.inputDataVencimento.setText(""+sdf.format(conta.getDataVencimento().getTime()));
+        PagamentoContasPagarView.inputSituacao.setText(""+conta.getSituacao());
+        PagamentoContasPagarView.inputValorRestante.setText(""+formatter.format(conta.getValorPagar()));
     }
     
 }

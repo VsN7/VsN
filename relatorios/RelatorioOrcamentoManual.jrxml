@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioTeste" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3dede331-4026-4cdb-916b-7326d0f5ee28">
-	<property name="ireport.zoom" value="1.3310000000000046"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.3579476910000103"/>
+	<property name="ireport.x" value="50"/>
+	<property name="ireport.y" value="34"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -116,9 +116,6 @@
 				</textElement>
 				<text><![CDATA[ESTETICAR]]></text>
 			</staticText>
-			<line>
-				<reportElement x="242" y="692" width="90" height="1" uuid="278218a9-0f1f-4dd2-9c20-ad168257d7d9"/>
-			</line>
 			<staticText>
 				<reportElement x="457" y="0" width="98" height="20" uuid="2318d774-9e2d-4aba-b91c-f722366d178b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -133,15 +130,11 @@
 				</textElement>
 				<text><![CDATA[DATA]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="94" y="26" width="363" height="20" forecolor="#660000" uuid="f38c7b58-ce73-4cc0-b3f4-9e1019cb73da"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Georgia" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FUNILÁRIA E PINTURA]]></text>
-			</staticText>
+			<rectangle>
+				<reportElement x="1" y="0" width="95" height="78" uuid="0e0718b2-22b6-4abf-9a58-d5ce7aa285e3"/>
+			</rectangle>
 			<image>
-				<reportElement x="11" y="10" width="72" height="59" uuid="6dce3862-ba2d-4546-b536-78b5079a8811"/>
+				<reportElement x="2" y="3" width="92" height="75" uuid="95995a91-4cc8-4236-ad9a-2652eeaf61c6"/>
 				<imageExpression><![CDATA["C:\\VsN\\relatorios\\logo\\logo.jpeg"]]></imageExpression>
 			</image>
 		</band>

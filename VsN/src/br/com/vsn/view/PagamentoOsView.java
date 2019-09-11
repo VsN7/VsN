@@ -11,15 +11,23 @@ import br.com.vsn.controller.PagamentoTabelaController;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Pagamento;
 import br.com.vsn.model.PagamentoTabela;
+import br.com.vsn.util.JanelaDialogo;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.NumberFormatter;
 
@@ -37,7 +45,9 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
     public static int validaDestroy=0;
     String situacao;
     double valor;
-    
+    public static JMenuItem item2;
+    public static JMenuItem item1;
+    public static String recibo = "Recibo Padrão";
     
     public PagamentoOsView() {
         formatter = new DecimalFormat("#0.00");
@@ -165,6 +175,11 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
 
         buttonFinalizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonFinalizar.setText("Finalizar Pagamento");
+        buttonFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonFinalizarMouseClicked(evt);
+            }
+        });
         buttonFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonFinalizarActionPerformed(evt);
@@ -248,8 +263,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(labelTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +337,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 pagamentoTabela.setValor(Double.parseDouble(inputValorPago.getText().replace(",", ".")));
                 pagamentoTabela.setFinalizador((String) comboTipoPagamento.getSelectedItem());
                 pagamentoTabela.setParcelas((String) comboVezes.getSelectedItem());
-                pagamentoTabela.setPagamento_id(Integer.parseInt(OrdemServicoView.inputId.getText()));
+                pagamentoTabela.setOrdemServico_id(Integer.parseInt(OrdemServicoView.inputId.getText()));
                 ptc.salvarPagamentoTabela(pagamentoTabela);
                 this.exibirDados();
                 limparCampos();
@@ -353,6 +367,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         if(buttonFinalizar.getText().equals("Imprimir Recibo")){
             try {
+                pagamento.setDataFinalizacao(null);
                 pagamento.setSituacao("ABERTO");
                 pc.editPagamento(pagamento.getId(), pagamento);
                 this.exibirDados();
@@ -379,6 +394,13 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                         PesquisarOrdemServicoView posv = new PesquisarOrdemServicoView();
                         PesquisarOrdemServicoView.ordemServico = OrdemServicoView.ordemServico;
                         posv.valoresInputOrdemServico();
+                        OrdemServicoView.buttonEditar.setEnabled(true);
+                        OrdemServicoView.buttonExcluir.setEnabled(true);
+                        OrdemServicoView.inputId.setEditable(false);
+                        OrdemServicoView.inputSituacao.setEditable(false);
+                        OrdemServicoView.buttonCancelar.setEnabled(false);
+                        OrdemServicoView.buttonOS.setText("Efetuar Pagamento");
+                        JanelaDialogo.dialogoEnd.dispose();
                         osc = new OrdemServicoController();
                         this.dispose();
                     } catch (Exception ex) {
@@ -407,8 +429,17 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
             
             try {
                 pagamento.setValor(valor);
+                Date date = new Date();
+                Calendar c = Calendar.getInstance();
+                c.setTime(date);
+                pagamento.setDataFinalizacao(c);
                 pagamento.setSituacao("FECHADO");
+                pagamento.setTroco(Double.parseDouble(labelTroco.getText().replace(",", ".")));
                 pc.editPagamento(pagamento.getId(), pagamento);
+                OrdemServicoView.ordemServico.setSituacao("O.S FINALIZADA");
+                OrdemServicoController osc = new OrdemServicoController();
+                osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
+                OrdemServicoView.inputSituacao.setText("O.S FINALIZADA");
                 JOptionPane.showMessageDialog(rootPane, "Pagamento finalizado com successo!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                 this.exibirDados();
             } catch (Exception ex) {
@@ -416,13 +447,43 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
             }
         }else{
             if(buttonFinalizar.getText().equals("Imprimir Recibo")){
-                //código
+                if(recibo.equals("Recibo Padrão")){
+                    pc.relatorioReciboPadrao(Integer.parseInt(OrdemServicoView.inputId.getText()));
+                }else if(recibo.equals("Recibo Manual")){
+                    pc.relatorioReciboManual();
+                }
             }else{
-                JOptionPane.showMessageDialog(null, "Primeiro finalize o pagamento", "Aviso", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Primeiro finalize o pagamento!", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_buttonFinalizarActionPerformed
 
+    private void buttonFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFinalizarMouseClicked
+        
+            if(evt.isMetaDown()) {
+                item1 = new JMenuItem("Recibo Padrão");
+                item1.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        recibo = item1.getText();
+                    }
+                });
+                item2 = new JMenuItem("Recibo Manual");
+                item2.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        recibo = item2.getText();
+                    }
+                });
+            JPopupMenu popup = new JPopupMenu();
+            popup.add(item1);
+            popup.add(item2);
+            popup.show(buttonFinalizar, 80, 30);
+            }
+        
+    }//GEN-LAST:event_buttonFinalizarMouseClicked
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;

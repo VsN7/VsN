@@ -148,6 +148,9 @@ public class OrcamentoController {
     public void relatorioOrcamentosGeral(int id){
         dao.relatorioOrcamentosGeral(id);
     }
+    public void relatorioReciboManual(){
+        dao.relatorioReciboManual();
+    }
     
     public void relatorioOrcamentoAll(){
         dao.relatorioOrcamentosAll();

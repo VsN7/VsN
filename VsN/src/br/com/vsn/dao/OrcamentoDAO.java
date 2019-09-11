@@ -280,6 +280,24 @@ public class OrcamentoDAO implements Serializable {
         jv.setExtendedState(MAXIMIZED_BOTH);
     }
     
+    public void relatorioReciboManual(){
+        Connection conn;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        String src = "C:\\VsN\\relatorios\\RelatorioOrcamentoManual.jasper";
+        jasperPrint = JasperFillManager.fillReport(src, null, conn);
+        } catch (Exception ex) {
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
     public void relatorioOrcamentosAll(){
         Connection conn;
         JasperPrint jasperPrint = null;

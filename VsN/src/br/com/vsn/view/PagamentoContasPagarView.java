@@ -19,7 +19,7 @@ import java.util.Calendar;
  *
  * @author vitor
  */
-public class PagamentoView extends javax.swing.JInternalFrame {
+public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
 
     private ContaController cc;
     private static int index=0;
@@ -36,7 +36,7 @@ public class PagamentoView extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroContaView
      */
-    public PagamentoView() throws Exception {
+    public PagamentoContasPagarView() throws Exception {
         
         cc = new ContaController();
         initComponents();
@@ -273,20 +273,19 @@ public class PagamentoView extends javax.swing.JInternalFrame {
                                         .addComponent(inputValorParcela, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                                         .addComponent(inputDataCompra)))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(39, 39, 39)
-                            .addComponent(buttonInicioT)
-                            .addGap(31, 31, 31)
-                            .addComponent(buttonAnterior)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                            .addComponent(buttonProximo)
-                            .addGap(36, 36, 36)
-                            .addComponent(buttonFinalT)
-                            .addGap(42, 42, 42)))
+                    .addComponent(jSeparator2)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(buttonInicioT)
+                        .addGap(31, 31, 31)
+                        .addComponent(buttonAnterior)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(buttonProximo)
+                        .addGap(36, 36, 36)
+                        .addComponent(buttonFinalT)
+                        .addGap(42, 42, 42))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

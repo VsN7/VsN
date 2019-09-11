@@ -5,6 +5,7 @@
  */
 package br.com.vsn.view;
 
+import br.com.vsn.util.JanelaDialogo;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -166,6 +167,7 @@ public class InformarSenhaView extends javax.swing.JInternalFrame {
                     FuncionarioView.senha = inputSenha.getText();
                     FuncionarioView.palavraSergurnca = inputPalavraSeguranca.getText();
                     JOptionPane.showMessageDialog(null, "Senha cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    JanelaDialogo.dialogoEnd.dispose();
                     this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "As senhas não estão iguais!", "Aviso", JOptionPane.ERROR_MESSAGE);

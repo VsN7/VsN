@@ -5,11 +5,14 @@ import br.com.vsn.controller.OrcamentoController;
 import br.com.vsn.controller.OrdemServicoController;
 import br.com.vsn.model.Orcamento;
 import br.com.vsn.model.OrdemServico;
+import static br.com.vsn.view.PagamentoOsView.item1;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -20,7 +23,9 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.border.LineBorder;
 
 /**
@@ -35,6 +40,9 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     NumberFormat formatter;
     public static int index = 0;
     public static Orcamento orcamento;
+    public static JMenuItem item2;
+    public static JMenuItem item1;
+    public static String relOrcamento = "Orçamento Padrão";
     
     int id;
     String cliente;
@@ -266,6 +274,11 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
 
         buttonImprimir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonImprimir.setText("Imprimir");
+        buttonImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonImprimirMouseClicked(evt);
+            }
+        });
         buttonImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonImprimirActionPerformed(evt);
@@ -764,7 +777,12 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
-        oc.relatorioOrcamentosGeral(Integer.parseInt(inputId.getText()));
+        
+        if(relOrcamento.equals("Orçamento Padrão")){
+            oc.relatorioOrcamentosGeral(Integer.parseInt(inputId.getText()));
+        }else if(relOrcamento.equals("Orçamento Manual")){
+            oc.relatorioReciboManual();
+        }
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
     private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
@@ -900,6 +918,30 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     private void buttonOSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOSMouseExited
         buttonOS.setBorder(new LineBorder(new Color(8, 90, 0), 1, true));
     }//GEN-LAST:event_buttonOSMouseExited
+
+    private void buttonImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonImprimirMouseClicked
+         if(evt.isMetaDown()) {
+                item1 = new JMenuItem("Orçamento Padrão");
+                item1.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        relOrcamento = item1.getText();
+                    }
+                });
+                item2 = new JMenuItem("Orçamento Manual");
+                item2.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        relOrcamento = item2.getText();
+                    }
+                });
+            JPopupMenu popup = new JPopupMenu();
+            popup.add(item1);
+            popup.add(item2);
+            popup.show(buttonImprimir, 50, 10);
+            }
+        
+    }//GEN-LAST:event_buttonImprimirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
