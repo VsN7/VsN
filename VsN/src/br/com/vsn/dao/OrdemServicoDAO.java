@@ -169,6 +169,19 @@ public class OrdemServicoDAO implements Serializable {
         }
     }
     
+    public List<OrdemServico> ordemServicoFiltroNome(String nome) {
+        List<OrdemServico> rdemServico = null;
+        EntityManager em = getEntityManager();
+        try{
+           rdemServico = em.createNamedQuery("OrdemServico.buscaPorNome").setParameter("nome",nome).getResultList();
+           return rdemServico;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public OrdemServico findOrdemServico(Integer id) {
         EntityManager em = getEntityManager();
         try {

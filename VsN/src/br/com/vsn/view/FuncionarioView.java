@@ -26,7 +26,7 @@ import javax.swing.border.LineBorder;
  * @author vitor
  */
 public class FuncionarioView extends javax.swing.JInternalFrame {
-    
+    UsuarioController uc = new UsuarioController();
     FuncionarioController fc;
     SimpleDateFormat sdf;
     static int index = 0;
@@ -86,6 +86,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
+            inputCpf = new javax.swing.JFormattedTextField(cpf);
+        }
+        catch (Exception e){
+        }
         jLabel5 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -117,6 +123,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         inputTelefone = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter("(##) #####-####");
+            inputTelefone = new javax.swing.JFormattedTextField(tel);
+        }
+        catch (Exception e){
+        }
         inputEmail = new javax.swing.JTextField();
         buttonImprimir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -286,7 +298,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         });
 
         buttonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonExcluir.setText("Excluir");
+        buttonExcluir.setText("Inativar");
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirActionPerformed(evt);
@@ -614,7 +626,23 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        
+        try {
+            if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
+                FuncionarioController.validador = 1;
+                fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
+                this.exibirDados();
+            }else{
+                this.valoresInput();
+                fc = new FuncionarioController();
+                fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
+                
+                this.ativarTudo();
+                this.exibirDados();
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+
+            }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
@@ -881,6 +909,15 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 inputLogin.setEditable(false);
                 buttonSenha.setEnabled(false);
             }
+            if(inputSituacao.getText().equals("INATIVO")){
+                buttonEditar.setEnabled(false);
+                buttonExcluir.setEnabled(false);
+                inputSituacao.setForeground(Color.red);
+            }else{
+                buttonEditar.setEnabled(true);
+                buttonExcluir.setEnabled(true);
+                inputSituacao.setForeground(Color.blue);
+            }
                 this.preencherImagem();
             this.valoresInput();
         } catch (Exception ex) {
@@ -898,7 +935,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             this.sexo = (String) comboSexo.getSelectedItem();
             this.caminhoImg = inputImagem.getText();
             this.login = inputLogin.getText();
-            this.funcao = inputFuncao.getText();
+            this.funcao = inputFuncao.getText().toUpperCase();
             this.situacao = inputSituacao.getText();
             this.telefone = inputTelefone.getText();
             this.email = inputEmail.getText().toUpperCase();
@@ -909,7 +946,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             this.sexo = (String) comboSexo.getSelectedItem();
             this.caminhoImg = inputImagem.getText();
             this.login = "Sem Acesso ao Sistema";
-            this.funcao = inputFuncao.getText();
+            this.funcao = inputFuncao.getText().toUpperCase();
             this.situacao = inputSituacao.getText();
             this.telefone = inputTelefone.getText();
             this.email = inputEmail.getText().toUpperCase();

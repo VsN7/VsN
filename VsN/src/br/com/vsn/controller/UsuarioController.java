@@ -31,6 +31,7 @@ public class UsuarioController {
     private List<Usuario> usuarios;
 //    private SessaoUsuario sessao;
     static int id;
+    public static int validador = 0;
     static String login;
 
     public int getId() {
@@ -102,10 +103,15 @@ public class UsuarioController {
     
     public void destroy(int id) throws Exception{
         Component rootPane = null;
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuario?", "Pergunta", JOptionPane.YES_NO_OPTION);
-        
-        if (resposta == JOptionPane.YES_OPTION) {
+        if(validador == 1){
             dao.destroy(id);
+            validador = 0 ;
+        }else{
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuario?", "Pergunta", JOptionPane.YES_NO_OPTION);
+
+            if (resposta == JOptionPane.YES_OPTION) {
+                dao.destroy(id);
+            }
         }
     }
 

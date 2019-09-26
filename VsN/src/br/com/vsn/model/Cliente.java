@@ -27,6 +27,12 @@ import javax.persistence.TemporalType;
     
      @NamedQuery(name = "Cliente.buscaPorId", 
                 query = "SELECT c FROM Cliente c WHERE c.id = :id "),
+     
+     @NamedQuery(name = "Cliente.buscaPorNome", 
+                query = "SELECT c FROM Cliente c WHERE c.nome LIKE :nome "),
+     
+     @NamedQuery(name = "Cliente.buscaPorCpf", 
+                query = "SELECT c FROM Cliente c WHERE c.cpf LIKE :cpf "),
     
 })
 public class Cliente implements Serializable {

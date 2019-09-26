@@ -32,7 +32,13 @@ import javax.persistence.TemporalType;
         @NamedQuery(name = "Funcionario.getAll", 
                 query = "SELECT f.id FROM Funcionario f "
                         + "WHERE f.nome = :nome "
-                        + "AND f.funcao = :funcao ")
+                        + "AND f.funcao = :funcao "),
+     
+     @NamedQuery(name = "Funcionario.buscaPorNome", 
+                query = "SELECT f FROM Funcionario f WHERE f.nome LIKE :nome "),
+     
+     @NamedQuery(name = "Funcionario.buscaPorCpf", 
+                query = "SELECT f FROM Funcionario f WHERE f.cpf LIKE :cpf "),
     
 })
 public class Funcionario implements Serializable {

@@ -73,6 +73,13 @@ public class OrdemServicoController {
         return dao.ordemServicoUnico(id);
     }
     
+    public List<OrdemServico> pesquisarFiltroNome(String nome) {
+        ordemServicos.clear();
+        nome+="%";
+        
+        return dao.ordemServicoFiltroNome(nome.toUpperCase());
+    }
+    
     public void salvar() throws NoSuchAlgorithmException{
         Component rootPane = null;
         UsuarioController uc = new UsuarioController();

@@ -23,6 +23,8 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
     private static int id;
     SimpleDateFormat sdf;
     static Cliente cliente;
+    String valorCombo;
+    
     
     public static int getId() {
         return id;
@@ -65,6 +67,9 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        inputSelecionado = new javax.swing.JTextField();
+        buttonBuscar = new javax.swing.JToggleButton();
+        comboFiltro = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Pesquisar Cliente");
@@ -99,22 +104,54 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
         }
 
+        inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        buttonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttonBuscar.setText("Buscar");
+        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarActionPerformed(evt);
+            }
+        });
+
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(comboFiltro, 0, 225, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonBuscar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonBuscar)
+                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,9 +196,29 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+        
+        
+        try{
+            ClienteController cc = new ClienteController();
+            valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
+            if(valorCombo.equals("nome")){
+                this.preencherTabelaFiltroNome();
+            }else if(valorCombo.equals("cpf")){
+                this.preencherTabelaFiltroCpf();
+            }
+            
+        }catch(Exception e){
+            Logger.getLogger(PesquisarClienteView.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_buttonBuscarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton buttonBuscar;
+    private javax.swing.JComboBox<String> comboFiltro;
+    private javax.swing.JTextField inputSelecionado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -179,6 +236,40 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
              cc.getClientes().get(i).getCpf(),
              cc.getClientes().get(i).getTelefone(),
              cc.getClientes().get(i).getSituacao()
+             });
+        }
+        
+    }
+    
+    public void preencherTabelaFiltroNome() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        ClienteController cc = new ClienteController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<cc.pesquisarFiltroNome(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getId(),
+             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getNome(),
+             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getCpf(),
+             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getTelefone(),
+             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getSituacao()
+             });
+        }
+        
+    }
+    
+    public void preencherTabelaFiltroCpf() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        ClienteController cc = new ClienteController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<cc.pesquisarFiltroCpf(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getId(),
+             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getNome(),
+             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getCpf(),
+             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getTelefone(),
+             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getSituacao()
              });
         }
         

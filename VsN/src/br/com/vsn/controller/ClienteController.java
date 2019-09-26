@@ -22,6 +22,7 @@ public class ClienteController {
     private ClienteDAO dao;
     private List<Cliente> clientes;
     private Cliente cliente;
+    public static int validador = 0;
     
     public ClienteController() {
         novo();
@@ -43,6 +44,19 @@ public class ClienteController {
     public List<Cliente> pesquisarUnico(int id) {
         clientes.clear();
         return dao.clienteUnico(id);
+    }
+    
+    public List<Cliente> pesquisarFiltroNome(String nome) {
+        clientes.clear();
+        nome+="%";
+        
+        return dao.clienteFiltroNome(nome.toUpperCase());
+    }
+    
+    public List<Cliente> pesquisarFiltroCpf(String cpf) {
+        clientes.clear();
+        cpf+="%";
+        return dao.clienteFiltroCpf(cpf);
     }
 
     public void novo() {
@@ -109,9 +123,19 @@ public class ClienteController {
         cliente.setTelefone(telefone);
         cliente.setEmail(email);
         cliente.setSituacao(situacao);
-        dao.edit(cliente);
-        JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        if(validador == 0){
+            dao.edit(cliente);
+            JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        }else{
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente inativar o cliente?", "Inativação", JOptionPane.YES_NO_OPTION);
         
+            if (resposta == JOptionPane.YES_OPTION) {
+                dao.edit(cliente);
+                JOptionPane.showMessageDialog(rootPane, "O cliente foi inativado sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+                
+            }
+            validador = 0;
+        }
      }
     
     public List<Cliente> getClientes() {
@@ -135,6 +159,10 @@ public class ClienteController {
     
     public List<Cliente> clienteUnico( int id){
         return dao.clienteUnico(id);
+    }
+    
+    public void relatorioClientesAniversariantes(int mes){
+        dao.relatorioClientesAniversariantes(mes);
     }
     
 }

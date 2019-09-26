@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.observablecollections.ObservableCollections;
 
@@ -70,6 +72,19 @@ public class OrcamentoController {
     public List<Orcamento> pesquisarUnico(int id) {
         orcamentos.clear();
         return dao.orcamentoUnico(id);
+    }
+    
+    public List<Orcamento> pesquisarFiltroNome(String nome) {
+        orcamentos.clear();
+        nome+="%";
+        
+        return dao.orcamentoFiltroNome(nome.toUpperCase());
+    }
+    
+    public List<Orcamento> pesquisarFiltroCpf(String cpf) {
+        orcamentos.clear();
+        cpf+="%";
+        return dao.orcamentoFiltroCpf(cpf);
     }
     
     public void salvar() throws NoSuchAlgorithmException{
@@ -160,8 +175,8 @@ public class OrcamentoController {
         Component rootPane = null;
         try{
             dao.relatorioOrcamentoData(combobox,dInicio,dFinal);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+        }catch (Exception ex) {
+            Logger.getLogger(OrcamentoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -35,6 +35,12 @@ public class RecuperarAcessoView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
+            inputCpf = new javax.swing.JFormattedTextField(cpf);
+        }
+        catch (Exception e){
+        }
         jLabel4 = new javax.swing.JLabel();
         inputPalavra = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();

@@ -63,6 +63,12 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         palavraField = new javax.swing.JTextField();
         loginLabel1 = new javax.swing.JLabel();
         cpfField = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
+            cpfField = new javax.swing.JFormattedTextField(cpf);
+        }
+        catch (Exception e){
+        }
         loginLabel2 = new javax.swing.JLabel();
 
         setClosable(true);

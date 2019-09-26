@@ -114,6 +114,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel22 = new javax.swing.JLabel();
         inputTelefone = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter("(##) #####-####");
+            inputTelefone = new javax.swing.JFormattedTextField(tel);
+        }
+        catch (Exception e){
+        }
         jLabel13 = new javax.swing.JLabel();
         inputEmail = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
@@ -224,7 +230,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         });
 
         buttonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonExcluir.setText("Excluir");
+        buttonExcluir.setText("Inativar");
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirActionPerformed(evt);
@@ -654,7 +660,17 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        
+        try {
+                this.valoresInput();
+                cc = new ClienteController();
+                ClienteController.validador = 1;
+                cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg, longradouro, numero, bairro, cidade, estado, cep, telefone, email,"INATIVO");
+                this.ativarTudo();
+                this.exibirDados();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+
+            }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
@@ -916,6 +932,15 @@ public class ClienteView extends javax.swing.JInternalFrame {
             inputSituacao.setText(""+cc.getClientes().get(index).getSituacao());
             inputId.setEditable(false);
             inputSituacao.setEditable(false);
+            if(inputSituacao.getText().equals("INATIVO")){
+                buttonEditar.setEnabled(false);
+                buttonExcluir.setEnabled(false);
+                inputSituacao.setForeground(Color.red);
+            }else{
+                buttonEditar.setEnabled(true);
+                buttonExcluir.setEnabled(true);
+                inputSituacao.setForeground(Color.blue);
+            }
             this.valoresInput();
             this.preencherImagem();
         } catch (Exception ex) {

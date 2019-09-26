@@ -75,13 +75,22 @@ public class PagamentoTabelaController {
         
         if(PagamentoOsView.validaDestroy == 1){
             dao.destroy(id);
-        }else{
+        }else if(PagamentoOsView.validaDestroy == 2){
             
-            int resp = JOptionPane.showConfirmDialog(null, "Deseja realmente reabrir o pagamento?", "Excluir", JOptionPane.YES_NO_OPTION);
+            int resp = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o pagamento?", "Excluir", JOptionPane.YES_NO_OPTION);
         
                 if (resp == JOptionPane.YES_OPTION) {
                     dao.destroy(id);
                     JOptionPane.showMessageDialog(rootPane, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);                
+                    pesquisar();
+                    PagamentoOsView.validaDestroy = 0;
+                }
+        }else{
+            int resp = JOptionPane.showConfirmDialog(null, "Deseja realmente reabrir o pagamento?", "Reabertura", JOptionPane.YES_NO_OPTION);
+        
+                if (resp == JOptionPane.YES_OPTION) {
+                    dao.destroy(id);
+                    JOptionPane.showMessageDialog(rootPane, "O pagamento foi reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);                
                     pesquisar();
                 }
         }

@@ -321,6 +321,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
 
     private void buttonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverActionPerformed
         try {
+            validaDestroy = 2;
             ptc.destroy(valorCollun());
             this.exibirDados();
         } catch (Exception ex) {

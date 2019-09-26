@@ -30,6 +30,7 @@ public class FuncionarioController {
     public static Usuario user = new Usuario();
     static String senhaF;
     static String palavra;
+    public static int validador = 0;
     
     public static int estouraErroNulo = 0;
     
@@ -39,15 +40,20 @@ public class FuncionarioController {
         funcionarios = ObservableCollections.observableList(new ArrayList<>());
         pesquisar();
     }
-    public FuncionarioController(int i){
+    
+    public FuncionarioController(int id) {
         novo();
         dao = new FuncionarioDAO();
         funcionarios = ObservableCollections.observableList(new ArrayList<>());
+        pesquisarUnico(id);
     }
+    
     public void pesquisar() {
         funcionarios.clear();
         funcionarios.addAll(dao.funcionarioFindAll());
     }
+    
+    
     
     
     public List<Funcionario> pesquisarUnico(int id) {
@@ -55,6 +61,19 @@ public class FuncionarioController {
         return dao.funcionarioUnico(id);
     }
 
+    public List<Funcionario> pesquisarFiltroNome(String nome) {
+        funcionarios.clear();
+        nome+="%";
+        
+        return dao.funcionarioFiltroNome(nome.toUpperCase());
+    }
+    
+    public List<Funcionario> pesquisarFiltroCpf(String cpf) {
+        funcionarios.clear();
+        cpf+="%";
+        return dao.funcionarioFiltroCpf(cpf);
+    }
+    
     public void novo() {
         funcionario = new Funcionario();
         
@@ -233,6 +252,51 @@ public class FuncionarioController {
         
      }
     
+    public void inativarFuncionario(int usuario_id,int id,String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg,String funcao, String login,String telefone, String email, String situacao,String senha, String palavraSeguranca) throws Exception {
+        estouraErroNulo = 0;
+        Calendar c = Calendar.getInstance();
+        c.setTime(dtNascimento);
+        Component rootPane = null;
+        Funcionario funcionario = new Funcionario();
+        
+        UsuarioController uc = new UsuarioController();
+        if(funcao.isEmpty()){
+            funcao = null;
+        }
+        if(nome.isEmpty()){
+            nome = null;
+        }
+        
+        
+        Usuario usuario = new Usuario();
+        usuario.setLogin(login);
+        UsuarioDAO usDao = new UsuarioDAO();
+        funcionario.setId(id);
+        funcionario.setNome(nome);
+        funcionario.setCpf(cpf);
+        funcionario.setSexo(sexo);
+        funcionario.setDataNascimento(c);
+        funcionario.setCaminhoImg(caminhoImg);
+        funcionario.setLogin(login);
+        funcionario.setFuncao(funcao);
+        funcionario.setTelefone(telefone);
+        funcionario.setEmail(email);
+        funcionario.setSituacao(situacao);
+        
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente inativar o funcionario?", "Inativar", JOptionPane.YES_NO_OPTION);
+        
+        if (resposta == JOptionPane.YES_OPTION) {
+            dao.edit(funcionario);
+            if(validador == 0){
+                UsuarioController.validador = 1;
+                uc.destroy(uc.pesquisarUnico(cpf).get(0).getId());
+            }else{
+                validador = 0;
+            }
+            JOptionPane.showMessageDialog(rootPane, "Funcionario inativado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        }
+    }
+    
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
@@ -256,4 +320,7 @@ public class FuncionarioController {
         return dao.funcionarioUnico(id);
     }
     
+    public void relatorioFuncionariosAniversariantes(int mes){
+        dao.relatorioFuncionariosAniversariantes(mes);
+    }
 }

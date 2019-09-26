@@ -182,6 +182,7 @@ public class InformarSenhaView extends javax.swing.JInternalFrame {
                     FuncionarioView.senha = inputSenha.getText();
                     FuncionarioView.palavraSergurnca = inputPalavraSeguranca.getText();
                     JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    JanelaDialogo.dialogoEnd.dispose();
                     this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "As senhas não estão iguais!", "Aviso", JOptionPane.ERROR_MESSAGE);

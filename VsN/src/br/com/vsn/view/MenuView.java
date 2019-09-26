@@ -66,11 +66,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenu12 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenu13 = new javax.swing.JMenu();
+        jMenu20 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
-        jMenu16 = new javax.swing.JMenu();
+        jMenu13 = new javax.swing.JMenu();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jMenu16 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
@@ -295,6 +295,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem15);
 
+        jMenuItem16.setText("Relatório de Clientes Aniversariantes");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
@@ -304,32 +305,33 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu11.add(jMenu12);
 
-        jMenu13.setText("Relatório de Orçamentos");
+        jMenu20.setText("Relatório de Funcionarios");
 
-        jMenuItem17.setText("Cadastro de Contas");
+        jMenuItem17.setText("Relatório de Funcionarios Aniversariantes");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
             }
         });
-        jMenu13.add(jMenuItem17);
+        jMenu20.add(jMenuItem17);
 
-        jMenuItem18.setText("Acerto de Contas");
-        jMenu13.add(jMenuItem18);
+        jMenu11.add(jMenu20);
 
-        jMenu11.add(jMenu13);
+        jMenu13.setText("Relatório de Orçamentos");
 
-        jMenu16.setText("Relatório de Ordem de Serviço");
-
-        jMenuItem22.setText("Cadastro de Contas");
+        jMenuItem22.setText("Orçamentos Geral");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem22ActionPerformed(evt);
             }
         });
-        jMenu16.add(jMenuItem22);
+        jMenu13.add(jMenuItem22);
 
-        jMenuItem23.setText("Acerto de Contas");
+        jMenu11.add(jMenu13);
+
+        jMenu16.setText("Relatório de Ordem de Serviço");
+
+        jMenuItem23.setText("Ordem de Serviço Geral");
         jMenu16.add(jMenuItem23);
 
         jMenu11.add(jMenu16);
@@ -499,14 +501,6 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
-
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
-
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         OrdemServicoView osv;
         try {
@@ -541,7 +535,14 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        // TODO add your handling code here:
+        FiltroDataRelatorioOrcamentosView fdros;
+        try {
+            fdros = new FiltroDataRelatorioOrcamentosView();
+            fdros.setVisible(true);
+            this.desktopPane.add(fdros);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
@@ -577,6 +578,28 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        RelatorioClientesAniversariantesView rcav;
+        try {
+            rcav = new RelatorioClientesAniversariantesView();
+            rcav.setVisible(true);
+            this.desktopPane.add(rcav);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        RelatorioFuncionariosAniversariantesView rfav;
+        try {
+            rfav = new RelatorioFuncionariosAniversariantesView();
+            rfav.setVisible(true);
+            this.desktopPane.add(rfav);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
@@ -593,6 +616,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu18;
     private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu20;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -610,7 +634,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;

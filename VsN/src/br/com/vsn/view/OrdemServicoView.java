@@ -88,6 +88,12 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
+            inputCpf = new javax.swing.JFormattedTextField(cpf);
+        }
+        catch (Exception e){
+        }
         buttonFinal = new javax.swing.JButton();
         buttonProximo = new javax.swing.JButton();
         buttonAnterior = new javax.swing.JButton();

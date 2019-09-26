@@ -1,13 +1,19 @@
 package br.com.vsn.dao;
 
+import br.com.vsn.conectaRelatorio.ConnectionFactory;
 import br.com.vsn.controller.ClienteController;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Cliente;
+import java.awt.Component;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.Serializable;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -17,6 +23,9 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -54,6 +63,32 @@ public class ClienteDAO implements Serializable {
         EntityManager em = getEntityManager();
         try{
            clientes = em.createNamedQuery("Cliente.buscaPorId").setParameter("id",id).getResultList();
+           return clientes;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public List<Cliente> clienteFiltroNome(String nome) {
+        List<Cliente> clientes = null;
+        EntityManager em = getEntityManager();
+        try{
+           clientes = em.createNamedQuery("Cliente.buscaPorNome").setParameter("nome",nome).getResultList();
+           return clientes;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public List<Cliente> clienteFiltroCpf(String cpf) {
+        List<Cliente> clientes = null;
+        EntityManager em = getEntityManager();
+        try{
+           clientes = em.createNamedQuery("Cliente.buscaPorCpf").setParameter("cpf",cpf).getResultList();
            return clientes;
         }catch(Exception e){
             
@@ -165,4 +200,25 @@ public class ClienteDAO implements Serializable {
             em.close();
         }
     } 
+    
+    public void relatorioClientesAniversariantes(int mes){
+        Connection conn;
+        Component rootPane = null;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        
+        String src = "C:\\VsN\\relatorios\\clientesAniversariantes.jasper";
+        Map param = new HashMap();
+        param.put("mes",mes);
+        jasperPrint = JasperFillManager.fillReport(src, param, conn);
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+        } catch (Exception ex) {
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

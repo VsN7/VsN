@@ -131,7 +131,35 @@ public class CalendarView extends javax.swing.JInternalFrame {
         });
         
     }
+    public void setaCalendarFiltroRelatorioOSDataInicio(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                FiltroDataRelatorioOrcamentosView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+        
+    }
     
+    
+    public void setaCalendarFiltroRelatorioOSDataFinal(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                FiltroDataRelatorioOrcamentosView.inputDataFinal.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+    }
     
     public CalendarView() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();

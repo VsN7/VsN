@@ -23,7 +23,7 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
     private static int id;
     static Orcamento orcamento;
     SimpleDateFormat sdf;
-
+    String valorCombo;
     public static int getId() {
         return id;
     }
@@ -43,7 +43,7 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double lar =d.getWidth();
         int alt = (int) d.getHeight();
-        this.setLocation((int) ((lar - this.getSize().width) / 2), (alt - this.getSize().height)/2);
+        this.setLocation((int) ((lar - this.getSize().width) / 2), (alt - this.getSize().height)/6);
         initComponents();
         
         try {
@@ -65,6 +65,9 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        comboFiltro = new javax.swing.JComboBox<>();
+        inputSelecionado = new javax.swing.JTextField();
+        buttonBuscar = new javax.swing.JToggleButton();
 
         setClosable(true);
         setTitle("Pesquisar Orçamento");
@@ -101,15 +104,46 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(40);
         }
 
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente" }));
+
+        inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        buttonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttonBuscar.setText("Buscar");
+        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(comboFiltro, 0, 377, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonBuscar)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonBuscar)
+                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,8 +177,25 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+
+        try{
+            OrcamentoController oc = new OrcamentoController();
+            valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
+            if(valorCombo.equals("cliente")){
+                this.preencherTabelaFiltroNome();
+            }
+
+        }catch(Exception e){
+            Logger.getLogger(PesquisarClienteView.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_buttonBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton buttonBuscar;
+    private javax.swing.JComboBox<String> comboFiltro;
+    private javax.swing.JTextField inputSelecionado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -164,6 +215,44 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
              sdf.format(oc.getOrcamentos().get(i).getPrevisaoEntrega().getTime()),
              oc.getOrcamentos().get(i).getValor(),
              oc.getOrcamentos().get(i).getSituacao()
+             });
+        }
+        
+    }
+    
+    public void preencherTabelaFiltroNome() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        OrcamentoController oc = new OrcamentoController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<oc.pesquisarFiltroNome(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             oc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getId(),
+             oc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getCliente(),
+             oc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getServico(),
+             sdf.format(oc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getDataInicio().getTime()),
+             sdf.format(oc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getPrevisaoEntrega().getTime()),
+             oc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getValor(),
+             oc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getSituacao()
+             });
+        }
+        
+    }
+    
+    public void preencherTabelaFiltroCpf() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        OrcamentoController oc = new OrcamentoController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<oc.pesquisarFiltroCpf(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             oc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getId(),
+             oc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getCliente(),
+             oc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getServico(),
+             sdf.format(oc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getDataInicio().getTime()),
+             sdf.format(oc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getPrevisaoEntrega().getTime()),
+             oc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getValor(),
+             oc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getSituacao()
              });
         }
         

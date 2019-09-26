@@ -169,6 +169,32 @@ public class OrcamentoDAO implements Serializable {
         }
     }
     
+    public List<Orcamento> orcamentoFiltroNome(String nome) {
+        List<Orcamento> orcamentos = null;
+        EntityManager em = getEntityManager();
+        try{
+           orcamentos = em.createNamedQuery("Orcamento.buscaPorNome").setParameter("nome",nome).getResultList();
+           return orcamentos;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public List<Orcamento> orcamentoFiltroCpf(String cpf) {
+        List<Orcamento> orcamentos = null;
+        EntityManager em = getEntityManager();
+        try{
+           orcamentos = em.createNamedQuery("Orcamento.buscaPorCpf").setParameter("cpf",cpf).getResultList();
+           return orcamentos;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public int retornaOSId(int id){
             EntityManager em = getEntityManager();
             int idOS;
@@ -329,7 +355,7 @@ public class OrcamentoDAO implements Serializable {
             conn = ConnectionFactory.getInstance().getConnection();
         
         
-        String src = "C:\\Refrival\\relatorios\\orcamentosData.jasper";
+        String src = "C:\\VsN\\relatorios\\orcamentosData.jasper";
         String situacao;
         String s2;
         if(comboBox ==0){
@@ -337,14 +363,16 @@ public class OrcamentoDAO implements Serializable {
             s2 = "ABERTO";
         }else{
             if(comboBox==1){
-                situacao = "FECHADO";
-                s2 = "FECHADO";
+                situacao = "VINCULADO";
+                s2 = "VINCULADO";
             }else{
                 situacao = "ABERTO";
-                s2 = "FECHADO";
+                s2 = "VINCULADO";
             }
             
         }
+        situacao+="%";
+        s2+="%";
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Map param = new HashMap();
@@ -359,7 +387,7 @@ public class OrcamentoDAO implements Serializable {
         jv.setVisible(true);
         jv.setExtendedState(MAXIMIZED_BOTH);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

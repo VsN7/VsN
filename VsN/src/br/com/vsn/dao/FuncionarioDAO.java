@@ -1,8 +1,14 @@
 package br.com.vsn.dao;
 
+import br.com.vsn.conectaRelatorio.ConnectionFactory;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Funcionario;
+import java.awt.Component;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -12,6 +18,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -53,6 +62,32 @@ public class FuncionarioDAO {
         }catch(Exception e){
             
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public List<Funcionario> funcionarioFiltroNome(String nome) {
+        List<Funcionario> funcionarios = null;
+        EntityManager em = getEntityManager();
+        try{
+           funcionarios = em.createNamedQuery("Funcionario.buscaPorNome").setParameter("nome",nome).getResultList();
+           return funcionarios;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public List<Funcionario> funcionarioFiltroCpf(String cpf) {
+        List<Funcionario> funcionarios = null;
+        EntityManager em = getEntityManager();
+        try{
+           funcionarios = em.createNamedQuery("Funcionario.buscaPorCpf").setParameter("cpf",cpf).getResultList();
+           return funcionarios;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -187,5 +222,26 @@ public class FuncionarioDAO {
             em.close();
         }
     } 
+    
+    public void relatorioFuncionariosAniversariantes(int mes){
+        Connection conn;
+        Component rootPane = null;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        
+        String src = "C:\\VsN\\relatorios\\funcionariosAniversariantes.jasper";
+        Map param = new HashMap();
+        param.put("mes",mes);
+        jasperPrint = JasperFillManager.fillReport(src, param, conn);
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+        } catch (Exception ex) {
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

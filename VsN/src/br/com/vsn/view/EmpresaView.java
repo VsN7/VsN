@@ -103,6 +103,12 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         inputCidade = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         inputTelefone = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter("(##) #####-####");
+            inputTelefone = new javax.swing.JFormattedTextField(tel);
+        }
+        catch (Exception e){
+        }
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         inputEmail = new javax.swing.JTextField();
