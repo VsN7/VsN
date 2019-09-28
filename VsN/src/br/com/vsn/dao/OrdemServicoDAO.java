@@ -239,7 +239,7 @@ public class OrdemServicoDAO implements Serializable {
             }
         }
         
-        public double retornaValorTotalD(Date dInicio, Date dFim,String situacao,String s2){
+        public double retornaValorTotalD(Date dInicio, Date dFim,String situacao){
             EntityManager em = getEntityManager();
             double id;
             Calendar c = Calendar.getInstance();
@@ -253,7 +253,6 @@ public class OrdemServicoDAO implements Serializable {
                 c2.setTime(dFim);
                 query.setParameter("dFim", c2);
                 query.setParameter("situacao", situacao);
-                query.setParameter("s2", s2);
                 id = (double) query.getSingleResult();
                 return id;
             }catch (Exception e){
@@ -322,7 +321,7 @@ public class OrdemServicoDAO implements Serializable {
         jv.setExtendedState(MAXIMIZED_BOTH);
     }
     
-    public void relatorioOrdemServicoData(int comboBox,String dInicio, String dFim){
+    public void relatorioOrdemServicoData(String situacao,String dInicio, String dFim){
         Connection conn;
         Component rootPane = null;
         JasperPrint jasperPrint = null;
@@ -330,78 +329,21 @@ public class OrdemServicoDAO implements Serializable {
             conn = ConnectionFactory.getInstance().getConnection();
         
         
-        String src = "C:\\Refrival\\relatorios\\ordemServicosData.jasper";
-        String situacao;
-        String s2;
-        if(comboBox ==0){
-            situacao = "ABERTO";
-            s2 = "ABERTO";
-        }else{
-            if(comboBox==1){
-                situacao = "FECHADO";
-                s2 = "FECHADO";
-            }else{
-                situacao = "ABERTO";
-                s2 = "FECHADO";
-            }
-            
-        }
+        String src = "C:\\VsN\\relatorios\\ordemServicoData.jasper";
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Map param = new HashMap();
-        param.put("total",this.retornaValorTotalD(sdf.parse(dInicio),sdf.parse(dFim),situacao,s2));
-        param.put("datainicio",sdf.parse(dInicio));
+        param.put("total",this.retornaValorTotalD(sdf.parse(dInicio),sdf.parse(dFim),situacao));
+        param.put("dataInicio",sdf.parse(dInicio));
         param.put("dataFim",sdf.parse(dFim));
-        param.put("situacoes",situacao);
-        param.put("s2", s2);
-        jasperPrint = JasperFillManager.fillReport(src, param, conn);
-        JasperViewer jv = new JasperViewer(jasperPrint, false);
-        
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
-        }
-    }
-    
-    
-     public void relatorioOrdemServicoSituacao(int comboBox){
-        Connection conn;
-        Component rootPane = null;
-        JasperPrint jasperPrint = null;
-        try {
-            conn = ConnectionFactory.getInstance().getConnection();
-        
-        
-        String src = "C:\\Refrival\\relatorios\\ordemServicosAllSituacao.jasper";
-        String situacao;
-        String s2;
-        if(comboBox ==0){
-            situacao = "ABERTO";
-            s2 = "ABERTO";
-        }else{
-            if(comboBox==1){
-                situacao = "FECHADO";
-                s2 = "FECHADO";
-            }else{
-                situacao = "ABERTO";
-                s2 = "FECHADO";
-            }
-            
-        }
-        Map param = new HashMap();
-        param.put("total",this.retornaValorTotalS(situacao,s2));
         param.put("situacao",situacao);
-        param.put("s2", s2);
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
-        
-        
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
         jv.setVisible(true);
         jv.setExtendedState(MAXIMIZED_BOTH);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }
     

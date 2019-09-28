@@ -150,7 +150,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dataNascimento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dataNascimento})]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

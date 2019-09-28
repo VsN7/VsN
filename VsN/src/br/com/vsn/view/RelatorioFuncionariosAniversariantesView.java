@@ -56,6 +56,7 @@ public class RelatorioFuncionariosAniversariantesView extends javax.swing.JInter
 
         setClosable(true);
         setIconifiable(true);
+        setTitle("Funcionarios Aniversariantes");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

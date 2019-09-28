@@ -907,6 +907,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                         PesquisarClienteView pv = new PesquisarClienteView();
                         this.getParent().add(pv);
                         pv.setVisible(true);
+                        PesquisarClienteView.validador = 2;
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                     }

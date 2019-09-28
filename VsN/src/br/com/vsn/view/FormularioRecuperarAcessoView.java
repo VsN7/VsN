@@ -58,7 +58,7 @@ public class FormularioRecuperarAcessoView extends javax.swing.JFrame {
         salvarButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Recuperação de Acesso");
+        setTitle("VersuS");
         setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
             getImage());
 

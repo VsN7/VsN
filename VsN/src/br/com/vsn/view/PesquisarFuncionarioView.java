@@ -24,6 +24,7 @@ public class PesquisarFuncionarioView extends javax.swing.JInternalFrame {
     SimpleDateFormat sdf;
     static Funcionario funcionario;
     String valorCombo;
+    public static int validador=0;
     public static int getId() {
         return id;
     }
@@ -176,10 +177,12 @@ public class PesquisarFuncionarioView extends javax.swing.JInternalFrame {
                         this.valoresInputFuncionario();
                         FuncionarioView.ativarInputCadastrar();
                         FuncionarioView.inputId.setEnabled(true);
+                    }else{
+                        this.valoresInputRelatorioFuncionariosGeral();
                     }
                 
                 }catch(Exception e){
-                    Logger.getLogger(PesquisarFuncionarioView.class.getName()).log(Level.SEVERE, null, e);
+                    this.valoresInputRelatorioFuncionariosGeral();
                 }
                 this.dispose();
             } catch (Exception ex) {
@@ -288,6 +291,10 @@ public class PesquisarFuncionarioView extends javax.swing.JInternalFrame {
         FuncionarioView.inputEmail.setText(""+funcionario.getEmail());
         FuncionarioView.inputSituacao.setText(""+funcionario.getSituacao());  
         FuncionarioView.inputLogin.setText(""+funcionario.getLogin());  
+    }
+    
+    public void valoresInputRelatorioFuncionariosGeral(){
+        RelatorioFuncionarioGeralView.inputNome.setText(""+funcionario.getNome());
     }
 
 }

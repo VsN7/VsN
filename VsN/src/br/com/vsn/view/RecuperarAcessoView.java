@@ -48,7 +48,7 @@ public class RecuperarAcessoView extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("VsN");
+        setTitle("VersuS");
         setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
             getImage());
 

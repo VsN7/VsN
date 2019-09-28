@@ -32,7 +32,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     static int index = 0;
     static int verificaButtonSenha = 0;
     public static int validadorCadUsuario = 0;
-    String diretorio = "C:\\VsN\\fotos\\usuarios\\";
+    String diretorio = "C:\\VsN\\VsN\\src\\imagens\\usuarios\\";
     public static Usuario user = new Usuario();
     InformarSenhaView ifv;
     
@@ -703,7 +703,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
-        // TODO add your handling code here:
+        fc.relatorioFuncionarioIndividual(Integer.parseInt(inputId.getText()));
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
     private void calendarioDtNascimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoMouseClicked
@@ -752,7 +752,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private void buttonCaminhoImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminhoImgActionPerformed
         try{
             JFileChooser buscarImg = new JFileChooser();
-            buscarImg.setCurrentDirectory(new java.io.File("C:\\VsN\\VsN\\src\\imagens"));
+            buscarImg.setCurrentDirectory(new java.io.File("C:\\VsN\\VsN\\src\\imagens\\usuarios"));
             buscarImg.setDialogTitle("Carregar Foto do Funcionario");
             buscarImg.showOpenDialog(this);
             String foto = ""+buscarImg.getSelectedFile().getName();

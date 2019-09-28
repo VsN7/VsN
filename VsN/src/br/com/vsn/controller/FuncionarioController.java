@@ -323,4 +323,12 @@ public class FuncionarioController {
     public void relatorioFuncionariosAniversariantes(int mes){
         dao.relatorioFuncionariosAniversariantes(mes);
     }
+    
+    public void relatorioFuncionarioIndividual(int id){
+        dao.relatorioFuncionarioIndividual(id);
+    }
+    
+    public void relatorioFuncionarioGeral(int id,String nome, String situacao){
+        dao.relatorioFuncionarioGeral(id,nome,situacao);
+    }
 }

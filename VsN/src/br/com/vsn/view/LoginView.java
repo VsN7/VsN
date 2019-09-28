@@ -65,7 +65,7 @@ public class LoginView extends javax.swing.JFrame {
         labelRecuperarSenha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("VSN");
+        setTitle("VersuS");
         setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
         setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
             getImage());

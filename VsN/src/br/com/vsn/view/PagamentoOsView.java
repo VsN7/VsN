@@ -140,7 +140,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
         jPanel1.add(comboTipoPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 113, 474, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Tipo de Pagamento");
+        jLabel5.setText("Tipo de Finalizador");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, -1, -1));
 
         inputValorPago.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

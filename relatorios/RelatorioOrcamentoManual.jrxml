@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioTeste" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3dede331-4026-4cdb-916b-7326d0f5ee28">
-	<property name="ireport.zoom" value="2.3579476910000103"/>
-	<property name="ireport.x" value="50"/>
-	<property name="ireport.y" value="34"/>
+	<property name="ireport.zoom" value="1.000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="16"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -110,8 +110,8 @@
 				<text><![CDATA[Rua Narciso Fecchio 1386 - A , Rosana - SP, 19273-000]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="94" y="0" width="363" height="26" forecolor="#660000" uuid="ef9fd09f-b18d-435c-8d4c-d6b24adef81d"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
+				<reportElement x="96" y="0" width="361" height="26" forecolor="#660000" uuid="ef9fd09f-b18d-435c-8d4c-d6b24adef81d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Georgia" size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ESTETICAR]]></text>
@@ -137,6 +137,13 @@
 				<reportElement x="2" y="3" width="92" height="75" uuid="95995a91-4cc8-4236-ad9a-2652eeaf61c6"/>
 				<imageExpression><![CDATA["C:\\VsN\\relatorios\\logo\\logo.jpeg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="96" y="26" width="361" height="20" forecolor="#660000" uuid="ac51d966-3cee-4943-9bf1-c41d52841904"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Georgia" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FUNILARIA E PINTURA]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

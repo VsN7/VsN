@@ -28,7 +28,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     ClienteController cc;
     SimpleDateFormat sdf;
     static int index = 0;
-    String diretorio = "C:\\VsN\\fotos\\clientes\\";
+    String diretorio = "C:\\VsN\\VsN\\src\\imagens\\clientes\\";
     int id;
     String nome;
     String cpf;
@@ -734,7 +734,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
-        // TODO add your handling code here:
+        cc.relatorioClienteIndividual(Integer.parseInt(inputId.getText()));
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
     private void inputDtNascimentoinputTitulo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDtNascimentoinputTitulo5ActionPerformed
@@ -823,7 +823,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private void buttonCaminhoImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminhoImgActionPerformed
         try{
             JFileChooser buscarImg = new JFileChooser();
-            buscarImg.setCurrentDirectory(new java.io.File("C:\\VsN\\VsN\\src\\imagens"));
+            buscarImg.setCurrentDirectory(new java.io.File("C:\\VsN\\VsN\\src\\imagens\\clientes"));
             buscarImg.setDialogTitle("Carregar Foto do Cliente");
             buscarImg.showOpenDialog(this);
             String foto = ""+buscarImg.getSelectedFile().getName();

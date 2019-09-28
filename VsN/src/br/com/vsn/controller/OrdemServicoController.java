@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.observablecollections.ObservableCollections;
 
@@ -198,15 +200,6 @@ public class OrdemServicoController {
         dao.relatorioOrdemServicosAll();
     }
     
-    public void relatorioOrdemServicoData(int combobox,String dInicio, String dFinal){
-        Component rootPane = null;
-        try{
-            dao.relatorioOrdemServicoData(combobox,dInicio,dFinal);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
-        }
-    }
-    
     public void editSituacao(int index, Calendar c, String situacao) throws Exception{
         Component rootPane = null;
         OrdemServico ordemServico = new OrdemServico();
@@ -227,8 +220,13 @@ public class OrdemServicoController {
         }
     }
     
-    public void relatorioSituacao(int comboBox){
-        dao.relatorioOrdemServicoSituacao(comboBox);
+    public void relatorioOrdemServicoData(String situacao,String dInicio, String dFinal){
+        Component rootPane = null;
+        try{
+            dao.relatorioOrdemServicoData(situacao,dInicio,dFinal);
+        }catch (Exception ex) {
+            Logger.getLogger(OrcamentoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UsuarioView extends javax.swing.JInternalFrame {
     UsuarioController uc;
+    public static int resp;
     /**
      * Creates new form UsuarioView
      */
@@ -212,7 +213,30 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         int idFunc = 0;
         idFunc = fc.retornaCpf(cpfField.getText());
         if(idFunc != 0){
-            JOptionPane.showMessageDialog(null, "Esse CPF já esta cadastrado e vinculado a um funcionário com o id "+idFunc+" !\nSó é possivel fazer o cadastramento de usuário através do cadastro do funcionário", "Erro", 0);
+            resp = JOptionPane.showConfirmDialog(null, "Esse CPF já esta cadastrado e vinculado a um funcionário com o id "+idFunc+" !\nCaso prossiga, esse funcionário téra acesso ao sistema\nDeseja continuar?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if (resp == JOptionPane.YES_OPTION) {
+                try {
+                if (!loginField.getText().isEmpty() && !senhaField.getText().isEmpty() && !palavraField.getText().isEmpty() && !cpfField.getText().isEmpty() ) {
+                    uc.salvar(loginField.getText(),senhaField.getText(),cpfField.getText(),palavraField.getText().toUpperCase());
+                    int id = uc.pesquisarUnico(cpfField.getText()).get(0).getId();
+                    System.out.println("ID:::"+id);
+                    uc.editarFuncionario(idFunc,id,loginField.getText());
+                    
+                    loginField.setText("");
+                    senhaField.setText("");
+                    cpfField.setText("");
+                    palavraField.setText("");
+                    this.preencherTabela();
+                    JOptionPane.showMessageDialog(null, "Novo usuario cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Os campos não devem estar vazios!", "Erro", 0);
+                }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Login ou CPF ja existentes", "Erro", 0);
+                }
+            }
         }else{
             try {
                 if (!loginField.getText().isEmpty() && !senhaField.getText().isEmpty() && !palavraField.getText().isEmpty() && !cpfField.getText().isEmpty() ) {

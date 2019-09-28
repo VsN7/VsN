@@ -56,6 +56,7 @@ public class RelatorioClientesAniversariantesView extends javax.swing.JInternalF
 
         setClosable(true);
         setIconifiable(true);
+        setTitle("Clientes Aniversariantes");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

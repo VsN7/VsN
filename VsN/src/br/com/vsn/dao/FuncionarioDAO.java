@@ -244,4 +244,46 @@ public class FuncionarioDAO {
         }
     }
     
+    public void relatorioFuncionarioIndividual(int id){
+        Connection conn;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        String src = "C:\\VsN\\relatorios\\funcionarioIndividual.jasper";
+        Map param = new HashMap();
+        param.put("id",id);
+        jasperPrint = JasperFillManager.fillReport(src, param, conn);
+        } catch (Exception ex) {
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
+    public void relatorioFuncionarioGeral(int id,String nome, String situacao){
+        Connection conn;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        String src = "C:\\VsN\\relatorios\\relatorioFuncionariosGeral.jasper";
+        Map param = new HashMap();
+        param.put("id",id);
+        param.put("nome",nome);
+        param.put("situacao",situacao);
+        jasperPrint = JasperFillManager.fillReport(src, param, conn);
+        } catch (Exception ex) {
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
 }

@@ -221,4 +221,46 @@ public class ClienteDAO implements Serializable {
             Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void relatorioClienteIndividual(int id){
+        Connection conn;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        String src = "C:\\VsN\\relatorios\\clienteIndividual.jasper";
+        Map param = new HashMap();
+        param.put("id",id);
+        jasperPrint = JasperFillManager.fillReport(src, param, conn);
+        } catch (Exception ex) {
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
+    public void relatorioClienteGeral(int id,String nome, String situacao){
+        Connection conn;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        String src = "C:\\VsN\\relatorios\\relatorioClientesGeral.jasper";
+        Map param = new HashMap();
+        param.put("id",id);
+        param.put("nome",nome);
+        param.put("situacao",situacao);
+        jasperPrint = JasperFillManager.fillReport(src, param, conn);
+        } catch (Exception ex) {
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+    }
 }

@@ -3,7 +3,9 @@ package br.com.vsn.controller;
 
 
 import static br.com.vsn.controller.FuncionarioController.estouraErroNulo;
+import br.com.vsn.dao.FuncionarioDAO;
 import br.com.vsn.dao.UsuarioDAO;
+import br.com.vsn.model.Funcionario;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.util.CriptografiaUtil;
 import java.awt.Component;
@@ -76,7 +78,14 @@ public class UsuarioController {
         pesquisar();
     }
     
-    
+    public void editarFuncionario(int id,int id_usuario, String login) throws Exception{
+        FuncionarioDAO fd = new FuncionarioDAO();
+        Funcionario f = new Funcionario();
+        f = fd.funcionarioUnico(id).get(0);
+        f.setLogin(login);
+        f.setUsuario_id(id_usuario);
+        fd.edit(f);
+    }
     
     public boolean efetuarLogin(String lg, String senha) throws Exception{
         encriptografarSenhaUsuario(senha);

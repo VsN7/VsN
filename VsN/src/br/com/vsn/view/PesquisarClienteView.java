@@ -24,7 +24,7 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
     SimpleDateFormat sdf;
     static Cliente cliente;
     String valorCombo;
-    
+    public static int validador = 0;
     
     public static int getId() {
         return id;
@@ -183,10 +183,12 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
                     }
                 }
                 }catch(Exception e){
-                    try{
+                    if(validador ==1){
                         this.valoresInputOrcamento();
-                    }catch(Exception ex){
+                    }else if(validador ==2){
                         this.valoresInputOS();
+                    }else{
+                        this.valoresInputRelatorioClientesGeral();
                     }
                 }
                 this.dispose();
@@ -311,6 +313,10 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
     public void valoresInputOS(){
         OrdemServicoView.inputCliente.setText(""+cliente.getNome());
         OrdemServicoView.inputCpf.setText(""+cliente.getCpf());
+    }
+    
+    public void valoresInputRelatorioClientesGeral(){
+        RelatorioClientesGeralView.inputNome.setText(""+cliente.getNome());
     }
 
 }

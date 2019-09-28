@@ -18,7 +18,7 @@ public class MenuView extends javax.swing.JFrame {
         initComponents();
         jMenu4.setEnabled(false);
         jMenu15.setEnabled(false);
-        jMenu5.setEnabled(false);
+        jMenu5.setEnabled(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -68,6 +68,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu20 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
@@ -81,7 +82,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("VSN");
+        setTitle("VersuS");
         setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
             getImage());
 
@@ -315,11 +316,19 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu20.add(jMenuItem17);
 
+        jMenuItem18.setText("Relatório de Funcionarios Geral");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu20.add(jMenuItem18);
+
         jMenu11.add(jMenu20);
 
         jMenu13.setText("Relatório de Orçamentos");
 
-        jMenuItem22.setText("Orçamentos Geral");
+        jMenuItem22.setText("Relatório de Orçamentos por Data de Entrega");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem22ActionPerformed(evt);
@@ -331,7 +340,12 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu16.setText("Relatório de Ordem de Serviço");
 
-        jMenuItem23.setText("Ordem de Serviço Geral");
+        jMenuItem23.setText("Relatório de Ordem de Serviço por Data de Entrega");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
         jMenu16.add(jMenuItem23);
 
         jMenu11.add(jMenu16);
@@ -498,7 +512,14 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
+        RelatorioClientesGeralView rcgv;
+        try {
+            rcgv = new RelatorioClientesGeralView();
+            rcgv.setVisible(true);
+            this.desktopPane.add(rcgv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
@@ -600,6 +621,28 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        RelatorioFuncionarioGeralView rfgv;
+        try {
+            rfgv = new RelatorioFuncionarioGeralView();
+            rfgv.setVisible(true);
+            this.desktopPane.add(rfgv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        FiltroDataRelatorioOrdemServicoView fdosv;
+        try {
+            fdosv = new FiltroDataRelatorioOrdemServicoView();
+            fdosv.setVisible(true);
+            this.desktopPane.add(fdosv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
@@ -634,6 +677,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;

@@ -898,6 +898,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                         PesquisarClienteView pv = new PesquisarClienteView();
                         this.getParent().add(pv);
                         pv.setVisible(true);
+                        PesquisarClienteView.validador = 1;
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                     }
@@ -1233,4 +1234,6 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         buttonFinal.setEnabled(false);
     }
 
+    
+    
 }

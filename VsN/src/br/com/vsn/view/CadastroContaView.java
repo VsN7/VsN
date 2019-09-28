@@ -321,6 +321,7 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             Date data = sdf.parse(inputDataCompra.getText());
             cc.getConta().getDataCompra().setTime(data);
             cc.getConta().setTitulo(jTextField1.getText().toUpperCase());
+            cc.getConta().setVezes(jComboBox1.getSelectedIndex()+1);
             cc.salvarConta();
             this.preencherTabela();
             limpaCampos();
@@ -344,7 +345,7 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        cc.getConta().setVezes(jComboBox1.getSelectedIndex()+1);
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

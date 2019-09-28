@@ -165,4 +165,11 @@ public class ClienteController {
         dao.relatorioClientesAniversariantes(mes);
     }
     
+    public void relatorioClienteIndividual(int id){
+        dao.relatorioClienteIndividual(id);
+    }
+    
+    public void relatorioClienteGeral(int id,String nome, String situacao){
+        dao.relatorioClienteGeral(id,nome,situacao);
+    }
 }
