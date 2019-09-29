@@ -151,6 +151,34 @@ public class ContaDAO implements Serializable {
         }
     }
     
+    public List<Conta> contaFiltroTitulo(String titulo) {
+        List<Conta> contas = null;
+        EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
+        try{
+           contas = em.createNamedQuery("Conta.buscaPorTitulo").setParameter("titulo",titulo).setParameter("idU",uc.getId()).getResultList();
+           return contas;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public List<Conta> contaFiltroId(int id) {
+        List<Conta> contas = null;
+        EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
+        try{
+           contas = em.createNamedQuery("Conta.buscaPorIdC").setParameter("id",id).setParameter("idU",uc.getId()).getResultList();
+           return contas;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public Conta findConta(int id) {
         EntityManager em = getEntityManager();
         try {

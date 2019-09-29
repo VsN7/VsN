@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -120,6 +121,9 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
         }
         catch (Exception e){
         }
+        inputSelecionado = new javax.swing.JTextField();
+        buttonBuscar = new javax.swing.JToggleButton();
+        comboSelecionar = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -129,18 +133,25 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CADASTRO DE DESPESA");
+        jLabel1.setText("CADASTRO DE TITULOS");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Título:");
+
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${cc.conta.titulo}"), jTextField1, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Valor:");
+
+        jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${cc.conta.valor}"), jTextField2, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Parcelado:");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${cc.conta.parcelado}"), jCheckBox1, org.jdesktop.beansbinding.BeanProperty.create("selected"));
@@ -152,8 +163,10 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Vezes:");
 
+        jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez", "2 vezes", "3 vezes", "4 vezes" }));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${cc.conta.vezes}"), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
@@ -165,14 +178,15 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Data da compra:");
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel6.setText("Data da primeira parcela:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Titulo", "Parcelas", "Valor", "Data da Compra"
+                "ID", "Titulo", "Parcelas", "Valor", "Data da Parcela"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -202,14 +216,16 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(60);
         }
 
-        jButton1.setText("Salvar Despesa");
+        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton1.setText("Salvar Titulo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Remover Despesa");
+        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setText("Remover Titulo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -229,15 +245,28 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             }
         });
 
+        inputSelecionado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        buttonBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        buttonBuscar.setText("Buscar");
+        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarActionPerformed(evt);
+            }
+        });
+
+        comboSelecionar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        comboSelecionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titulo", "ID" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,21 +278,27 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(inputDataCompra))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(comboSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(inputSelecionado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonBuscar)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -293,8 +328,14 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonBuscar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -382,6 +423,20 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                 
                 conta = cc.contaUnico(this.valorCollun()).get(0);
                 try{
+                    int i = 0;
+                    int id = conta.getId();
+                    System.out.println(id);
+                    Iterator iterator = cc.getContas().iterator();
+                    do{
+                        if(id == cc.getContas().get(i).getId()){
+                            PagamentoContasPagarView pcpv = new PagamentoContasPagarView();
+                            pcpv.setIndex(i);
+                        }
+                        iterator.next();
+                        if(i<cc.getContas().size()-1)
+                            i++;
+
+                    }while (iterator.hasNext());
                     PagamentoContasPagarView pv = new PagamentoContasPagarView();
                     this.getParent().add(pv);
                     pv.setVisible(true);
@@ -395,6 +450,21 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+        String valorCombo;
+        try{
+            valorCombo=comboSelecionar.getSelectedItem().toString().toLowerCase();
+            if(valorCombo.equals("titulo")){
+                this.preencherTabelaFiltroTitulo();
+            }else if(valorCombo.equals("id")){
+                this.preencherTabelaFiltroId();
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Informe os dados corretamente", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonBuscarActionPerformed
 
     public void limpaCampos(){
         inputDataCompra.setText("");
@@ -422,9 +492,46 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
         }
         
     }
+    
+    public void preencherTabelaFiltroTitulo() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        cc = new ContaController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<cc.pesquisarFiltroTitulo(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getId(),
+             cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getTitulo(),
+             cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getVezes(),
+             cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getValor(),
+             sdf.format(cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getDataCompra().getTime())
+             });
+        }
+        
+    }
+    
+    public void preencherTabelaFiltroId() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        cc = new ContaController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).size(); i++){
+            modelo.addRow(new Object[]{
+             cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getId(),
+             cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getTitulo(),
+             cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getVezes(),
+             cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getValor(),
+             sdf.format(cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getDataCompra().getTime())
+             });
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton buttonBuscar;
+    private javax.swing.JComboBox<String> comboSelecionar;
     public static javax.swing.JTextField inputDataCompra;
+    private javax.swing.JTextField inputSelecionado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;

@@ -60,6 +60,10 @@ import javax.persistence.TemporalType;
         
         @NamedQuery(name = "Conta.filtroVencimento", 
                 query = "SELECT c FROM Conta c WHERE MONTH(c.dataVencimento) = :mes and c.situacao = 'Aberto' and c.usuario.id = :id "),
+        @NamedQuery(name = "Conta.buscaPorTitulo", 
+                query = "SELECT c FROM Conta c WHERE c.titulo like :titulo and c.usuario.id = :idU "),
+        @NamedQuery(name = "Conta.buscaPorIdC", 
+                query = "SELECT c FROM Conta c WHERE c.id = :id and c.usuario.id = :idU "),
         
 })
 public class Conta implements Serializable {
@@ -73,12 +77,23 @@ public class Conta implements Serializable {
     private String situacao;
     private double valorPagar;
     private int vezesPagar;
+    private int pagamento_id;
     
     @Temporal(TemporalType.DATE)
     private Calendar dataCompra;
     @Temporal(TemporalType.DATE)
     private Calendar dataVencimento;
 
+    public int getPagamento_id() {
+        return pagamento_id;
+    }
+
+    public void setPagamento_id(int pagamento_id) {
+        this.pagamento_id = pagamento_id;
+    }
+
+    
+    
     public double getValorPagar() {
         return valorPagar;
     }

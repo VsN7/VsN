@@ -5,31 +5,32 @@
  */
 package br.com.vsn.view;
 
+import br.com.vsn.controller.ContaController;
 import br.com.vsn.controller.OrdemServicoController;
 import br.com.vsn.controller.PagamentoController;
 import br.com.vsn.controller.PagamentoTabelaController;
+import br.com.vsn.controller.UsuarioController;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
+import br.com.vsn.model.Conta;
 import br.com.vsn.model.Pagamento;
 import br.com.vsn.model.PagamentoTabela;
+import br.com.vsn.model.Usuario;
 import br.com.vsn.util.JanelaDialogo;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.NumberFormatter;
 
 /**
  *
@@ -431,9 +432,9 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
             try {
                 pagamento.setValor(valor);
                 Date date = new Date();
-                Calendar c = Calendar.getInstance();
-                c.setTime(date);
-                pagamento.setDataFinalizacao(c);
+                Calendar data = Calendar.getInstance();
+                data.setTime(date);
+                pagamento.setDataFinalizacao(data);
                 pagamento.setSituacao("FECHADO");
                 pagamento.setTroco(Double.parseDouble(labelTroco.getText().replace(",", ".")));
                 pc.editPagamento(pagamento.getId(), pagamento);
@@ -441,6 +442,41 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 OrdemServicoController osc = new OrdemServicoController();
                 osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
                 OrdemServicoView.inputSituacao.setText("O.S FINALIZADA");
+                int idPag = ptc.getPagamentoTabelas().size();
+                    validaDestroy = 1;
+                     int idPagamento = pagamento.getId();
+                    for(int i =0; i< idPag;i++){
+                        ptc = new PagamentoTabelaController();
+                        PagamentoTabela pagamentoTable = ptc.getPagamentoTabelas().get(i);
+                        if(pagamentoTable.getFinalizador().equals("Cartão Crédito")){
+                            ContaController cc = new ContaController();
+                            Conta conta = new Conta();
+                            conta.setTitulo("CARTÃO DE CRÉDITO, VINCULADO COM A O.S: "+OrdemServicoView.inputId.getText());
+                            int value = Integer.parseInt(String.valueOf(pagamentoTable.getParcelas().charAt(0)));
+                            conta.setVezes(value);
+                            conta.setValor(pagamentoTable.getValor());
+                            Calendar c = Calendar.getInstance();
+                            Date d = new Date();
+                            c.setTime(d);
+                            conta.setDataCompra(c);
+                            Calendar vencimento = Calendar.getInstance();
+                            vencimento.setTime(conta.getDataCompra().getTime());
+                            vencimento.set(Calendar.MONTH,vencimento.get(Calendar.MONTH)+1);
+                            conta.setDataVencimento(vencimento);
+                            conta.setSituacao("Aberto");
+                            Usuario us = new Usuario();
+                            UsuarioController uu = new UsuarioController();
+                            us.setId(uu.getId());
+                            us.setLogin(uu.getLogin());
+                            conta.setUsuario(us);
+                            ptc = new PagamentoTabelaController();
+                            conta.setPagamento_id(idPagamento);
+                            conta.setValorPagar(conta.getValor());
+                            conta.setVezesPagar(conta.getVezes());
+                            cc.salvarContaPagamento(conta);
+                        }
+                    }
+                    
                 JOptionPane.showMessageDialog(rootPane, "Pagamento finalizado com successo!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                 this.exibirDados();
             } catch (Exception ex) {

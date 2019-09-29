@@ -80,6 +80,7 @@ public class PagamentoTabelaController {
             int resp = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o pagamento?", "Excluir", JOptionPane.YES_NO_OPTION);
         
                 if (resp == JOptionPane.YES_OPTION) {
+                    
                     dao.destroy(id);
                     JOptionPane.showMessageDialog(rootPane, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);                
                     pesquisar();

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioReciboManual" language="groovy" pageWidth="612" pageHeight="400" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e8ce9ac2-c7e9-4e32-9948-857165a9cffe">
-	<property name="ireport.zoom" value="0.826446280991736"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.9487171000000025"/>
+	<property name="ireport.x" value="517"/>
+	<property name="ireport.y" value="212"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT *
 FROM
@@ -75,14 +75,14 @@ FROM
 				<reportElement x="3" y="17" width="569" height="261" uuid="12bcc9ef-ef1d-4763-82a8-602a937f4abb"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="13" y="31" width="110" height="18" uuid="a852a270-ca5d-4cef-b0ec-083c9fe13be9"/>
+				<reportElement x="13" y="31" width="98" height="18" uuid="a852a270-ca5d-4cef-b0ec-083c9fe13be9"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[Reccebi(emos) de ]]></text>
+				<text><![CDATA[Recebi(emos) de ]]></text>
 			</staticText>
 			<line>
-				<reportElement x="123" y="47" width="437" height="1" uuid="06fbe862-7263-4178-8a1c-478c86a84cf8"/>
+				<reportElement x="111" y="48" width="449" height="1" uuid="06fbe862-7263-4178-8a1c-478c86a84cf8"/>
 			</line>
 			<staticText>
 				<reportElement x="13" y="60" width="64" height="18" uuid="92a0c024-5a4a-49c2-8d45-02eb93463390"/>

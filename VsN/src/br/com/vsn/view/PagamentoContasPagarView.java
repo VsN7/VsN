@@ -107,13 +107,13 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Pagamento de Contas");
+        setTitle("Recebimento de Titulos");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusTraversalPolicyProvider(true);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PAGAMENTO DE TITULOS");
+        jLabel1.setText("RECEBIMENTO DE TITULOS");
 
         jLabel2.setText("Título:");
 
@@ -144,9 +144,9 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Data da compra:");
+        jLabel6.setText("Data da Primeira Parcela:");
 
-        buttonPagar.setText("Pagar Titulo");
+        buttonPagar.setText("Receber Titulo");
         buttonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonPagarActionPerformed(evt);
@@ -238,7 +238,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inputValorRestante, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
+                                .addComponent(inputValorRestante, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -281,7 +281,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
                         .addComponent(buttonInicioT)
                         .addGap(31, 31, 31)
                         .addComponent(buttonAnterior)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addComponent(buttonProximo)
                         .addGap(36, 36, 36)
                         .addComponent(buttonFinalT)
@@ -386,8 +386,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         cc.efetuarPagamento(id, valor,dat);
         if(x == 1)
             x=2;
-        if(comboBoxVezesRestantes.getSelectedIndex()+1 > 1){
-            System.out.println("aqqqq");
+        if(comboBoxVezesRestantes.getSelectedIndex() > 0){
             cc.reduzParcela(x-1, id);
             comboBoxVezesRestantes.setSelectedIndex(cc.buscaContaVezesP(id)-1);
             Calendar c = Calendar.getInstance();
@@ -517,16 +516,17 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
     
     public void exibirDados(){
         cc= new ContaController();
+        
         id = cc.getContas().get(index).getId();
         Calendar c = cc.buscaDataVencimento(id);
-        double valor = cc.buscaContaValor(id);
-        int vezes = cc.buscaContaVezes(id);
+        double valor = cc.getContas().get(index).getValor();
+        int vezes = cc.getContas().get(index).getVezes();
         inputTitulo.setText(cc.getContas().get(index).getTitulo());
         inputDataCompra.setText(""+df.format(cc.getContas().get(index).getDataCompra().getTime()));
         inputDataVencimento.setText(""+df.format(cc.getContas().get(index).getDataVencimento().getTime()));
         inputSituacao.setText(cc.getContas().get(index).getSituacao());
         inputValorRestante.setText(""+formatter.format(cc.getContas().get(index).getValorPagar()).replace(",", "."));
-        comboBoxVezesRestantes.setSelectedIndex((cc.buscaContaVezesP(id)-1));
+        comboBoxVezesRestantes.setSelectedIndex((cc.getContas().get(index).getVezesPagar()-1));
         this.desabilitarComponentes();
         if(vezes == 1){
             inputPagamento.setText(""+formatter.format(valor).replace(",", "."));

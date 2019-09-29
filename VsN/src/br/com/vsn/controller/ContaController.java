@@ -80,6 +80,11 @@ public class ContaController {
         novo();
     }
 
+    public void salvarContaPagamento(Conta conta) {
+        dao.create(conta);
+        pesquisar();
+        novo();
+    }
     public List<Conta> getContas() {
         return contas;
     }
@@ -155,11 +160,27 @@ public class ContaController {
     
     public void destroy(int id) throws NonexistentEntityException{
         Component rootPane = null;
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir a despesa?", "Excluir", JOptionPane.YES_NO_OPTION);
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o titulo?", "Excluir", JOptionPane.YES_NO_OPTION);
         
         if (resposta == JOptionPane.YES_OPTION) {
             dao.destroy(id);
         }
+    }
+    
+    public void destroyP(int id) throws NonexistentEntityException{
+        dao.destroy(id);
+    }
+    
+     public List<Conta> pesquisarFiltroTitulo(String titulo) {
+        contas.clear();
+        titulo+="%";
+        
+        return dao.contaFiltroTitulo(titulo.toUpperCase());
+    }
+    
+    public List<Conta> pesquisarFiltroId(int id) {
+        contas.clear();
+        return dao.contaFiltroId(id);
     }
     
 }
