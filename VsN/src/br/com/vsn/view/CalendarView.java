@@ -125,7 +125,7 @@ public class CalendarView extends javax.swing.JInternalFrame {
             public void propertyChange(PropertyChangeEvent e) {
                 
                 c= jCalendar1.getCalendar();
-                CadastroContaView.inputDataCompra.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                ContaReceberView.inputDataCompra.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
                 dispose();
             }
         });

@@ -5,7 +5,7 @@ import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Pagamento;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.view.OrdemServicoView;
-import br.com.vsn.view.PagamentoContasPagarView;
+import br.com.vsn.view.PagamentoContasReceberView;
 import java.awt.Component;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -58,7 +58,6 @@ public class PagamentoController {
                     }
                         int tamanhoConta = cct.buscaContaIdPagamento(id).size();
                         for(int i = 0; i < tamanhoConta;i++){
-                            System.out.println("aaaaa:::"+cct.retornaContaSituacao(cct.buscaContaIdPagamento(id).get(i).getId()));
                             if(cct.retornaContaSituacao(cct.buscaContaIdPagamento(id).get(i).getId()).equals("FECHADO"))
                                 validaExcluir = 1;
                         }
@@ -75,7 +74,6 @@ public class PagamentoController {
                         OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
                         JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         conta = 0;
-                        System.out.println("AQQQ11111:::"+validaExcluir);
                     }else if(validaExcluir == 0){
                         dao.edit(pagamento);    
                         OrdemServicoView.ordemServico.setSituacao("O.S EM PAGAMENTO");
@@ -84,7 +82,6 @@ public class PagamentoController {
                         OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
                         JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         conta = 0;
-                        System.out.println("AQQQ::::"+validaExcluir);
                     }else{
                         JOptionPane.showMessageDialog(rootPane, "Não é possivel reabrir o pagamento, pois existem titulos já pagos!", "Aviso", JOptionPane.ERROR_MESSAGE, null);
                     }

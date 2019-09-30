@@ -318,7 +318,7 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
     }
     
     public void valoresInputContasReceber(){
-        CadastroContaView.inputCliente.setText(""+cliente.getNome());
+        ContaReceberView.inputCliente.setText(""+cliente.getNome());
     }
 
 }

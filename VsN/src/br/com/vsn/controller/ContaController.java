@@ -44,11 +44,6 @@ public class ContaController {
     
     public void novo() {
         conta = new Conta();
-        Usuario us = new Usuario();
-        UsuarioController uu = new UsuarioController();
-        us.setId(uu.getId());
-        us.setLogin(uu.getLogin());
-        conta.setUsuario(us);
         setConta(conta);
     }
 
@@ -72,6 +67,11 @@ public class ContaController {
             c.setTime(conta.getDataCompra().getTime());
             c.set(Calendar.MONTH,c.get(Calendar.MONTH)+1);
             conta.setDataVencimento(c);
+            Usuario us = new Usuario();
+            UsuarioController uu = new UsuarioController();
+            us.setId(uu.getId());
+            us.setLogin(uu.getLogin());
+            conta.setUsuario(us);
         dao.create(conta);
         
         JOptionPane.showMessageDialog(rootPane, "Cadastro realizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
@@ -109,10 +109,41 @@ public class ContaController {
         contas.addAll(dao.listarContaPorSituacao(index));
     }
     
-    public void efetuarPagamento(int id, double valor, Calendar c){
-        getConta().setDataVencimento(c);
-        dao.update(getConta(),id, valor);
+    public void efetuarPagamento(Conta conta) throws Exception{
+        Component rootPane = null;
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente receber uma parcela desse titulo?", "Excluir", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
+            if(conta.getVezesPagar()-1 == 0){
+                conta.setSituacao("FECHADO");
+            }else{
+                Calendar c = Calendar.getInstance();
+                c.setTime(conta.getDataVencimento().getTime());
+                c.set(Calendar.MONTH,c.get(Calendar.MONTH)+1 );
+                conta.setDataVencimento(c);
+            }
+            conta.setVezesPagar(conta.getVezesPagar()-1);
+            conta.setValorPagar(conta.getValorPagar()-(conta.getValor()/conta.getVezes()));
+            dao.edit(conta);
+            JOptionPane.showMessageDialog(rootPane, "Parcela recebida com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        }
     }
+    
+    public void estorno(Conta conta) throws Exception{
+        Component rootPane = null;
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente estornar esse titulo?", "Excluir", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
+            conta.setSituacao("ABERTO");
+            Calendar c = Calendar.getInstance();
+            c.setTime(conta.getDataCompra().getTime());
+            c.set(Calendar.MONTH,c.get(Calendar.MONTH)+1 );
+            conta.setDataVencimento(c);
+            conta.setVezesPagar(conta.getVezes());
+            conta.setValorPagar(conta.getValor());
+            dao.edit(conta);
+            JOptionPane.showMessageDialog(rootPane, "Titulo estornado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        }
+    }
+    
     public void updateVencimento(int id, Calendar c){
         dao.updateVencimento(getConta(),id, c);
     }

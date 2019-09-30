@@ -6,25 +6,42 @@
 package br.com.vsn.view;
 
 import br.com.vsn.controller.ContaController;
+import br.com.vsn.model.Conta;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author vitor
  */
-public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
+public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
 
-    private ContaController cc;
+    
+    ContaController cc;
     private static int index=0;
-    private static double valor;
     private static int id;
+    Conta conta;
+    
+    String titulo;
+    double valor;
+    Date dataCompra;
+    String situacao;
+    double valorParcela;
+    double pagamento;
+    double valorRestante;
+    int vezes;
+    int vezesRestantes;
+    Date dataVencimento;
     
     public void setIndex(int index){
         this.index = index;
@@ -32,11 +49,11 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
     
     NumberFormat formatter = new DecimalFormat("#0.00");
     
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     /**
      * Creates new form CadastroContaView
      */
-    public PagamentoContasPagarView() throws Exception {
+    public PagamentoContasReceberView() throws Exception {
         
         cc = new ContaController();
         initComponents();
@@ -46,13 +63,10 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         int alt = (int) d.getHeight();
         this.setLocation((lar - this.getSize().width) / 2, (alt - this.getSize().height)/6);
         
-        comboBoxVezes.setEnabled(false);
-        comboBoxVezes.setSelectedIndex(0);
-        cc.getConta().setVezes(1);
-        
         if(cc.getContas().size()<=0){
-            System.out.println("ERRO");
+            System.out.println("Tamanho menor que 0...");
         }else{
+            cc = new ContaController();
             this.exibirDados();
         }
         
@@ -80,7 +94,6 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         inputValor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        comboBoxVezes = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         buttonPagar = new javax.swing.JButton();
         buttonInicioT = new javax.swing.JButton();
@@ -98,12 +111,13 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        comboBoxVezesRestantes = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         inputDataVencimento = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        inputVezes = new javax.swing.JTextField();
+        inputVezesRestantes = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -133,19 +147,10 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Vezes:");
 
-        comboBoxVezes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez", "2 vezes", "3 vezes", "4 vezes" }));
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${cc.conta.vezes}"), comboBoxVezes, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
-        bindingGroup.addBinding(binding);
-
-        comboBoxVezes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxVezesActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Data da Primeira Parcela:");
 
+        buttonPagar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttonPagar.setForeground(new java.awt.Color(255, 255, 255));
         buttonPagar.setText("Receber Titulo");
         buttonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,13 +211,6 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Restantes:");
 
-        comboBoxVezesRestantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez", "2 vezes", "3 vezes", "4 vezes" }));
-        comboBoxVezesRestantes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxVezesRestantesActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Dados de Pagamento");
@@ -223,90 +221,85 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxVezesRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inputValorRestante, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputTitulo))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(inputDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(comboBoxVezes, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(3, 3, 3)
-                                            .addComponent(jLabel6))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addGap(17, 17, 17)
-                                            .addComponent(jLabel8)))
-                                    .addGap(6, 6, 6)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(inputValorParcela, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(inputDataCompra)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator2)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(buttonInicioT)
                         .addGap(31, 31, 31)
                         .addComponent(buttonAnterior)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonProximo)
                         .addGap(36, 36, 36)
                         .addComponent(buttonFinalT)
                         .addGap(42, 42, 42))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 151, Short.MAX_VALUE))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputVezes)
+                            .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel8)))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputDataCompra)
+                            .addComponent(inputValorParcela)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputTitulo))
+                    .addComponent(jSeparator1)
+                    .addComponent(jSeparator2)
+                    .addComponent(buttonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputVezesRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inputValorRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(32, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(13, 13, 13)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(inputTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,9 +308,9 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(comboBoxVezes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(inputValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputVezes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -326,8 +319,8 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(inputValorRestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxVezesRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(inputVezesRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -344,14 +337,14 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonProximo)
                     .addComponent(buttonAnterior)
                     .addComponent(buttonInicioT)
                     .addComponent(buttonFinalT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonPagar)
+                .addComponent(buttonPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -359,10 +352,9 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,48 +369,24 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagarActionPerformed
-        
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        int x =cc.buscaContaVezesP(id);
-        Calendar dat = cc.getContas().get(index).getDataVencimento();
-        id = cc.getContas().get(index).getId();
-        valor = cc.buscaContaValorP(id) - Double.parseDouble(inputPagamento.getText());
-        cc.efetuarPagamento(id, valor,dat);
-        if(x == 1)
-            x=2;
-        if(comboBoxVezesRestantes.getSelectedIndex() > 0){
-            cc.reduzParcela(x-1, id);
-            comboBoxVezesRestantes.setSelectedIndex(cc.buscaContaVezesP(id)-1);
-            Calendar c = Calendar.getInstance();
-            c.setTime(dat.getTime());
-            c.set(Calendar.MONTH,c.get(Calendar.MONTH)+1 );
-            cc.updateVencimento(id,c);
-            inputDataVencimento.setText(""+df.format(c.getTime()));
-        }
-            
-        inputValorRestante.setText(""+formatter.format(valor).replace(",", "."));
-        
-        if(Double.parseDouble(inputValorRestante.getText()) <= 0 || Double.parseDouble(inputValorRestante.getText()) < 1){
-            buttonPagar.setEnabled(false);
-            inputPagamento.setText("0.00");
-        }
-        
-        if(Double.parseDouble(inputValorRestante.getText()) >= 0 && Double.parseDouble(inputValorRestante.getText())< 1){
-            id = cc.getContas().get(index).getId();
-            cc.alterarSituacao(id,dat);
-            inputSituacao.setText(cc.retornaContaSituacao(id));
-        }
-        if(inputSituacao.getText().equals("FECHADO")){
-            inputSituacao.setForeground(Color.red);
+        if(buttonPagar.getText().equals("Receber Titulo")){
+            try {
+                cc.efetuarPagamento(conta);
+                this.exibirDados();
+            } catch (Exception ex) {
+                Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
-            inputSituacao.setForeground(Color.green);
+            try {
+                cc.estorno(conta);
+                this.exibirDados();
+            } catch (Exception ex) {
+                Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
         
     }//GEN-LAST:event_buttonPagarActionPerformed
-
-    private void comboBoxVezesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxVezesActionPerformed
-        cc.getConta().setVezes(comboBoxVezes.getSelectedIndex()+1);
-    }//GEN-LAST:event_comboBoxVezesActionPerformed
 
     
     
@@ -433,10 +401,6 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
     private void inputDataCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDataCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputDataCompraActionPerformed
-
-    private void comboBoxVezesRestantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxVezesRestantesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxVezesRestantesActionPerformed
 
     private void buttonInicioTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInicioTActionPerformed
         index = 0;
@@ -463,21 +427,12 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         exibirDados();
     }//GEN-LAST:event_buttonProximoActionPerformed
 
-    public void limpaCampos(){
-        inputTitulo.setText("");
-        inputValor.setText("");
-        comboBoxVezes.setEnabled(false);
-        comboBoxVezes.setSelectedIndex(0);
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAnterior;
     private javax.swing.JButton buttonFinalT;
     private javax.swing.JButton buttonInicioT;
     private javax.swing.JButton buttonPagar;
     private javax.swing.JButton buttonProximo;
-    public static javax.swing.JComboBox<String> comboBoxVezes;
-    public static javax.swing.JComboBox<String> comboBoxVezesRestantes;
     public static javax.swing.JTextField inputDataCompra;
     public static javax.swing.JTextField inputDataVencimento;
     public static javax.swing.JTextField inputPagamento;
@@ -486,6 +441,8 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField inputValor;
     public static javax.swing.JTextField inputValorParcela;
     public static javax.swing.JTextField inputValorRestante;
+    public static javax.swing.JTextField inputVezes;
+    public static javax.swing.JTextField inputVezesRestantes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -514,41 +471,51 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
     
     
     public void exibirDados(){
-        cc= new ContaController();
-        
-        id = cc.getContas().get(index).getId();
-        Calendar c = cc.buscaDataVencimento(id);
-        double valor = cc.getContas().get(index).getValor();
-        int vezes = cc.getContas().get(index).getVezes();
-        inputTitulo.setText(cc.getContas().get(index).getTitulo());
-        inputDataCompra.setText(""+df.format(cc.getContas().get(index).getDataCompra().getTime()));
-        inputDataVencimento.setText(""+df.format(cc.getContas().get(index).getDataVencimento().getTime()));
-        inputSituacao.setText(cc.getContas().get(index).getSituacao());
-        inputValorRestante.setText(""+formatter.format(cc.getContas().get(index).getValorPagar()).replace(",", "."));
-        comboBoxVezesRestantes.setSelectedIndex((cc.getContas().get(index).getVezesPagar()-1));
-        this.desabilitarComponentes();
-        if(vezes == 1){
-            inputPagamento.setText(""+formatter.format(valor).replace(",", "."));
-            inputValorParcela.setText(""+formatter.format(valor).replace(",", "."));
-        }else{
-           inputValorParcela.setText(""+formatter.format(((valor)/vezes)).replace(",", "."));
-           inputPagamento.setText(""+formatter.format(((valor)/vezes)).replace(",", "."));
+        try {
+            cc = new ContaController();
+            inputTitulo.setText(""+cc.getContas().get(index).getTitulo());
+            inputValor.setText(""+formatter.format(cc.getContas().get(index).getValor()));
+            inputDataCompra.setText(""+sdf.format(cc.getContas().get(index).getDataCompra().getTime()));
+            inputSituacao.setText(""+cc.getContas().get(index).getSituacao());
+            inputValorParcela.setText(""+formatter.format(cc.getContas().get(index).getValor()/cc.getContas().get(index).getVezes()));
+            inputPagamento.setText(""+formatter.format((cc.getContas().get(index).getValor()/cc.getContas().get(index).getVezes())));
+            inputValorRestante.setText(""+formatter.format(cc.getContas().get(index).getValorPagar()));
+            inputVezes.setText(""+cc.getContas().get(index).getVezes());
+            inputVezesRestantes.setText(""+cc.getContas().get(index).getVezesPagar());
+            inputDataVencimento.setText(""+sdf.format(cc.getContas().get(index).getDataVencimento().getTime()));
+            if(Double.parseDouble(inputValorRestante.getText().replace(",", ".")) <= 0 || Double.parseDouble(inputValorRestante.getText().replace(",", ".")) < 1){
+                inputPagamento.setText("0.00");
+            }
+
+            if(inputSituacao.getText().equals("FECHADO")){
+                inputSituacao.setForeground(Color.red);
+                buttonPagar.setText("Estornar Titulo");
+                buttonPagar.setBackground(new Color(180,30,30));
+            }else{
+                inputSituacao.setForeground(Color.blue);
+                buttonPagar.setText("Receber Titulo");
+                buttonPagar.setBackground(new Color(40,30,180));
+            }
+            this.desabilitarComponentes();
+            this.valoresInputs();
+        } catch (ParseException ex) {
+            Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        comboBoxVezes.setSelectedIndex(vezes-1);
-        inputValor.setText(""+formatter.format((Double.parseDouble(inputValorParcela.getText())*(comboBoxVezes.getSelectedIndex()+1))).replace(",", "."));
-       
-        if(Double.parseDouble(inputValorRestante.getText()) <= 0 || Double.parseDouble(inputValorRestante.getText()) < 1){
-            buttonPagar.setEnabled(false);
-            inputPagamento.setText("0.00");
-        }else{
-            buttonPagar.setEnabled(true);
-        }
-        
-        if(inputSituacao.getText().equals("FECHADO")){
-            inputSituacao.setForeground(Color.red);
-        }else{
-            inputSituacao.setForeground(Color.green);
-        }
+    }
+    
+    public void valoresInputs() throws ParseException{
+        titulo = inputTitulo.getText();
+        valor = Double.parseDouble(inputValor.getText().replace(",", "."));
+        dataCompra = sdf.parse(inputDataCompra.getText());
+        situacao = inputSituacao.getText();
+        valorParcela = Double.parseDouble(inputValorParcela.getText().replace(",", "."));
+        pagamento = Double.parseDouble(inputPagamento.getText().replace(",", "."));
+        valorRestante = Double.parseDouble(inputValorRestante.getText().replace(",", "."));
+        vezes = Integer.parseInt(inputVezes.getText());
+        vezesRestantes = Integer.parseInt(inputVezesRestantes.getText());
+        dataVencimento = sdf.parse(inputDataVencimento.getText());
+        conta = cc.pesquisarUnico(cc.getContas().get(index).getId());
+        cc = new ContaController();
     }
     
     public static void desabilitarComponentes(){
@@ -559,7 +526,8 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         inputValorParcela.setEditable(false);
         inputPagamento.setEditable(false);
         inputValorRestante.setEditable(false);
-        comboBoxVezesRestantes.setEnabled(false);
+        inputVezes.setEditable(false);
+        inputVezesRestantes.setEditable(false);
         inputDataVencimento.setEditable(false);
     }
     

@@ -520,9 +520,9 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        CadastroContaView ccv;
+        ContaReceberView ccv;
         try {
-            ccv = new CadastroContaView();
+            ccv = new ContaReceberView();
             ccv.setVisible(true);
             this.desktopPane.add(ccv);
         } catch (Exception ex) {
@@ -535,9 +535,9 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        PagamentoContasPagarView pv;
+        PagamentoContasReceberView pv;
         try {
-            pv = new PagamentoContasPagarView();
+            pv = new PagamentoContasReceberView();
             pv.setVisible(true);
             this.desktopPane.add(pv);
         } catch (Exception ex) {
@@ -690,9 +690,9 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
-        CadastroContaView ccv;
+        ContaReceberView ccv;
         try {
-            ccv = new CadastroContaView();
+            ccv = new ContaReceberView();
             ccv.setVisible(true);
             this.desktopPane.add(ccv);
         } catch (Exception ex) {
@@ -701,9 +701,9 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
-        PagamentoContasPagarView pv;
+        PagamentoContasReceberView pv;
         try {
-            pv = new PagamentoContasPagarView();
+            pv = new PagamentoContasReceberView();
             pv.setVisible(true);
             this.desktopPane.add(pv);
         } catch (Exception ex) {
