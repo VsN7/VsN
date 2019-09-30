@@ -202,7 +202,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Dados de parcelamento");
+        jLabel10.setText("Dados de Parcelamento");
 
         jLabel11.setText("Restantes:");
 
@@ -227,10 +227,10 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -295,7 +295,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107))))
+                        .addGap(107, 151, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +344,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonProximo)
                     .addComponent(buttonAnterior)
@@ -366,7 +366,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -408,7 +408,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
             cc.alterarSituacao(id,dat);
             inputSituacao.setText(cc.retornaContaSituacao(id));
         }
-        if(inputSituacao.getText().equals("Fechado")){
+        if(inputSituacao.getText().equals("FECHADO")){
             inputSituacao.setForeground(Color.red);
         }else{
             inputSituacao.setForeground(Color.green);
@@ -420,36 +420,10 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
         cc.getConta().setVezes(comboBoxVezes.getSelectedIndex()+1);
     }//GEN-LAST:event_comboBoxVezesActionPerformed
 
-    private void buttonInicioTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInicioTActionPerformed
-        index = 0;
-        exibirDados();
-
-    }//GEN-LAST:event_buttonInicioTActionPerformed
-
-    private void buttonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProximoActionPerformed
-        
-        if(index < cc.getContas().size()-1){
-            posterior();
-        }
-        exibirDados();
-    }//GEN-LAST:event_buttonProximoActionPerformed
-
-    private void buttonFinalTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalTActionPerformed
-        index = cc.getContas().size()-1;
-        exibirDados();
-    }//GEN-LAST:event_buttonFinalTActionPerformed
-
     
     
     
     
-    private void buttonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnteriorActionPerformed
-        if(index > 0){
-            anterior();
-        }
-        exibirDados();
-    }//GEN-LAST:event_buttonAnteriorActionPerformed
-
     private void inputTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTituloActionPerformed
         
         
@@ -463,6 +437,31 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
     private void comboBoxVezesRestantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxVezesRestantesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxVezesRestantesActionPerformed
+
+    private void buttonInicioTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInicioTActionPerformed
+        index = 0;
+        exibirDados();
+    }//GEN-LAST:event_buttonInicioTActionPerformed
+
+    private void buttonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnteriorActionPerformed
+        if(index > 0){
+            anterior();
+        }
+        exibirDados();
+    }//GEN-LAST:event_buttonAnteriorActionPerformed
+
+    private void buttonFinalTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalTActionPerformed
+        index = cc.getContas().size()-1;
+        exibirDados();
+    }//GEN-LAST:event_buttonFinalTActionPerformed
+
+    private void buttonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProximoActionPerformed
+
+        if(index < cc.getContas().size()-1){
+            posterior();
+        }
+        exibirDados();
+    }//GEN-LAST:event_buttonProximoActionPerformed
 
     public void limpaCampos(){
         inputTitulo.setText("");
@@ -545,7 +544,7 @@ public class PagamentoContasPagarView extends javax.swing.JInternalFrame {
             buttonPagar.setEnabled(true);
         }
         
-        if(inputSituacao.getText().equals("Fechado")){
+        if(inputSituacao.getText().equals("FECHADO")){
             inputSituacao.setForeground(Color.red);
         }else{
             inputSituacao.setForeground(Color.green);

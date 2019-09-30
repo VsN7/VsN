@@ -16,6 +16,7 @@ import br.com.vsn.model.Pagamento;
 import br.com.vsn.model.PagamentoTabela;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.util.JanelaDialogo;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -372,6 +373,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 pagamento.setDataFinalizacao(null);
                 pagamento.setSituacao("ABERTO");
                 pc.editPagamento(pagamento.getId(), pagamento);
+                
                 this.exibirDados();
                 
             } catch (Exception ex) {
@@ -448,10 +450,13 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                     for(int i =0; i< idPag;i++){
                         ptc = new PagamentoTabelaController();
                         PagamentoTabela pagamentoTable = ptc.getPagamentoTabelas().get(i);
-                        if(pagamentoTable.getFinalizador().equals("Cartão Crédito")){
+                        if(pagamentoTable.getFinalizador().equals("Cartão Crédito") || (pagamentoTable.getFinalizador().equals("Outro") && !pagamentoTable.getParcelas().equals("1 vez"))){
                             ContaController cc = new ContaController();
                             Conta conta = new Conta();
-                            conta.setTitulo("CARTÃO DE CRÉDITO, VINCULADO COM A O.S: "+OrdemServicoView.inputId.getText());
+                            if(pagamentoTable.getFinalizador().equals("Outro"))
+                                conta.setTitulo("FINALIZADOR OUTRO, VINCULADO COM A O.S: "+OrdemServicoView.inputId.getText());
+                            else
+                                conta.setTitulo("CARTÃO DE CRÉDITO, VINCULADO COM A O.S: "+OrdemServicoView.inputId.getText());
                             int value = Integer.parseInt(String.valueOf(pagamentoTable.getParcelas().charAt(0)));
                             conta.setVezes(value);
                             conta.setValor(pagamentoTable.getValor());
@@ -463,7 +468,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                             vencimento.setTime(conta.getDataCompra().getTime());
                             vencimento.set(Calendar.MONTH,vencimento.get(Calendar.MONTH)+1);
                             conta.setDataVencimento(vencimento);
-                            conta.setSituacao("Aberto");
+                            conta.setSituacao("ABERTO");
                             Usuario us = new Usuario();
                             UsuarioController uu = new UsuarioController();
                             us.setId(uu.getId());
@@ -473,6 +478,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                             conta.setPagamento_id(idPagamento);
                             conta.setValorPagar(conta.getValor());
                             conta.setVezesPagar(conta.getVezes());
+                            conta.setCliente(OrdemServicoView.inputCliente.getText());
                             cc.salvarContaPagamento(conta);
                         }
                     }
@@ -559,6 +565,11 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
             inputSituacao.setEditable(false);
             checkParcelado.setEnabled(false);
             labelValorRestante.setText(""+formatter.format(valor));
+            try {
+                this.preencherTabela();
+            } catch (Exception ex) {
+                Logger.getLogger(PagamentoOsView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             if(ptc.getPagamentoTabelas().size()<=0){
                 
@@ -606,6 +617,12 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 }
             }
             
+        }
+        
+        if(inputSituacao.getText().equals("FECHADO")){
+            inputSituacao.setForeground(Color.red);
+        }else{
+            inputSituacao.setForeground(Color.blue);
         }
     }
     

@@ -745,7 +745,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 this.ativarTudo();
                 this.exibirDados();
             } catch (Exception ex) {
-            Logger.getLogger(OrdemServicoView.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Preencha corretamente os dados!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
         }else{
             this.limparCampos();

@@ -32,7 +32,7 @@ import javax.persistence.TemporalType;
                 query = "SELECT u.id FROM Usuario u WHERE u.login = :login and u.senha = :senha "),
         
         @NamedQuery(name = "Conta.selecionar", 
-                query = "SELECT c FROM Conta c WHERE c.usuario.id = :id "),
+                query = "SELECT c FROM Conta c WHERE c.usuario.id = :id ORDER BY id DESC"),
         
         @NamedQuery(name = "Conta.selecionarValorPagar", 
                 query = "SELECT c.valorPagar FROM Conta c WHERE c.id = :id "),
@@ -61,9 +61,15 @@ import javax.persistence.TemporalType;
         @NamedQuery(name = "Conta.filtroVencimento", 
                 query = "SELECT c FROM Conta c WHERE MONTH(c.dataVencimento) = :mes and c.situacao = 'Aberto' and c.usuario.id = :id "),
         @NamedQuery(name = "Conta.buscaPorTitulo", 
-                query = "SELECT c FROM Conta c WHERE c.titulo like :titulo and c.usuario.id = :idU "),
+                query = "SELECT c FROM Conta c WHERE c.titulo like :titulo and c.usuario.id = :idU ORDER BY id DESC"),
+        @NamedQuery(name = "Conta.buscaPorCliente",  
+                query = "SELECT c FROM Conta c WHERE c.cliente like :cliente and c.usuario.id = :idU ORDER BY id DESC"),
         @NamedQuery(name = "Conta.buscaPorIdC", 
-                query = "SELECT c FROM Conta c WHERE c.id = :id and c.usuario.id = :idU "),
+                query = "SELECT c FROM Conta c WHERE c.id = :id and c.usuario.id = :idU ORDER BY id DESC"),
+        @NamedQuery(name = "Conta.contaUnico", 
+                query = "SELECT c FROM Conta c WHERE c.id = :idC and c.usuario.id = :id "),
+        @NamedQuery(name = "Conta.selecionarContaIdPagamento", 
+                query = "SELECT c FROM Conta c WHERE c.pagamento_id = :idP and c.usuario.id = :id ")
         
 })
 public class Conta implements Serializable {
@@ -78,11 +84,22 @@ public class Conta implements Serializable {
     private double valorPagar;
     private int vezesPagar;
     private int pagamento_id;
+    private String cliente;
     
     @Temporal(TemporalType.DATE)
     private Calendar dataCompra;
     @Temporal(TemporalType.DATE)
     private Calendar dataVencimento;
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+    
+    
 
     public int getPagamento_id() {
         return pagamento_id;

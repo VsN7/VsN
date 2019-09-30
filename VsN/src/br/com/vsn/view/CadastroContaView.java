@@ -124,10 +124,12 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
         inputSelecionado = new javax.swing.JTextField();
         buttonBuscar = new javax.swing.JToggleButton();
         comboSelecionar = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        inputCliente = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastro de Contas");
+        setTitle("Cadastro de Titulos");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusTraversalPolicyProvider(true);
 
@@ -179,18 +181,18 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel6.setText("Data da primeira parcela:");
+        jLabel6.setText("Primeira parcela:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Titulo", "Parcelas", "Valor", "Data da Parcela"
+                "ID", "Titulo", "Cliente", "Parcelas", "Valor", "Situação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -208,12 +210,13 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(4);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(120);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(60);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(60);
         }
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -245,6 +248,8 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             }
         });
 
+        inputDataCompra.setPreferredSize(new java.awt.Dimension(6, 23));
+
         inputSelecionado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         buttonBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -256,7 +261,17 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
         });
 
         comboSelecionar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        comboSelecionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titulo", "ID" }));
+        comboSelecionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titulo", "Cliente", "ID" }));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel8.setText("Cliente:");
+
+        inputCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        inputCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputClienteKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -267,28 +282,12 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addGap(2, 2, 2)
-                        .addComponent(jCheckBox1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(inputDataCompra))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                        .addComponent(inputDataCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -298,44 +297,69 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(inputSelecionado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonBuscar)))
+                        .addComponent(buttonBuscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel4)
+                                .addGap(2, 2, 2)
+                                .addComponent(jCheckBox1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextField1)
+                            .addComponent(inputCliente))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(inputCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jCheckBox1)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(comboSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonBuscar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                    .addComponent(buttonBuscar, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,7 +370,9 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -363,6 +389,11 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             cc.getConta().getDataCompra().setTime(data);
             cc.getConta().setTitulo(jTextField1.getText().toUpperCase());
             cc.getConta().setVezes(jComboBox1.getSelectedIndex()+1);
+            if(inputCliente.getText().equals("")){
+                cc.getConta().setCliente("NÃO INFORMADO");
+            }else{
+                cc.getConta().setCliente(inputCliente.getText().toUpperCase());
+            }
             cc.salvarConta();
             this.preencherTabela();
             limpaCampos();
@@ -425,7 +456,6 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                 try{
                     int i = 0;
                     int id = conta.getId();
-                    System.out.println(id);
                     Iterator iterator = cc.getContas().iterator();
                     do{
                         if(id == cc.getContas().get(i).getId()){
@@ -459,6 +489,8 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
                 this.preencherTabelaFiltroTitulo();
             }else if(valorCombo.equals("id")){
                 this.preencherTabelaFiltroId();
+            }else if(valorCombo.equals("cliente")){
+                this.preencherTabelaFiltroCliente();
             }
             
         }catch(Exception e){
@@ -466,10 +498,24 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
+    private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
+        if (evt.getKeyCode() == evt.VK_F1) {
+            try {
+                PesquisarClienteView pv = new PesquisarClienteView();
+                this.getParent().add(pv);
+                pv.setVisible(true);
+                PesquisarClienteView.validador = 3;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_inputClienteKeyPressed
+
     public void limpaCampos(){
         inputDataCompra.setText("");
         jTextField1.setText("");
         jTextField2.setText("");
+        inputCliente.setText("");
         jCheckBox1.setSelected(false);
         jComboBox1.setEnabled(false);
         jComboBox1.setSelectedIndex(0);
@@ -485,9 +531,10 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{
              cc.getContas().get(i).getId(),
              cc.getContas().get(i).getTitulo(),
+             cc.getContas().get(i).getCliente(),
              cc.getContas().get(i).getVezes(),
              cc.getContas().get(i).getValor(),
-             sdf.format(cc.getContas().get(i).getDataCompra().getTime())
+             cc.getContas().get(i).getSituacao()
              });
         }
         
@@ -502,9 +549,28 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{
              cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getId(),
              cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getTitulo(),
+             cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getCliente(),
              cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getVezes(),
              cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getValor(),
-             sdf.format(cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getDataCompra().getTime())
+             cc.pesquisarFiltroTitulo(inputSelecionado.getText()).get(i).getSituacao()
+             });
+        }
+        
+    }
+    
+    public void preencherTabelaFiltroCliente() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        cc = new ContaController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<cc.pesquisarFiltroCliente(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             cc.pesquisarFiltroCliente(inputSelecionado.getText()).get(i).getId(),
+             cc.pesquisarFiltroCliente(inputSelecionado.getText()).get(i).getTitulo(),
+             cc.pesquisarFiltroCliente(inputSelecionado.getText()).get(i).getCliente(),
+             cc.pesquisarFiltroCliente(inputSelecionado.getText()).get(i).getVezes(),
+             cc.pesquisarFiltroCliente(inputSelecionado.getText()).get(i).getValor(),
+             cc.pesquisarFiltroCliente(inputSelecionado.getText()).get(i).getSituacao()
              });
         }
         
@@ -519,9 +585,10 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{
              cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getId(),
              cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getTitulo(),
+             cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getCliente(),
              cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getVezes(),
              cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getValor(),
-             sdf.format(cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getDataCompra().getTime())
+             cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).get(i).getSituacao()
              });
         }
         
@@ -530,6 +597,7 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonBuscar;
     private javax.swing.JComboBox<String> comboSelecionar;
+    public static javax.swing.JTextField inputCliente;
     public static javax.swing.JTextField inputDataCompra;
     private javax.swing.JTextField inputSelecionado;
     private javax.swing.JButton jButton1;
@@ -543,6 +611,7 @@ public class CadastroContaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -165,6 +165,20 @@ public class ContaDAO implements Serializable {
         }
     }
     
+    public List<Conta> contaFiltroCliente(String cliente) {
+        List<Conta> contas = null;
+        EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
+        try{
+           contas = em.createNamedQuery("Conta.buscaPorCliente").setParameter("cliente",cliente).setParameter("idU",uc.getId()).getResultList();
+           return contas;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public List<Conta> contaFiltroId(int id) {
         List<Conta> contas = null;
         EntityManager em = getEntityManager();
@@ -185,6 +199,18 @@ public class ContaDAO implements Serializable {
             List<Conta> contas = null;
             contas = em.createNamedQuery("Conta.filtroData").getResultList();
             return em.find(Conta.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Conta pesquisarUnico(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            UsuarioController uc = new UsuarioController();
+            List<Conta> contas = null;
+            contas = em.createNamedQuery("Conta.contaUnico").setParameter("idC", id).setParameter("id",uc.getId()).getResultList();
+            return contas.get(0);
         } finally {
             em.close();
         }
@@ -240,7 +266,7 @@ public class ContaDAO implements Serializable {
                 situacao="Aberto";
             }else{
                 if(index == 2){
-                    situacao="Fechado";
+                    situacao="FECHADO";
                 }
             }
             
@@ -261,6 +287,19 @@ public class ContaDAO implements Serializable {
         UsuarioController uc = new UsuarioController();
         try{
            contas = em.createNamedQuery("Conta.selecionar").setParameter("id",uc.getId()).getResultList();
+           return contas;
+        }catch(Exception e){
+            System.out.println("Erro na linha 147 (ContaDAO)!");
+            return null;
+        }
+    }
+    
+    public List<Conta> buscaContaIdPagamento(int id) {
+        List<Conta> contas = null;
+        EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
+        try{
+           contas = em.createNamedQuery("Conta.selecionarContaIdPagamento").setParameter("idP", id).setParameter("id",uc.getId()).getResultList();
            return contas;
         }catch(Exception e){
             System.out.println("Erro na linha 147 (ContaDAO)!");
@@ -421,7 +460,7 @@ public class ContaDAO implements Serializable {
         try{
             em = getEntityManager();
             em.getTransaction().begin();
-            conta.setSituacao("Fechado");
+            conta.setSituacao("FECHADO");
             conta.setId(id);
             cont = conta;
             conta = em.merge(conta);

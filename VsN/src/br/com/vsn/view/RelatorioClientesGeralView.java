@@ -226,7 +226,7 @@ public class RelatorioClientesGeralView extends javax.swing.JInternalFrame {
                     PesquisarClienteView pv = new PesquisarClienteView();
                     this.getParent().add(pv);
                     pv.setVisible(true);
-                    PesquisarClienteView.validador = 3;
+                    PesquisarClienteView.validador = 4;
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }

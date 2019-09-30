@@ -172,22 +172,20 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
                 this.id = this.valorCollun();
                 ClienteController cc = new ClienteController();
                 cliente = cc.pesquisarUnico(id).get(0);
-                try{
+                if(validador == 0){
                     if(ClienteView.buttonSelecionar.getText().equals("Buscar")){
-                    this.valoresInputCliente();
-                    ClienteView.ativarInputCadastrar();
-                    ClienteView.inputId.setEnabled(true);
-                }else{
-                    if(OrcamentoView.buttonCadastrar.getText().equals("Salvar")){
-                        this.valoresInputOrcamento();
+                        this.valoresInputCliente();
+                        ClienteView.ativarInputCadastrar();
+                        ClienteView.inputId.setEnabled(true);
                     }
-                }
-                }catch(Exception e){
+                }else{
                     if(validador ==1){
                         this.valoresInputOrcamento();
                     }else if(validador ==2){
                         this.valoresInputOS();
-                    }else{
+                    }else if (validador ==3){
+                        this.valoresInputContasReceber();
+                    }else if(validador ==4){
                         this.valoresInputRelatorioClientesGeral();
                     }
                 }
@@ -317,6 +315,10 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
     
     public void valoresInputRelatorioClientesGeral(){
         RelatorioClientesGeralView.inputNome.setText(""+cliente.getNome());
+    }
+    
+    public void valoresInputContasReceber(){
+        CadastroContaView.inputCliente.setText(""+cliente.getNome());
     }
 
 }

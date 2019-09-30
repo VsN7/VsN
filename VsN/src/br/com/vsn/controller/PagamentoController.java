@@ -43,20 +43,55 @@ public class PagamentoController {
          pagamento.setId(id);
          pagamento.setUsuario(usuario);
          if(conta==0 && pagamento.getSituacao().equals("ABERTO")){
-                resp = JOptionPane.showConfirmDialog(null, "Deseja realmente reabrir o pagamento?", "Excluir", JOptionPane.YES_NO_OPTION);
+                resp = JOptionPane.showConfirmDialog(null, "Deseja realmente reabrir o pagamento?", "Reabertura", JOptionPane.YES_NO_OPTION);
         
                 if (resp == JOptionPane.YES_OPTION) {
-                    dao.edit(pagamento);    
-                    OrdemServicoView.ordemServico.setSituacao("O.S EM PAGAMENTO");
-                    OrdemServicoController osc = new OrdemServicoController();
-                    osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
-                    OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
-                    JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-                    conta = 0;
+                    ContaController cct = new ContaController();
+                    PagamentoTabelaController ptc = new PagamentoTabelaController();
+                    int validaCartao=0;
+                    int validaExcluir=0;
+                    for(int i =0; i< ptc.getPagamentoTabelas().size();i++){
+                        if(ptc.getPagamentoTabelas().get(i).getFinalizador().equals("Cartão Crédito") || (ptc.getPagamentoTabelas().get(i).getFinalizador().equals("Outro") && !ptc.getPagamentoTabelas().get(i).getParcelas().equals("1 vez"))){
+                            
+                            validaCartao = 1;
+                        }
+                    }
+                        int tamanhoConta = cct.buscaContaIdPagamento(id).size();
+                        for(int i = 0; i < tamanhoConta;i++){
+                            System.out.println("aaaaa:::"+cct.retornaContaSituacao(cct.buscaContaIdPagamento(id).get(i).getId()));
+                            if(cct.retornaContaSituacao(cct.buscaContaIdPagamento(id).get(i).getId()).equals("FECHADO"))
+                                validaExcluir = 1;
+                        }
+                    if(validaCartao == 1 && validaExcluir == 0){
+                        tamanhoConta = cct.buscaContaIdPagamento(id).size();
+                        for(int i = 0; i < tamanhoConta;i++){
+                            cct = new ContaController();
+                            cct.destroyP(cct.buscaContaIdPagamento(id).get(0).getId());
+                        }
+                        dao.edit(pagamento);    
+                        OrdemServicoView.ordemServico.setSituacao("O.S EM PAGAMENTO");
+                        OrdemServicoController osc = new OrdemServicoController();
+                        osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
+                        OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
+                        JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+                        conta = 0;
+                        System.out.println("AQQQ11111:::"+validaExcluir);
+                    }else if(validaExcluir == 0){
+                        dao.edit(pagamento);    
+                        OrdemServicoView.ordemServico.setSituacao("O.S EM PAGAMENTO");
+                        OrdemServicoController osc = new OrdemServicoController();
+                        osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
+                        OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
+                        JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+                        conta = 0;
+                        System.out.println("AQQQ::::"+validaExcluir);
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane, "Não é possivel reabrir o pagamento, pois existem titulos já pagos!", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+                    }
                 }
          }  
          else{
-             dao.edit(pagamento);
+            dao.edit(pagamento);
          }
             
          

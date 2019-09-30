@@ -63,9 +63,9 @@ public class ContaController {
     public void salvarConta() {
         Component rootPane = null;
         if(conta.getValor()>=0 && conta.getValor()<1)
-            conta.setSituacao("Fechado");
+            conta.setSituacao("FECHADO");
         else
-            conta.setSituacao("Aberto");
+            conta.setSituacao("ABERTO");
             conta.setValorPagar(conta.getValor());
             conta.setVezesPagar(conta.getVezes());
             Calendar c = Calendar.getInstance();
@@ -161,9 +161,17 @@ public class ContaController {
     public void destroy(int id) throws NonexistentEntityException{
         Component rootPane = null;
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o titulo?", "Excluir", JOptionPane.YES_NO_OPTION);
-        
+        Conta conta = dao.pesquisarUnico(id);
         if (resposta == JOptionPane.YES_OPTION) {
-            dao.destroy(id);
+            if(conta.getSituacao().equals("FECHADO")){
+                JOptionPane.showMessageDialog(null, "Não é possível excluir um titulo que já foi recebido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+            }else if(conta.getPagamento_id()!= 0){
+                JOptionPane.showMessageDialog(null, "Não é possível excluir um tituto que esteja vinculado com algum pagamento!", "Aviso", JOptionPane.ERROR_MESSAGE);
+            }else{
+                dao.destroy(id);
+                JOptionPane.showMessageDialog(rootPane, "Titulo excluido com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+            }
+            
         }
     }
     
@@ -177,10 +185,27 @@ public class ContaController {
         
         return dao.contaFiltroTitulo(titulo.toUpperCase());
     }
+     
+     public List<Conta> pesquisarFiltroCliente(String cliente) {
+        contas.clear();
+        cliente+="%";
+        
+        return dao.contaFiltroCliente(cliente.toUpperCase());
+    }
     
     public List<Conta> pesquisarFiltroId(int id) {
         contas.clear();
         return dao.contaFiltroId(id);
+    }
+    
+    public List<Conta> buscaContaIdPagamento(int id) {
+        contas.clear();
+        return dao.buscaContaIdPagamento(id);
+    }
+    
+    public Conta pesquisarUnico(int id) {
+        contas.clear();
+        return dao.pesquisarUnico(id);
     }
     
 }
