@@ -1,15 +1,22 @@
 
 package br.com.vsn.dao;
 
+import br.com.vsn.conectaRelatorio.ConnectionFactory;
 import br.com.vsn.controller.ContaController;
 import br.com.vsn.controller.UsuarioController;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Conta;
+import java.awt.Component;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.Serializable;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -19,6 +26,10 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -468,6 +479,60 @@ public class ContaDAO implements Serializable {
            
         }catch(Exception e){
             System.out.println("Erro na linha 187 (ContaDAO)!");
+        }
+    }
+    
+    public double retornaValorTotalD(Date dInicio, Date dFim,String situacao,String titulo,int idD,String cliente){
+            EntityManager em = getEntityManager();
+            double id;
+            Calendar c = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            
+            try{
+                Query query = em.createNamedQuery("Conta.valorTotalD");
+                c.setTime(dInicio);
+                query.setParameter("dInicio", c);
+                
+                c2.setTime(dFim);
+                query.setParameter("dFim", c2);
+                query.setParameter("situacao", situacao);
+                query.setParameter("titulo", titulo);
+                query.setParameter("id", idD);
+                query.setParameter("cliente", cliente);
+                id = (double) query.getSingleResult();
+                return id;
+            }catch (Exception e){
+                System.out.println("Erro ao 218" + e.getMessage());
+                return 0;
+            }
+        }
+    
+    public void relatorioContaReceber(String situacao,String dInicio, String dFim, String titulo,int id,String cliente){
+        Connection conn;
+        Component rootPane = null;
+        JasperPrint jasperPrint = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+        
+        
+        String src = "C:\\VsN\\relatorios\\relatorioContasReceber.jasper";
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Map param = new HashMap();
+        param.put("total",this.retornaValorTotalD(sdf.parse(dInicio),sdf.parse(dFim),situacao,titulo,id,cliente));
+        param.put("dataInicio",sdf.parse(dInicio));
+        param.put("dataFim",sdf.parse(dFim));
+        param.put("situacao",situacao);
+        param.put("titulo", titulo);
+        param.put("id", id);
+        param.put("cliente", cliente);
+        jasperPrint = JasperFillManager.fillReport(src, param, conn);
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        
+        jv.setVisible(true);
+        jv.setExtendedState(MAXIMIZED_BOTH);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }
     

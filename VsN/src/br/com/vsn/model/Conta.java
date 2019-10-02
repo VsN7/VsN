@@ -69,8 +69,9 @@ import javax.persistence.TemporalType;
         @NamedQuery(name = "Conta.contaUnico", 
                 query = "SELECT c FROM Conta c WHERE c.id = :idC and c.usuario.id = :id "),
         @NamedQuery(name = "Conta.selecionarContaIdPagamento", 
-                query = "SELECT c FROM Conta c WHERE c.pagamento_id = :idP and c.usuario.id = :id ")
-        
+                query = "SELECT c FROM Conta c WHERE c.pagamento_id = :idP and c.usuario.id = :id "),
+        @NamedQuery(name = "Conta.valorTotalD", 
+                query = "SELECT SUM(c.valorPagar) FROM Conta c where (c.id = :id) or (c.dataVencimento between :dInicio and :dFim AND (c.situacao like :situacao) AND (c.titulo like :titulo) AND (c.cliente like :cliente) )"),
 })
 public class Conta implements Serializable {
     @Id

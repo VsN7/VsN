@@ -177,16 +177,17 @@ public class PesquisarContaPagarView extends javax.swing.JInternalFrame {
                 DespesaController dc = new DespesaController();
                 despesa = dc.despesaUnico(id).get(0);
                 try{
-                    if(ContaPagarView.buttonSelecionar.getText().equals("Buscar")){
+                    if(validador == 0){
                         this.valoresInputContasPagar();
                         //ContaPagarView.ativarInputCadastrar();
                         ContaPagarView.inputId.setEnabled(true);
-                    }else{
-                       // this.valoresInputRelatorioDespesasGeral();
+                        System.out.println("AQ");
+                    }else if(validador == 1){
+                       this.valoresInputRelatorioDespesasGeral();
                     }
                 
                 }catch(Exception e){
-                   // this.valoresInputRelatorioDespesasGeral();
+                   Logger.getLogger(PesquisarContaPagarView.class.getName()).log(Level.SEVERE, null, e);
                 }
                 this.dispose();
             } catch (Exception ex) {
@@ -277,8 +278,9 @@ public class PesquisarContaPagarView extends javax.swing.JInternalFrame {
         ContaPagarView.inputSituacao.setText(""+despesa.getSituacao());
     }
     
-//    public void valoresInputRelatorioDespesasGeral(){
-//        RelatorioDespesaGeralView.inputNome.setText(""+despesa.getNome());
-//    }
+    public void valoresInputRelatorioDespesasGeral(){
+        FiltroRelatorioContasPagarView.inputId.setText(""+despesa.getId());
+        FiltroRelatorioContasPagarView.inputDescricao.setText(""+despesa.getDescricao());
+    }
 
 }

@@ -326,6 +326,14 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
             validaDestroy = 2;
             ptc.destroy(valorCollun());
             this.exibirDados();
+            if(!labelTroco.getText().equals("0,00")){
+                labelTroco.setText("0,00");
+            }
+            if(Double.parseDouble(labelValorRestante.getText().replace(",", "."))>0){
+                buttonPagamento.setEnabled(true);
+                inputValorPago.setEditable(true);
+                comboTipoPagamento.setEnabled(true);
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Primeiro selecione algum item", "Aviso", JOptionPane.ERROR_MESSAGE);
         }

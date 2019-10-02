@@ -620,54 +620,6 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
             }  catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Dados invalidos", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
         }else{
             this.desativarTudo();
             this.desativarInputs();
@@ -694,10 +646,6 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Dados invalidos", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
             
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//            }
         }else{
             this.limparCampos();
             this.ativarButtonCadastrar();
@@ -726,14 +674,14 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                 dc.efetuarPagamento(despesa,comboParcelas.getSelectedIndex()+1,valor);
                 this.exibirDados();
             } catch (Exception ex) {
-                Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, "Falha ao tentar efetuar o pagamento", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             try {
                 dc.estorno(despesa);
                 this.exibirDados();
             } catch (Exception ex) {
-                Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, "Falha ao tentar estornar a conta, entre em contato com o suporte", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_buttonPagarActionPerformed

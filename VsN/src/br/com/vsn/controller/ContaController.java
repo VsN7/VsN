@@ -5,10 +5,13 @@ import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Conta;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.view.LoginView;
+import br.com.vsn.view.PagamentoContasReceberView;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.observablecollections.ObservableCollections;
 
@@ -208,6 +211,8 @@ public class ContaController {
     
     public void destroyP(int id) throws NonexistentEntityException{
         dao.destroy(id);
+        PagamentoContasReceberView  pcrv = new PagamentoContasReceberView(0);
+        
     }
     
      public List<Conta> pesquisarFiltroTitulo(String titulo) {
@@ -237,6 +242,15 @@ public class ContaController {
     public Conta pesquisarUnico(int id) {
         contas.clear();
         return dao.pesquisarUnico(id);
+    }
+    
+    public void relatorioContaReceber(String situacao,String dInicio, String dFinal,String titulo,int id,String cliente){
+        Component rootPane = null;
+        try{
+            dao.relatorioContaReceber(situacao,dInicio,dFinal,titulo,id,cliente);
+        }catch (Exception ex) {
+            Logger.getLogger(ContaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

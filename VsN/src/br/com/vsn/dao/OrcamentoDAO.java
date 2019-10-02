@@ -265,7 +265,7 @@ public class OrcamentoDAO implements Serializable {
                 id = (double) query.getSingleResult();
                 return id;
             }catch (Exception e){
-                System.out.println("Erro ao 218" + e.getMessage());
+                System.out.println("Erro ao 218 nullo... não é um erro" + e.getMessage());
                 return 0;
             }
         }
@@ -351,6 +351,11 @@ public class OrcamentoDAO implements Serializable {
         Connection conn;
         Component rootPane = null;
         JasperPrint jasperPrint = null;
+        
+        if(dInicio.equals("  /  /    "))
+            dInicio = "22/02/1000";
+        if(dFim.equals("  /  /    "))
+            dFim = "22/02/9999";
         try {
             conn = ConnectionFactory.getInstance().getConnection();
         

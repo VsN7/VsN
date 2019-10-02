@@ -23,6 +23,8 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
 
     String situacao;
     String descricao;
+    String dataInicio;
+    String dataFim;
     /**
      * Creates new form filtroDataRelatorioView
      */
@@ -155,8 +157,18 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
         jLabel7.setText("ID:");
 
         inputId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputIdKeyPressed(evt);
+            }
+        });
 
         inputDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputDescricaoKeyPressed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Descrição:");
@@ -256,25 +268,16 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
             }
             else if(comboSituacao.getSelectedItem().toString().equals("TODOS")){
                 situacao = "%";
-                if(inputDescricao.getText().isEmpty())
-                    descricao = "%";
-                else
-                    descricao = inputDescricao.getText()+"%";
-                dc.relatorioContaPagar(situacao,inputDataInicio.getText(),inputDataFinal.getText(),descricao,id);
+                this.validaVazio();
+                dc.relatorioContaPagar(situacao,dataInicio,dataFim,descricao,id);
             }else if(comboSituacao.getSelectedItem().toString().equals("ABERTOS")){
                 situacao = "ABERTO" + "%";
-                if(inputDescricao.getText().isEmpty())
-                    descricao = "%";
-                else
-                    descricao = inputDescricao.getText()+"%";
-                dc.relatorioContaPagar(situacao,inputDataInicio.getText(),inputDataFinal.getText(),descricao,id);
+                this.validaVazio();
+                dc.relatorioContaPagar(situacao,dataInicio,dataFim,descricao,id);
             }else if(comboSituacao.getSelectedItem().toString().equals("FECHADOS")){
                 situacao = "FECHADO" + "%";
-                if(inputDescricao.getText().isEmpty())
-                    descricao = "%";
-                else
-                    descricao = inputDescricao.getText()+"%";
-                dc.relatorioContaPagar(situacao,inputDataInicio.getText(),inputDataFinal.getText(),descricao,id);
+                this.validaVazio();
+                dc.relatorioContaPagar(situacao,dataInicio,dataFim,descricao,id);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Informe os dados corretamente!", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -317,6 +320,32 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_comboSituacaoActionPerformed
 
+    private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
+        if (evt.getKeyCode() == evt.VK_F1) {   
+            try {
+                PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
+                this.getParent().add(pcpv);
+                pcpv.setVisible(true);
+                PesquisarContaPagarView.validador = 1;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+        }
+    }//GEN-LAST:event_inputIdKeyPressed
+
+    private void inputDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputDescricaoKeyPressed
+        if (evt.getKeyCode() == evt.VK_F1) {   
+            try {
+                PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
+                this.getParent().add(pcpv);
+                pcpv.setVisible(true);
+                PesquisarContaPagarView.validador = 1;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+        }
+    }//GEN-LAST:event_inputDescricaoKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonGerarRelatorio;
@@ -335,4 +364,20 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    public void validaVazio(){
+        if(inputDescricao.getText().isEmpty())
+                    descricao = "%";
+                else
+                    descricao = inputDescricao.getText()+"%";
+                if(inputDataInicio.getText().equals("  /  /    "))
+                    dataInicio = "22/02/1000";
+                else
+                    dataInicio = inputDataInicio.getText();
+                if(inputDataFinal.getText().equals("  /  /    "))
+                    dataFim = "22/02/9999";
+                else
+                    dataFim = inputDataFinal.getText();
+                
+    }
 }

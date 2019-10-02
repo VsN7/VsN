@@ -22,6 +22,8 @@ import javax.swing.border.LineBorder;
 public class FiltroDataRelatorioOrdemServicoView extends javax.swing.JInternalFrame {
 
     String situacao;
+    String dataInicio;
+    String dataFim;
     /**
      * Creates new form filtroDataRelatorioView
      */
@@ -223,16 +225,20 @@ public class FiltroDataRelatorioOrdemServicoView extends javax.swing.JInternalFr
             OrdemServicoController osc = new OrdemServicoController();
             if(comboSituacao.getSelectedItem().toString().equals("TODOS")){
                 situacao = "%";
-                osc.relatorioOrdemServicoData(situacao,inputDataInicio.getText(),inputDataFinal.getText());
+                this.validaVazio();
+                osc.relatorioOrdemServicoData(situacao,dataInicio,dataFim);
             }else if(comboSituacao.getSelectedItem().toString().equals("ABERTOS")){
                 situacao = "ABERTO" + "%";
-                osc.relatorioOrdemServicoData(situacao,inputDataInicio.getText(),inputDataFinal.getText());
+                this.validaVazio();
+                osc.relatorioOrdemServicoData(situacao,dataInicio,dataFim);
             }else if(comboSituacao.getSelectedItem().toString().equals("O.S EM PAGAMENTO")){
                 situacao = comboSituacao.getSelectedItem().toString() + "%";
-                osc.relatorioOrdemServicoData(situacao,inputDataInicio.getText(),inputDataFinal.getText());
+                this.validaVazio();
+                osc.relatorioOrdemServicoData(situacao,dataInicio,dataFim);
             }else{
                 situacao = comboSituacao.getSelectedItem().toString() + "%";
-                osc.relatorioOrdemServicoData(situacao,inputDataInicio.getText(),inputDataFinal.getText());
+                this.validaVazio();
+                osc.relatorioOrdemServicoData(situacao,dataInicio,dataFim);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Informe os dados corretamente!", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -289,4 +295,16 @@ public class FiltroDataRelatorioOrdemServicoView extends javax.swing.JInternalFr
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    public void validaVazio(){
+                if(inputDataInicio.getText().equals("  /  /    "))
+                    dataInicio = "22/02/1000";
+                else
+                    dataInicio = inputDataInicio.getText();
+                if(inputDataFinal.getText().equals("  /  /    "))
+                    dataFim = "22/02/9999";
+                else
+                    dataFim = inputDataFinal.getText();
+                
+    }
 }
