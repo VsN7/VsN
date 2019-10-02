@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -20,43 +21,37 @@ import javax.persistence.TemporalType;
  */
 
 
-@Entity(name = "ContaReceber")
+@Entity(name = "Despesa")
 @NamedQueries({
     
-    @NamedQuery(name = "ContaReceber.findAll", 
-                query = "SELECT e FROM ContaReceber e"),
+    @NamedQuery(name = "Despesa.findAll", 
+                query = "SELECT d FROM Despesa d WHERE d.usuario.id = :idU"),
     
-     @NamedQuery(name = "ContaReceber.buscaPorId", 
-                query = "SELECT e FROM ContaReceber e WHERE e.id = :id "),
+    @NamedQuery(name = "Despesa.buscaPorId", 
+                query = "SELECT d FROM Despesa d WHERE d.id = :id and d.usuario.id = :idU"),
     
+    @NamedQuery(name = "Despesa.buscaPorDescricao", 
+                query = "SELECT d FROM Despesa d WHERE d.usuario.id = :idU and d.descricao LIKE :descricao"),
+    @NamedQuery(name = "Despesa.valorTotalD", 
+                query = "SELECT SUM(d.valorPagar) FROM Despesa d where (d.id = :id) or (d.dataVencimento between :dInicio and :dFim AND (d.situacao like :situacao) AND (d.descricao like :descricao))"),
 })
-public class ContaReceber implements Serializable {
+public class Despesa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(length = 30)
-    private String TipoPagamento;
-    private String Parcelas;
-    private String ParcelasPagar;
+    private String descricao;
+    private int Parcelas;
+    private int ParcelasPagar;
     private double valor;
     private double valorPagar;
-    private String Cliente;
-    private String cpf;
     @Temporal(TemporalType.DATE)
     private Calendar dataInicio;
     @Temporal(TemporalType.DATE)
     private Calendar dataVencimento;
     private String situacao;
-    private int pagamento_id;
+    @ManyToOne
     private Usuario usuario;
-
-    public int getPagamento_id() {
-        return pagamento_id;
-    }
-
-    public void setPagamento_id(int pagamento_id) {
-        this.pagamento_id = pagamento_id;
-    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -76,30 +71,32 @@ public class ContaReceber implements Serializable {
         this.id = id;
     }
 
-    public String getTipoPagamento() {
-        return TipoPagamento;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setTipoPagamento(String TipoPagamento) {
-        this.TipoPagamento = TipoPagamento;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getParcelas() {
+    public int getParcelas() {
         return Parcelas;
     }
 
-    public void setParcelas(String Parcelas) {
+    public void setParcelas(int Parcelas) {
         this.Parcelas = Parcelas;
     }
 
-    public String getParcelasPagar() {
+    public int getParcelasPagar() {
         return ParcelasPagar;
     }
 
-    public void setParcelasPagar(String ParcelasPagar) {
+    public void setParcelasPagar(int ParcelasPagar) {
         this.ParcelasPagar = ParcelasPagar;
     }
 
+    
+    
     public double getValor() {
         return valor;
     }
@@ -115,23 +112,7 @@ public class ContaReceber implements Serializable {
     public void setValorPagar(double valorPagar) {
         this.valorPagar = valorPagar;
     }
-
-    public String getCliente() {
-        return Cliente;
-    }
-
-    public void setCliente(String Cliente) {
-        this.Cliente = Cliente;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
+    
     public Calendar getDataInicio() {
         return dataInicio;
     }

@@ -191,6 +191,48 @@ public class CalendarView extends javax.swing.JInternalFrame {
         });
     }
     
+    public void setaCalendarContaPagarInicio(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                ContaPagarView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+    }
+    
+    public void setaCalendarFiltroRelatorioContasPagarInicio(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                FiltroRelatorioContasPagarView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+    }
+    
+    public void setaCalendarFiltroRelatorioContasPagarDataFinal(){
+        
+        jCalendar1.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                
+                c= jCalendar1.getCalendar();
+                FiltroRelatorioContasPagarView.inputDataFinal.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                dispose();
+            }
+        });
+    }
+    
     public CalendarView() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double lar =d.getWidth();

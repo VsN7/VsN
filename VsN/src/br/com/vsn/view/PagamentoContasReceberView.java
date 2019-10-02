@@ -65,6 +65,12 @@ public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
         
         if(cc.getContas().size()<=0){
             System.out.println("Tamanho menor que 0...");
+            buttonPagar.setEnabled(false);
+            buttonAnterior.setEnabled(false);
+            buttonFinalT.setEnabled(false);
+            buttonProximo.setEnabled(false);
+            buttonInicioT.setEnabled(false);
+            
         }else{
             cc = new ContaController();
             this.exibirDados();

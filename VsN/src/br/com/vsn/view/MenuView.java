@@ -65,7 +65,6 @@ public class MenuView extends javax.swing.JFrame {
         jMenu21 = new javax.swing.JMenu();
         jMenu22 = new javax.swing.JMenu();
         jMenuItem29 = new javax.swing.JMenuItem();
-        jMenuItem30 = new javax.swing.JMenuItem();
         jMenu23 = new javax.swing.JMenu();
         jMenuItem27 = new javax.swing.JMenuItem();
         jMenuItem28 = new javax.swing.JMenuItem();
@@ -76,6 +75,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenu20 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
+        jMenu24 = new javax.swing.JMenu();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
@@ -303,9 +304,6 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu22.add(jMenuItem29);
 
-        jMenuItem30.setText("Pagamento de Contas");
-        jMenu22.add(jMenuItem30);
-
         jMenu21.add(jMenu22);
 
         jMenu23.setText("Contas a Receber");
@@ -371,6 +369,18 @@ public class MenuView extends javax.swing.JFrame {
         jMenu20.add(jMenuItem18);
 
         jMenu11.add(jMenu20);
+
+        jMenu24.setText("Relatório de Contas a Pagar");
+
+        jMenuItem30.setText("Relatório de Contas a Pagar Geral");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu24.add(jMenuItem30);
+
+        jMenu11.add(jMenu24);
 
         jMenu13.setText("Relatório de Orçamentos");
 
@@ -712,8 +722,26 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
-        // TODO add your handling code here:
+        ContaPagarView cpv;
+        try {
+            cpv = new ContaPagarView();
+            cpv.setVisible(true);
+            this.desktopPane.add(cpv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        FiltroRelatorioContasPagarView frcpv;
+        try {
+            frcpv = new FiltroRelatorioContasPagarView();
+            frcpv.setVisible(true);
+            this.desktopPane.add(frcpv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -735,6 +763,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu21;
     private javax.swing.JMenu jMenu22;
     private javax.swing.JMenu jMenu23;
+    private javax.swing.JMenu jMenu24;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
