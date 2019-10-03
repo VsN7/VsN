@@ -120,6 +120,7 @@ public class UsuarioController {
 
             if (resposta == JOptionPane.YES_OPTION) {
                 dao.destroy(id);
+                JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

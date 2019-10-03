@@ -89,7 +89,7 @@ public class FuncionarioController {
         this.funcionario = funcionario;
     }
 
-    public void salvarFuncionario(String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg, String login, String funcao,String telefone, String email,String senha, String palavraSeguranca) {
+    public void salvarFuncionario(String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg, String login, String funcao,String telefone, String email,String senha, String palavraSeguranca, int autorizacao) {
         int usuario_id = 0;
         UsuarioController uc = new UsuarioController();
         try{
@@ -115,6 +115,7 @@ public class FuncionarioController {
         funcionario.setCaminhoImg(caminhoImg);
         funcionario.setTelefone(telefone);
         funcionario.setEmail(email);
+        funcionario.setAutorizacao(autorizacao);
         funcionario.setSituacao("ATIVO");
         Usuario usuario = new Usuario();
         usuario.setLogin(login);
@@ -181,7 +182,7 @@ public class FuncionarioController {
         palavra = CriptografiaUtil.encriptografarSenha(pala).toUpperCase();
     }
     
-    public void editFuncionario(int usuario_id,int id,String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg,String funcao, String login,String telefone, String email, String situacao,String senha, String palavraSeguranca) throws Exception {
+    public void editFuncionario(int usuario_id,int id,String nome, String cpf, String sexo, Date dtNascimento, String caminhoImg,String funcao, String login,String telefone, String email, String situacao,String senha, String palavraSeguranca,int autorizacao) throws Exception {
         estouraErroNulo = 0;
         Calendar c = Calendar.getInstance();
         c.setTime(dtNascimento);
@@ -210,6 +211,7 @@ public class FuncionarioController {
         funcionario.setFuncao(funcao);
         funcionario.setTelefone(telefone);
         funcionario.setEmail(email);
+        funcionario.setAutorizacao(autorizacao);
         funcionario.setSituacao(situacao);
         if(!login.equals("Sem Acesso ao Sistema")){
                 try {

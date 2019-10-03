@@ -36,9 +36,9 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         initComponents();
         
         if(uc.getId()!=1){
-            salvarButton.setEnabled(false);
+            salvarButton.setText("Vincular");
         }else{
-            salvarButton.setEnabled(true);
+            salvarButton.setText("Cadastrar");
         }
         
         try {
@@ -244,17 +244,21 @@ public class UsuarioView extends javax.swing.JInternalFrame {
             }
         }else{
             try {
-                if (!loginField.getText().isEmpty() && !senhaField.getText().isEmpty() && !palavraField.getText().isEmpty() && !cpfField.getText().isEmpty() ) {
-                    uc.salvar(loginField.getText(),senhaField.getText(),cpfField.getText(),palavraField.getText().toUpperCase());
-                    loginField.setText("");
-                    senhaField.setText("");
-                    cpfField.setText("");
-                    palavraField.setText("");
-                    this.preencherTabela();
-                    JOptionPane.showMessageDialog(null, "Novo usuario cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                if(uc.getId()==1){
+                    if (!loginField.getText().isEmpty() && !senhaField.getText().isEmpty() && !palavraField.getText().isEmpty() && !cpfField.getText().isEmpty() ) {
+                        uc.salvar(loginField.getText(),senhaField.getText(),cpfField.getText(),palavraField.getText().toUpperCase());
+                        loginField.setText("");
+                        senhaField.setText("");
+                        cpfField.setText("");
+                        palavraField.setText("");
+                        this.preencherTabela();
+                        JOptionPane.showMessageDialog(null, "Novo usuario cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Os campos não devem estar vazios!", "Erro", 0);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Os campos não devem estar vazios!", "Erro", 0);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Só é possivel cadastrar usuários que já possuam o CPF vinculado a algum funcionário!", "Erro", 0);
                 }
 
             } catch (Exception ex) {
@@ -264,11 +268,15 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_salvarButtonActionPerformed
 
     private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
-    try {
-            uc.destroy(valorCollun());
-            JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
-            uc = new UsuarioController();
-            this.preencherTabela();
+    try {   
+            if(valorCollun()==1)
+                JOptionPane.showMessageDialog(null, "Impossivel remover esse usuário", "Aviso", JOptionPane.ERROR_MESSAGE);
+            else{
+                uc.destroy(valorCollun());
+                
+                uc = new UsuarioController();
+                this.preencherTabela();
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Primeiro selecione algum usuário", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
