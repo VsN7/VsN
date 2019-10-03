@@ -6,6 +6,7 @@ import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Funcionario;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.util.CriptografiaUtil;
+import br.com.vsn.view.FuncionarioView;
 import br.com.vsn.view.InformarSenhaView;
 import java.awt.Component;
 import java.security.NoSuchAlgorithmException;
@@ -121,12 +122,18 @@ public class FuncionarioController {
         if(!login.equals("Sem Acesso ao Sistema")){
             if(usDao.retornaIdFunc(login) == 0 && dao.retornaCpf(cpf) == 0 && nome != null && funcao != null){
                 try {
+                    if(senha.isEmpty())
+                        senha = null;
+                    if(palavraSeguranca.isEmpty())
+                        palavraSeguranca = null;
                     uc.salvar(login, senha,cpf, palavraSeguranca.toUpperCase());
                     uc = new UsuarioController();
                     usuario_id = uc.getUsuarios().get(uc.getUsuarios().size()-1).getId();
                     funcionario.setUsuario_id(usuario_id);
                     try{
                         dao.create(funcionario);
+                        FuncionarioView.senha = "";
+                        FuncionarioView.palavraSergurnca="";
                         estouraErroNulo = 0;
                         JOptionPane.showMessageDialog(rootPane, "Cadastro realizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         pesquisar();
@@ -151,6 +158,8 @@ public class FuncionarioController {
         }else{
             try{
                 dao.create(funcionario);
+                FuncionarioView.senha = "";
+                FuncionarioView.palavraSergurnca="";
                 estouraErroNulo = 0;
                 JOptionPane.showMessageDialog(rootPane, "Cadastro realizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                 pesquisar();
@@ -289,7 +298,11 @@ public class FuncionarioController {
             dao.edit(funcionario);
             if(validador == 0){
                 UsuarioController.validador = 1;
-                uc.destroy(uc.pesquisarUnico(cpf).get(0).getId());
+                try{
+                    uc.destroy(uc.pesquisarUnico(cpf).get(0).getId());
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "O cadastro de usuario do funcionario já  havia sido removido, o funcionario sera inativado!", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
             }else{
                 validador = 0;
             }

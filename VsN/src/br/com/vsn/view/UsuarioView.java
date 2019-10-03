@@ -35,6 +35,12 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         
         initComponents();
         
+        if(uc.getId()!=1){
+            salvarButton.setEnabled(false);
+        }else{
+            salvarButton.setEnabled(true);
+        }
+        
         try {
             this.preencherTabela();
         } catch (Exception ex) {
@@ -219,7 +225,6 @@ public class UsuarioView extends javax.swing.JInternalFrame {
                 if (!loginField.getText().isEmpty() && !senhaField.getText().isEmpty() && !palavraField.getText().isEmpty() && !cpfField.getText().isEmpty() ) {
                     uc.salvar(loginField.getText(),senhaField.getText(),cpfField.getText(),palavraField.getText().toUpperCase());
                     int id = uc.pesquisarUnico(cpfField.getText()).get(0).getId();
-                    System.out.println("ID:::"+id);
                     uc.editarFuncionario(idFunc,id,loginField.getText());
                     
                     loginField.setText("");
@@ -261,6 +266,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
     try {
             uc.destroy(valorCollun());
+            JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
             uc = new UsuarioController();
             this.preencherTabela();
         } catch (Exception ex) {

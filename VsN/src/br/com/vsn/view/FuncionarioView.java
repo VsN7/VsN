@@ -47,8 +47,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     String telefone;
     String email;
     String situacao;
-    public static String senha;
-    public static String palavraSergurnca;
+    public static String senha = "";
+    public static String palavraSergurnca = "";
     
     public FuncionarioView() throws Exception {
         sdf = new SimpleDateFormat("dd/MM/yyyy");

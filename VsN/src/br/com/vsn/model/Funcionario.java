@@ -62,6 +62,18 @@ public class Funcionario implements Serializable {
     private String email;
     private String situacao;
     private int Usuario_id;
+    
+    private int autorizacao;
+
+    public int getAutorizacao() {
+        return autorizacao;
+    }
+
+    public void setAutorizacao(int autorizacao) {
+        this.autorizacao = autorizacao;
+    }
+    
+    
 
     public int getUsuario_id() {
         return Usuario_id;

@@ -32,6 +32,9 @@ public class InformarSenhaView extends javax.swing.JInternalFrame {
         inputLogin.setEditable(false);
         inputCpf.setText(FuncionarioView.inputCpf.getText());
         inputCpf.setEditable(false);
+        inputSenha.setText("");
+        inputSenhaNovamente.setText("");
+        inputPalavraSeguranca.setText("");
     }
 
     /**
