@@ -350,7 +350,7 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
                 PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
                 this.getParent().add(pcrv);
                 pcrv.setVisible(true);
-                PesquisarContaPagarView.validador = 1;
+                PesquisarContaReceberView.validador = 1;
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }
@@ -363,7 +363,7 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
                 PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
                 this.getParent().add(pcrv);
                 pcrv.setVisible(true);
-                PesquisarContaPagarView.validador = 1;
+                PesquisarContaReceberView.validador = 1;
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }
@@ -376,7 +376,7 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
                 PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
                 this.getParent().add(pcrv);
                 pcrv.setVisible(true);
-                PesquisarContaPagarView.validador = 1;
+                PesquisarContaReceberView.validador = 1;
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }

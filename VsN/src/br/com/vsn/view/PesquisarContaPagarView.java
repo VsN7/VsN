@@ -75,7 +75,7 @@ public class PesquisarContaPagarView extends javax.swing.JInternalFrame {
         buttonBuscar = new javax.swing.JToggleButton();
 
         setClosable(true);
-        setTitle("Pesquisar Contas");
+        setTitle("Pesquisar Contas a Pagar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

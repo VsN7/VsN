@@ -75,14 +75,14 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
         buttonBuscar = new javax.swing.JToggleButton();
 
         setClosable(true);
-        setTitle("Pesquisar Contas");
+        setTitle("Pesquisar Contas a Receber");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Cliente", "Descrição", "Valor", "Parcelas", "Situação"
+                "ID", "Cliente", "Titulo", "Valor", "Parcelas", "Situação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -108,7 +108,7 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);
         }
 
-        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Descrição", "Cliente" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titulo", "Cliente" }));
 
         inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -178,7 +178,7 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
                 ContaController cc = new ContaController();
                 conta = cc.contaUnico(id).get(0);
                 try{
-                    if(validador == 0){
+                    if(validador == 1){
                         this.valoresInputRelatorioContasReceber();
                     }
                 
@@ -197,7 +197,7 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
         try{
             ContaController cc = new ContaController();
             valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
-            if(valorCombo.equals("descrição")){
+            if(valorCombo.equals("titulo")){
                 this.preencherTabelaFiltroTitulo();
             }else if (valorCombo.equals("cliente")){
                 this.preencherTabelaFiltroCliente();
