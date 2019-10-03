@@ -142,6 +142,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         buttonProximo = new javax.swing.JButton();
         buttonSenha = new javax.swing.JToggleButton();
         jSeparator2 = new javax.swing.JSeparator();
+        comboAutorizacao = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -353,6 +355,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             }
         });
 
+        comboAutorizacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        comboAutorizacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terceirizado", "Operacional", "Administrativo" }));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("Nivel de Autorização");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -438,17 +446,21 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         .addComponent(fotografiaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(inputFuncao))
+                            .addComponent(inputFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addComponent(comboAutorizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7)))))
+                                .addComponent(inputLogin)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,17 +497,19 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(inputImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(buttonCaminhoImg)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSenha))
+                    .addComponent(buttonSenha)
+                    .addComponent(comboAutorizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -529,7 +543,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             .addComponent(buttonExcluir)
                             .addComponent(buttonSelecionar)
                             .addComponent(buttonEditar))))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -580,7 +594,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 UsuarioController uc = new UsuarioController();
                 if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
                     
-                    fc.editFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca);
+                    fc.editFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca,comboAutorizacao.getSelectedIndex());
                     if(FuncionarioController.estouraErroNulo == 0){
                         buttonEditar.setText("Editar");
                         buttonSenha.setText("Informar Senha");
@@ -590,7 +604,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 else{ 
                     if(verificaButtonSenha == 0 || InformarSenhaView.inputSenha.getText().isEmpty() || InformarSenhaView.inputPalavraSeguranca.getText().isEmpty()){
                         user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);    
-                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),user.getSenha(),user.getPalavraSeguranca());
+                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),user.getSenha(),user.getPalavraSeguranca(),comboAutorizacao.getSelectedIndex());
                         verificaButtonSenha=0;
                         if(FuncionarioController.estouraErroNulo == 0){
                             JOptionPane.showMessageDialog(rootPane, "Não houveram alterações na senha!", "Aviso", JOptionPane.INFORMATION_MESSAGE, null);                       
@@ -600,7 +614,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         }
                     }else{
                         user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);
-                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca);     
+                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca,comboAutorizacao.getSelectedIndex());     
                         if(FuncionarioController.estouraErroNulo == 0){
                             buttonEditar.setText("Editar");
                             buttonSenha.setText("Informar Senha");
@@ -687,7 +701,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
         if(buttonCadastrar.getText().equals("Salvar")){
             this.valoresInput();
-            fc.salvarFuncionario(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg,this.login,this.funcao, this.telefone, this.email,this.senha,this.palavraSergurnca);
+            fc.salvarFuncionario(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg,this.login,this.funcao, this.telefone, this.email,this.senha,this.palavraSergurnca,comboAutorizacao.getSelectedIndex());
             if(FuncionarioController.estouraErroNulo != 1){
                 buttonCadastrar.setText("Novo");
                 fc = new FuncionarioController();
@@ -850,6 +864,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     public static javax.swing.JButton buttonSelecionar;
     public static javax.swing.JToggleButton buttonSenha;
     private javax.swing.JLabel calendarioDtNascimento;
+    public static javax.swing.JComboBox<String> comboAutorizacao;
     public static javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JLabel fotografiaFuncionario;
     public static javax.swing.JTextField inputCpf;
@@ -865,6 +880,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
@@ -920,6 +936,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             }
                 this.preencherImagem();
             this.valoresInput();
+            UsuarioController uc = new UsuarioController();
         } catch (Exception ex) {
             Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
         }

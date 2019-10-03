@@ -61,6 +61,7 @@ public class Funcionario implements Serializable {
     private String sexo;
     private String email;
     private String situacao;
+    private int autorizacao;
     private int Usuario_id;
 
     public int getUsuario_id() {
@@ -69,6 +70,14 @@ public class Funcionario implements Serializable {
 
     public void setUsuario_id(int Usuario_id) {
         this.Usuario_id = Usuario_id;
+    }
+
+    public int getAutorizacao() {
+        return autorizacao;
+    }
+
+    public void setAutorizacao(int autorizacao) {
+        this.autorizacao = autorizacao;
     }
     
     

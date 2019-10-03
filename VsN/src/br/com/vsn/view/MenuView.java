@@ -18,7 +18,26 @@ public class MenuView extends javax.swing.JFrame {
         initComponents();
         jMenu4.setEnabled(false);
         jMenu15.setEnabled(false);
-        jMenu5.setEnabled(true);
+        if(LoginView.autorizacao == 2){
+            selectContas.setEnabled(true);
+            selectContasM.setEnabled(true);
+            selectEmpresa.setEnabled(true);
+            selectFuncionario.setEnabled(true);
+            selectUsuario.setEnabled(false);
+            
+        }else if (LoginView.autorizacao == 7){
+            selectContas.setEnabled(true);
+            selectContasM.setEnabled(true);
+            selectEmpresa.setEnabled(true);
+            selectFuncionario.setEnabled(true);
+            selectUsuario.setEnabled(true);
+        }else{
+            selectContas.setEnabled(false);
+            selectContasM.setEnabled(false);
+            selectEmpresa.setEnabled(false);
+            selectFuncionario.setEnabled(false);
+            selectUsuario.setEnabled(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -35,9 +54,9 @@ public class MenuView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem21 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        selectEmpresa = new javax.swing.JMenuItem();
+        selectUsuario = new javax.swing.JMenuItem();
+        selectFuncionario = new javax.swing.JMenuItem();
         jMenu19 = new javax.swing.JMenu();
         jMenuItem26 = new javax.swing.JMenuItem();
         jMenu17 = new javax.swing.JMenu();
@@ -48,7 +67,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu15 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        selectContas = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem31 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -61,7 +80,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu14 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
-        jMenu21 = new javax.swing.JMenu();
+        selectContasM = new javax.swing.JMenu();
         jMenu22 = new javax.swing.JMenu();
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenu23 = new javax.swing.JMenu();
@@ -124,30 +143,30 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu1.setText("Arquivo");
 
-        jMenuItem21.setText("Empresa");
-        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+        selectEmpresa.setText("Empresa");
+        selectEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem21ActionPerformed(evt);
+                selectEmpresaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem21);
+        jMenu1.add(selectEmpresa);
 
-        jMenuItem2.setText("Usuário");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        selectUsuario.setText("Usuário");
+        selectUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                selectUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(selectUsuario);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem3.setText("Funcionario");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        selectFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
+        selectFuncionario.setText("Funcionario");
+        selectFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                selectFuncionarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(selectFuncionario);
 
         jMenu19.setText("Cliente");
 
@@ -212,7 +231,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu1.add(jMenu15);
 
-        jMenu5.setText("Contas");
+        selectContas.setText("Contas");
 
         jMenu6.setText("Contas a Pagar");
 
@@ -225,7 +244,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem31);
 
-        jMenu5.add(jMenu6);
+        selectContas.add(jMenu6);
 
         jMenu7.setText("Contas a Receber");
 
@@ -246,9 +265,9 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem8);
 
-        jMenu5.add(jMenu7);
+        selectContas.add(jMenu7);
 
-        jMenu1.add(jMenu5);
+        jMenu1.add(selectContas);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         jMenuItem5.setText("Logout");
@@ -297,7 +316,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu14);
 
-        jMenu21.setText("Contas");
+        selectContasM.setText("Contas");
 
         jMenu22.setText("Contas a Pagar");
 
@@ -309,7 +328,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu22.add(jMenuItem29);
 
-        jMenu21.add(jMenu22);
+        selectContasM.add(jMenu22);
 
         jMenu23.setText("Contas a Receber");
 
@@ -329,9 +348,9 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu23.add(jMenuItem28);
 
-        jMenu21.add(jMenu23);
+        selectContasM.add(jMenu23);
 
-        jMenuBar1.add(jMenu21);
+        jMenuBar1.add(selectContasM);
 
         jMenu11.setText("Relatórios");
 
@@ -491,7 +510,7 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void selectUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUsuarioActionPerformed
         UsuarioView uv;
         try {
             uv = new UsuarioView();
@@ -500,9 +519,9 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_selectUsuarioActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void selectFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectFuncionarioActionPerformed
         FuncionarioView fv;
         try {
             fv = new FuncionarioView();
@@ -511,7 +530,7 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_selectFuncionarioActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         OrcamentoView ov;
@@ -613,7 +632,7 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
-    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+    private void selectEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEmpresaActionPerformed
         EmpresaView ev;
         try {
             ev = new EmpresaView();
@@ -622,7 +641,7 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem21ActionPerformed
+    }//GEN-LAST:event_selectEmpresaActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         FiltroDataRelatorioOrcamentosView fdros;
@@ -788,14 +807,12 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu20;
-    private javax.swing.JMenu jMenu21;
     private javax.swing.JMenu jMenu22;
     private javax.swing.JMenu jMenu23;
     private javax.swing.JMenu jMenu24;
     private javax.swing.JMenu jMenu25;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -811,9 +828,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
-    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
@@ -822,7 +837,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
@@ -831,5 +845,10 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenu selectContas;
+    private javax.swing.JMenu selectContasM;
+    private javax.swing.JMenuItem selectEmpresa;
+    private javax.swing.JMenuItem selectFuncionario;
+    private javax.swing.JMenuItem selectUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -91,11 +91,11 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Relatório Contas a Pagar");
+        setTitle("Relatório Contas a Receber");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Filtro Contas a Pagar");
+        jLabel1.setText("Filtro Contas a Receber");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Vencimento De:");
@@ -347,9 +347,9 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
         if (evt.getKeyCode() == evt.VK_F1) {   
             try {
-                PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
-                this.getParent().add(pcpv);
-                pcpv.setVisible(true);
+                PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
+                this.getParent().add(pcrv);
+                pcrv.setVisible(true);
                 PesquisarContaPagarView.validador = 1;
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -360,9 +360,9 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
     private void inputTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTituloKeyPressed
         if (evt.getKeyCode() == evt.VK_F1) {   
             try {
-                PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
-                this.getParent().add(pcpv);
-                pcpv.setVisible(true);
+                PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
+                this.getParent().add(pcrv);
+                pcrv.setVisible(true);
                 PesquisarContaPagarView.validador = 1;
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -371,7 +371,16 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
     }//GEN-LAST:event_inputTituloKeyPressed
 
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_F1) {   
+            try {
+                PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
+                this.getParent().add(pcrv);
+                pcrv.setVisible(true);
+                PesquisarContaPagarView.validador = 1;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+        }
     }//GEN-LAST:event_inputClienteKeyPressed
 
 

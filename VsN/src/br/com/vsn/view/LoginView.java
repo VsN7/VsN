@@ -2,6 +2,7 @@
 package br.com.vsn.view;
 
 import br.com.vsn.controller.ClienteController;
+import br.com.vsn.controller.FuncionarioController;
 import br.com.vsn.controller.UsuarioController;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,8 +16,9 @@ import javax.swing.JOptionPane;
  * @author vitor
  */
 public class LoginView extends javax.swing.JFrame {
-
+    public static int autorizacao=0;
     UsuarioController uc = new UsuarioController();
+    FuncionarioController fc = new FuncionarioController();
     public LoginView() {
         uc = new UsuarioController();
         initComponents();
@@ -211,9 +213,17 @@ public class LoginView extends javax.swing.JFrame {
         try {
             if(uc.efetuarLogin(loginField.getText(),senhaField.getText())){
                 JOptionPane.showMessageDialog(null, "BEM VINDO "+loginField.getText().toUpperCase(), "Login", JOptionPane.INFORMATION_MESSAGE);
+                try{
+                    autorizacao = fc.pesquisarFiltroCpf(uc.pesquisarUnicoId(uc.getId()).get(0).getCpf()).get(0).getAutorizacao();
+                }catch(Exception ex){
+                    autorizacao = 7;
+                    System.out.println("USUARIO MASTER");   
+                }
                 MenuView mv = new MenuView();
                 mv.setVisible(true);
                 this.dispose();
+                
+               
             }
             else
             JOptionPane.showMessageDialog(null, "Loguin ou senha incorretos", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -227,9 +237,16 @@ public class LoginView extends javax.swing.JFrame {
             try {
                 if(uc.efetuarLogin(loginField.getText(),senhaField.getText())){
                     JOptionPane.showMessageDialog(null, "BEM VINDO "+loginField.getText().toUpperCase(), "Login", JOptionPane.INFORMATION_MESSAGE);
+                    try{
+                        autorizacao = fc.pesquisarFiltroCpf(uc.pesquisarUnicoId(uc.getId()).get(0).getCpf()).get(0).getAutorizacao();
+                    }catch(Exception ex){
+                        autorizacao = 7;
+                         System.out.println("USUARIO MASTER");   
+                    }
                     MenuView mv = new MenuView();
                     mv.setVisible(true);
                     this.dispose();
+                    
                 }
                 else
                 JOptionPane.showMessageDialog(null, "Loguin ou senha incorretos", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -244,10 +261,17 @@ public class LoginView extends javax.swing.JFrame {
             try {
                 if(uc.efetuarLogin(loginField.getText(),senhaField.getText())){
                     JOptionPane.showMessageDialog(null, "BEM VINDO "+loginField.getText().toUpperCase(), "Login", JOptionPane.INFORMATION_MESSAGE);
+                    try{
+                        autorizacao = fc.pesquisarFiltroCpf(uc.pesquisarUnicoId(uc.getId()).get(0).getCpf()).get(0).getAutorizacao();
+                    }catch(Exception ex){
+                        autorizacao = 7;
+                        System.out.println("USUARIO MASTER");   
+                    }
                     MenuView mv = new MenuView();
                     mv.setVisible(true);
                     this.dispose();
-                }
+                    
+                    }
                 else
                     JOptionPane.showMessageDialog(null, "Loguin ou senha incorretos", "Aviso", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
