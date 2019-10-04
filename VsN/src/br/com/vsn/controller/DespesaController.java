@@ -4,6 +4,7 @@ import br.com.vsn.dao.DespesaDAO;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Despesa;
 import br.com.vsn.model.Usuario;
+import br.com.vsn.view.ContaPagarView;
 import br.com.vsn.view.LoginView;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -192,6 +193,7 @@ public class DespesaController {
         if (resposta == JOptionPane.YES_OPTION) {
             if(despesa.getParcelas() == despesa.getParcelasPagar()){
                 dao.destroy(despesa.getId());
+                ContaPagarView.index--;
                 JOptionPane.showMessageDialog(rootPane, "Conta excluida com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
             }else{
                 JOptionPane.showMessageDialog(null, "Não é possivel excluir esta conta, pois a mesma possui parcela(s) pagas!", "Aviso", JOptionPane.ERROR_MESSAGE);

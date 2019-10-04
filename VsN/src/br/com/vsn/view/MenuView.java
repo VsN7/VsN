@@ -3,11 +3,13 @@ package br.com.vsn.view;
 
 import br.com.vsn.controller.FuncionarioController;
 import br.com.vsn.controller.UsuarioController;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -36,6 +38,8 @@ public class MenuView extends javax.swing.JFrame {
         selectFuncionario.setEnabled(true);
         selectRelatorio.setEnabled(true);
         selectUsuario.setEnabled(true);
+        labeContasPagar.setVisible(true);
+        labeContasReceber.setVisible(true);
             
         }else if (autorizacao == 7){
             selectContas.setEnabled(true);
@@ -44,6 +48,8 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(true);
             selectUsuario.setEnabled(true);
             selectRelatorio.setEnabled(true);
+            labeContasPagar.setVisible(true);
+            labeContasReceber.setVisible(true);
         }else if(autorizacao == 1){
             selectContas.setEnabled(false);
             selectContasM.setEnabled(false);
@@ -51,6 +57,8 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(false);
             selectUsuario.setEnabled(false);
             selectRelatorio.setEnabled(true);
+            labeContasPagar.setVisible(false);
+            labeContasReceber.setVisible(false);
         }else{
             selectContas.setEnabled(false);
             selectContasM.setEnabled(false);
@@ -58,6 +66,8 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(false);
             selectUsuario.setEnabled(false);
             selectRelatorio.setEnabled(false);
+            labeContasPagar.setVisible(false);
+            labeContasReceber.setVisible(false);
         }
     }
 
@@ -65,7 +75,7 @@ public class MenuView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/backGrounds/background.jpg"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/backGrounds/esteticar.png"));
         Image image = icon.getImage();
         desktopPane = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
@@ -73,6 +83,36 @@ public class MenuView extends javax.swing.JFrame {
             }
         };
         jLabel1 = new javax.swing.JLabel();
+        ImageIcon iconCliente = new ImageIcon(getClass().getResource("/icon/cliente.png")); Image clientes = iconCliente.getImage();
+        labelCliente = new javax.swing.JLabel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(clientes,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        ImageIcon iconOrcamento = new ImageIcon(getClass().getResource("/icon/orcamento.png")); Image orcamentos = iconOrcamento.getImage();
+        labelOrcamento = new javax.swing.JLabel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(orcamentos,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        ImageIcon iconOs = new ImageIcon(getClass().getResource("/icon/os.png")); Image os = iconOs.getImage();
+        labelOs = new javax.swing.JLabel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(os,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        ImageIcon iconContasReceber = new ImageIcon(getClass().getResource("/icon/contasReceber.png")); Image contasReceber = iconContasReceber.getImage();
+        labeContasReceber = new javax.swing.JLabel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(contasReceber,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        ImageIcon iconContasPagar = new ImageIcon(getClass().getResource("/icon/contasPagar.png")); Image contasPagar = iconContasPagar.getImage();
+        labeContasPagar = new javax.swing.JLabel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(contasPagar,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         selectEmpresa = new javax.swing.JMenuItem();
@@ -139,21 +179,117 @@ public class MenuView extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Versão 1.0.0.1");
 
+        labelCliente.setBackground(new java.awt.Color(0, 0, 0));
+        labelCliente.setForeground(new java.awt.Color(255, 255, 255));
+        labelCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelClienteMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelClienteMousePressed(evt);
+            }
+        });
+
+        labelOrcamento.setBackground(new java.awt.Color(0, 0, 0));
+        labelOrcamento.setForeground(new java.awt.Color(255, 255, 255));
+        labelOrcamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelOrcamentoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelOrcamentoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelOrcamentoMousePressed(evt);
+            }
+        });
+
+        labelOs.setBackground(new java.awt.Color(0, 0, 0));
+        labelOs.setForeground(new java.awt.Color(255, 255, 255));
+        labelOs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelOsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelOsMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelOsMousePressed(evt);
+            }
+        });
+
+        labeContasReceber.setBackground(new java.awt.Color(0, 0, 0));
+        labeContasReceber.setForeground(new java.awt.Color(255, 255, 255));
+        labeContasReceber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labeContasReceberMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labeContasReceberMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labeContasReceberMousePressed(evt);
+            }
+        });
+
+        labeContasPagar.setBackground(new java.awt.Color(0, 0, 0));
+        labeContasPagar.setForeground(new java.awt.Color(255, 255, 255));
+        labeContasPagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labeContasPagarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labeContasPagarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labeContasPagarMousePressed(evt);
+            }
+        });
+
         desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(labelCliente, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(labelOrcamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(labelOs, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(labeContasReceber, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(labeContasPagar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(568, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
+                        .addGap(0, 561, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(desktopPaneLayout.createSequentialGroup()
+                        .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labeContasReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labeContasPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 552, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(249, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labeContasReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labeContasPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -290,7 +426,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu1.add(selectContas);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem5.setText("Logout");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -797,7 +933,14 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
-        
+        ContaPagarView cpv;
+        try {
+            cpv = new ContaPagarView();
+            cpv.setVisible(true);
+            this.desktopPane.add(cpv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem31ActionPerformed
 
     private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
@@ -810,6 +953,102 @@ public class MenuView extends javax.swing.JFrame {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void labelClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseEntered
+        labelCliente.setBorder(new LineBorder(Color.WHITE, 1, true));
+    }//GEN-LAST:event_labelClienteMouseEntered
+
+    private void labelClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseExited
+        labelCliente.setBorder(new LineBorder(Color.black, 0, true));
+    }//GEN-LAST:event_labelClienteMouseExited
+
+    private void labelClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMousePressed
+        
+        ClienteView cv;
+        try {
+            cv = new ClienteView();
+            cv.setVisible(true);
+            this.desktopPane.add(cv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labelClienteMousePressed
+
+    private void labelOrcamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseEntered
+        labelOrcamento.setBorder(new LineBorder(Color.WHITE, 1, true));
+    }//GEN-LAST:event_labelOrcamentoMouseEntered
+
+    private void labelOrcamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseExited
+        labelOrcamento.setBorder(new LineBorder(Color.black, 0, true));
+    }//GEN-LAST:event_labelOrcamentoMouseExited
+
+    private void labelOrcamentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMousePressed
+        OrcamentoView ov;
+        try {
+            ov = new OrcamentoView();
+            ov.setVisible(true);
+            this.desktopPane.add(ov);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labelOrcamentoMousePressed
+
+    private void labelOsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseEntered
+        labelOs.setBorder(new LineBorder(Color.WHITE, 1, true));
+    }//GEN-LAST:event_labelOsMouseEntered
+
+    private void labelOsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseExited
+        labelOs.setBorder(new LineBorder(Color.black, 0, true));
+    }//GEN-LAST:event_labelOsMouseExited
+
+    private void labelOsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMousePressed
+        OrdemServicoView osv;
+        try {
+            osv = new OrdemServicoView();
+            osv.setVisible(true);
+            this.desktopPane.add(osv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labelOsMousePressed
+
+    private void labeContasReceberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseEntered
+        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 1, true));
+    }//GEN-LAST:event_labeContasReceberMouseEntered
+
+    private void labeContasReceberMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseExited
+        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 0, true));
+    }//GEN-LAST:event_labeContasReceberMouseExited
+
+    private void labeContasReceberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMousePressed
+        ContaReceberView crv;
+        try {
+            crv = new ContaReceberView();
+            crv.setVisible(true);
+            this.desktopPane.add(crv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labeContasReceberMousePressed
+
+    private void labeContasPagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseEntered
+        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 1, true));
+    }//GEN-LAST:event_labeContasPagarMouseEntered
+
+    private void labeContasPagarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseExited
+        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 0, true));
+    }//GEN-LAST:event_labeContasPagarMouseExited
+
+    private void labeContasPagarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMousePressed
+        ContaPagarView cpv;
+        try {
+            cpv = new ContaPagarView();
+            cpv.setVisible(true);
+            this.desktopPane.add(cpv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labeContasPagarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -865,6 +1104,11 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JLabel labeContasPagar;
+    private javax.swing.JLabel labeContasReceber;
+    private javax.swing.JLabel labelCliente;
+    private javax.swing.JLabel labelOrcamento;
+    private javax.swing.JLabel labelOs;
     private javax.swing.JMenu selectContas;
     private javax.swing.JMenu selectContasM;
     private javax.swing.JMenuItem selectEmpresa;

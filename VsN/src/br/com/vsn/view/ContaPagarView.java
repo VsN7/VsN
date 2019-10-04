@@ -33,7 +33,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
     DespesaController dc;
     SimpleDateFormat sdf;
     NumberFormat formatter;
-    static int index = 0;
+    public static int index = 0;
     Despesa despesa;
     
     int id;
@@ -67,6 +67,8 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                 inputId.setEditable(false);
                 inputValorPago.setEditable(false);
                 comboParcelas.setEnabled(false);
+                inputValorParcela.setEditable(false);
+                inputVencimento.setEnabled(false);
                 this.ativarInputCadastrar();
         }else{
             this.exibirDados();
@@ -586,7 +588,25 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         try {
             dc.destroy(despesa);
-            this.exibirDados();
+            if(index<0 &&dc.getDespesas().size()>0){
+                index++;
+            }
+            dc = new DespesaController();
+            if(dc.getDespesas().size()<=0){
+                this.desativarTudo();
+                this.ativarButtonCadastrar();
+                if(buttonCadastrar.getText().equals("Salvar"))
+                    this.desativarInputs();
+                inputId.setEditable(false);
+                inputValorPago.setEditable(false);
+                comboParcelas.setEnabled(false);
+                inputValorParcela.setEditable(false);
+                inputVencimento.setEnabled(false);
+                this.ativarInputCadastrar();
+                this.limparCampos();
+            }else{
+                this.exibirDados();
+            }
         } catch (Exception ex) {
             Logger.getLogger(ContaPagarView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -718,7 +738,11 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_inputValorPagoActionPerformed
 
     private void comboParcelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboParcelasActionPerformed
-        inputValorPago.setText(""+formatter.format(((dc.getDespesas().get(index).getValor()/dc.getDespesas().get(index).getParcelas())*(comboParcelas.getSelectedIndex()+1))));
+        try{
+            inputValorPago.setText(""+formatter.format(((dc.getDespesas().get(index).getValor()/dc.getDespesas().get(index).getParcelas())*(comboParcelas.getSelectedIndex()+1))));
+        }catch(Exception e){
+            
+        }
     }//GEN-LAST:event_comboParcelasActionPerformed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed

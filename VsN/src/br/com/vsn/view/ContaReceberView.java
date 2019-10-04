@@ -129,7 +129,7 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastro de Titulos");
+        setTitle("Contas a Receber");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusTraversalPolicyProvider(true);
 
