@@ -81,6 +81,13 @@ public class OrcamentoController {
         return dao.orcamentoFiltroNome(nome.toUpperCase());
     }
     
+    public List<Orcamento> pesquisarFiltroServico(String servico) {
+        orcamentos.clear();
+        servico+="%";
+        
+        return dao.orcamentoFiltroServico(servico.toUpperCase());
+    }
+    
     public List<Orcamento> pesquisarFiltroCpf(String cpf) {
         orcamentos.clear();
         cpf+="%";
@@ -171,10 +178,10 @@ public class OrcamentoController {
         dao.relatorioOrcamentosAll();
     }
     
-    public void relatorioOrcamentoData(int combobox,String dInicio, String dFinal){
+    public void relatorioOrcamentoData(int combobox,String dInicio, String dFinal, String cliente, String servico, int id){
         Component rootPane = null;
         try{
-            dao.relatorioOrcamentoData(combobox,dInicio,dFinal);
+            dao.relatorioOrcamentoData(combobox,dInicio,dFinal,cliente,servico,id);
         }catch (Exception ex) {
             Logger.getLogger(OrcamentoController.class.getName()).log(Level.SEVERE, null, ex);
         }

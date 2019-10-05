@@ -24,6 +24,8 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
     static OrdemServico ordemServico;
     SimpleDateFormat sdf;
     String valorCombo;
+    public static int validador;
+    
     public static int getId() {
         return id;
     }
@@ -70,7 +72,7 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         buttonBuscar = new javax.swing.JToggleButton();
 
         setClosable(true);
-        setTitle("Pesquisar Orçamento");
+        setTitle("Pesquisar Ordem de Serviço");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,7 +106,7 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(40);
         }
 
-        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Serviço" }));
 
         inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -166,9 +168,14 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
                 this.id = this.valorCollun();
                 OrdemServicoController co = new OrdemServicoController();
                 ordemServico = co.pesquisarUnico(id).get(0);
-                this.valoresInputOrdemServico();
-                OrdemServicoView.ativarInputCadastrar();
-                OrdemServicoView.inputId.setEnabled(true);
+                if(validador == 1){
+                    this.valoresInputOrdemServico();
+                    OrdemServicoView.ativarInputCadastrar();
+                    OrdemServicoView.inputId.setEnabled(true);
+                }else if(validador == 2){
+                    this.valoresInputFiltroRelatorioOrdemServicoGeral();
+                }
+                
                 this.dispose();
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarOrdemServicoView.class.getName()).log(Level.SEVERE, null, ex);
@@ -183,6 +190,8 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
             valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
             if(valorCombo.equals("cliente")){
                 this.preencherTabelaFiltroNome();
+            }else if(valorCombo.equals("serviço")){
+                this.preencherTabelaFiltroServico();
             }
 
         }catch(Exception e){
@@ -238,6 +247,25 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         
     }
     
+    public void preencherTabelaFiltroServico() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        OrdemServicoController osc = new OrdemServicoController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<osc.pesquisarFiltroServico(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             osc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getId(),
+             osc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getCliente(),
+             osc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getServico(),
+             sdf.format(osc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getDataInicio().getTime()),
+             sdf.format(osc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getPrevisaoEntrega().getTime()),
+             osc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getValor(),
+             osc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getSituacao()
+             });
+        }
+        
+    }
+    
     public int valorCollun(){
         int row = jTable1.getSelectedRow();
         Object value = null;
@@ -264,6 +292,12 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         OrdemServicoView.inputValor.setText(""+ordemServico.getValor());
         OrdemServicoView.inputSituacao.setText(""+ordemServico.getSituacao());   
         OrdemServicoView.inputObservacoes.setText(""+ordemServico.getObservacoes());    
+    }
+    
+    public void valoresInputFiltroRelatorioOrdemServicoGeral(){
+        FiltroRelatorioOrdemServicoGeralView.inputId.setText(""+ordemServico.getId());
+        FiltroRelatorioOrdemServicoGeralView.inputCliente.setText(""+ordemServico.getCliente());
+        FiltroRelatorioOrdemServicoGeralView.inputServico.setText(""+ordemServico.getServico());
     }
 
 }

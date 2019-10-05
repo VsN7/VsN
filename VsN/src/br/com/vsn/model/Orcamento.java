@@ -33,12 +33,15 @@ import javax.persistence.TemporalType;
                 query = "SELECT SUM(o.valor) FROM Orcamento o"),
         
         @NamedQuery(name = "Orcamento.valorTotalD", 
-                query = "SELECT SUM(o.valor) FROM Orcamento o where previsaoEntrega between :dInicio and :dFim AND (o.situacao LIKE :situacao OR situacao LIKE :s2)"),
+                query = "SELECT SUM(o.valor) FROM Orcamento o where o.id = :idO or (previsaoEntrega between :dInicio and :dFim AND o.situacao LIKE :situacao AND o.cliente like :cliente AND o.servico like :servico)"),
         @NamedQuery(name = "Orcamento.valorTotalS", 
                 query = "SELECT SUM(o.valor) FROM Orcamento o where (o.situacao = :situacao OR o.situacao = :s2)"),
      
      @NamedQuery(name = "Orcamento.buscaPorNome", 
                 query = "SELECT o FROM Orcamento o WHERE o.cliente LIKE :nome "),
+     
+     @NamedQuery(name = "Orcamento.buscaPorServico", 
+                query = "SELECT o FROM Orcamento o WHERE o.servico LIKE :servico "),
      
      @NamedQuery(name = "Orcamento.buscaPorCpf", 
                 query = "SELECT o FROM Orcamento o WHERE o.cpf LIKE :cpf "),

@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
 
     private static int id;
+    public static int validador;
     static Orcamento orcamento;
     SimpleDateFormat sdf;
     String valorCombo;
@@ -104,7 +105,7 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(40);
         }
 
-        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Serviço" }));
 
         inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -167,9 +168,14 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
                 this.id = this.valorCollun();
                 OrcamentoController co = new OrcamentoController();
                 orcamento = co.pesquisarUnico(id).get(0);
-                this.valoresInputOrcamento();
-                OrcamentoView.ativarInputCadastrar();
-                OrcamentoView.inputId.setEnabled(true);
+                if(validador == 1){
+                    this.valoresInputOrcamento();
+                    OrcamentoView.ativarInputCadastrar();
+                    OrcamentoView.inputId.setEnabled(true);
+                }else if(validador == 2){
+                    this.valoresInputFiltroRelatorioOrcamentosGeral();
+                }
+                
                 this.dispose();
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarOrcamentoView.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,6 +190,10 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
             valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
             if(valorCombo.equals("cliente")){
                 this.preencherTabelaFiltroNome();
+            }else if(valorCombo.equals("serviço")){
+                this.preencherTabelaFiltroServico();
+            }else if(valorCombo.equals("cpf")){
+                this.preencherTabelaFiltroCpf();
             }
 
         }catch(Exception e){
@@ -239,6 +249,25 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         
     }
     
+    public void preencherTabelaFiltroServico() throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        OrcamentoController oc = new OrcamentoController();
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        modelo.setNumRows(0);
+        for(int i=0; i<oc.pesquisarFiltroServico(inputSelecionado.getText()).size(); i++){
+            modelo.addRow(new Object[]{
+             oc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getId(),
+             oc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getCliente(),
+             oc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getServico(),
+             sdf.format(oc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getDataInicio().getTime()),
+             sdf.format(oc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getPrevisaoEntrega().getTime()),
+             oc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getValor(),
+             oc.pesquisarFiltroServico(inputSelecionado.getText()).get(i).getSituacao()
+             });
+        }
+        
+    }
+    
     public void preencherTabelaFiltroCpf() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         OrcamentoController oc = new OrcamentoController();
@@ -284,6 +313,12 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         OrcamentoView.inputValor.setText(""+orcamento.getValor());
         OrcamentoView.inputSituacao.setText(""+orcamento.getSituacao());   
         OrcamentoView.inputObservacoes.setText(""+orcamento.getObservacoes());    
+    }
+    
+    public void valoresInputFiltroRelatorioOrcamentosGeral(){
+        FiltroRelatorioOrcamentosGeralView.inputId.setText(""+orcamento.getId());
+        FiltroRelatorioOrcamentosGeralView.inputCliente.setText(""+orcamento.getCliente());
+        FiltroRelatorioOrcamentosGeralView.inputServico.setText(""+orcamento.getServico());
     }
 
 }

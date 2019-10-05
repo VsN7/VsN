@@ -182,6 +182,19 @@ public class OrcamentoDAO implements Serializable {
         }
     }
     
+    public List<Orcamento> orcamentoFiltroServico(String servico) {
+        List<Orcamento> orcamentos = null;
+        EntityManager em = getEntityManager();
+        try{
+           orcamentos = em.createNamedQuery("Orcamento.buscaPorServico").setParameter("servico",servico).getResultList();
+           return orcamentos;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public List<Orcamento> orcamentoFiltroCpf(String cpf) {
         List<Orcamento> orcamentos = null;
         EntityManager em = getEntityManager();
@@ -247,7 +260,7 @@ public class OrcamentoDAO implements Serializable {
             }
         }
         
-        public double retornaValorTotalD(Date dInicio, Date dFim,String situacao,String s2){
+        public double retornaValorTotalD(Date dInicio, Date dFim,String situacao,String cliente, String servico, int idO){
             EntityManager em = getEntityManager();
             double id;
             Calendar c = Calendar.getInstance();
@@ -261,7 +274,9 @@ public class OrcamentoDAO implements Serializable {
                 c2.setTime(dFim);
                 query.setParameter("dFim", c2);
                 query.setParameter("situacao", situacao);
-                query.setParameter("s2", s2);
+                query.setParameter("cliente", cliente);
+                query.setParameter("servico", servico);
+                query.setParameter("idO", idO);
                 id = (double) query.getSingleResult();
                 return id;
             }catch (Exception e){
@@ -347,10 +362,19 @@ public class OrcamentoDAO implements Serializable {
         jv.setExtendedState(MAXIMIZED_BOTH);
     }
     
-    public void relatorioOrcamentoData(int comboBox,String dInicio, String dFim){
+    public void relatorioOrcamentoData(int comboBox,String dInicio, String dFim, String cliente, String servico, int id){
         Connection conn;
         Component rootPane = null;
         JasperPrint jasperPrint = null;
+        
+        if(cliente.equals(""))
+            cliente = "%";
+        else
+            cliente +="%";
+        if(servico.equals(""))
+            servico = "%";
+        else
+            servico +="%";
         
         if(dInicio.equals("  /  /    "))
             dInicio = "22/02/1000";
@@ -360,32 +384,31 @@ public class OrcamentoDAO implements Serializable {
             conn = ConnectionFactory.getInstance().getConnection();
         
         
-        String src = "C:\\VsN\\relatorios\\orcamentosData.jasper";
+        String src = "C:\\VsN\\relatorios\\orcamentosGeral.jasper";
         String situacao;
-        String s2;
         if(comboBox ==0){
-            situacao = "ABERTO";
-            s2 = "ABERTO";
+            situacao = "";
         }else{
             if(comboBox==1){
-                situacao = "VINCULADO";
-                s2 = "VINCULADO";
-            }else{
                 situacao = "ABERTO";
-                s2 = "VINCULADO";
+            }else if (comboBox ==2){
+                situacao = "VINCULADO";
+            }else{
+                situacao = "não existe";
             }
             
         }
         situacao+="%";
-        s2+="%";
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Map param = new HashMap();
-        param.put("total",this.retornaValorTotalD(sdf.parse(dInicio),sdf.parse(dFim),situacao,s2));
+        param.put("total",this.retornaValorTotalD(sdf.parse(dInicio),sdf.parse(dFim),situacao,cliente,servico,id));
         param.put("datainicio",sdf.parse(dInicio));
         param.put("dataFim",sdf.parse(dFim));
-        param.put("situacoes",situacao);
-        param.put("s2", s2);
+        param.put("situacao",situacao);
+        param.put("cliente",cliente);
+        param.put("servico", servico);
+        param.put("id",id);
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         

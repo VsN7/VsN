@@ -139,7 +139,7 @@ public class CalendarView extends javax.swing.JInternalFrame {
             public void propertyChange(PropertyChangeEvent e) {
                 
                 c= jCalendar1.getCalendar();
-                FiltroDataRelatorioOrcamentosView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                FiltroRelatorioOrcamentosGeralView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
                 dispose();
             }
         });
@@ -155,7 +155,7 @@ public class CalendarView extends javax.swing.JInternalFrame {
             public void propertyChange(PropertyChangeEvent e) {
                 
                 c= jCalendar1.getCalendar();
-                FiltroDataRelatorioOrcamentosView.inputDataFinal.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                FiltroRelatorioOrcamentosGeralView.inputDataFinal.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
                 dispose();
             }
         });
@@ -169,7 +169,7 @@ public class CalendarView extends javax.swing.JInternalFrame {
             public void propertyChange(PropertyChangeEvent e) {
                 
                 c= jCalendar1.getCalendar();
-                FiltroDataRelatorioOrdemServicoView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                FiltroRelatorioOrdemServicoGeralView.inputDataInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
                 dispose();
             }
         });
@@ -185,7 +185,7 @@ public class CalendarView extends javax.swing.JInternalFrame {
             public void propertyChange(PropertyChangeEvent e) {
                 
                 c= jCalendar1.getCalendar();
-                FiltroDataRelatorioOrdemServicoView.inputDataFinal.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
+                FiltroRelatorioOrdemServicoGeralView.inputDataFinal.setText(new SimpleDateFormat("dd/MM/yyyy").format(jCalendar1.getDate()));
                 dispose();
             }
         });

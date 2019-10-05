@@ -72,7 +72,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int lar = (int) d.getWidth();
         int alt = (int) d.getHeight();
-        this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/64);
+        this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/96);
         initComponents();
         
         if(oc.getOrcamentos().size()<=0){
@@ -795,7 +795,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 PesquisarOrcamentoView pv = new PesquisarOrcamentoView();
                 this.getParent().add(pv);
                 pv.setVisible(true);
-                
+                PesquisarOrcamentoView.validador = 1;
                    
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -890,6 +890,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                         PesquisarOrcamentoView pov = new PesquisarOrcamentoView();
                         this.getParent().add(pov);
                         pov.setVisible(true);
+                        PesquisarOrcamentoView.validador = 1;
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                     }

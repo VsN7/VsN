@@ -182,6 +182,19 @@ public class OrdemServicoDAO implements Serializable {
         }
     }
     
+    public List<OrdemServico> ordemServicoFiltroServico(String servico) {
+        List<OrdemServico> ordemServico = null;
+        EntityManager em = getEntityManager();
+        try{
+           ordemServico = em.createNamedQuery("OrdemServico.buscaPorServico").setParameter("servico",servico).getResultList();
+           return ordemServico;
+        }catch(Exception e){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public OrdemServico findOrdemServico(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -239,7 +252,7 @@ public class OrdemServicoDAO implements Serializable {
             }
         }
         
-        public double retornaValorTotalD(Date dInicio, Date dFim,String situacao){
+        public double retornaValorTotalD(Date dInicio, Date dFim,String situacao, String cliente, String servico, int idOS){
             EntityManager em = getEntityManager();
             double id;
             Calendar c = Calendar.getInstance();
@@ -253,10 +266,13 @@ public class OrdemServicoDAO implements Serializable {
                 c2.setTime(dFim);
                 query.setParameter("dFim", c2);
                 query.setParameter("situacao", situacao);
+                query.setParameter("cliente", cliente);
+                query.setParameter("servico", servico);
+                query.setParameter("idOS", idOS);
                 id = (double) query.getSingleResult();
                 return id;
             }catch (Exception e){
-                System.out.println("Erro ao 218" + e.getMessage());
+                System.out.println("Erro ao calcular valor total, resultado null" + e.getMessage());
                 return 0;
             }
         }
@@ -321,7 +337,7 @@ public class OrdemServicoDAO implements Serializable {
         jv.setExtendedState(MAXIMIZED_BOTH);
     }
     
-    public void relatorioOrdemServicoData(String situacao,String dInicio, String dFim){
+    public void relatorioOrdemServicoData(String situacao,String dInicio, String dFim, String cliente,String servico, int id){
         Connection conn;
         Component rootPane = null;
         JasperPrint jasperPrint = null;
@@ -329,14 +345,17 @@ public class OrdemServicoDAO implements Serializable {
             conn = ConnectionFactory.getInstance().getConnection();
         
         
-        String src = "C:\\VsN\\relatorios\\ordemServicoData.jasper";
+        String src = "C:\\VsN\\relatorios\\ordemServicoGeral.jasper";
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Map param = new HashMap();
-        param.put("total",this.retornaValorTotalD(sdf.parse(dInicio),sdf.parse(dFim),situacao));
+        param.put("total",this.retornaValorTotalD(sdf.parse(dInicio),sdf.parse(dFim),situacao,cliente,servico,id));
         param.put("dataInicio",sdf.parse(dInicio));
         param.put("dataFim",sdf.parse(dFim));
         param.put("situacao",situacao);
+        param.put("cliente", cliente);
+        param.put("servico",servico);
+        param.put("id", id);
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         

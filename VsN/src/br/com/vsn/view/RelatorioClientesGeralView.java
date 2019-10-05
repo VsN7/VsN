@@ -83,7 +83,7 @@ public class RelatorioClientesGeralView extends javax.swing.JInternalFrame {
         });
 
         buttonImprimir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonImprimir.setText("Imprimir");
+        buttonImprimir.setText("Gerar Relatório");
         buttonImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonImprimirActionPerformed(evt);
@@ -164,9 +164,9 @@ public class RelatorioClientesGeralView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(buttonImprimir)
-                .addGap(29, 29, 29))
+                .addGap(28, 28, 28)
+                .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,7 +177,7 @@ public class RelatorioClientesGeralView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         bindingGroup.bind();

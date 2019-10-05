@@ -82,6 +82,13 @@ public class OrdemServicoController {
         return dao.ordemServicoFiltroNome(nome.toUpperCase());
     }
     
+    public List<OrdemServico> pesquisarFiltroServico(String servico) {
+        ordemServicos.clear();
+        servico+="%";
+        
+        return dao.ordemServicoFiltroServico(servico.toUpperCase());
+    }
+    
     public void salvar() throws NoSuchAlgorithmException{
         Component rootPane = null;
         UsuarioController uc = new UsuarioController();
@@ -220,10 +227,10 @@ public class OrdemServicoController {
         }
     }
     
-    public void relatorioOrdemServicoData(String situacao,String dInicio, String dFinal){
+    public void relatorioOrdemServicoData(String situacao,String dInicio, String dFinal,String cliente, String servico, int id){
         Component rootPane = null;
         try{
-            dao.relatorioOrdemServicoData(situacao,dInicio,dFinal);
+            dao.relatorioOrdemServicoData(situacao,dInicio,dFinal,cliente,servico,id);
         }catch (Exception ex) {
             Logger.getLogger(OrcamentoController.class.getName()).log(Level.SEVERE, null, ex);
         }

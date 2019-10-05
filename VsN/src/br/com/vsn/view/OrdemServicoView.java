@@ -62,7 +62,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int lar = (int) d.getWidth();
         int alt = (int) d.getHeight();
-        this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/64);
+        this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/76);
         initComponents();
         
         if(osc.getOrdemServicos().size()<=0){
@@ -795,7 +795,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 PesquisarOrdemServicoView pv = new PesquisarOrdemServicoView();
                 this.getParent().add(pv);
                 pv.setVisible(true);
-                
+                PesquisarOrdemServicoView.validador = 1;
                    
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -899,6 +899,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                         PesquisarOrdemServicoView pov = new PesquisarOrdemServicoView();
                         this.getParent().add(pov);
                         pov.setVisible(true);
+                        PesquisarOrdemServicoView.validador = 1;
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                     }

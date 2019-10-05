@@ -28,14 +28,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectEmpresaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="selectUsuario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectUsuarioActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="selectFuncionario">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
@@ -101,36 +93,6 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Fornecedor"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Cadastro de Fornecedores"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu15">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Estoque"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem20">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Cadastro de Produto em Estoque"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem20ActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
             <Menu class="javax.swing.JMenu" name="selectContas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Contas"/>
@@ -180,6 +142,44 @@
                     </MenuItem>
                   </SubComponents>
                 </Menu>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="selectUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectUsuarioActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="jMenu4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fornecedor"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cadastro de Fornecedores"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Estoque"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem20">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cadastro de Produto em Estoque"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem20ActionPerformed"/>
+                  </Events>
+                </MenuItem>
               </SubComponents>
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
@@ -318,20 +318,20 @@
                 <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Funcionarios"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem17">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Funcionarios Aniversariantes"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem17ActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem18">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Funcionarios Geral"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem18ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem17">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Funcionarios Aniversariantes"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem17ActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -373,7 +373,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem22">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Or&#xe7;amentos por Data de Entrega"/>
+                    <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Or&#xe7;amentos Geral"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem22ActionPerformed"/>
@@ -388,7 +388,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem23">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Ordem de Servi&#xe7;o por Data de Entrega"/>
+                    <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Ordem de Servi&#xe7;o Geral"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem23ActionPerformed"/>

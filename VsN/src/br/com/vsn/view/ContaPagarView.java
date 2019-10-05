@@ -68,7 +68,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                 inputValorPago.setEditable(false);
                 comboParcelas.setEnabled(false);
                 inputValorParcela.setEditable(false);
-                inputVencimento.setEnabled(false);
+                inputVencimento.setEditable(false);
                 this.ativarInputCadastrar();
         }else{
             this.exibirDados();
@@ -601,7 +601,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                 inputValorPago.setEditable(false);
                 comboParcelas.setEnabled(false);
                 inputValorParcela.setEditable(false);
-                inputVencimento.setEnabled(false);
+                inputVencimento.setEditable(false);
                 this.ativarInputCadastrar();
                 this.limparCampos();
             }else{

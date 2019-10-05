@@ -116,7 +116,6 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         selectEmpresa = new javax.swing.JMenuItem();
-        selectUsuario = new javax.swing.JMenuItem();
         selectFuncionario = new javax.swing.JMenuItem();
         jMenu19 = new javax.swing.JMenu();
         jMenuItem26 = new javax.swing.JMenuItem();
@@ -124,16 +123,17 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu18 = new javax.swing.JMenu();
         jMenuItem25 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu15 = new javax.swing.JMenu();
-        jMenuItem20 = new javax.swing.JMenuItem();
         selectContas = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem31 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        selectUsuario = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu15 = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -152,8 +152,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu20 = new javax.swing.JMenu();
-        jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu24 = new javax.swing.JMenu();
         jMenuItem30 = new javax.swing.JMenuItem();
         jMenu25 = new javax.swing.JMenu();
@@ -308,14 +308,6 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu1.add(selectEmpresa);
 
-        selectUsuario.setText("Usuário");
-        selectUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectUsuarioActionPerformed(evt);
-            }
-        });
-        jMenu1.add(selectUsuario);
-
         selectFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
         selectFuncionario.setText("Funcionario");
         selectFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -364,30 +356,6 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu1.add(jMenu18);
 
-        jMenu4.setText("Fornecedor");
-
-        jMenuItem6.setText("Cadastro de Fornecedores");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem6);
-
-        jMenu1.add(jMenu4);
-
-        jMenu15.setText("Estoque");
-
-        jMenuItem20.setText("Cadastro de Produto em Estoque");
-        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem20ActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuItem20);
-
-        jMenu1.add(jMenu15);
-
         selectContas.setText("Contas");
 
         jMenu6.setText("Contas a Pagar");
@@ -425,6 +393,38 @@ public class MenuView extends javax.swing.JFrame {
         selectContas.add(jMenu7);
 
         jMenu1.add(selectContas);
+
+        selectUsuario.setText("Usuário");
+        selectUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(selectUsuario);
+
+        jMenu4.setText("Fornecedor");
+
+        jMenuItem6.setText("Cadastro de Fornecedores");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
+        jMenu1.add(jMenu4);
+
+        jMenu15.setText("Estoque");
+
+        jMenuItem20.setText("Cadastro de Produto em Estoque");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem20);
+
+        jMenu1.add(jMenu15);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem5.setText("Logout");
@@ -533,14 +533,6 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu20.setText("Relatório de Funcionarios");
 
-        jMenuItem17.setText("Relatório de Funcionarios Aniversariantes");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem17ActionPerformed(evt);
-            }
-        });
-        jMenu20.add(jMenuItem17);
-
         jMenuItem18.setText("Relatório de Funcionarios Geral");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,6 +540,14 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jMenu20.add(jMenuItem18);
+
+        jMenuItem17.setText("Relatório de Funcionarios Aniversariantes");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu20.add(jMenuItem17);
 
         selectRelatorio.add(jMenu20);
 
@@ -577,7 +577,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu13.setText("Relatório de Orçamentos");
 
-        jMenuItem22.setText("Relatório de Orçamentos por Data de Entrega");
+        jMenuItem22.setText("Relatório de Orçamentos Geral");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem22ActionPerformed(evt);
@@ -589,7 +589,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu16.setText("Relatório de Ordem de Serviço");
 
-        jMenuItem23.setText("Relatório de Ordem de Serviço por Data de Entrega");
+        jMenuItem23.setText("Relatório de Ordem de Serviço Geral");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem23ActionPerformed(evt);
@@ -801,9 +801,9 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_selectEmpresaActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        FiltroDataRelatorioOrcamentosView fdros;
+        FiltroRelatorioOrcamentosGeralView fdros;
         try {
-            fdros = new FiltroDataRelatorioOrcamentosView();
+            fdros = new FiltroRelatorioOrcamentosGeralView();
             fdros.setVisible(true);
             this.desktopPane.add(fdros);
         } catch (Exception ex) {
@@ -878,9 +878,9 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        FiltroDataRelatorioOrdemServicoView fdosv;
+        FiltroRelatorioOrdemServicoGeralView fdosv;
         try {
-            fdosv = new FiltroDataRelatorioOrdemServicoView();
+            fdosv = new FiltroRelatorioOrdemServicoGeralView();
             fdosv.setVisible(true);
             this.desktopPane.add(fdosv);
         } catch (Exception ex) {

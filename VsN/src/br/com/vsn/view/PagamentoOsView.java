@@ -59,7 +59,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int lar = (int) d.getWidth();
         int alt = (int) d.getHeight();
-        this.setLocation((lar - this.getSize().width) / 4, (alt - this.getSize().height)/8);
+        this.setLocation((lar - this.getSize().width) / 3, (alt - this.getSize().height)/8);
         
         
         initComponents();
