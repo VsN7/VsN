@@ -11,12 +11,15 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM funcionario WHERE MONTH(dataNascimento) = $P{mes}]]>
+		<![CDATA[SELECT * FROM funcionario WHERE MONTH(dataNascimento) = $P{mes} and situacao != "INATIVO"]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Usuario_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="autorizacao" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="caminhoImg" class="java.lang.String">

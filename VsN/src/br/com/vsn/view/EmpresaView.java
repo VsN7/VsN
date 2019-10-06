@@ -84,6 +84,12 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         inputCnpj = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cnpj= new javax.swing.text.MaskFormatter("##.###.###/####-##");
+            inputCnpj = new javax.swing.JFormattedTextField(cnpj);
+        }
+        catch (Exception e){
+        }
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -124,11 +130,11 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         buttonEditar = new javax.swing.JButton();
         buttonSelecionar = new javax.swing.JButton();
         buttonCadastrar = new javax.swing.JButton();
-        buttonImprimir = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastro de Fornecedores");
+        setResizable(true);
+        setTitle("Cadastro da Empresa");
         setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -299,14 +305,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonImprimir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonImprimir.setText("Imprimir");
-        buttonImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonImprimirActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -398,8 +396,7 @@ public class EmpresaView extends javax.swing.JInternalFrame {
                                 .addGap(211, 211, 211))
                             .addComponent(inputNomeFantasia)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonInicio))
@@ -490,7 +487,7 @@ public class EmpresaView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
                     .addComponent(buttonProximo)
@@ -501,8 +498,7 @@ public class EmpresaView extends javax.swing.JInternalFrame {
                     .addComponent(buttonCadastrar)
                     .addComponent(buttonExcluir)
                     .addComponent(buttonSelecionar)
-                    .addComponent(buttonEditar)
-                    .addComponent(buttonImprimir))
+                    .addComponent(buttonEditar))
                 .addContainerGap())
         );
 
@@ -647,10 +643,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
-    private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonImprimirActionPerformed
-
     private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
         
     }//GEN-LAST:event_inputIdActionPerformed
@@ -671,7 +663,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinal;
-    private javax.swing.JButton buttonImprimir;
     private javax.swing.JButton buttonInicio;
     private javax.swing.JButton buttonProximo;
     private javax.swing.JButton buttonSelecionar;
@@ -741,7 +732,7 @@ public class EmpresaView extends javax.swing.JInternalFrame {
             inputSituacao.setText(""+ec.getEmpresas().get(index).getSituacao());
             inputId.setEditable(false);
             inputSituacao.setEditable(false);
-            buttonExcluir.setEnabled(false);
+            this.ativarButtonEditar();
             this.valoresInput();
         } catch (Exception ex) {
             Logger.getLogger(EmpresaView.class.getName()).log(Level.SEVERE, null, ex);
@@ -807,7 +798,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
     
     public void ativarButtonCadastrar(){
         buttonCadastrar.setEnabled(true);
-        buttonImprimir.setEnabled(false);
         buttonExcluir.setEnabled(false);
         buttonSelecionar.setEnabled(false);
         buttonEditar.setEnabled(false);
@@ -820,7 +810,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
     public void ativarButtonSelecionar(){
         buttonSelecionar.setEnabled(true);
         buttonCadastrar.setEnabled(false);
-        buttonImprimir.setEnabled(false);
         buttonEditar.setEnabled(false);
         buttonExcluir.setEnabled(false);
         buttonInicio.setEnabled(false);
@@ -832,7 +821,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
     public void ativarButtonEditar(){
         buttonEditar.setEnabled(true);
         buttonCadastrar.setEnabled(false);
-        buttonImprimir.setEnabled(false);
         buttonSelecionar.setEnabled(false);
         buttonExcluir.setEnabled(false);
         buttonInicio.setEnabled(false);
@@ -863,7 +851,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         //Botões
         
         buttonCadastrar.setEnabled(true);
-        buttonImprimir.setEnabled(true);
         buttonSelecionar.setEnabled(true);
         buttonEditar.setEnabled(true);
         buttonExcluir.setEnabled(true);
@@ -895,7 +882,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         //Botões
         
         buttonCadastrar.setEnabled(false);
-        buttonImprimir.setEnabled(false);
         buttonSelecionar.setEnabled(false);
         buttonEditar.setEnabled(false);
         buttonExcluir.setEnabled(false);
