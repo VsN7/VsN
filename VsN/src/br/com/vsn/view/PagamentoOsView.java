@@ -504,7 +504,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                     pc.relatorioReciboManual();
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Primeiro finalize o pagamento!", "Aviso", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Ainda existem valores a serem inseridos!", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_buttonFinalizarActionPerformed

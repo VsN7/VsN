@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="orcamentosGeral" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d2cdb27f-69ce-45bf-b92c-7254e07ed3e3">
 	<property name="ireport.zoom" value="1.7715610000000022"/>
-	<property name="ireport.x" value="32"/>
+	<property name="ireport.x" value="375"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
@@ -98,7 +98,7 @@
 			<staticText>
 				<reportElement style="Title" x="-20" y="6" width="592" height="64" uuid="41818c38-9deb-4788-960e-63801bfdbf8f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[ORÇAMENTOS POR DATA]]></text>
+				<text><![CDATA[ORÇAMENTOS GERAL]]></text>
 			</staticText>
 		</band>
 	</title>

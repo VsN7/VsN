@@ -562,7 +562,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                     c1.setTime(dataInicio);
                     despesa.setDataInicio(c1);
                     Calendar c2 = Calendar.getInstance();
-                    c2.setTime(despesa.getDataVencimento().getTime());
+                    c2.setTime(despesa.getDataInicio().getTime());
                     c2.set(Calendar.MONTH,c2.get(Calendar.MONTH)+1);
                     despesa.setDataVencimento(c2);
                     despesa.setValorPagar(valorTotal);

@@ -1047,7 +1047,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         this.modelo = inputModelo.getText().toUpperCase();
         this.marca = inputMarca.getText().toUpperCase();
         this.ano = Integer.parseInt(inputAno.getText());
-        this.placa = inputPlaca.getText();
+        this.placa = inputPlaca.getText().toUpperCase();
         this.servico = inputServico.getText().toUpperCase();
         //this.atendente = inputAtendente.getText().toUpperCase();
         this.dtInicio = sdf.parse(inputDataInicio.getText());
@@ -1218,7 +1218,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         inputDataInicio.setEnabled(false);
         inputValor.setEnabled(false);
         inputPrevisaoEntrega.setEnabled(false);
-        inputSituacao.setEnabled(false);
+        inputSituacao.setEditable(false);
         inputObservacoes.setEnabled(false);
         
         //Botões
