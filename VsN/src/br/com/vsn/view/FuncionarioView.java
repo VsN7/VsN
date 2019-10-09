@@ -805,7 +805,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         verificaButtonSenha = 1;
         if(buttonSenha.getText().equals("Informar Senha")){
             try {
-                if(!inputLogin.getText().isEmpty() && !inputCpf.getText().isEmpty()){
+                if(!inputLogin.getText().isEmpty() && !inputCpf.getText().equals("   .   .   -  ")){
+                    ifv = new InformarSenhaView();
                     InformarSenhaView.inputCpf.setText(inputCpf.getText());
                     InformarSenhaView.inputLogin.setText(inputLogin.getText());
                     this.getParent().add(ifv);
@@ -823,7 +824,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         }
         if(buttonSenha.getText().equals("Alterar Senha")){
             try {
-                if(!inputLogin.getText().isEmpty() && !inputCpf.getText().isEmpty()){
+                if(!inputLogin.getText().isEmpty() && !inputCpf.getText().equals("   .   .   -  ")){
                     InformarSenhaView isv = new InformarSenhaView();
                     isv.salvarButton.setText("Alterar");
                     this.getParent().add(isv);
