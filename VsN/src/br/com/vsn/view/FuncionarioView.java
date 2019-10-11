@@ -385,22 +385,22 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonInicio))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buttonSelecionar)
+                            .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonAnterior))
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonProximo))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -534,7 +534,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonImprimir)
+                    .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonInicio)
@@ -543,10 +543,10 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             .addComponent(buttonFinal))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonCadastrar)
-                            .addComponent(buttonExcluir)
-                            .addComponent(buttonSelecionar)
-                            .addComponent(buttonEditar))))
+                            .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -602,6 +602,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     if(FuncionarioController.estouraErroNulo == 0){
                         buttonEditar.setText("Editar");
                         buttonSenha.setText("Informar Senha");
+                        fc = new FuncionarioController();
                         this.exibirDados();
                     }
                 }
@@ -614,6 +615,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             JOptionPane.showMessageDialog(rootPane, "Não houveram alterações na senha!", "Aviso", JOptionPane.INFORMATION_MESSAGE, null);                       
                             buttonEditar.setText("Editar");
                             buttonSenha.setText("Informar Senha");
+                            fc = new FuncionarioController();
                             this.exibirDados();
                         }
                     }else{
@@ -622,12 +624,13 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         if(FuncionarioController.estouraErroNulo == 0){
                             buttonEditar.setText("Editar");
                             buttonSenha.setText("Informar Senha");
+                            fc = new FuncionarioController();
                             this.exibirDados();
                         }
                     }
                 }
             } catch (Exception ex) {
-            Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Impossível cadastrar um usuário para este funcionario!!", "Aviso", JOptionPane.ERROR_MESSAGE, null);
         }
         }else{
             this.ativarButtonEditar();
@@ -650,6 +653,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
                 FuncionarioController.validador = 1;
                 fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
+                fc = new FuncionarioController();
                 this.exibirDados();
             }else{
                 this.valoresInput();
@@ -657,6 +661,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
                 
                 this.ativarTudo();
+                fc = new FuncionarioController();
                 this.exibirDados();
                 }
             } catch (Exception ex) {
@@ -687,6 +692,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
                    
                 }else{
+                    fc = new FuncionarioController();
                     this.exibirDados();
                     buttonSelecionar.setText("Selecionar");
                     this.ativarTudo();
@@ -755,7 +761,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {                    
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {                    
                 try {
                     PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
                     this.getParent().add(pfv);
@@ -843,7 +849,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {                    
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {                    
                 try {
                     PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
                     this.getParent().add(pfv);
@@ -911,7 +917,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }
     
         public void exibirDados(){
-        fc = new FuncionarioController();
         try {
             this.ativarTudo();
             inputId.setText(""+fc.getFuncionarios().get(index).getId());

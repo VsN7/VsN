@@ -2,13 +2,27 @@
 package br.com.vsn.view;
 
 import br.com.vsn.controller.FuncionarioController;
+import br.com.vsn.controller.ParametroController;
 import br.com.vsn.controller.UsuarioController;
+import br.com.vsn.model.Parametro;
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.plastic.theme.AbstractSkyTheme;
+import com.jgoodies.looks.plastic.theme.DarkStar;
+import com.jgoodies.looks.plastic.theme.DesertGreen;
+import com.jgoodies.looks.plastic.theme.DesertRed;
+import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
+import com.jgoodies.looks.plastic.theme.SkyBlue;
+import com.jgoodies.looks.plastic.theme.SkyRed;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.SystemColor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.LineBorder;
 
 /**
@@ -16,59 +30,41 @@ import javax.swing.border.LineBorder;
  * @author vitor
  */
 public class MenuView extends javax.swing.JFrame {
-
+    UsuarioController uc;
+    Parametro parametro;
+    ParametroController pc;
+    public static int teclaPesquisa = 112;
     int autorizacao;
     public MenuView() {
         setExtendedState(MAXIMIZED_BOTH);
         initComponents();
+        try{
+            //modificaVisual();
+        }catch(Exception e){
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, e);
+        }
         jMenu4.setEnabled(false);
         jMenu15.setEnabled(false);
         FuncionarioController fc = new FuncionarioController();
-        UsuarioController uc = new UsuarioController();
+        uc = new UsuarioController();
+        parametro = new Parametro();
+        pc = new ParametroController();
         try{
             autorizacao = fc.pesquisarFiltroCpf(uc.pesquisarUnicoId(uc.getId()).get(0).getCpf()).get(0).getAutorizacao();
         }catch(Exception e){
             autorizacao = 7;
             System.out.println("USUARIO SUPORTE");
         }
-        if(autorizacao == 2){
-        selectContas.setEnabled(true);
-        selectContasM.setEnabled(true);
-        selectEmpresa.setEnabled(true);
-        selectFuncionario.setEnabled(true);
-        selectRelatorio.setEnabled(true);
-        selectUsuario.setEnabled(true);
-        labeContasPagar.setVisible(true);
-        labeContasReceber.setVisible(true);
+        
+        this.verificaAutorizacao();
+        
+        try{
+            parametro = pc.pesquisarUnico(uc.getId());
+            this.teclaSelecionada();
+        }catch(Exception e){
             
-        }else if (autorizacao == 7){
-            selectContas.setEnabled(true);
-            selectContasM.setEnabled(true);
-            selectEmpresa.setEnabled(true);
-            selectFuncionario.setEnabled(true);
-            selectUsuario.setEnabled(true);
-            selectRelatorio.setEnabled(true);
-            labeContasPagar.setVisible(true);
-            labeContasReceber.setVisible(true);
-        }else if(autorizacao == 1){
-            selectContas.setEnabled(false);
-            selectContasM.setEnabled(false);
-            selectEmpresa.setEnabled(false);
-            selectFuncionario.setEnabled(false);
-            selectUsuario.setEnabled(false);
-            selectRelatorio.setEnabled(true);
-            labeContasPagar.setVisible(false);
-            labeContasReceber.setVisible(false);
-        }else{
-            selectContas.setEnabled(false);
-            selectContasM.setEnabled(false);
-            selectEmpresa.setEnabled(false);
-            selectFuncionario.setEnabled(false);
-            selectUsuario.setEnabled(false);
-            selectRelatorio.setEnabled(false);
-            labeContasPagar.setVisible(false);
-            labeContasReceber.setVisible(false);
         }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -83,38 +79,15 @@ public class MenuView extends javax.swing.JFrame {
             }
         };
         jLabel1 = new javax.swing.JLabel();
-        ImageIcon iconCliente = new ImageIcon(getClass().getResource("/icon/cliente.png")); Image clientes = iconCliente.getImage();
-        labelCliente = new javax.swing.JLabel(){
-            public void paintComponent(Graphics g){
-                g.drawImage(clientes,0,0,getWidth(),getHeight(),this);
-            }
-        };
-        ImageIcon iconOrcamento = new ImageIcon(getClass().getResource("/icon/orcamento.png")); Image orcamentos = iconOrcamento.getImage();
-        labelOrcamento = new javax.swing.JLabel(){
-            public void paintComponent(Graphics g){
-                g.drawImage(orcamentos,0,0,getWidth(),getHeight(),this);
-            }
-        };
-        ImageIcon iconOs = new ImageIcon(getClass().getResource("/icon/os.png")); Image os = iconOs.getImage();
-        labelOs = new javax.swing.JLabel(){
-            public void paintComponent(Graphics g){
-                g.drawImage(os,0,0,getWidth(),getHeight(),this);
-            }
-        };
-        ImageIcon iconContasReceber = new ImageIcon(getClass().getResource("/icon/contasReceber.png")); Image contasReceber = iconContasReceber.getImage();
-        labeContasReceber = new javax.swing.JLabel(){
-            public void paintComponent(Graphics g){
-                g.drawImage(contasReceber,0,0,getWidth(),getHeight(),this);
-            }
-        };
-        ImageIcon iconContasPagar = new ImageIcon(getClass().getResource("/icon/contasPagar.png")); Image contasPagar = iconContasPagar.getImage();
-        labeContasPagar = new javax.swing.JLabel(){
-            public void paintComponent(Graphics g){
-                g.drawImage(contasPagar,0,0,getWidth(),getHeight(),this);
-            }
-        };
+        jPanel1 = new javax.swing.JPanel();
+        labeContasReceber = new javax.swing.JLabel();
+        labelOs = new javax.swing.JLabel();
+        labelOrcamento = new javax.swing.JLabel();
+        labelCliente = new javax.swing.JLabel();
+        labeContasPagar = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        selectEmpresa1 = new javax.swing.JMenuItem();
         selectEmpresa = new javax.swing.JMenuItem();
         selectFuncionario = new javax.swing.JMenuItem();
         jMenu19 = new javax.swing.JMenu();
@@ -179,50 +152,13 @@ public class MenuView extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Versão 1.0.0.1");
 
-        labelCliente.setBackground(new java.awt.Color(0, 0, 0));
-        labelCliente.setForeground(new java.awt.Color(255, 255, 255));
-        labelCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelClienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelClienteMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelClienteMousePressed(evt);
-            }
-        });
-
-        labelOrcamento.setBackground(new java.awt.Color(0, 0, 0));
-        labelOrcamento.setForeground(new java.awt.Color(255, 255, 255));
-        labelOrcamento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelOrcamentoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelOrcamentoMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelOrcamentoMousePressed(evt);
-            }
-        });
-
-        labelOs.setBackground(new java.awt.Color(0, 0, 0));
-        labelOs.setForeground(new java.awt.Color(255, 255, 255));
-        labelOs.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelOsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelOsMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelOsMousePressed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(172, 30, 20));
+        jPanel1.setOpaque(false);
 
         labeContasReceber.setBackground(new java.awt.Color(0, 0, 0));
         labeContasReceber.setForeground(new java.awt.Color(255, 255, 255));
+        labeContasReceber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeContasReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/bank.png"))); // NOI18N
         labeContasReceber.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labeContasReceberMouseEntered(evt);
@@ -235,8 +171,58 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
+        labelOs.setBackground(new java.awt.Color(0, 0, 0));
+        labelOs.setForeground(new java.awt.Color(255, 255, 255));
+        labelOs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelOs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/wrenchV.png"))); // NOI18N
+        labelOs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelOsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelOsMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelOsMousePressed(evt);
+            }
+        });
+
+        labelOrcamento.setBackground(new java.awt.Color(0, 0, 0));
+        labelOrcamento.setForeground(new java.awt.Color(255, 255, 255));
+        labelOrcamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelOrcamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/report.png"))); // NOI18N
+        labelOrcamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelOrcamentoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelOrcamentoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelOrcamentoMousePressed(evt);
+            }
+        });
+
+        labelCliente.setBackground(new java.awt.Color(0, 0, 0));
+        labelCliente.setForeground(new java.awt.Color(255, 255, 255));
+        labelCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/customer.png"))); // NOI18N
+        labelCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelClienteMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelClienteMousePressed(evt);
+            }
+        });
+
         labeContasPagar.setBackground(new java.awt.Color(0, 0, 0));
         labeContasPagar.setForeground(new java.awt.Color(255, 255, 255));
+        labeContasPagar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeContasPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/accounting.png"))); // NOI18N
         labeContasPagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labeContasPagarMouseEntered(evt);
@@ -249,56 +235,71 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labeContasReceber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labeContasPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labeContasReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labeContasPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktopPane.setLayer(labelCliente, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktopPane.setLayer(labelOrcamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktopPane.setLayer(labelOs, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktopPane.setLayer(labeContasReceber, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktopPane.setLayer(labeContasPagar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                        .addGap(0, 561, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
-                    .addGroup(desktopPaneLayout.createSequentialGroup()
-                        .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labeContasReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labeContasPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 582, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addContainerGap())
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 870, Short.MAX_VALUE))
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labeContasReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labeContasPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(236, 234, 234));
+        jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
         jMenuBar1.setBorder(null);
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(569, 25));
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(569, 40));
 
         jMenu1.setText("Arquivo");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        selectEmpresa1.setText("Parâmetros");
+        selectEmpresa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectEmpresa1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(selectEmpresa1);
 
         selectEmpresa.setText("Empresa");
         selectEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -438,6 +439,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Cliente");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenuItem1.setText("Cadastro de Clientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -450,6 +452,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Orçamento");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenuItem4.setText("Cadastro de Orçamentos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -462,6 +465,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu14.setText("Ordem de Serviço");
+        jMenu14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenuItem19.setText("Cadastro de O.S");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -474,6 +478,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu14);
 
         selectContasM.setText("Contas");
+        selectContasM.setToolTipText("");
+        selectContasM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu22.setText("Contas a Pagar");
 
@@ -510,6 +516,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(selectContasM);
 
         selectRelatorio.setText("Relatórios");
+        selectRelatorio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu12.setText("Relatório de Clientes");
 
@@ -602,6 +609,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(selectRelatorio);
 
         jMenu8.setText("Informações");
+        jMenu8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu9.setText("Tutoriais");
 
@@ -650,12 +658,16 @@ public class MenuView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(desktopPane))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ClienteView cv;
         try {
@@ -954,16 +966,38 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem32ActionPerformed
 
-    private void labelClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseEntered
-        labelCliente.setBorder(new LineBorder(Color.WHITE, 1, true));
-    }//GEN-LAST:event_labelClienteMouseEntered
+    private void selectEmpresa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEmpresa1ActionPerformed
+        ParametrosView pv;
+        try {
+            pv = new ParametrosView();
+            pv.setVisible(true);
+            this.desktopPane.add(pv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_selectEmpresa1ActionPerformed
 
-    private void labelClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseExited
-        labelCliente.setBorder(new LineBorder(Color.black, 0, true));
-    }//GEN-LAST:event_labelClienteMouseExited
+    private void labeContasPagarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMousePressed
+        ContaPagarView cpv;
+        try {
+            cpv = new ContaPagarView();
+            cpv.setVisible(true);
+            this.desktopPane.add(cpv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labeContasPagarMousePressed
+
+    private void labeContasPagarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseExited
+        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 0, true));
+    }//GEN-LAST:event_labeContasPagarMouseExited
+
+    private void labeContasPagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseEntered
+        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 2, true));
+    }//GEN-LAST:event_labeContasPagarMouseEntered
 
     private void labelClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMousePressed
-        
+
         ClienteView cv;
         try {
             cv = new ClienteView();
@@ -974,13 +1008,13 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_labelClienteMousePressed
 
-    private void labelOrcamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseEntered
-        labelOrcamento.setBorder(new LineBorder(Color.WHITE, 1, true));
-    }//GEN-LAST:event_labelOrcamentoMouseEntered
+    private void labelClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseExited
+        labelCliente.setBorder(new LineBorder(Color.black, 0, true));
+    }//GEN-LAST:event_labelClienteMouseExited
 
-    private void labelOrcamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseExited
-        labelOrcamento.setBorder(new LineBorder(Color.black, 0, true));
-    }//GEN-LAST:event_labelOrcamentoMouseExited
+    private void labelClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseEntered
+        labelCliente.setBorder(new LineBorder(Color.WHITE, 2, true));
+    }//GEN-LAST:event_labelClienteMouseEntered
 
     private void labelOrcamentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMousePressed
         OrcamentoView ov;
@@ -993,13 +1027,13 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_labelOrcamentoMousePressed
 
-    private void labelOsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseEntered
-        labelOs.setBorder(new LineBorder(Color.WHITE, 1, true));
-    }//GEN-LAST:event_labelOsMouseEntered
+    private void labelOrcamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseExited
+        labelOrcamento.setBorder(new LineBorder(Color.black, 0, true));
+    }//GEN-LAST:event_labelOrcamentoMouseExited
 
-    private void labelOsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseExited
-        labelOs.setBorder(new LineBorder(Color.black, 0, true));
-    }//GEN-LAST:event_labelOsMouseExited
+    private void labelOrcamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseEntered
+        labelOrcamento.setBorder(new LineBorder(Color.WHITE, 2, true));
+    }//GEN-LAST:event_labelOrcamentoMouseEntered
 
     private void labelOsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMousePressed
         OrdemServicoView osv;
@@ -1012,13 +1046,13 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_labelOsMousePressed
 
-    private void labeContasReceberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseEntered
-        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 1, true));
-    }//GEN-LAST:event_labeContasReceberMouseEntered
+    private void labelOsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseExited
+        labelOs.setBorder(new LineBorder(Color.black, 0, true));
+    }//GEN-LAST:event_labelOsMouseExited
 
-    private void labeContasReceberMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseExited
-        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 0, true));
-    }//GEN-LAST:event_labeContasReceberMouseExited
+    private void labelOsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseEntered
+        labelOs.setBorder(new LineBorder(Color.WHITE, 2, true));
+    }//GEN-LAST:event_labelOsMouseEntered
 
     private void labeContasReceberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMousePressed
         ContaReceberView crv;
@@ -1031,24 +1065,13 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_labeContasReceberMousePressed
 
-    private void labeContasPagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseEntered
-        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 1, true));
-    }//GEN-LAST:event_labeContasPagarMouseEntered
+    private void labeContasReceberMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseExited
+        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 0, true));
+    }//GEN-LAST:event_labeContasReceberMouseExited
 
-    private void labeContasPagarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseExited
-        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 0, true));
-    }//GEN-LAST:event_labeContasPagarMouseExited
-
-    private void labeContasPagarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMousePressed
-        ContaPagarView cpv;
-        try {
-            cpv = new ContaPagarView();
-            cpv.setVisible(true);
-            this.desktopPane.add(cpv);
-        } catch (Exception ex) {
-            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_labeContasPagarMousePressed
+    private void labeContasReceberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseEntered
+        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 2, true));
+    }//GEN-LAST:event_labeContasReceberMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1104,6 +1127,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labeContasPagar;
     private javax.swing.JLabel labeContasReceber;
     private javax.swing.JLabel labelCliente;
@@ -1112,8 +1136,224 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu selectContas;
     private javax.swing.JMenu selectContasM;
     private javax.swing.JMenuItem selectEmpresa;
+    private javax.swing.JMenuItem selectEmpresa1;
     private javax.swing.JMenuItem selectFuncionario;
     private javax.swing.JMenu selectRelatorio;
     private javax.swing.JMenuItem selectUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public void verificaAutorizacao(){
+        if(autorizacao == 2){
+        selectContas.setEnabled(true);
+        selectContasM.setEnabled(true);
+        selectEmpresa.setEnabled(true);
+        selectFuncionario.setEnabled(true);
+        selectRelatorio.setEnabled(true);
+        selectUsuario.setEnabled(true);
+        labeContasPagar.setVisible(true);
+        labeContasReceber.setVisible(true);
+            
+        }else if (autorizacao == 7){
+            selectContas.setEnabled(true);
+            selectContasM.setEnabled(true);
+            selectEmpresa.setEnabled(true);
+            selectFuncionario.setEnabled(true);
+            selectUsuario.setEnabled(true);
+            selectRelatorio.setEnabled(true);
+            labeContasPagar.setVisible(true);
+            labeContasReceber.setVisible(true);
+        }else if(autorizacao == 1){
+            selectContas.setEnabled(false);
+            selectContasM.setEnabled(false);
+            selectEmpresa.setEnabled(false);
+            selectFuncionario.setEnabled(false);
+            selectUsuario.setEnabled(false);
+            selectRelatorio.setEnabled(true);
+            labeContasPagar.setVisible(false);
+            labeContasReceber.setVisible(false);
+        }else{
+            selectContas.setEnabled(false);
+            selectContasM.setEnabled(false);
+            selectEmpresa.setEnabled(false);
+            selectFuncionario.setEnabled(false);
+            selectUsuario.setEnabled(false);
+            selectRelatorio.setEnabled(false);
+            labeContasPagar.setVisible(false);
+            labeContasReceber.setVisible(false);
+        }
+    }
+    
+    public void teclaSelecionada() throws UnsupportedLookAndFeelException{
+       teclaPesquisa = parametro.getTecla();
+        switch (parametro.getTema()) {
+            case 0:
+                try {
+                    UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+                } catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+                    
+                }    jMenuBar1.setBackground(new Color(204,204,204));
+                break;
+            case 1:
+                this.visualDark();
+                break;
+            case 2:
+                this.visualSky();
+                break;
+            case 3:
+                this.visualRed();
+                break;
+            case 4:
+                this.visualEsmeralda();
+                break;
+            case 5:
+                 try {
+                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                    Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+jMenuBar1.setBackground(new Color(150,150,150));
+                break;
+            case 6:
+                try {
+                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+                    Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, e);
+                }    jMenuBar1.setBackground(new Color(150,150,150));
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public void visualSky() throws UnsupportedLookAndFeelException{
+        
+
+    // lookandfeel muda de cores
+    // biblioteca     looksdemo-2.3.1.jar
+
+              //SkyBlue()
+             //BrownSugar()
+             // DarkStar()  
+            //DesertGreen()
+            //Silver()
+            //ExperienceRoyale()
+              try {
+                    PlasticLookAndFeel.setPlasticTheme(new SkyBlue());
+                  try {
+                      UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+                  } catch (InstantiationException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IllegalAccessException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (UnsupportedLookAndFeelException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+           
+
+        } catch (ClassNotFoundException ex) {
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+
+        desktopPane.setBackground(SystemColor.BLACK);
+    }
+    
+    public void visualDark() throws UnsupportedLookAndFeelException{
+        
+
+    // lookandfeel muda de cores
+    // biblioteca     looksdemo-2.3.1.jar
+
+              //SkyBlue()
+             //BrownSugar()
+             // DarkStar()  
+            //DesertGreen()
+            //Silver()
+            //ExperienceRoyale()
+              try {
+                    PlasticLookAndFeel.setPlasticTheme(new DarkStar());
+                  try {
+                      UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+                  } catch (InstantiationException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IllegalAccessException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (UnsupportedLookAndFeelException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+           
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+
+        desktopPane.setBackground(SystemColor.BLACK);
+    }
+    
+    public void visualRed() throws UnsupportedLookAndFeelException{
+        
+
+    // lookandfeel muda de cores
+    // biblioteca     looksdemo-2.3.1.jar
+
+              //SkyBlue()
+             //BrownSugar()
+             // DarkStar()  
+            //DesertGreen()
+            //Silver()
+            //ExperienceRoyale()
+              try {
+                    PlasticLookAndFeel.setPlasticTheme(new DesertRed());
+                  try {
+                      UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+                  } catch (InstantiationException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IllegalAccessException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (UnsupportedLookAndFeelException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+           
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+
+        jMenuBar1.setBackground(new Color(172,30,20));
+    }
+    
+    public void visualEsmeralda() throws UnsupportedLookAndFeelException{
+        
+
+    // lookandfeel muda de cores
+    // biblioteca     looksdemo-2.3.1.jar
+
+              //SkyBlue()
+             //BrownSugar()
+             // DarkStar()  
+            //DesertGreen()
+            //Silver()
+            //ExperienceRoyale()
+              try {
+                    PlasticLookAndFeel.setPlasticTheme(new DesertGreen());
+                  try {
+                      UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+                  } catch (InstantiationException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IllegalAccessException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (UnsupportedLookAndFeelException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+           
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+
+        jMenuBar1.setBackground(new Color(153,255,153));
+    }
+    
 }

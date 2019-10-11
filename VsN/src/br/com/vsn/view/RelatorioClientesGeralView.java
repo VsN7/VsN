@@ -217,11 +217,20 @@ public class RelatorioClientesGeralView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {  
+                try {
+                    PesquisarClienteView pv = new PesquisarClienteView();
+                    this.getParent().add(pv);
+                    pv.setVisible(true);
+                    PesquisarClienteView.validador = 4;
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+            }
     }//GEN-LAST:event_inputIdKeyPressed
 
     private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {  
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {  
                 try {
                     PesquisarClienteView pv = new PesquisarClienteView();
                     this.getParent().add(pv);

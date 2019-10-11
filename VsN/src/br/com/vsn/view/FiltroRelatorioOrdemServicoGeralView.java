@@ -350,7 +350,7 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
     }//GEN-LAST:event_comboSituacaoActionPerformed
 
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
             try {
                 PesquisarOrdemServicoView posv = new PesquisarOrdemServicoView();
                 this.getParent().add(posv);
@@ -363,7 +363,7 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
     }//GEN-LAST:event_inputClienteKeyPressed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
             try {
                 PesquisarOrdemServicoView posv = new PesquisarOrdemServicoView();
                 this.getParent().add(posv);
@@ -376,7 +376,7 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
     }//GEN-LAST:event_inputIdKeyPressed
 
     private void inputServicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputServicoKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
             try {
                 PesquisarOrdemServicoView posv = new PesquisarOrdemServicoView();
                 this.getParent().add(posv);

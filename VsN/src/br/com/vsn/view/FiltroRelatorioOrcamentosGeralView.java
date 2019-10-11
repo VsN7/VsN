@@ -322,7 +322,7 @@ public class FiltroRelatorioOrcamentosGeralView extends javax.swing.JInternalFra
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void inputServicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputServicoKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
             try {
                 PesquisarOrcamentoView pov = new PesquisarOrcamentoView();
                 this.getParent().add(pov);
@@ -335,7 +335,7 @@ public class FiltroRelatorioOrcamentosGeralView extends javax.swing.JInternalFra
     }//GEN-LAST:event_inputServicoKeyPressed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
             try {
                 PesquisarOrcamentoView pov = new PesquisarOrcamentoView();
                 this.getParent().add(pov);
@@ -348,7 +348,7 @@ public class FiltroRelatorioOrcamentosGeralView extends javax.swing.JInternalFra
     }//GEN-LAST:event_inputIdKeyPressed
 
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
             try {
                 PesquisarOrcamentoView pov = new PesquisarOrcamentoView();
                 this.getParent().add(pov);

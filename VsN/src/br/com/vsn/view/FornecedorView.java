@@ -655,7 +655,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 try {
                     PesquisarFornecedorView pov = new PesquisarFornecedorView();
                     this.getParent().add(pov);
@@ -670,7 +670,7 @@ public class FornecedorView extends javax.swing.JInternalFrame {
     
     private void inputRazaoSocialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputRazaoSocialKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 try {
                     PesquisarFornecedorView pov = new PesquisarFornecedorView();
                     this.getParent().add(pov);

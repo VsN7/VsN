@@ -6,6 +6,7 @@ import br.com.vsn.model.Pagamento;
 import br.com.vsn.model.Usuario;
 import br.com.vsn.view.OrdemServicoView;
 import br.com.vsn.view.PagamentoContasReceberView;
+import java.awt.Color;
 import java.awt.Component;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -72,6 +73,7 @@ public class PagamentoController {
                         OrdemServicoController osc = new OrdemServicoController();
                         osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
                         OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
+                        OrdemServicoView.inputSituacao.setForeground(Color.yellow);
                         JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         conta = 0;
                     }else if(validaExcluir == 0){
@@ -80,6 +82,8 @@ public class PagamentoController {
                         OrdemServicoController osc = new OrdemServicoController();
                         osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
                         OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
+                        OrdemServicoView.inputSituacao.setForeground(Color.yellow);
+                        osc = new OrdemServicoController();
                         JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         conta = 0;
                     }else{

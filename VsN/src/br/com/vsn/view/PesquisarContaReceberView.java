@@ -27,6 +27,7 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
     NumberFormat formatter;
     static Conta conta;
     String valorCombo;
+    ContaController cc;
     public static int validador=0;
     public static int getId() {
         return id;
@@ -44,7 +45,7 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
         sdf = new SimpleDateFormat("dd/MM/yyyy");
         formatter = new DecimalFormat("#0.00");
         initComponents();
-        
+        cc = new ContaController();
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double lar =d.getWidth();
         int alt = (int) d.getHeight();
@@ -72,7 +73,6 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         comboFiltro = new javax.swing.JComboBox<>();
         inputSelecionado = new javax.swing.JTextField();
-        buttonBuscar = new javax.swing.JToggleButton();
 
         setClosable(true);
         setTitle("Pesquisar Contas a Receber");
@@ -111,12 +111,9 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titulo", "Cliente" }));
 
         inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        buttonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonBuscar.setText("Buscar");
-        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBuscarActionPerformed(evt);
+        inputSelecionado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                inputSelecionadoKeyReleased(evt);
             }
         });
 
@@ -131,9 +128,7 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(comboFiltro, 0, 247, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonBuscar)))
+                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,9 +138,7 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonBuscar)
-                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -192,10 +185,8 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
-
+    private void inputSelecionadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSelecionadoKeyReleased
         try{
-            ContaController cc = new ContaController();
             valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
             if(valorCombo.equals("titulo")){
                 this.preencherTabelaFiltroTitulo();
@@ -206,12 +197,11 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
         }catch(Exception e){
             Logger.getLogger(PesquisarClienteView.class.getName()).log(Level.SEVERE, null, e);
         }
-    }//GEN-LAST:event_buttonBuscarActionPerformed
+    }//GEN-LAST:event_inputSelecionadoKeyReleased
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton buttonBuscar;
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JTextField inputSelecionado;
     private javax.swing.JPanel jPanel1;
@@ -239,7 +229,6 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroTitulo() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        ContaController cc = new ContaController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<cc.pesquisarFiltroTitulo(inputSelecionado.getText()).size(); i++){
@@ -257,7 +246,6 @@ public class PesquisarContaReceberView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroCliente() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        ContaController cc = new ContaController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<cc.pesquisarFiltroCliente(inputSelecionado.getText()).size(); i++){

@@ -47,9 +47,7 @@
                       <Group type="102" attributes="0">
                           <Component id="comboFiltro" pref="225" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="inputSelecionado" min="-2" pref="529" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonBuscar" min="-2" max="-2" attributes="0"/>
+                          <Component id="inputSelecionado" min="-2" pref="612" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                   </Group>
@@ -59,14 +57,11 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="360" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="buttonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputSelecionado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="inputSelecionado" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="comboFiltro" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -138,16 +133,8 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="buttonBuscar">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
-          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBuscarActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputSelecionadoKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="comboFiltro">

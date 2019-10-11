@@ -62,7 +62,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int lar = (int) d.getWidth();
         int alt = (int) d.getHeight();
-        this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/76);
+        this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/86);
         initComponents();
         
         if(osc.getOrdemServicos().size()<=0){
@@ -328,6 +328,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
 
         inputObservacoes.setColumns(20);
         inputObservacoes.setRows(5);
+        inputObservacoes.setPreferredSize(new java.awt.Dimension(164, 80));
         jScrollPane1.setViewportView(inputObservacoes);
 
         buttonOS.setBackground(new java.awt.Color(8, 90, 0));
@@ -417,6 +418,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
 
         inputServico.setColumns(20);
         inputServico.setRows(5);
+        inputServico.setPreferredSize(new java.awt.Dimension(164, 80));
         jScrollPane2.setViewportView(inputServico);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -427,7 +429,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -458,7 +460,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                             .addComponent(inputModelo)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 213, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputAno, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -469,13 +471,13 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel16)))
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(calendarPvEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(calendarPvEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,23 +495,23 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonOS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonInicio))
                                 .addGap(39, 39, 39)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buttonSelecionar)
+                                    .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonAnterior))
                                 .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonProximo))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(buttonOS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -561,39 +563,39 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel14)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel21)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(calendarPvEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(calendarDtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 7, Short.MAX_VALUE)
+                                        .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(calendarPvEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel17)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(inputPrevisaoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonOS, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonOS, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
@@ -602,11 +604,11 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                     .addComponent(buttonFinal))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCadastrar)
-                    .addComponent(buttonExcluir)
-                    .addComponent(buttonSelecionar)
-                    .addComponent(buttonEditar)
-                    .addComponent(buttonCancelar))
+                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -626,6 +628,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
 
     private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
         index = osc.getOrdemServicos().size()-1;
+        osc = new OrdemServicoController();
         exibirDados();
     }//GEN-LAST:event_buttonFinaljButton8ActionPerformed
 
@@ -633,6 +636,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         if(index < osc.getOrdemServicos().size()-1){
             posterior();
         }
+        osc = new OrdemServicoController();
         exibirDados();
     }//GEN-LAST:event_buttonProximojButton7ActionPerformed
 
@@ -640,11 +644,13 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         if(index > 0){
             anterior();
         }
+        osc = new OrdemServicoController();
         exibirDados();
     }//GEN-LAST:event_buttonAnteriorjButton6ActionPerformed
 
     private void buttonIniciojButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciojButton5ActionPerformed
         index = 0;
+        osc = new OrdemServicoController();
         exibirDados();
     }//GEN-LAST:event_buttonIniciojButton5ActionPerformed
 
@@ -657,6 +663,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 osc.editOrdemServico(Integer.parseInt(inputId.getText()),ordemServico);
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
+                osc = new OrdemServicoController();
                 this.exibirDados();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -716,6 +723,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
                    
                 }else{
+                    osc = new OrdemServicoController();
                     this.exibirDados();
                     buttonSelecionar.setText("Selecionar");
                 }
@@ -744,6 +752,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 index = osc.getOrdemServicos().size()-1;
                 this.ativarTudo();
                 this.exibirDados();
+                osc = new OrdemServicoController();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Preencha corretamente os dados!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
@@ -775,6 +784,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                     ordemServico.setSituacao("ABERTO");
                     ordemServico.setPagamento_id(0);
                     osc.editOrdemServico(Integer.parseInt(inputId.getText()), ordemServico);
+                    osc = new OrdemServicoController();
                     this.exibirDados();
                 }
             }else{
@@ -790,7 +800,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_inputIdActionPerformed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {                    
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {                    
             try {
                 PesquisarOrdemServicoView pv = new PesquisarOrdemServicoView();
                 this.getParent().add(pv);
@@ -816,6 +826,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                     ordemServico.setSituacao("O.S EM PAGAMENTO");
                     ordemServico.setPagamento_id(pc.getPagamentos().get(pc.getPagamentos().size()-1).getId());
                     osc.editOrdemServico(Integer.parseInt(inputId.getText()),ordemServico);
+                    osc = new OrdemServicoController();
                     this.exibirDados();
                     PagamentoOsView posv = new PagamentoOsView();
                     this.getParent().add(posv);
@@ -893,7 +904,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
 
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
         if(buttonSelecionar.getText().equals("Buscar") || buttonCadastrar.getText().equals("Salvar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 if(buttonSelecionar.getText().equals("Buscar")){
                     try {
                         PesquisarOrdemServicoView pov = new PesquisarOrdemServicoView();
@@ -990,7 +1001,6 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     }
     
         public void exibirDados(){
-        osc = new OrdemServicoController();
         try {
             this.ativarTudo();
             inputId.setText(""+osc.getOrdemServicos().get(index).getId());
@@ -1010,16 +1020,24 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             inputObservacoes.setText(""+osc.getOrdemServicos().get(index).getObservacoes());
             inputId.setEditable(false);
             inputSituacao.setEditable(false);
-            if(!inputSituacao.getText().equals("ABERTO")){
+            if(inputSituacao.getText().equals("O.S EM PAGAMENTO")){
                 buttonOS.setText("Visualizar Pagamento");
                 buttonExcluir.setEnabled(false);
                 buttonEditar.setEnabled(false);
                 buttonCancelar.setEnabled(true);
-            }else{
+                inputSituacao.setForeground(Color.YELLOW);
+            }else if(inputSituacao.getText().equals("ABERTO")){
                 buttonOS.setText("Efetuar Pagamento");
                 buttonExcluir.setEnabled(true);
                 buttonEditar.setEnabled(true);
                 buttonCancelar.setEnabled(false);
+                inputSituacao.setForeground(Color.blue);
+            }else{
+                buttonOS.setText("Visualizar Pagamento");
+                buttonExcluir.setEnabled(false);
+                buttonEditar.setEnabled(false);
+                buttonCancelar.setEnabled(true);
+                inputSituacao.setForeground(Color.red);
             }
             this.valoresInput();
         } catch (Exception ex) {

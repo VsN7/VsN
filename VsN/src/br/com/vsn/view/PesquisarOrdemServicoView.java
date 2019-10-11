@@ -25,6 +25,7 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
     SimpleDateFormat sdf;
     String valorCombo;
     public static int validador;
+        OrdemServicoController osc;
     
     public static int getId() {
         return id;
@@ -41,7 +42,7 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
     public PesquisarOrdemServicoView() {
         initComponents();
         sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
+        osc = new OrdemServicoController();
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double lar =d.getWidth();
         int alt = (int) d.getHeight();
@@ -69,7 +70,6 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         comboFiltro = new javax.swing.JComboBox<>();
         inputSelecionado = new javax.swing.JTextField();
-        buttonBuscar = new javax.swing.JToggleButton();
 
         setClosable(true);
         setTitle("Pesquisar Ordem de Serviço");
@@ -109,12 +109,9 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Serviço" }));
 
         inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        buttonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonBuscar.setText("Buscar");
-        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBuscarActionPerformed(evt);
+        inputSelecionado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                inputSelecionadoKeyReleased(evt);
             }
         });
 
@@ -123,12 +120,10 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(comboFiltro, 0, 377, Short.MAX_VALUE)
+                .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonBuscar))
-            .addComponent(jScrollPane1)
+                .addComponent(inputSelecionado))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,9 +132,7 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonBuscar)
-                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -183,10 +176,8 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
-
+    private void inputSelecionadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSelecionadoKeyReleased
         try{
-            OrdemServicoController osc = new OrdemServicoController();
             valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
             if(valorCombo.equals("cliente")){
                 this.preencherTabelaFiltroNome();
@@ -197,11 +188,10 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
         }catch(Exception e){
             Logger.getLogger(PesquisarClienteView.class.getName()).log(Level.SEVERE, null, e);
         }
-    }//GEN-LAST:event_buttonBuscarActionPerformed
+    }//GEN-LAST:event_inputSelecionadoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton buttonBuscar;
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JTextField inputSelecionado;
     private javax.swing.JPanel jPanel1;
@@ -230,7 +220,6 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroNome() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        OrdemServicoController osc = new OrdemServicoController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<osc.pesquisarFiltroNome(inputSelecionado.getText()).size(); i++){
@@ -249,7 +238,6 @@ public class PesquisarOrdemServicoView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroServico() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        OrdemServicoController osc = new OrdemServicoController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<osc.pesquisarFiltroServico(inputSelecionado.getText()).size(); i++){

@@ -25,6 +25,7 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
     static Orcamento orcamento;
     SimpleDateFormat sdf;
     String valorCombo;
+    OrcamentoController oc;
     public static int getId() {
         return id;
     }
@@ -40,7 +41,7 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
     public PesquisarOrcamentoView() {
         initComponents();
         sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
+        oc = new OrcamentoController();
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double lar =d.getWidth();
         int alt = (int) d.getHeight();
@@ -68,7 +69,6 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         comboFiltro = new javax.swing.JComboBox<>();
         inputSelecionado = new javax.swing.JTextField();
-        buttonBuscar = new javax.swing.JToggleButton();
 
         setClosable(true);
         setTitle("Pesquisar Orçamento");
@@ -108,12 +108,9 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Serviço" }));
 
         inputSelecionado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        buttonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonBuscar.setText("Buscar");
-        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBuscarActionPerformed(evt);
+        inputSelecionado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                inputSelecionadoKeyReleased(evt);
             }
         });
 
@@ -124,13 +121,11 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(comboFiltro, 0, 377, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonBuscar)))
+                        .addComponent(inputSelecionado)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,11 +135,9 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonBuscar)
-                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,10 +176,8 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
-
+    private void inputSelecionadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSelecionadoKeyReleased
         try{
-            OrcamentoController oc = new OrcamentoController();
             valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
             if(valorCombo.equals("cliente")){
                 this.preencherTabelaFiltroNome();
@@ -199,11 +190,10 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
         }catch(Exception e){
             Logger.getLogger(PesquisarClienteView.class.getName()).log(Level.SEVERE, null, e);
         }
-    }//GEN-LAST:event_buttonBuscarActionPerformed
+    }//GEN-LAST:event_inputSelecionadoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton buttonBuscar;
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JTextField inputSelecionado;
     private javax.swing.JPanel jPanel1;
@@ -232,7 +222,6 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroNome() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        OrcamentoController oc = new OrcamentoController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<oc.pesquisarFiltroNome(inputSelecionado.getText()).size(); i++){
@@ -251,7 +240,6 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroServico() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        OrcamentoController oc = new OrcamentoController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<oc.pesquisarFiltroServico(inputSelecionado.getText()).size(); i++){
@@ -270,7 +258,6 @@ public class PesquisarOrcamentoView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroCpf() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        OrcamentoController oc = new OrcamentoController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<oc.pesquisarFiltroCpf(inputSelecionado.getText()).size(); i++){

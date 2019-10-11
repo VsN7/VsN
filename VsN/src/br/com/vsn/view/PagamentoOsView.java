@@ -383,7 +383,6 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 pc.editPagamento(pagamento.getId(), pagamento);
                 
                 this.exibirDados();
-                
             } catch (Exception ex) {
                 Logger.getLogger(PagamentoOsView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -406,6 +405,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                         PesquisarOrdemServicoView posv = new PesquisarOrdemServicoView();
                         PesquisarOrdemServicoView.ordemServico = OrdemServicoView.ordemServico;
                         posv.valoresInputOrdemServico();
+                        OrdemServicoView.inputSituacao.setForeground(Color.blue);
                         OrdemServicoView.buttonEditar.setEnabled(true);
                         OrdemServicoView.buttonExcluir.setEnabled(true);
                         OrdemServicoView.inputId.setEditable(false);
@@ -413,7 +413,6 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                         OrdemServicoView.buttonCancelar.setEnabled(false);
                         OrdemServicoView.buttonOS.setText("Efetuar Pagamento");
                         JanelaDialogo.dialogoEnd.dispose();
-                        osc = new OrdemServicoController();
                         this.dispose();
                     } catch (Exception ex) {
                         Logger.getLogger(PagamentoOsView.class.getName()).log(Level.SEVERE, null, ex);
@@ -452,6 +451,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 OrdemServicoController osc = new OrdemServicoController();
                 osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
                 OrdemServicoView.inputSituacao.setText("O.S FINALIZADA");
+                OrdemServicoView.inputSituacao.setForeground(Color.red);
                 int idPag = ptc.getPagamentoTabelas().size();
                     validaDestroy = 1;
                      int idPagamento = pagamento.getId();

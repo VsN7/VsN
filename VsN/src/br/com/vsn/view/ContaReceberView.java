@@ -122,7 +122,6 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
         catch (Exception e){
         }
         inputSelecionado = new javax.swing.JTextField();
-        buttonBuscar = new javax.swing.JToggleButton();
         comboSelecionar = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         inputCliente = new javax.swing.JTextField();
@@ -251,12 +250,9 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
         inputDataCompra.setPreferredSize(new java.awt.Dimension(6, 23));
 
         inputSelecionado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
-        buttonBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        buttonBuscar.setText("Buscar");
-        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBuscarActionPerformed(evt);
+        inputSelecionado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                inputSelecionadoKeyReleased(evt);
             }
         });
 
@@ -295,9 +291,7 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(comboSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(inputSelecionado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonBuscar))
+                        .addComponent(inputSelecionado))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -350,16 +344,14 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
                     .addComponent(inputDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(comboSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonBuscar, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -481,7 +473,20 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+    private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
+            try {
+                PesquisarClienteView pv = new PesquisarClienteView();
+                this.getParent().add(pv);
+                pv.setVisible(true);
+                PesquisarClienteView.validador = 3;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_inputClienteKeyPressed
+
+    private void inputSelecionadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSelecionadoKeyReleased
         String valorCombo;
         try{
             valorCombo=comboSelecionar.getSelectedItem().toString().toLowerCase();
@@ -496,20 +501,7 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Informe os dados corretamente", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_buttonBuscarActionPerformed
-
-    private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {
-            try {
-                PesquisarClienteView pv = new PesquisarClienteView();
-                this.getParent().add(pv);
-                pv.setVisible(true);
-                PesquisarClienteView.validador = 3;
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-    }//GEN-LAST:event_inputClienteKeyPressed
+    }//GEN-LAST:event_inputSelecionadoKeyReleased
 
     public void limpaCampos(){
         inputDataCompra.setText("");
@@ -542,7 +534,6 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroTitulo() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        cc = new ContaController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<cc.pesquisarFiltroTitulo(inputSelecionado.getText()).size(); i++){
@@ -560,7 +551,6 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroCliente() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        cc = new ContaController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<cc.pesquisarFiltroCliente(inputSelecionado.getText()).size(); i++){
@@ -578,7 +568,6 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
     
     public void preencherTabelaFiltroId() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        cc = new ContaController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
         for(int i=0; i<cc.pesquisarFiltroId(Integer.parseInt(inputSelecionado.getText())).size(); i++){
@@ -595,7 +584,6 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton buttonBuscar;
     private javax.swing.JComboBox<String> comboSelecionar;
     public static javax.swing.JTextField inputCliente;
     public static javax.swing.JTextField inputDataCompra;

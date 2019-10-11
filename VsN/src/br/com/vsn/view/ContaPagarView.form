@@ -132,22 +132,22 @@
                                           <Component id="buttonPagar" alignment="1" max="32767" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="buttonCadastrar" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="buttonCadastrar" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                                   <Component id="buttonInicio" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="buttonSelecionar" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="buttonSelecionar" min="-2" pref="100" max="-2" attributes="0"/>
                                                   <Component id="buttonAnterior" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="buttonEditar" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="buttonEditar" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                                   <Component id="buttonProximo" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="buttonExcluir" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="buttonExcluir" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                                                   <Component id="buttonFinal" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -263,10 +263,10 @@
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="buttonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonSelecionar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonCadastrar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="buttonExcluir" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="buttonSelecionar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="buttonEditar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

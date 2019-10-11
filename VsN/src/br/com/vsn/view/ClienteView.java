@@ -45,6 +45,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     String email;
     String situacao;
     
+    
     public ClienteView() throws Exception {
         sdf = new SimpleDateFormat("dd/MM/yyyy");
         cc = new ClienteController();
@@ -397,22 +398,22 @@ public class ClienteView extends javax.swing.JInternalFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonInicio))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buttonSelecionar)
+                            .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonAnterior))
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonProximo))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -593,11 +594,11 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonCadastrar)
-                        .addComponent(buttonExcluir)
-                        .addComponent(buttonSelecionar)
-                        .addComponent(buttonImprimir))
-                    .addComponent(buttonEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -648,6 +649,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg, longradouro, numero, bairro, cidade, estado, cep, telefone, email,cc.getClientes().get(index).getSituacao());
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
+                cc = new ClienteController();
                 this.exibirDados();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
@@ -666,6 +668,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 ClienteController.validador = 1;
                 cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg, longradouro, numero, bairro, cidade, estado, cep, telefone, email,"INATIVO");
                 this.ativarTudo();
+                cc = new ClienteController();
                 this.exibirDados();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
@@ -695,6 +698,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
                    
                 }else{
+                    cc = new ClienteController();
                     this.exibirDados();
                     buttonSelecionar.setText("Selecionar");
                 }
@@ -721,6 +725,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 cc.salvarCliente(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg, this.longradouro, this.numero, this.bairro, this.cidade, this.estado, this.cep, this.telefone, this.email);
                 buttonCadastrar.setText("Novo");
                 index = cc.getClientes().size()-1;
+                cc = new ClienteController();
                 this.exibirDados();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -749,9 +754,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_inputIdActionPerformed
 
+
+    
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            System.out.println("TCL????"+MenuView.teclaPesquisa);
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 if(buttonSelecionar.getText().equals("Buscar")){   
                     try {
                         PesquisarClienteView pv = new PesquisarClienteView();
@@ -768,7 +776,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 if(buttonSelecionar.getText().equals("Buscar")){   
                     try {
                         PesquisarClienteView pv = new PesquisarClienteView();
@@ -784,7 +792,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 if(buttonSelecionar.getText().equals("Buscar")){   
                     try {
                         PesquisarClienteView pv = new PesquisarClienteView();
@@ -913,7 +921,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }
     
         public void exibirDados(){
-        cc = new ClienteController();
         try {
             this.ativarTudo();
             inputId.setText(""+cc.getClientes().get(index).getId());

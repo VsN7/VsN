@@ -405,19 +405,19 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                                         .addComponent(buttonPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(buttonInicio))
                                             .addGap(52, 52, 52)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(buttonSelecionar)
+                                                .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(buttonAnterior))
                                             .addGap(37, 37, 37)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(buttonProximo))
                                             .addGap(54, 54, 54)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))))))
                         .addContainerGap())))
         );
@@ -500,10 +500,10 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                     .addComponent(buttonFinal))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCadastrar)
-                    .addComponent(buttonExcluir)
-                    .addComponent(buttonSelecionar)
-                    .addComponent(buttonEditar))
+                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -553,7 +553,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
             if(buttonEditar.getText().equals("Salvar")){
                 try {
                      this.valoresInput();
-                    dc = new DespesaController();
+                    despesa = dc.despesaUnico(dc.getDespesas().get(index).getId()).get(0);
                     despesa.setId(Integer.parseInt(inputId.getText()));
                     despesa.setDescricao(descricao.toUpperCase());
                     despesa.setValor(valorTotal);
@@ -569,9 +569,11 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                     despesa.setParcelasPagar(parcelas);
 
                     despesa.setSituacao(situacao);
+                    
                     dc.editDespesa(despesa);
                     buttonEditar.setText("Editar");
                     this.ativarTudo();
+                    dc = new DespesaController();
                     this.exibirDados();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -587,6 +589,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         try {
+            despesa = dc.despesaUnico(dc.getDespesas().get(index).getId()).get(0);
             dc.destroy(despesa);
             if(index<0 &&dc.getDespesas().size()>0){
                 index++;
@@ -605,6 +608,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                 this.ativarInputCadastrar();
                 this.limparCampos();
             }else{
+                dc = new DespesaController();
                 this.exibirDados();
             }
         } catch (Exception ex) {
@@ -634,6 +638,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
                    
                 }else{
+                    dc = new DespesaController();
                     this.exibirDados();
                     buttonSelecionar.setText("Selecionar");
                 }
@@ -657,10 +662,12 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
             try {
                 this.valoresInput();
                 this.valorObjeto();
+                despesa = dc.despesaUnico(dc.getDespesas().get(index).getId()).get(0);
                 dc.setDespesa(despesa);
                 dc.salvarDespesa();
                 buttonCadastrar.setText("Novo");
                 index = dc.getDespesas().size()-1;
+                dc = new DespesaController();
                 this.exibirDados();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Dados invalidos", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -690,15 +697,19 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
     private void buttonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagarActionPerformed
         if(buttonPagar.getText().equals("Efetuar Pagamento")){
             try {
+                despesa = dc.despesaUnico(dc.getDespesas().get(index).getId()).get(0);
                 double valor = ((dc.getDespesas().get(index).getValor()/dc.getDespesas().get(index).getParcelas())*(comboParcelas.getSelectedIndex()+1));
                 dc.efetuarPagamento(despesa,comboParcelas.getSelectedIndex()+1,valor);
+                dc = new DespesaController();
                 this.exibirDados();
             } catch (Exception ex) {
                  JOptionPane.showMessageDialog(null, "Falha ao tentar efetuar o pagamento", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             try {
+                despesa = dc.despesaUnico(dc.getDespesas().get(index).getId()).get(0);
                 dc.estorno(despesa);
+                dc = new DespesaController();
                 this.exibirDados();
             } catch (Exception ex) {
                  JOptionPane.showMessageDialog(null, "Falha ao tentar estornar a conta, entre em contato com o suporte", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -747,7 +758,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 if(buttonSelecionar.getText().equals("Buscar")){   
                     try {
                         PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
@@ -764,7 +775,7 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
 
     private void inputDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputDescricaoKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == evt.VK_F1) {
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 if(buttonSelecionar.getText().equals("Buscar")){   
                     try {
                         PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
@@ -791,14 +802,14 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonProximo;
     public static javax.swing.JButton buttonSelecionar;
     private javax.swing.JLabel calendarioDtNascimentoCliente;
-    private javax.swing.JComboBox<String> comboParcelas;
+    public static javax.swing.JComboBox<String> comboParcelas;
     public static javax.swing.JTextField inputDataInicio;
     public static javax.swing.JTextField inputDescricao;
     public static javax.swing.JTextField inputId;
     public static javax.swing.JTextField inputParcelas;
-    private javax.swing.JTextField inputRestantes;
+    public static javax.swing.JTextField inputRestantes;
     public static javax.swing.JTextField inputSituacao;
-    private javax.swing.JTextField inputValorPago;
+    public static javax.swing.JTextField inputValorPago;
     public static javax.swing.JTextField inputValorParcela;
     public static javax.swing.JTextField inputValorTotal;
     public static javax.swing.JTextField inputVencimento;
@@ -839,8 +850,6 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
     }
     
         public void exibirDados(){
-        despesa = dc.despesaUnico(dc.getDespesas().get(index).getId()).get(0);
-        dc = new DespesaController();
         try {
             this.ativarTudo();
             inputId.setText(""+dc.getDespesas().get(index).getId());

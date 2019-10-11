@@ -321,7 +321,7 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboSituacaoActionPerformed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {   
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {   
             try {
                 PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
                 this.getParent().add(pcpv);
@@ -334,7 +334,7 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_inputIdKeyPressed
 
     private void inputDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputDescricaoKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {   
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {   
             try {
                 PesquisarContaPagarView pcpv = new PesquisarContaPagarView();
                 this.getParent().add(pcpv);

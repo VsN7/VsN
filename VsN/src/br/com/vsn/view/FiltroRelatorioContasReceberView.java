@@ -345,7 +345,7 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
     }//GEN-LAST:event_comboSituacaoActionPerformed
 
     private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {   
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {   
             try {
                 PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
                 this.getParent().add(pcrv);
@@ -358,7 +358,7 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
     }//GEN-LAST:event_inputIdKeyPressed
 
     private void inputTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTituloKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {   
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {   
             try {
                 PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
                 this.getParent().add(pcrv);
@@ -371,7 +371,7 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
     }//GEN-LAST:event_inputTituloKeyPressed
 
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
-        if (evt.getKeyCode() == evt.VK_F1) {   
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {   
             try {
                 PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
                 this.getParent().add(pcrv);

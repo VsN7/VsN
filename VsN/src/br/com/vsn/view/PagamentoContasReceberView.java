@@ -380,14 +380,19 @@ public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
     private void buttonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagarActionPerformed
         if(buttonPagar.getText().equals("Receber Titulo")){
             try {
+                valoresInputs();
                 cc.efetuarPagamento(conta);
+                
+                cc = new ContaController();
                 this.exibirDados();
             } catch (Exception ex) {
                 Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             try {
+                valoresInputs();
                 cc.estorno(conta);
+                cc = new ContaController();
                 this.exibirDados();
             } catch (Exception ex) {
                 Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
@@ -481,7 +486,6 @@ public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
     
     public void exibirDados(){
         try {
-            cc = new ContaController();
             System.out.println("INDEX:::"+index);
             inputTitulo.setText(""+cc.getContas().get(index).getTitulo());
             inputValor.setText(""+formatter.format(cc.getContas().get(index).getValor()));
@@ -507,8 +511,7 @@ public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
                 buttonPagar.setBackground(new Color(40,30,180));
             }
             this.desabilitarComponentes();
-            this.valoresInputs();
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(PagamentoContasReceberView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -525,7 +528,6 @@ public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
         vezesRestantes = Integer.parseInt(inputVezesRestantes.getText());
         dataVencimento = sdf.parse(inputDataVencimento.getText());
         conta = cc.pesquisarUnico(cc.getContas().get(index).getId());
-        cc = new ContaController();
     }
     
     public static void desabilitarComponentes(){
