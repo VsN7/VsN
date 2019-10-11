@@ -86,7 +86,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     }
     
     
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -165,7 +165,6 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Cadastro de Orçamentos");
-        setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ID");
@@ -506,12 +505,9 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                         .addComponent(calendarDtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(calendarPvEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,6 +644,55 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
+
+    }//GEN-LAST:event_inputIdActionPerformed
+
+    private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
+        if (evt.getKeyCode() == MenuView.teclaPesquisa) {
+            try {
+                PesquisarOrcamentoView pv = new PesquisarOrcamentoView();
+                this.getParent().add(pv);
+                pv.setVisible(true);
+                PesquisarOrcamentoView.validador = 1;
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_inputIdKeyPressed
+
+    private void inputClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputClienteActionPerformed
+
+    private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
+        if(buttonSelecionar.getText().equals("Buscar") || buttonCadastrar.getText().equals("Salvar")){
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
+                if(buttonSelecionar.getText().equals("Buscar")){
+                    try {
+                        PesquisarOrcamentoView pov = new PesquisarOrcamentoView();
+                        this.getParent().add(pov);
+                        pov.setVisible(true);
+                        PesquisarOrcamentoView.validador = 1;
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    try {
+                        PesquisarClienteView pv = new PesquisarClienteView();
+                        this.getParent().add(pv);
+                        pv.setVisible(true);
+                        PesquisarClienteView.validador = 1;
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            }
+        }
+    }//GEN-LAST:event_inputClienteKeyPressed
+
     private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
         index = oc.getOrcamentos().size()-1;
         exibirDados();
@@ -681,7 +726,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 oc.editOrcamento(Integer.parseInt(inputId.getText()), orcamento);
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
-                 oc = new OrcamentoController();
+                oc = new OrcamentoController();
                 this.exibirDados();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -705,7 +750,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                     this.desativarTudo();
                     this.ativarButtonCadastrar();
                     if(buttonCadastrar.getText().equals("Salvar"))
-                        this.ativarInputCadastrar();
+                    this.ativarInputCadastrar();
                 }else{
                     oc = new OrcamentoController();
                     oc = new OrcamentoController();
@@ -716,9 +761,9 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 Logger.getLogger(OrcamentoView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            
-                JOptionPane.showMessageDialog(null, "Imposivel Excluir Orçamento Vinculado", "Aviso", JOptionPane.ERROR_MESSAGE);
-        
+
+            JOptionPane.showMessageDialog(null, "Imposivel Excluir Orçamento Vinculado", "Aviso", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
@@ -736,13 +781,13 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                     }
                     iterator.next();
                     if(i<oc.getOrcamentos().size()-1)
-                        i++;
-                
+                    i++;
+
                 }while (iterator.hasNext());
                 if(condicaoErro==0){
-                    
+
                     JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                   
+
                 }else{
                     oc = new OrcamentoController();
                     this.exibirDados();
@@ -750,7 +795,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-        
+
             }
         }else{
             this.desativarTudo();
@@ -785,8 +830,32 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
+    private void buttonImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonImprimirMouseClicked
+        if(evt.isMetaDown()) {
+            item1 = new JMenuItem("Orçamento Padrão");
+            item1.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    relOrcamento = item1.getText();
+                }
+            });
+            item2 = new JMenuItem("Orçamento Manual");
+            item2.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    relOrcamento = item2.getText();
+                }
+            });
+            JPopupMenu popup = new JPopupMenu();
+            popup.add(item1);
+            popup.add(item2);
+            popup.show(buttonImprimir, 50, 10);
+        }
+
+    }//GEN-LAST:event_buttonImprimirMouseClicked
+
     private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
-        
+
         if(relOrcamento.equals("Orçamento Padrão")){
             oc.relatorioOrcamentosGeral(Integer.parseInt(inputId.getText()));
         }else if(relOrcamento.equals("Orçamento Manual")){
@@ -794,28 +863,41 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
-    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
-        
-    }//GEN-LAST:event_inputIdActionPerformed
+    private void calendarPvEntregaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMouseClicked
+        calendarPvEntrega.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
+    }//GEN-LAST:event_calendarPvEntregaMouseClicked
 
-    private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if (evt.getKeyCode() == MenuView.teclaPesquisa) {                    
-            try {
-                PesquisarOrcamentoView pv = new PesquisarOrcamentoView();
-                this.getParent().add(pv);
-                pv.setVisible(true);
-                PesquisarOrcamentoView.validador = 1;
-                   
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_inputIdKeyPressed
+    private void calendarPvEntregaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMouseEntered
+        calendarPvEntrega.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
+    }//GEN-LAST:event_calendarPvEntregaMouseEntered
+
+    private void calendarPvEntregaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMouseExited
+        calendarPvEntrega.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_calendarPvEntregaMouseExited
+
+    private void calendarPvEntregaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMousePressed
+        CalendarView cv = new CalendarView();
+        this.getParent().add(cv);
+        cv.setVisible(true);
+        cv.setaCalendarOrcamentoPvEntrega();
+    }//GEN-LAST:event_calendarPvEntregaMousePressed
+
+    private void inputValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputValorActionPerformed
+
+    private void buttonOSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOSMouseEntered
+        buttonOS.setBorder(new LineBorder(new Color(52, 126, 164), 2, true));
+    }//GEN-LAST:event_buttonOSMouseEntered
+
+    private void buttonOSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOSMouseExited
+        buttonOS.setBorder(new LineBorder(new Color(8, 90, 0), 1, true));
+    }//GEN-LAST:event_buttonOSMouseExited
 
     private void buttonOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOSActionPerformed
         OrdemServicoController osc = new OrdemServicoController();
         osc.salvarOrdemServico(Integer.parseInt(inputId.getText()),cliente, cpf, veiculo, modelo, marca, ano, placa, servico, atendente, dtInicio, pvEntrega, valor, situacao, observacoes);
-       
+
         osc = new OrdemServicoController();
         OrdemServicoView.index = osc.getOrdemServicos().size()-1;
         os = osc.getOrdemServicos().get(osc.getOrdemServicos().size()-1);
@@ -829,9 +911,9 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
             osv.setVisible(true);
             this.preencherOS();
             this.dispose();
-            }catch(Exception ex){
-                Logger.getLogger(UsuarioView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }catch(Exception ex){
+            Logger.getLogger(UsuarioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonOSActionPerformed
 
     private void inputDataInicioinputTitulo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDataInicioinputTitulo5ActionPerformed
@@ -842,36 +924,10 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPrevisaoEntregainputTitulo6ActionPerformed
 
-    private void inputValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputValorActionPerformed
-
     private void inputSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSituacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputSituacaoActionPerformed
 
-    private void calendarPvEntregaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMousePressed
-        CalendarView cv = new CalendarView();
-        this.getParent().add(cv);
-        cv.setVisible(true);
-        cv.setaCalendarOrcamentoPvEntrega();
-    }//GEN-LAST:event_calendarPvEntregaMousePressed
-
-    private void calendarPvEntregaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMouseExited
-        calendarPvEntrega.setBorder(new LineBorder(Color.BLACK, 2, true));
-    }//GEN-LAST:event_calendarPvEntregaMouseExited
-
-    private void calendarPvEntregaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMouseEntered
-        calendarPvEntrega.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
-    }//GEN-LAST:event_calendarPvEntregaMouseEntered
-
-    private void calendarPvEntregaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarPvEntregaMouseClicked
-        calendarPvEntrega.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
-    }//GEN-LAST:event_calendarPvEntregaMouseClicked
-
-    
-    //////
-    
     private void calendarDtInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarDtInicioMouseClicked
         calendarDtInicio.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
     }//GEN-LAST:event_calendarDtInicioMouseClicked
@@ -890,69 +946,6 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         cv.setVisible(true);
         cv.setaCalendarOrcamentoDtInicio();
     }//GEN-LAST:event_calendarDtInicioMousePressed
-
-    private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
-        if(buttonSelecionar.getText().equals("Buscar") || buttonCadastrar.getText().equals("Salvar")){
-            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
-                if(buttonSelecionar.getText().equals("Buscar")){
-                    try {
-                        PesquisarOrcamentoView pov = new PesquisarOrcamentoView();
-                        this.getParent().add(pov);
-                        pov.setVisible(true);
-                        PesquisarOrcamentoView.validador = 1;
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                    }
-                }else{
-                    try {
-                        PesquisarClienteView pv = new PesquisarClienteView();
-                        this.getParent().add(pv);
-                        pv.setVisible(true);
-                        PesquisarClienteView.validador = 1;
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-
-            }
-        }
-    }//GEN-LAST:event_inputClienteKeyPressed
-
-    private void inputClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputClienteActionPerformed
-
-    private void buttonOSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOSMouseEntered
-        buttonOS.setBorder(new LineBorder(new Color(52, 126, 164), 2, true));
-    }//GEN-LAST:event_buttonOSMouseEntered
-
-    private void buttonOSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOSMouseExited
-        buttonOS.setBorder(new LineBorder(new Color(8, 90, 0), 1, true));
-    }//GEN-LAST:event_buttonOSMouseExited
-
-    private void buttonImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonImprimirMouseClicked
-         if(evt.isMetaDown()) {
-                item1 = new JMenuItem("Orçamento Padrão");
-                item1.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-                        relOrcamento = item1.getText();
-                    }
-                });
-                item2 = new JMenuItem("Orçamento Manual");
-                item2.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-                        relOrcamento = item2.getText();
-                    }
-                });
-            JPopupMenu popup = new JPopupMenu();
-            popup.add(item1);
-            popup.add(item2);
-            popup.show(buttonImprimir, 50, 10);
-            }
-        
-    }//GEN-LAST:event_buttonImprimirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1006,6 +999,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 
+
     public int anterior(){
         return --index;
     }
@@ -1035,7 +1029,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
                 buttonOS.setEnabled(false);
                 buttonExcluir.setEnabled(false);
                 buttonEditar.setEnabled(false);
-                inputSituacao.setForeground(Color.red);
+                inputSituacao.setForeground(new Color(172,30,20));
             }else{
                 buttonOS.setEnabled(true);
                 buttonExcluir.setEnabled(true);

@@ -38,13 +38,13 @@ import javax.persistence.TemporalType;
                 query = "SELECT SUM(o.valor) FROM Orcamento o where (o.situacao = :situacao OR o.situacao = :s2)"),
      
      @NamedQuery(name = "Orcamento.buscaPorNome", 
-                query = "SELECT o FROM Orcamento o WHERE o.cliente LIKE :nome "),
+                query = "SELECT o FROM Orcamento o WHERE o.cliente LIKE :nome and o.usuario.id = :id"),
      
      @NamedQuery(name = "Orcamento.buscaPorServico", 
-                query = "SELECT o FROM Orcamento o WHERE o.servico LIKE :servico "),
+                query = "SELECT o FROM Orcamento o WHERE o.servico LIKE :servico and o.usuario.id = :id "),
      
      @NamedQuery(name = "Orcamento.buscaPorCpf", 
-                query = "SELECT o FROM Orcamento o WHERE o.cpf LIKE :cpf "),
+                query = "SELECT o FROM Orcamento o WHERE o.cpf LIKE :cpf and o.usuario.id = :id "),
 })
 
 

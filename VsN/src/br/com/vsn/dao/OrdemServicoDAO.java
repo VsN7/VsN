@@ -170,11 +170,12 @@ public class OrdemServicoDAO implements Serializable {
     }
     
     public List<OrdemServico> ordemServicoFiltroNome(String nome) {
-        List<OrdemServico> rdemServico = null;
+        List<OrdemServico> ordemServico = null;
         EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
         try{
-           rdemServico = em.createNamedQuery("OrdemServico.buscaPorNome").setParameter("nome",nome).getResultList();
-           return rdemServico;
+           ordemServico = em.createNamedQuery("OrdemServico.buscaPorNome").setParameter("nome",nome).setParameter("id",uc.getId()).getResultList();
+           return ordemServico;
         }catch(Exception e){
             
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -185,8 +186,8 @@ public class OrdemServicoDAO implements Serializable {
     public List<OrdemServico> ordemServicoFiltroServico(String servico) {
         List<OrdemServico> ordemServico = null;
         EntityManager em = getEntityManager();
-        try{
-           ordemServico = em.createNamedQuery("OrdemServico.buscaPorServico").setParameter("servico",servico).getResultList();
+        try{UsuarioController uc = new UsuarioController();
+           ordemServico = em.createNamedQuery("OrdemServico.buscaPorServico").setParameter("servico",servico).setParameter("id",uc.getId()).getResultList();
            return ordemServico;
         }catch(Exception e){
             

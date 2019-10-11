@@ -269,17 +269,17 @@ public class MenuView extends javax.swing.JFrame {
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(846, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 870, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
@@ -658,9 +658,7 @@ public class MenuView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(desktopPane))
+            .addComponent(desktopPane)
         );
 
         pack();
@@ -1211,7 +1209,7 @@ public class MenuView extends javax.swing.JFrame {
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-jMenuBar1.setBackground(new Color(150,150,150));
+                jMenuBar1.setBackground(new Color(190,190,190));
                 break;
             case 6:
                 try {
@@ -1254,7 +1252,6 @@ jMenuBar1.setBackground(new Color(150,150,150));
         }
         SwingUtilities.updateComponentTreeUI(this);
 
-        desktopPane.setBackground(SystemColor.BLACK);
     }
     
     public void visualDark() throws UnsupportedLookAndFeelException{
@@ -1287,7 +1284,7 @@ jMenuBar1.setBackground(new Color(150,150,150));
         }
         SwingUtilities.updateComponentTreeUI(this);
 
-        desktopPane.setBackground(SystemColor.BLACK);
+        jMenuBar1.setBackground(new Color(30,30,30));
     }
     
     public void visualRed() throws UnsupportedLookAndFeelException{

@@ -73,7 +73,7 @@ public class PagamentoController {
                         OrdemServicoController osc = new OrdemServicoController();
                         osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
                         OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
-                        OrdemServicoView.inputSituacao.setForeground(Color.yellow);
+                        OrdemServicoView.inputSituacao.setForeground(new Color(255,102,51));
                         JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         conta = 0;
                     }else if(validaExcluir == 0){
@@ -82,7 +82,7 @@ public class PagamentoController {
                         OrdemServicoController osc = new OrdemServicoController();
                         osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
                         OrdemServicoView.inputSituacao.setText("O.S EM PAGAMENTO");
-                        OrdemServicoView.inputSituacao.setForeground(Color.yellow);
+                        OrdemServicoView.inputSituacao.setForeground(new Color(255,102,51));
                         osc = new OrdemServicoController();
                         JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         conta = 0;

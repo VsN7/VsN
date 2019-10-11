@@ -7,6 +7,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +27,7 @@ import javax.swing.border.LineBorder;
  * @author vitor
  */
 public class ClienteView extends javax.swing.JInternalFrame {
-    
+
     ClienteController cc;
     SimpleDateFormat sdf;
     static int index = 0;
@@ -55,7 +58,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         int alt = (int) d.getHeight();
         this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/30);
         initComponents();
-        
+       
         if(cc.getClientes().size()<=0){
             this.desativarTudo();
             this.ativarButtonCadastrar();
@@ -66,9 +69,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         }
         
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -148,12 +149,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Cadastro de Clientes");
-        setToolTipText("");
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
+
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ID");
@@ -391,13 +388,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,7 +413,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(inputLongradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -429,7 +427,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addComponent(inputCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -443,23 +441,20 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputCep, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jSeparator2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(inputEmail))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel23)
+                            .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(calendarioDtNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -477,7 +472,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel6)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(inputImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                        .addComponent(inputImagem)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(buttonCaminhoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -538,7 +533,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(101, 101, 101)
                                 .addComponent(buttonCaminhoImg)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
@@ -574,17 +569,17 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel24))
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel23))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputTelefone)
+                            .addComponent(inputEmail)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
@@ -610,11 +605,52 @@ public class ClienteView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
+
+    }//GEN-LAST:event_inputIdActionPerformed
+
+    private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
+                if(buttonSelecionar.getText().equals("Buscar")){
+                    try {
+                        PesquisarClienteView pv = new PesquisarClienteView();
+                        this.getParent().add(pv);
+                        pv.setVisible(true);
+                        PesquisarClienteView.validador = 0;
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_inputIdKeyPressed
+
+    private void inputNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputNomeActionPerformed
+
+    private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
+                if(buttonSelecionar.getText().equals("Buscar")){
+                    try {
+                        PesquisarClienteView pv = new PesquisarClienteView();
+                        this.getParent().add(pv);
+                        pv.setVisible(true);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_inputNomeKeyPressed
 
     private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
         index = cc.getClientes().size()-1;
@@ -663,17 +699,17 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         try {
-                this.valoresInput();
-                cc = new ClienteController();
-                ClienteController.validador = 1;
-                cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg, longradouro, numero, bairro, cidade, estado, cep, telefone, email,"INATIVO");
-                this.ativarTudo();
-                cc = new ClienteController();
-                this.exibirDados();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+            this.valoresInput();
+            cc = new ClienteController();
+            ClienteController.validador = 1;
+            cc.editCliente(Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg, longradouro, numero, bairro, cidade, estado, cep, telefone, email,"INATIVO");
+            this.ativarTudo();
+            cc = new ClienteController();
+            this.exibirDados();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
 
-            }
+        }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
@@ -690,13 +726,13 @@ public class ClienteView extends javax.swing.JInternalFrame {
                     }
                     iterator.next();
                     if(i<cc.getClientes().size()-1)
-                        i++;
-                
+                    i++;
+
                 }while (iterator.hasNext());
                 if(condicaoErro==0){
-                    
+
                     JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                   
+
                 }else{
                     cc = new ClienteController();
                     this.exibirDados();
@@ -704,7 +740,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-        
+
             }
         }else{
             this.desativarTudo();
@@ -742,73 +778,21 @@ public class ClienteView extends javax.swing.JInternalFrame {
         cc.relatorioClienteIndividual(Integer.parseInt(inputId.getText()));
     }//GEN-LAST:event_buttonImprimirActionPerformed
 
-    private void inputDtNascimentoinputTitulo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDtNascimentoinputTitulo5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputDtNascimentoinputTitulo5ActionPerformed
-
     private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboEstadoActionPerformed
 
-    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
-        
-    }//GEN-LAST:event_inputIdActionPerformed
+    private void calendarioDtNascimentoClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseClicked
+        calendarioDtNascimentoCliente.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
+    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseClicked
 
+    private void calendarioDtNascimentoClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseEntered
+        calendarioDtNascimentoCliente.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
+    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseEntered
 
-    
-    private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if(buttonSelecionar.getText().equals("Buscar")){
-            System.out.println("TCL????"+MenuView.teclaPesquisa);
-            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
-                if(buttonSelecionar.getText().equals("Buscar")){   
-                    try {
-                        PesquisarClienteView pv = new PesquisarClienteView();
-                        this.getParent().add(pv);
-                        pv.setVisible(true);
-                        PesquisarClienteView.validador = 0;
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_inputIdKeyPressed
-
-    private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
-        if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
-                if(buttonSelecionar.getText().equals("Buscar")){   
-                    try {
-                        PesquisarClienteView pv = new PesquisarClienteView();
-                        this.getParent().add(pv);
-                        pv.setVisible(true);
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_inputNomeKeyPressed
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
-                if(buttonSelecionar.getText().equals("Buscar")){   
-                    try {
-                        PesquisarClienteView pv = new PesquisarClienteView();
-                        this.getParent().add(pv);
-                        pv.setVisible(true);
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_formKeyPressed
-
-    private void inputNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputNomeActionPerformed
+    private void calendarioDtNascimentoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseExited
+        calendarioDtNascimentoCliente.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseExited
 
     private void calendarioDtNascimentoClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMousePressed
         CalendarView cv = new CalendarView();
@@ -817,17 +801,9 @@ public class ClienteView extends javax.swing.JInternalFrame {
         cv.setaCalendarClienteNascimento();
     }//GEN-LAST:event_calendarioDtNascimentoClienteMousePressed
 
-    private void calendarioDtNascimentoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseExited
-        calendarioDtNascimentoCliente.setBorder(new LineBorder(Color.BLACK, 2, true));
-    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseExited
-
-    private void calendarioDtNascimentoClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseEntered
-        calendarioDtNascimentoCliente.setBorder(new LineBorder(new Color(230, 40, 70), 2, true));
-    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseEntered
-
-    private void calendarioDtNascimentoClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoClienteMouseClicked
-        calendarioDtNascimentoCliente.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
-    }//GEN-LAST:event_calendarioDtNascimentoClienteMouseClicked
+    private void inputDtNascimentoinputTitulo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDtNascimentoinputTitulo5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputDtNascimentoinputTitulo5ActionPerformed
 
     private void buttonCaminhoImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminhoImgActionPerformed
         try{
@@ -838,28 +814,27 @@ public class ClienteView extends javax.swing.JInternalFrame {
             String foto = ""+buscarImg.getSelectedFile().getName();
             inputImagem.setText(foto);
             this.preencherImagem();
-            
+
         }catch(Exception e){
             Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, e);
         }
-        
     }//GEN-LAST:event_buttonCaminhoImgActionPerformed
 
-    private void fotografiaClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMousePressed
+    private void fotografiaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_fotografiaClienteMousePressed
-
-    private void fotografiaClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fotografiaClienteMouseExited
+    }//GEN-LAST:event_fotografiaClienteMouseClicked
 
     private void fotografiaClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_fotografiaClienteMouseEntered
 
-    private void fotografiaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseClicked
+    private void fotografiaClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_fotografiaClienteMouseClicked
+    }//GEN-LAST:event_fotografiaClienteMouseExited
+
+    private void fotografiaClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaClienteMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fotografiaClienteMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -912,7 +887,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
-
     public int anterior(){
         return --index;
     }
@@ -1126,3 +1100,5 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
 
 }
+
+

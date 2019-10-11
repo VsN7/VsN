@@ -451,7 +451,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
                 OrdemServicoController osc = new OrdemServicoController();
                 osc.editOrdemServico(Integer.parseInt(OrdemServicoView.inputId.getText()), OrdemServicoView.ordemServico);
                 OrdemServicoView.inputSituacao.setText("O.S FINALIZADA");
-                OrdemServicoView.inputSituacao.setForeground(Color.red);
+                OrdemServicoView.inputSituacao.setForeground(new Color(172,30,20));
                 int idPag = ptc.getPagamentoTabelas().size();
                     validaDestroy = 1;
                      int idPagamento = pagamento.getId();
@@ -628,7 +628,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
         }
         
         if(inputSituacao.getText().equals("FECHADO")){
-            inputSituacao.setForeground(Color.red);
+            inputSituacao.setForeground(new Color(172,30,20));
         }else{
             inputSituacao.setForeground(Color.blue);
         }

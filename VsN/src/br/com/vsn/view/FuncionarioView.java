@@ -74,7 +74,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }
     
     
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -148,7 +148,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Cadastro de Funcionarios");
-        setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ID");
@@ -497,7 +496,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(inputImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(buttonCaminhoImg)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -566,171 +565,39 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
-        index = fc.getFuncionarios().size()-1;
-        exibirDados();
-    }//GEN-LAST:event_buttonFinaljButton8ActionPerformed
+    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
 
-    private void buttonProximojButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProximojButton7ActionPerformed
-        if(index < fc.getFuncionarios().size()-1){
-            posterior();
-        }
-        exibirDados();
-    }//GEN-LAST:event_buttonProximojButton7ActionPerformed
+    }//GEN-LAST:event_inputIdActionPerformed
 
-    private void buttonAnteriorjButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnteriorjButton6ActionPerformed
-        if(index > 0){
-            anterior();
-        }
-        exibirDados();
-    }//GEN-LAST:event_buttonAnteriorjButton6ActionPerformed
-
-    private void buttonIniciojButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciojButton5ActionPerformed
-        index = 0;
-        exibirDados();
-    }//GEN-LAST:event_buttonIniciojButton5ActionPerformed
-
-    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-
-        if(buttonEditar.getText().equals("Salvar")){
-            try {
-                this.valoresInput();
-                UsuarioController uc = new UsuarioController();
-                if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
-                    
-                    fc.editFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca,comboAutorizacao.getSelectedIndex());
-                    if(FuncionarioController.estouraErroNulo == 0){
-                        buttonEditar.setText("Editar");
-                        buttonSenha.setText("Informar Senha");
-                        fc = new FuncionarioController();
-                        this.exibirDados();
-                    }
-                }
-                else{ 
-                    if(verificaButtonSenha == 0 || InformarSenhaView.inputSenha.getText().isEmpty() || InformarSenhaView.inputPalavraSeguranca.getText().isEmpty()){
-                        user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);    
-                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),user.getSenha(),user.getPalavraSeguranca(),comboAutorizacao.getSelectedIndex());
-                        verificaButtonSenha=0;
-                        if(FuncionarioController.estouraErroNulo == 0){
-                            JOptionPane.showMessageDialog(rootPane, "Não houveram alterações na senha!", "Aviso", JOptionPane.INFORMATION_MESSAGE, null);                       
-                            buttonEditar.setText("Editar");
-                            buttonSenha.setText("Informar Senha");
-                            fc = new FuncionarioController();
-                            this.exibirDados();
-                        }
-                    }else{
-                        user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);
-                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca,comboAutorizacao.getSelectedIndex());     
-                        if(FuncionarioController.estouraErroNulo == 0){
-                            buttonEditar.setText("Editar");
-                            buttonSenha.setText("Informar Senha");
-                            fc = new FuncionarioController();
-                            this.exibirDados();
-                        }
-                    }
-                }
-            } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Impossível cadastrar um usuário para este funcionario!!", "Aviso", JOptionPane.ERROR_MESSAGE, null);
-        }
-        }else{
-            this.ativarButtonEditar();
-            buttonSenha.setText("Alterar Senha");
-            buttonEditar.setText("Salvar");
-            if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
-                buttonSenha.setEnabled(false);
-                inputLogin.setEditable(false);
-                comboAutorizacao.setEnabled(false);
-            }else{
-                buttonSenha.setEnabled(true);
-                inputLogin.setEditable(true);
-                comboAutorizacao.setEnabled(true);
-            }
-        }
-    }//GEN-LAST:event_buttonEditarActionPerformed
-
-    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        try {
-            if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
-                FuncionarioController.validador = 1;
-                fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
-                fc = new FuncionarioController();
-                this.exibirDados();
-            }else{
-                this.valoresInput();
-                fc = new FuncionarioController();
-                fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
-                
-                this.ativarTudo();
-                fc = new FuncionarioController();
-                this.exibirDados();
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
-
-            }
-    }//GEN-LAST:event_buttonExcluirActionPerformed
-
-    private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
+    private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
         if(buttonSelecionar.getText().equals("Buscar")){
-            try {
-                int i = 0;
-                int id = Integer.parseInt(inputId.getText());
-                Iterator iterator = fc.getFuncionarios().iterator();
-                int condicaoErro = 0;
-                do{
-                    if(id == fc.getFuncionarios().get(i).getId()){
-                        condicaoErro=1;
-                        index=i;
-                    }
-                    iterator.next();
-                    if(i<fc.getFuncionarios().size()-1)
-                        i++;
-                
-                }while (iterator.hasNext());
-                if(condicaoErro==0){
-                    
-                    JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                   
-                }else{
-                    fc = new FuncionarioController();
-                    this.exibirDados();
-                    buttonSelecionar.setText("Selecionar");
-                    this.ativarTudo();
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
+                try {
+                    PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
+                    this.getParent().add(pfv);
+                    pfv.setVisible(true);
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
-        }else{this.desativarTudo();
-            this.ativarButtonSelecionar();
-            this.limparCampos();
-            inputId.setEnabled(true);
-            inputId.setEditable(true);
-            inputNome.setEnabled(true);
-            buttonSelecionar.setText("Buscar");
         }
-    }//GEN-LAST:event_buttonSelecionarActionPerformed
+    }//GEN-LAST:event_inputIdKeyPressed
 
-    private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
-        if(buttonCadastrar.getText().equals("Salvar")){
-            this.valoresInput();
-            fc.salvarFuncionario(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg,this.login,this.funcao, this.telefone, this.email,this.senha,this.palavraSergurnca,comboAutorizacao.getSelectedIndex());
-            if(FuncionarioController.estouraErroNulo != 1){
-                buttonCadastrar.setText("Novo");
-                fc = new FuncionarioController();
-                index = fc.getFuncionarios().size()-1;
-                this.exibirDados();
+    private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
+        if(buttonSelecionar.getText().equals("Buscar")){
+            if (evt.getKeyCode() == MenuView.teclaPesquisa) {
+                try {
+                    PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
+                    this.getParent().add(pfv);
+                    pfv.setVisible(true);
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                }
             }
-        }else{
-            this.limparCampos();
-            this.ativarButtonCadastrar();
-            this.ativarInputCadastrar();
-            buttonCadastrar.setText("Salvar");
         }
-    }//GEN-LAST:event_buttonCadastrarActionPerformed
-
-    private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
-        fc.relatorioFuncionarioIndividual(Integer.parseInt(inputId.getText()));
-    }//GEN-LAST:event_buttonImprimirActionPerformed
+    }//GEN-LAST:event_inputNomeKeyPressed
 
     private void calendarioDtNascimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioDtNascimentoMouseClicked
         calendarioDtNascimento.setBorder(new LineBorder(new Color(230, 40, 70), 3, true));
@@ -755,26 +622,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputDtNascimentoinputTitulo5ActionPerformed
 
-    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
-        
-    }//GEN-LAST:event_inputIdActionPerformed
-
-    private void inputIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdKeyPressed
-        if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == MenuView.teclaPesquisa) {                    
-                try {
-                    PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
-                    this.getParent().add(pfv);
-                    pfv.setVisible(true);
-
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-    }//GEN-LAST:event_inputIdKeyPressed
-
     private void buttonCaminhoImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminhoImgActionPerformed
         try{
             JFileChooser buscarImg = new JFileChooser();
@@ -786,9 +633,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             this.preencherImagem();
 
         }catch(Exception e){
-            
-        }
 
+        }
     }//GEN-LAST:event_buttonCaminhoImgActionPerformed
 
     private void fotografiaFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaFuncionarioMouseClicked
@@ -807,6 +653,172 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fotografiaFuncionarioMousePressed
 
+    private void buttonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonImprimirActionPerformed
+        fc.relatorioFuncionarioIndividual(Integer.parseInt(inputId.getText()));
+    }//GEN-LAST:event_buttonImprimirActionPerformed
+
+    private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
+        if(buttonSelecionar.getText().equals("Buscar")){
+            try {
+                int i = 0;
+                int id = Integer.parseInt(inputId.getText());
+                Iterator iterator = fc.getFuncionarios().iterator();
+                int condicaoErro = 0;
+                do{
+                    if(id == fc.getFuncionarios().get(i).getId()){
+                        condicaoErro=1;
+                        index=i;
+                    }
+                    iterator.next();
+                    if(i<fc.getFuncionarios().size()-1)
+                    i++;
+
+                }while (iterator.hasNext());
+                if(condicaoErro==0){
+
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
+
+                }else{
+                    fc = new FuncionarioController();
+                    this.exibirDados();
+                    buttonSelecionar.setText("Selecionar");
+                    this.ativarTudo();
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{this.desativarTudo();
+            this.ativarButtonSelecionar();
+            this.limparCampos();
+            inputId.setEnabled(true);
+            inputId.setEditable(true);
+            inputNome.setEnabled(true);
+            buttonSelecionar.setText("Buscar");
+        }
+    }//GEN-LAST:event_buttonSelecionarActionPerformed
+
+    private void buttonIniciojButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciojButton5ActionPerformed
+        index = 0;
+        exibirDados();
+    }//GEN-LAST:event_buttonIniciojButton5ActionPerformed
+
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        try {
+            if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
+                FuncionarioController.validador = 1;
+                fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
+                fc = new FuncionarioController();
+                this.exibirDados();
+            }else{
+                this.valoresInput();
+                fc = new FuncionarioController();
+                fc.inativarFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,"INATIVO",senha,palavraSergurnca);
+
+                this.ativarTudo();
+                fc = new FuncionarioController();
+                this.exibirDados();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+
+        }
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
+        if(buttonCadastrar.getText().equals("Salvar")){
+            this.valoresInput();
+            fc.salvarFuncionario(this.nome, this.cpf, this.sexo, this.dtNascimento,this.caminhoImg,this.login,this.funcao, this.telefone, this.email,this.senha,this.palavraSergurnca,comboAutorizacao.getSelectedIndex());
+            if(FuncionarioController.estouraErroNulo != 1){
+                buttonCadastrar.setText("Novo");
+                fc = new FuncionarioController();
+                index = fc.getFuncionarios().size()-1;
+                this.exibirDados();
+            }
+        }else{
+            this.limparCampos();
+            this.ativarButtonCadastrar();
+            this.ativarInputCadastrar();
+            buttonCadastrar.setText("Salvar");
+        }
+    }//GEN-LAST:event_buttonCadastrarActionPerformed
+
+    private void buttonAnteriorjButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnteriorjButton6ActionPerformed
+        if(index > 0){
+            anterior();
+        }
+        exibirDados();
+    }//GEN-LAST:event_buttonAnteriorjButton6ActionPerformed
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+
+        if(buttonEditar.getText().equals("Salvar")){
+            try {
+                this.valoresInput();
+                UsuarioController uc = new UsuarioController();
+                if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
+
+                    fc.editFuncionario(0,Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca,comboAutorizacao.getSelectedIndex());
+                    if(FuncionarioController.estouraErroNulo == 0){
+                        buttonEditar.setText("Editar");
+                        buttonSenha.setText("Informar Senha");
+                        fc = new FuncionarioController();
+                        this.exibirDados();
+                    }
+                }
+                else{
+                    if(verificaButtonSenha == 0 || InformarSenhaView.inputSenha.getText().isEmpty() || InformarSenhaView.inputPalavraSeguranca.getText().isEmpty()){
+                        user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);
+                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),user.getSenha(),user.getPalavraSeguranca(),comboAutorizacao.getSelectedIndex());
+                        verificaButtonSenha=0;
+                        if(FuncionarioController.estouraErroNulo == 0){
+                            JOptionPane.showMessageDialog(rootPane, "Não houveram alterações na senha!", "Aviso", JOptionPane.INFORMATION_MESSAGE, null);
+                            buttonEditar.setText("Editar");
+                            buttonSenha.setText("Informar Senha");
+                            fc = new FuncionarioController();
+                            this.exibirDados();
+                        }
+                    }else{
+                        user = uc.pesquisarUnicoId(fc.getFuncionarios().get(index).getUsuario_id()).get(0);
+                        fc.editFuncionario(user.getId(),Integer.parseInt(inputId.getText()), nome, cpf, sexo, dtNascimento,caminhoImg,funcao,login, telefone, email,fc.getFuncionarios().get(index).getSituacao(),senha,palavraSergurnca,comboAutorizacao.getSelectedIndex());
+                        if(FuncionarioController.estouraErroNulo == 0){
+                            buttonEditar.setText("Editar");
+                            buttonSenha.setText("Informar Senha");
+                            fc = new FuncionarioController();
+                            this.exibirDados();
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "Impossível cadastrar um usuário para este funcionario!!", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+            }
+        }else{
+            this.ativarButtonEditar();
+            buttonSenha.setText("Alterar Senha");
+            buttonEditar.setText("Salvar");
+            if(inputLogin.getText().equals("Sem Acesso ao Sistema")){
+                buttonSenha.setEnabled(false);
+                inputLogin.setEditable(false);
+                comboAutorizacao.setEnabled(false);
+            }else{
+                buttonSenha.setEnabled(true);
+                inputLogin.setEditable(true);
+                comboAutorizacao.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_buttonEditarActionPerformed
+
+    private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
+        index = fc.getFuncionarios().size()-1;
+        exibirDados();
+    }//GEN-LAST:event_buttonFinaljButton8ActionPerformed
+
+    private void buttonProximojButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProximojButton7ActionPerformed
+        if(index < fc.getFuncionarios().size()-1){
+            posterior();
+        }
+        exibirDados();
+    }//GEN-LAST:event_buttonProximojButton7ActionPerformed
+
     private void buttonSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSenhaActionPerformed
         verificaButtonSenha = 1;
         if(buttonSenha.getText().equals("Informar Senha")){
@@ -819,7 +831,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     ifv.setVisible(true);
                     JanelaDialogo jd = new JanelaDialogo();
                     jd.geraDialogo(ifv);
-                    
+
                 }else{
                     JOptionPane.showMessageDialog(null, "É necessário preencher o campo Login e CPF primeiro!", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }
@@ -846,22 +858,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_buttonSenhaActionPerformed
-
-    private void inputNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNomeKeyPressed
-        if(buttonSelecionar.getText().equals("Buscar")){
-            if (evt.getKeyCode() == MenuView.teclaPesquisa) {                    
-                try {
-                    PesquisarFuncionarioView pfv = new PesquisarFuncionarioView();
-                    this.getParent().add(pfv);
-                    pfv.setVisible(true);
-
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-    }//GEN-LAST:event_inputNomeKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -172,8 +172,9 @@ public class OrcamentoDAO implements Serializable {
     public List<Orcamento> orcamentoFiltroNome(String nome) {
         List<Orcamento> orcamentos = null;
         EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
         try{
-           orcamentos = em.createNamedQuery("Orcamento.buscaPorNome").setParameter("nome",nome).getResultList();
+           orcamentos = em.createNamedQuery("Orcamento.buscaPorNome").setParameter("nome",nome).setParameter("id",uc.getId()).getResultList();
            return orcamentos;
         }catch(Exception e){
             
@@ -185,8 +186,9 @@ public class OrcamentoDAO implements Serializable {
     public List<Orcamento> orcamentoFiltroServico(String servico) {
         List<Orcamento> orcamentos = null;
         EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
         try{
-           orcamentos = em.createNamedQuery("Orcamento.buscaPorServico").setParameter("servico",servico).getResultList();
+           orcamentos = em.createNamedQuery("Orcamento.buscaPorServico").setParameter("servico",servico).setParameter("id",uc.getId()).getResultList();
            return orcamentos;
         }catch(Exception e){
             
@@ -198,8 +200,9 @@ public class OrcamentoDAO implements Serializable {
     public List<Orcamento> orcamentoFiltroCpf(String cpf) {
         List<Orcamento> orcamentos = null;
         EntityManager em = getEntityManager();
+        UsuarioController uc = new UsuarioController();
         try{
-           orcamentos = em.createNamedQuery("Orcamento.buscaPorCpf").setParameter("cpf",cpf).getResultList();
+           orcamentos = em.createNamedQuery("Orcamento.buscaPorCpf").setParameter("cpf",cpf).setParameter("id",uc.getId()).getResultList();
            return orcamentos;
         }catch(Exception e){
             

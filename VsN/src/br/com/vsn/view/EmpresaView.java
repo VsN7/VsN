@@ -133,9 +133,7 @@ public class EmpresaView extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setResizable(true);
         setTitle("Cadastro da Empresa");
-        setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ID");
@@ -436,13 +434,12 @@ public class EmpresaView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel11)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inputCnpj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(comboIcms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(inputInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboIcms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputCnpj))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,7 +484,7 @@ public class EmpresaView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInicio)
                     .addComponent(buttonProximo)
@@ -512,23 +509,28 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
-        index = ec.getEmpresas().size()-1;
-        exibirDados();
-    }//GEN-LAST:event_buttonFinaljButton8ActionPerformed
+    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
 
-    private void buttonProximojButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProximojButton7ActionPerformed
-        if(index < ec.getEmpresas().size()-1){
-            posterior();
-        }
+    }//GEN-LAST:event_inputIdActionPerformed
+
+    private void inputRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputRazaoSocialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputRazaoSocialActionPerformed
+
+    private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboEstadoActionPerformed
+
+    private void buttonIniciojButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciojButton5ActionPerformed
+        index = 0;
         exibirDados();
-    }//GEN-LAST:event_buttonProximojButton7ActionPerformed
+    }//GEN-LAST:event_buttonIniciojButton5ActionPerformed
 
     private void buttonAnteriorjButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnteriorjButton6ActionPerformed
         if(index > 0){
@@ -537,10 +539,21 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         exibirDados();
     }//GEN-LAST:event_buttonAnteriorjButton6ActionPerformed
 
-    private void buttonIniciojButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciojButton5ActionPerformed
-        index = 0;
+    private void buttonProximojButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProximojButton7ActionPerformed
+        if(index < ec.getEmpresas().size()-1){
+            posterior();
+        }
         exibirDados();
-    }//GEN-LAST:event_buttonIniciojButton5ActionPerformed
+    }//GEN-LAST:event_buttonProximojButton7ActionPerformed
+
+    private void buttonFinaljButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinaljButton8ActionPerformed
+        index = ec.getEmpresas().size()-1;
+        exibirDados();
+    }//GEN-LAST:event_buttonFinaljButton8ActionPerformed
+
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+
+    }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
 
@@ -561,10 +574,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonEditarActionPerformed
 
-    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        
-    }//GEN-LAST:event_buttonExcluirActionPerformed
-
     private void buttonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelecionarActionPerformed
         if(buttonSelecionar.getText().equals("Buscar")){
             try {
@@ -579,33 +588,31 @@ public class EmpresaView extends javax.swing.JInternalFrame {
                     }
                     iterator.next();
                     if(i<ec.getEmpresas().size()-1)
-                        i++;
-                
+                    i++;
+
                 }while (iterator.hasNext());
                 if(condicaoErro==0){
-                    
+
                     JOptionPane.showMessageDialog(null, "Dados não encontrados", "Aviso", JOptionPane.ERROR_MESSAGE);
-                   
+
                 }else{
                     this.exibirDados();
                     buttonSelecionar.setText("Selecionar");
                 }
                 this.exibirDados();
             }  catch (Exception ex) {
-            Logger.getLogger(EmpresaView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//        
-//            }
+                Logger.getLogger(EmpresaView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //            catch (Exception ex) {
+                //                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                //
+                //            }
+
+            //            catch (Exception ex) {
+                //                JOptionPane.showMessageDialog(null, "Falha ao carregar dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                //
+                //            }
         }else{
             this.desativarTudo();
             this.ativarButtonSelecionar();
@@ -630,11 +637,10 @@ public class EmpresaView extends javax.swing.JInternalFrame {
             }catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
-            
-            
-//            catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
-//            }
+
+            //            catch (Exception ex) {
+                //                JOptionPane.showMessageDialog(null, "Informe corretamente os dados", "Aviso", JOptionPane.ERROR_MESSAGE);
+                //            }
         }else{
             this.limparCampos();
             this.ativarButtonCadastrar();
@@ -642,19 +648,6 @@ public class EmpresaView extends javax.swing.JInternalFrame {
             buttonCadastrar.setText("Salvar");
         }
     }//GEN-LAST:event_buttonCadastrarActionPerformed
-
-    private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
-        
-    }//GEN-LAST:event_inputIdActionPerformed
-
-    
-    private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboEstadoActionPerformed
-
-    private void inputRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputRazaoSocialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputRazaoSocialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
