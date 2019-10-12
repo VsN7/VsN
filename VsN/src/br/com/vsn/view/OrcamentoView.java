@@ -74,7 +74,6 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         int alt = (int) d.getHeight();
         this.setLocation((lar - this.getSize().width) / 6, (alt - this.getSize().height)/106);
         initComponents();
-        
         if(oc.getOrcamentos().size()<=0){
             this.desativarTudo();
             this.ativarButtonCadastrar();

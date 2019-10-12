@@ -19,6 +19,7 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -78,13 +79,13 @@ public class MenuView extends javax.swing.JFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
         };
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        painelIcons = new javax.swing.JPanel();
         labeContasReceber = new javax.swing.JLabel();
         labelOs = new javax.swing.JLabel();
         labelOrcamento = new javax.swing.JLabel();
         labelCliente = new javax.swing.JLabel();
         labeContasPagar = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         selectEmpresa1 = new javax.swing.JMenuItem();
@@ -148,12 +149,8 @@ public class MenuView extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
             getImage());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Versão 1.0.0.1");
-
-        jPanel1.setBackground(new java.awt.Color(172, 30, 20));
-        jPanel1.setOpaque(false);
+        painelIcons.setBackground(new java.awt.Color(204, 204, 204));
+        painelIcons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         labeContasReceber.setBackground(new java.awt.Color(0, 0, 0));
         labeContasReceber.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,7 +203,7 @@ public class MenuView extends javax.swing.JFrame {
         labelCliente.setBackground(new java.awt.Color(0, 0, 0));
         labelCliente.setForeground(new java.awt.Color(255, 255, 255));
         labelCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/customer.png"))); // NOI18N
+        labelCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/-customer.png"))); // NOI18N
         labelCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelClienteMouseEntered(evt);
@@ -235,20 +232,24 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labeContasReceber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(labeContasPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout painelIconsLayout = new javax.swing.GroupLayout(painelIcons);
+        painelIcons.setLayout(painelIconsLayout);
+        painelIconsLayout.setHorizontalGroup(
+            painelIconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelIconsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelIconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labeContasReceber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labeContasPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+        painelIconsLayout.setVerticalGroup(
+            painelIconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelIconsLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,41 +259,39 @@ public class MenuView extends javax.swing.JFrame {
                 .addComponent(labeContasReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labeContasPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktopPane.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(painelIcons, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(846, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
-            .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(painelIcons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(693, Short.MAX_VALUE))
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(painelIcons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
+
+        jLabel2.setText("jLabel2");
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
         jMenuBar1.setBorder(null);
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(569, 40));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(569, 54));
 
         jMenu1.setText("Arquivo");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        selectEmpresa1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectEmpresa1.setText("Parâmetros");
         selectEmpresa1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,6 +300,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu1.add(selectEmpresa1);
 
+        selectEmpresa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectEmpresa.setText("Empresa");
         selectEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,6 +310,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(selectEmpresa);
 
         selectFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
+        selectFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectFuncionario.setText("Funcionario");
         selectFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,8 +320,10 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(selectFuncionario);
 
         jMenu19.setText("Cliente");
+        jMenu19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem26.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem26.setText("Cadastro de Clientes");
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,8 +335,10 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(jMenu19);
 
         jMenu17.setText("Orçamento");
+        jMenu17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem24.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem24.setText("Cadastro de Orçamentos");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,8 +350,10 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(jMenu17);
 
         jMenu18.setText("Ordem de Serviço");
+        jMenu18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem25.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem25.setText("Cadastro de O.S");
         jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,10 +365,13 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(jMenu18);
 
         selectContas.setText("Contas");
+        selectContas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenu6.setText("Contas a Pagar");
+        jMenu6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem31.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem31.setText("Cadastro de Contas");
         jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,8 +383,10 @@ public class MenuView extends javax.swing.JFrame {
         selectContas.add(jMenu6);
 
         jMenu7.setText("Contas a Receber");
+        jMenu7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem7.setText("Cadastro de Titulos");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,6 +395,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem7);
 
+        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem8.setText("Pagamento de Titulos");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,6 +408,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenu1.add(selectContas);
 
+        selectUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectUsuario.setText("Usuário");
         selectUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,7 +418,9 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(selectUsuario);
 
         jMenu4.setText("Fornecedor");
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem6.setText("Cadastro de Fornecedores");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,7 +432,9 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(jMenu4);
 
         jMenu15.setText("Estoque");
+        jMenu15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem20.setText("Cadastro de Produto em Estoque");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -428,6 +446,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(jMenu15);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem5.setText("Logout");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -441,6 +460,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu2.setText("Cliente");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem1.setText("Cadastro de Clientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,6 +474,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu3.setText("Orçamento");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem4.setText("Cadastro de Orçamentos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,6 +488,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu14.setText("Ordem de Serviço");
         jMenu14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItem19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem19.setText("Cadastro de O.S");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,7 +504,9 @@ public class MenuView extends javax.swing.JFrame {
         selectContasM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu22.setText("Contas a Pagar");
+        jMenu22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem29.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem29.setText("Cadastro de Contas");
         jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -494,7 +518,9 @@ public class MenuView extends javax.swing.JFrame {
         selectContasM.add(jMenu22);
 
         jMenu23.setText("Contas a Receber");
+        jMenu23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem27.setText("Cadastro de Titulos");
         jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -503,6 +529,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu23.add(jMenuItem27);
 
+        jMenuItem28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem28.setText("Recebimento de Titulos");
         jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -519,7 +546,9 @@ public class MenuView extends javax.swing.JFrame {
         selectRelatorio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu12.setText("Relatório de Clientes");
+        jMenu12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem15.setText("Relatório de Clientes Geral");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -528,6 +557,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem15);
 
+        jMenuItem16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem16.setText("Relatório de Clientes Aniversariantes");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -539,7 +569,9 @@ public class MenuView extends javax.swing.JFrame {
         selectRelatorio.add(jMenu12);
 
         jMenu20.setText("Relatório de Funcionarios");
+        jMenu20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem18.setText("Relatório de Funcionarios Geral");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,6 +580,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu20.add(jMenuItem18);
 
+        jMenuItem17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem17.setText("Relatório de Funcionarios Aniversariantes");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -559,7 +592,9 @@ public class MenuView extends javax.swing.JFrame {
         selectRelatorio.add(jMenu20);
 
         jMenu24.setText("Relatório de Contas a Pagar");
+        jMenu24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem30.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem30.setText("Relatório de Contas a Pagar Geral");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -571,7 +606,9 @@ public class MenuView extends javax.swing.JFrame {
         selectRelatorio.add(jMenu24);
 
         jMenu25.setText("Relatório de Contas a Receber");
+        jMenu25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem32.setText("Relatório de Contas a Receber Geral");
         jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -583,7 +620,9 @@ public class MenuView extends javax.swing.JFrame {
         selectRelatorio.add(jMenu25);
 
         jMenu13.setText("Relatório de Orçamentos");
+        jMenu13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem22.setText("Relatório de Orçamentos Geral");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -595,7 +634,9 @@ public class MenuView extends javax.swing.JFrame {
         selectRelatorio.add(jMenu13);
 
         jMenu16.setText("Relatório de Ordem de Serviço");
+        jMenu16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem23.setText("Relatório de Ordem de Serviço Geral");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,6 +653,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu9.setText("Tutoriais");
+        jMenu9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem11.setText("Cadastro de Contas");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
@@ -632,6 +674,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu8.add(jMenu9);
 
         jMenu10.setText("Contatos");
+        jMenu10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem13.setText("Cadastro de Contas");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -1014,17 +1057,6 @@ public class MenuView extends javax.swing.JFrame {
         labelCliente.setBorder(new LineBorder(Color.WHITE, 2, true));
     }//GEN-LAST:event_labelClienteMouseEntered
 
-    private void labelOrcamentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMousePressed
-        OrcamentoView ov;
-        try {
-            ov = new OrcamentoView();
-            ov.setVisible(true);
-            this.desktopPane.add(ov);
-        } catch (Exception ex) {
-            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_labelOrcamentoMousePressed
-
     private void labelOrcamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseExited
         labelOrcamento.setBorder(new LineBorder(Color.black, 0, true));
     }//GEN-LAST:event_labelOrcamentoMouseExited
@@ -1071,10 +1103,21 @@ public class MenuView extends javax.swing.JFrame {
         labeContasReceber.setBorder(new LineBorder(Color.WHITE, 2, true));
     }//GEN-LAST:event_labeContasReceberMouseEntered
 
+    private void labelOrcamentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMousePressed
+        OrcamentoView ov;
+        try {
+            ov = new OrcamentoView();
+            ov.setVisible(true);
+            this.desktopPane.add(ov);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labelOrcamentoMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu12;
@@ -1125,12 +1168,12 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labeContasPagar;
     private javax.swing.JLabel labeContasReceber;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelOrcamento;
     private javax.swing.JLabel labelOs;
+    private javax.swing.JPanel painelIcons;
     private javax.swing.JMenu selectContas;
     private javax.swing.JMenu selectContasM;
     private javax.swing.JMenuItem selectEmpresa;
@@ -1189,7 +1232,9 @@ public class MenuView extends javax.swing.JFrame {
                     UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
                 } catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
                     
-                }    jMenuBar1.setBackground(new Color(204,204,204));
+                }    
+                jMenuBar1.setBackground(new Color(204,204,204));
+                painelIcons.setBackground(new Color(204,204,204));
                 break;
             case 1:
                 this.visualDark();
@@ -1209,14 +1254,16 @@ public class MenuView extends javax.swing.JFrame {
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                jMenuBar1.setBackground(new Color(190,190,190));
+                jMenuBar1.setBackground(new Color(230,230,230));
+                painelIcons.setBackground(new Color(20,20,20));
                 break;
             case 6:
                 try {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
                     Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, e);
-                }    jMenuBar1.setBackground(new Color(150,150,150));
+                }    
+                jMenuBar1.setBackground(new Color(150,150,150));
                 break;
             default:
                 break;
@@ -1251,7 +1298,9 @@ public class MenuView extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
         }
         SwingUtilities.updateComponentTreeUI(this);
-
+        jMenuBar1.setBackground(new Color(200,200,240));
+        painelIcons.setBackground(new Color(200,200,240));
+        this.iconsDark();
     }
     
     public void visualDark() throws UnsupportedLookAndFeelException{
@@ -1284,7 +1333,9 @@ public class MenuView extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(this);
 
-        jMenuBar1.setBackground(new Color(30,30,30));
+        jMenuBar1.setBackground(new Color(20,20,20));
+        painelIcons.setBackground(new Color(20,20,20));
+        this.iconsLight();
     }
     
     public void visualRed() throws UnsupportedLookAndFeelException{
@@ -1317,7 +1368,8 @@ public class MenuView extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(this);
 
-        jMenuBar1.setBackground(new Color(172,30,20));
+        jMenuBar1.setBackground(new Color(215,120,120));
+        painelIcons.setBackground(new Color(215,120,120));
     }
     
     public void visualEsmeralda() throws UnsupportedLookAndFeelException{
@@ -1350,7 +1402,37 @@ public class MenuView extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(this);
 
-        jMenuBar1.setBackground(new Color(153,255,153));
+        jMenuBar1.setBackground(new Color(230,255,230));
+        painelIcons.setBackground(new Color(230,255,230));
+        this.iconsDark();
+    }
+    
+    public void iconsLight(){
+        Icon iconCliente = new ImageIcon(getClass().getResource("/icon/oficial/white/customer.png"));
+        labelCliente.setIcon(iconCliente);
+        Icon iconOrcamento = new ImageIcon(getClass().getResource("/icon/oficial/white/report.png"));
+        labelOrcamento.setIcon(iconOrcamento);
+        Icon iconOs = new ImageIcon(getClass().getResource("/icon/oficial/white/wrench.png"));
+        labelOs.setIcon(iconOs);
+        Icon iconContaReceber = new ImageIcon(getClass().getResource("/icon/oficial/white/bank.png"));
+        labeContasReceber.setIcon(iconContaReceber);
+        Icon iconContaPagar = new ImageIcon(getClass().getResource("/icon/oficial/white/accounting.png"));
+        labeContasPagar.setIcon(iconContaPagar);
+        
+    }
+    
+    public void iconsDark(){
+        Icon iconCliente = new ImageIcon(getClass().getResource("/icon/oficial/dark/customer.png"));
+        labelCliente.setIcon(iconCliente);
+        Icon iconOrcamento = new ImageIcon(getClass().getResource("/icon/oficial/dark/report.png"));
+        labelOrcamento.setIcon(iconOrcamento);
+        Icon iconOs = new ImageIcon(getClass().getResource("/icon/oficial/dark/wrench.png"));
+        labelOs.setIcon(iconOs);
+        Icon iconContaReceber = new ImageIcon(getClass().getResource("/icon/oficial/dark/bank.png"));
+        labeContasReceber.setIcon(iconContaReceber);
+        Icon iconContaPagar = new ImageIcon(getClass().getResource("/icon/oficial/dark/accounting.png"));
+        labeContasPagar.setIcon(iconContaPagar);
+        
     }
     
 }
