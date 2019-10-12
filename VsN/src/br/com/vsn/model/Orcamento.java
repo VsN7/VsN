@@ -23,6 +23,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
         @NamedQuery(name = "Orcamento.selecionar", 
                 query = "SELECT o FROM Orcamento o WHERE o.usuario.id = :id "),
+        @NamedQuery(name = "Orcamento.selecionarAll", 
+                query = "SELECT o FROM Orcamento o"),
                 
         @NamedQuery(name = "Orcamento.ordemServicoOrcamentoId", 
                 query = "SELECT os.id FROM OrdemServico os WHERE os.orcamento_id = :id "),
@@ -39,12 +41,18 @@ import javax.persistence.TemporalType;
      
      @NamedQuery(name = "Orcamento.buscaPorNome", 
                 query = "SELECT o FROM Orcamento o WHERE o.cliente LIKE :nome and o.usuario.id = :id"),
+     @NamedQuery(name = "Orcamento.buscaPorNomeAll", 
+                query = "SELECT o FROM Orcamento o WHERE o.cliente LIKE :nome"),
      
      @NamedQuery(name = "Orcamento.buscaPorServico", 
                 query = "SELECT o FROM Orcamento o WHERE o.servico LIKE :servico and o.usuario.id = :id "),
+     @NamedQuery(name = "Orcamento.buscaPorServicoAll", 
+                query = "SELECT o FROM Orcamento o WHERE o.servico LIKE :servico"),
      
      @NamedQuery(name = "Orcamento.buscaPorCpf", 
                 query = "SELECT o FROM Orcamento o WHERE o.cpf LIKE :cpf and o.usuario.id = :id "),
+     @NamedQuery(name = "Orcamento.buscaPorCpfAll", 
+                query = "SELECT o FROM Orcamento o WHERE o.cpf LIKE :cpf"),
 })
 
 

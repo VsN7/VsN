@@ -35,7 +35,7 @@ public class MenuView extends javax.swing.JFrame {
     Parametro parametro;
     ParametroController pc;
     public static int teclaPesquisa = 112;
-    int autorizacao;
+    public static int autorizacao;
     public MenuView() {
         setExtendedState(MAXIMIZED_BOTH);
         initComponents();
@@ -79,12 +79,6 @@ public class MenuView extends javax.swing.JFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
         };
-        painelIcons = new javax.swing.JPanel();
-        labeContasReceber = new javax.swing.JLabel();
-        labelOs = new javax.swing.JLabel();
-        labelOrcamento = new javax.swing.JLabel();
-        labelCliente = new javax.swing.JLabel();
-        labeContasPagar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -143,142 +137,22 @@ public class MenuView extends javax.swing.JFrame {
         jMenu10 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VersuS");
         setIconImage(new ImageIcon(getClass().getResource("/icon/conserto.png")).
             getImage());
 
-        painelIcons.setBackground(new java.awt.Color(204, 204, 204));
-        painelIcons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
-        labeContasReceber.setBackground(new java.awt.Color(0, 0, 0));
-        labeContasReceber.setForeground(new java.awt.Color(255, 255, 255));
-        labeContasReceber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labeContasReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/bank.png"))); // NOI18N
-        labeContasReceber.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labeContasReceberMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labeContasReceberMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labeContasReceberMousePressed(evt);
-            }
-        });
-
-        labelOs.setBackground(new java.awt.Color(0, 0, 0));
-        labelOs.setForeground(new java.awt.Color(255, 255, 255));
-        labelOs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelOs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/wrenchV.png"))); // NOI18N
-        labelOs.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelOsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelOsMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelOsMousePressed(evt);
-            }
-        });
-
-        labelOrcamento.setBackground(new java.awt.Color(0, 0, 0));
-        labelOrcamento.setForeground(new java.awt.Color(255, 255, 255));
-        labelOrcamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelOrcamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/report.png"))); // NOI18N
-        labelOrcamento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelOrcamentoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelOrcamentoMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelOrcamentoMousePressed(evt);
-            }
-        });
-
-        labelCliente.setBackground(new java.awt.Color(0, 0, 0));
-        labelCliente.setForeground(new java.awt.Color(255, 255, 255));
-        labelCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/-customer.png"))); // NOI18N
-        labelCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelClienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelClienteMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelClienteMousePressed(evt);
-            }
-        });
-
-        labeContasPagar.setBackground(new java.awt.Color(0, 0, 0));
-        labeContasPagar.setForeground(new java.awt.Color(255, 255, 255));
-        labeContasPagar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labeContasPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/accounting.png"))); // NOI18N
-        labeContasPagar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labeContasPagarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labeContasPagarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labeContasPagarMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout painelIconsLayout = new javax.swing.GroupLayout(painelIcons);
-        painelIcons.setLayout(painelIconsLayout);
-        painelIconsLayout.setHorizontalGroup(
-            painelIconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelIconsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelIconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labeContasReceber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labeContasPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        painelIconsLayout.setVerticalGroup(
-            painelIconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelIconsLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(labelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelOs, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labeContasReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labeContasPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
-        desktopPane.setLayer(painelIcons, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(painelIcons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(693, Short.MAX_VALUE))
+            .addGap(0, 1347, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(painelIcons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+            .addGap(0, 607, Short.MAX_VALUE)
         );
 
         jLabel2.setText("jLabel2");
@@ -288,6 +162,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(569, 54));
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/folder.png"))); // NOI18N
         jMenu1.setText("Arquivo");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -457,6 +332,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/-customer.png"))); // NOI18N
         jMenu2.setText("Cliente");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -471,6 +347,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/report.png"))); // NOI18N
         jMenu3.setText("Orçamento");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -485,6 +362,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/wrench.png"))); // NOI18N
         jMenu14.setText("Ordem de Serviço");
         jMenu14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -499,6 +377,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu14);
 
+        selectContasM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/accounting.png"))); // NOI18N
         selectContasM.setText("Contas");
         selectContasM.setToolTipText("");
         selectContasM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -542,6 +421,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar1.add(selectContasM);
 
+        selectRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/relatorios.png"))); // NOI18N
         selectRelatorio.setText("Relatórios");
         selectRelatorio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -649,6 +529,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar1.add(selectRelatorio);
 
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/info.png"))); // NOI18N
         jMenu8.setText("Informações");
         jMenu8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -690,6 +571,16 @@ public class MenuView extends javax.swing.JFrame {
         jMenu8.add(jMenu10);
 
         jMenuBar1.add(jMenu8);
+
+        jMenu11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/logout.png"))); // NOI18N
+        jMenu11.setText("Logout");
+        jMenu11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu11MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu11);
 
         setJMenuBar(jMenuBar1);
 
@@ -1018,108 +909,24 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_selectEmpresa1ActionPerformed
 
-    private void labeContasPagarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMousePressed
-        ContaPagarView cpv;
+    private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
+        LoginView lv;
         try {
-            cpv = new ContaPagarView();
-            cpv.setVisible(true);
-            this.desktopPane.add(cpv);
+            this.dispose();
+            lv = new LoginView();
+            lv.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_labeContasPagarMousePressed
-
-    private void labeContasPagarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseExited
-        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 0, true));
-    }//GEN-LAST:event_labeContasPagarMouseExited
-
-    private void labeContasPagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasPagarMouseEntered
-        labeContasPagar.setBorder(new LineBorder(Color.WHITE, 2, true));
-    }//GEN-LAST:event_labeContasPagarMouseEntered
-
-    private void labelClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMousePressed
-
-        ClienteView cv;
-        try {
-            cv = new ClienteView();
-            cv.setVisible(true);
-            this.desktopPane.add(cv);
-        } catch (Exception ex) {
-            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_labelClienteMousePressed
-
-    private void labelClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseExited
-        labelCliente.setBorder(new LineBorder(Color.black, 0, true));
-    }//GEN-LAST:event_labelClienteMouseExited
-
-    private void labelClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelClienteMouseEntered
-        labelCliente.setBorder(new LineBorder(Color.WHITE, 2, true));
-    }//GEN-LAST:event_labelClienteMouseEntered
-
-    private void labelOrcamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseExited
-        labelOrcamento.setBorder(new LineBorder(Color.black, 0, true));
-    }//GEN-LAST:event_labelOrcamentoMouseExited
-
-    private void labelOrcamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMouseEntered
-        labelOrcamento.setBorder(new LineBorder(Color.WHITE, 2, true));
-    }//GEN-LAST:event_labelOrcamentoMouseEntered
-
-    private void labelOsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMousePressed
-        OrdemServicoView osv;
-        try {
-            osv = new OrdemServicoView();
-            osv.setVisible(true);
-            this.desktopPane.add(osv);
-        } catch (Exception ex) {
-            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_labelOsMousePressed
-
-    private void labelOsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseExited
-        labelOs.setBorder(new LineBorder(Color.black, 0, true));
-    }//GEN-LAST:event_labelOsMouseExited
-
-    private void labelOsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOsMouseEntered
-        labelOs.setBorder(new LineBorder(Color.WHITE, 2, true));
-    }//GEN-LAST:event_labelOsMouseEntered
-
-    private void labeContasReceberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMousePressed
-        ContaReceberView crv;
-        try {
-            crv = new ContaReceberView();
-            crv.setVisible(true);
-            this.desktopPane.add(crv);
-        } catch (Exception ex) {
-            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_labeContasReceberMousePressed
-
-    private void labeContasReceberMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseExited
-        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 0, true));
-    }//GEN-LAST:event_labeContasReceberMouseExited
-
-    private void labeContasReceberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeContasReceberMouseEntered
-        labeContasReceber.setBorder(new LineBorder(Color.WHITE, 2, true));
-    }//GEN-LAST:event_labeContasReceberMouseEntered
-
-    private void labelOrcamentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOrcamentoMousePressed
-        OrcamentoView ov;
-        try {
-            ov = new OrcamentoView();
-            ov.setVisible(true);
-            this.desktopPane.add(ov);
-        } catch (Exception ex) {
-            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_labelOrcamentoMousePressed
+    }//GEN-LAST:event_jMenu11MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu13;
     private javax.swing.JMenu jMenu14;
@@ -1168,12 +975,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JLabel labeContasPagar;
-    private javax.swing.JLabel labeContasReceber;
-    private javax.swing.JLabel labelCliente;
-    private javax.swing.JLabel labelOrcamento;
-    private javax.swing.JLabel labelOs;
-    private javax.swing.JPanel painelIcons;
     private javax.swing.JMenu selectContas;
     private javax.swing.JMenu selectContasM;
     private javax.swing.JMenuItem selectEmpresa;
@@ -1191,8 +992,8 @@ public class MenuView extends javax.swing.JFrame {
         selectFuncionario.setEnabled(true);
         selectRelatorio.setEnabled(true);
         selectUsuario.setEnabled(true);
-        labeContasPagar.setVisible(true);
-        labeContasReceber.setVisible(true);
+//        labeContasPagar.setVisible(true);
+//        labeContasReceber.setVisible(true);
             
         }else if (autorizacao == 7){
             selectContas.setEnabled(true);
@@ -1201,8 +1002,8 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(true);
             selectUsuario.setEnabled(true);
             selectRelatorio.setEnabled(true);
-            labeContasPagar.setVisible(true);
-            labeContasReceber.setVisible(true);
+//            labeContasPagar.setVisible(true);
+//            labeContasReceber.setVisible(true);
         }else if(autorizacao == 1){
             selectContas.setEnabled(false);
             selectContasM.setEnabled(false);
@@ -1210,8 +1011,8 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(false);
             selectUsuario.setEnabled(false);
             selectRelatorio.setEnabled(true);
-            labeContasPagar.setVisible(false);
-            labeContasReceber.setVisible(false);
+//            labeContasPagar.setVisible(false);
+//            labeContasReceber.setVisible(false);
         }else{
             selectContas.setEnabled(false);
             selectContasM.setEnabled(false);
@@ -1219,8 +1020,8 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(false);
             selectUsuario.setEnabled(false);
             selectRelatorio.setEnabled(false);
-            labeContasPagar.setVisible(false);
-            labeContasReceber.setVisible(false);
+//            labeContasPagar.setVisible(false);
+//            labeContasReceber.setVisible(false);
         }
     }
     
@@ -1234,7 +1035,7 @@ public class MenuView extends javax.swing.JFrame {
                     
                 }    
                 jMenuBar1.setBackground(new Color(204,204,204));
-                painelIcons.setBackground(new Color(204,204,204));
+                //       painelIcons.setBackground(new Color(204,204,204));
                 break;
             case 1:
                 this.visualDark();
@@ -1255,7 +1056,7 @@ public class MenuView extends javax.swing.JFrame {
                     Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 jMenuBar1.setBackground(new Color(230,230,230));
-                painelIcons.setBackground(new Color(20,20,20));
+                //       painelIcons.setBackground(new Color(20,20,20));
                 break;
             case 6:
                 try {
@@ -1299,7 +1100,7 @@ public class MenuView extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(this);
         jMenuBar1.setBackground(new Color(200,200,240));
-        painelIcons.setBackground(new Color(200,200,240));
+        //       painelIcons.setBackground(new Color(200,200,240));
         this.iconsDark();
     }
     
@@ -1334,7 +1135,7 @@ public class MenuView extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
 
         jMenuBar1.setBackground(new Color(20,20,20));
-        painelIcons.setBackground(new Color(20,20,20));
+        //       painelIcons.setBackground(new Color(20,20,20));
         this.iconsLight();
     }
     
@@ -1369,7 +1170,7 @@ public class MenuView extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
 
         jMenuBar1.setBackground(new Color(215,120,120));
-        painelIcons.setBackground(new Color(215,120,120));
+        //       painelIcons.setBackground(new Color(215,120,120));
     }
     
     public void visualEsmeralda() throws UnsupportedLookAndFeelException{
@@ -1403,35 +1204,35 @@ public class MenuView extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
 
         jMenuBar1.setBackground(new Color(230,255,230));
-        painelIcons.setBackground(new Color(230,255,230));
+//        //       painelIcons.setBackground(new Color(230,255,230));
         this.iconsDark();
     }
     
     public void iconsLight(){
         Icon iconCliente = new ImageIcon(getClass().getResource("/icon/oficial/white/customer.png"));
-        labelCliente.setIcon(iconCliente);
+        jMenu2.setIcon(iconCliente);
         Icon iconOrcamento = new ImageIcon(getClass().getResource("/icon/oficial/white/report.png"));
-        labelOrcamento.setIcon(iconOrcamento);
+        jMenu3.setIcon(iconOrcamento);
         Icon iconOs = new ImageIcon(getClass().getResource("/icon/oficial/white/wrench.png"));
-        labelOs.setIcon(iconOs);
-        Icon iconContaReceber = new ImageIcon(getClass().getResource("/icon/oficial/white/bank.png"));
-        labeContasReceber.setIcon(iconContaReceber);
+        jMenu14.setIcon(iconOs);
+//        Icon iconContaReceber = new ImageIcon(getClass().getResource("/icon/oficial/white/bank.png"));
+//        labeContasReceber.setIcon(iconContaReceber);
         Icon iconContaPagar = new ImageIcon(getClass().getResource("/icon/oficial/white/accounting.png"));
-        labeContasPagar.setIcon(iconContaPagar);
+        selectContasM.setIcon(iconContaPagar);
         
     }
     
     public void iconsDark(){
         Icon iconCliente = new ImageIcon(getClass().getResource("/icon/oficial/dark/customer.png"));
-        labelCliente.setIcon(iconCliente);
+        jMenu2.setIcon(iconCliente);
         Icon iconOrcamento = new ImageIcon(getClass().getResource("/icon/oficial/dark/report.png"));
-        labelOrcamento.setIcon(iconOrcamento);
+        jMenu3.setIcon(iconOrcamento);
         Icon iconOs = new ImageIcon(getClass().getResource("/icon/oficial/dark/wrench.png"));
-        labelOs.setIcon(iconOs);
-        Icon iconContaReceber = new ImageIcon(getClass().getResource("/icon/oficial/dark/bank.png"));
-        labeContasReceber.setIcon(iconContaReceber);
+        jMenu14.setIcon(iconOs);
+//        Icon iconContaReceber = new ImageIcon(getClass().getResource("/icon/oficial/dark/bank.png"));
+//        labeContasReceber.setIcon(iconContaReceber);
         Icon iconContaPagar = new ImageIcon(getClass().getResource("/icon/oficial/dark/accounting.png"));
-        labeContasPagar.setIcon(iconContaPagar);
+        selectContasM.setIcon(iconContaPagar);
         
     }
     

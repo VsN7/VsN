@@ -6,6 +6,7 @@ import br.com.vsn.controller.OrcamentoController;
 import br.com.vsn.controller.UsuarioController;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Orcamento;
+import br.com.vsn.view.MenuView;
 import java.awt.Component;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.Serializable;
@@ -140,10 +141,14 @@ public class OrcamentoDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try {
-            
+            Query q = null;
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(Orcamento.class));
-            Query q = em.createNamedQuery("Orcamento.selecionar").setParameter("id",uc.getId());
+            if(MenuView.autorizacao == 2 || MenuView.autorizacao == 7){
+                q = em.createNamedQuery("Orcamento.selecionarAll");
+            }else{
+                q = em.createNamedQuery("Orcamento.selecionar").setParameter("id",uc.getId());
+            }
             if (!all) {
                 q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);
@@ -174,7 +179,12 @@ public class OrcamentoDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           orcamentos = em.createNamedQuery("Orcamento.buscaPorNome").setParameter("nome",nome).setParameter("id",uc.getId()).getResultList();
+            if(MenuView.autorizacao == 2 || MenuView.autorizacao == 7){
+                orcamentos = em.createNamedQuery("Orcamento.buscaPorNomeAll").setParameter("nome",nome).getResultList();
+            }else{
+                orcamentos = em.createNamedQuery("Orcamento.buscaPorNome").setParameter("nome",nome).setParameter("id",uc.getId()).getResultList();
+            }
+           
            return orcamentos;
         }catch(Exception e){
             
@@ -188,7 +198,12 @@ public class OrcamentoDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           orcamentos = em.createNamedQuery("Orcamento.buscaPorServico").setParameter("servico",servico).setParameter("id",uc.getId()).getResultList();
+            if(MenuView.autorizacao == 2 || MenuView.autorizacao == 7){
+                orcamentos = em.createNamedQuery("Orcamento.buscaPorServicoAll").setParameter("servico",servico).getResultList();
+            }else{
+                orcamentos = em.createNamedQuery("Orcamento.buscaPorServico").setParameter("servico",servico).setParameter("id",uc.getId()).getResultList();
+            }
+           
            return orcamentos;
         }catch(Exception e){
             
@@ -202,7 +217,11 @@ public class OrcamentoDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           orcamentos = em.createNamedQuery("Orcamento.buscaPorCpf").setParameter("cpf",cpf).setParameter("id",uc.getId()).getResultList();
+            if(MenuView.autorizacao == 2 || MenuView.autorizacao == 7){
+                orcamentos = em.createNamedQuery("Orcamento.buscaPorCpfAll").setParameter("cpf",cpf).getResultList();
+            }else{
+                orcamentos = em.createNamedQuery("Orcamento.buscaPorCpf").setParameter("cpf",cpf).setParameter("id",uc.getId()).getResultList();
+            }
            return orcamentos;
         }catch(Exception e){
             

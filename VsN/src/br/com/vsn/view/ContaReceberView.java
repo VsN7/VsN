@@ -492,7 +492,7 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
             valorCombo=comboSelecionar.getSelectedItem().toString().toLowerCase();
             if(valorCombo.equals("titulo")){
                 this.preencherTabelaFiltroTitulo();
-            }else if(valorCombo.equals("id")){
+            }else if(valorCombo.equals("id") && !inputSelecionado.getText().isEmpty()){
                 this.preencherTabelaFiltroId();
             }else if(valorCombo.equals("cliente")){
                 this.preencherTabelaFiltroCliente();

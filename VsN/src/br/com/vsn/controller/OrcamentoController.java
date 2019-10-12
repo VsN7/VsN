@@ -99,6 +99,7 @@ public class OrcamentoController {
         UsuarioController uc = new UsuarioController();
         Usuario usuario = new Usuario();
         usuario.setId(uc.getId());
+        orcamento.setAtendente(uc.getLogin());
         orcamento.setUsuario(usuario);
         dao.create(orcamento);
          
@@ -122,6 +123,7 @@ public class OrcamentoController {
         UsuarioController uc = new UsuarioController();
         Usuario usuario = new Usuario();
         usuario.setId(uc.getId());
+        orcamento.setAtendente(uc.getLogin());
         orcamento.setUsuario(usuario);
         dao.create(orcamento);
         

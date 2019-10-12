@@ -72,7 +72,6 @@ public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
             buttonInicioT.setEnabled(false);
             
         }else{
-            cc = new ContaController();
             this.exibirDados();
         }
         
@@ -486,7 +485,6 @@ public class PagamentoContasReceberView extends javax.swing.JInternalFrame {
     
     public void exibirDados(){
         try {
-            System.out.println("INDEX:::"+index);
             inputTitulo.setText(""+cc.getContas().get(index).getTitulo());
             inputValor.setText(""+formatter.format(cc.getContas().get(index).getValor()));
             inputDataCompra.setText(""+sdf.format(cc.getContas().get(index).getDataCompra().getTime()));

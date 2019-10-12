@@ -165,9 +165,8 @@ public class ContaDAO implements Serializable {
     public List<Conta> contaFiltroTitulo(String titulo) {
         List<Conta> contas = null;
         EntityManager em = getEntityManager();
-        UsuarioController uc = new UsuarioController();
         try{
-           contas = em.createNamedQuery("Conta.buscaPorTitulo").setParameter("titulo",titulo).setParameter("idU",uc.getId()).getResultList();
+           contas = em.createNamedQuery("Conta.buscaPorTitulo").setParameter("titulo",titulo).getResultList();
            return contas;
         }catch(Exception e){
             
@@ -179,9 +178,8 @@ public class ContaDAO implements Serializable {
     public List<Conta> contaFiltroCliente(String cliente) {
         List<Conta> contas = null;
         EntityManager em = getEntityManager();
-        UsuarioController uc = new UsuarioController();
         try{
-           contas = em.createNamedQuery("Conta.buscaPorCliente").setParameter("cliente",cliente).setParameter("idU",uc.getId()).getResultList();
+           contas = em.createNamedQuery("Conta.buscaPorCliente").setParameter("cliente",cliente).getResultList();
            return contas;
         }catch(Exception e){
             
@@ -193,9 +191,8 @@ public class ContaDAO implements Serializable {
     public List<Conta> contaFiltroId(int id) {
         List<Conta> contas = null;
         EntityManager em = getEntityManager();
-        UsuarioController uc = new UsuarioController();
         try{
-           contas = em.createNamedQuery("Conta.buscaPorIdC").setParameter("id",id).setParameter("idU",uc.getId()).getResultList();
+           contas = em.createNamedQuery("Conta.buscaPorIdC").setParameter("id",id).getResultList();
            return contas;
         }catch(Exception e){
             
@@ -218,9 +215,8 @@ public class ContaDAO implements Serializable {
     public Conta pesquisarUnico(int id) {
         EntityManager em = getEntityManager();
         try {
-            UsuarioController uc = new UsuarioController();
             List<Conta> contas = null;
-            contas = em.createNamedQuery("Conta.contaUnico").setParameter("idC", id).setParameter("id",uc.getId()).getResultList();
+            contas = em.createNamedQuery("Conta.contaUnico").setParameter("idC", id).getResultList();
             return contas.get(0);
         } finally {
             em.close();
@@ -297,7 +293,7 @@ public class ContaDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           contas = em.createNamedQuery("Conta.selecionar").setParameter("id",uc.getId()).getResultList();
+           contas = em.createNamedQuery("Conta.selecionar").getResultList();
            return contas;
         }catch(Exception e){
             System.out.println("Erro na linha 147 (ContaDAO)!");

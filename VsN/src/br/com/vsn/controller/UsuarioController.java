@@ -95,7 +95,7 @@ public class UsuarioController {
             id = dao.retornaId(usuario);
             lg = usuario.getLogin();
             usuario.setId(id);
-            login = lg;
+            login = lg.toUpperCase();
             return true;
         }
         else return false;

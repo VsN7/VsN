@@ -6,6 +6,7 @@ import br.com.vsn.controller.OrdemServicoController;
 import br.com.vsn.controller.UsuarioController;
 import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.OrdemServico;
+import br.com.vsn.view.MenuView;
 import java.awt.Component;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.Serializable;
@@ -140,10 +141,14 @@ public class OrdemServicoDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try {
-            
+            Query q = null;
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(OrdemServico.class));
-            Query q = em.createNamedQuery("OrdemServico.selecionar").setParameter("id",uc.getId());
+            if(MenuView.autorizacao == 2 || MenuView.autorizacao == 7){
+                q = em.createNamedQuery("OrdemServico.selecionarAll");
+            }else{
+                q = em.createNamedQuery("OrdemServico.selecionar").setParameter("id",uc.getId());
+            }
             if (!all) {
                 q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);
@@ -174,7 +179,12 @@ public class OrdemServicoDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           ordemServico = em.createNamedQuery("OrdemServico.buscaPorNome").setParameter("nome",nome).setParameter("id",uc.getId()).getResultList();
+            if(MenuView.autorizacao == 2 || MenuView.autorizacao == 7){
+                ordemServico = em.createNamedQuery("OrdemServico.buscaPorNomeAll").setParameter("nome",nome).getResultList();
+            }else{
+                ordemServico = em.createNamedQuery("OrdemServico.buscaPorNome").setParameter("nome",nome).setParameter("id",uc.getId()).getResultList();
+            }
+           
            return ordemServico;
         }catch(Exception e){
             
@@ -186,8 +196,14 @@ public class OrdemServicoDAO implements Serializable {
     public List<OrdemServico> ordemServicoFiltroServico(String servico) {
         List<OrdemServico> ordemServico = null;
         EntityManager em = getEntityManager();
-        try{UsuarioController uc = new UsuarioController();
-           ordemServico = em.createNamedQuery("OrdemServico.buscaPorServico").setParameter("servico",servico).setParameter("id",uc.getId()).getResultList();
+        try{
+           UsuarioController uc = new UsuarioController();
+           if(MenuView.autorizacao == 2 || MenuView.autorizacao == 7){
+                ordemServico = em.createNamedQuery("OrdemServico.buscaPorServicoAll").setParameter("servico",servico).getResultList();
+            }else{
+                ordemServico = em.createNamedQuery("OrdemServico.buscaPorServico").setParameter("servico",servico).setParameter("id",uc.getId()).getResultList();
+            }
+           
            return ordemServico;
         }catch(Exception e){
             
@@ -219,26 +235,6 @@ public class OrdemServicoDAO implements Serializable {
         }
     }
     
-    
-
-    public int primeiroPasso() throws Exception{
-        EntityManager em = getEntityManager();
-        UsuarioController uc = new UsuarioController();
-        OrdemServicoController oc = new OrdemServicoController();
-        List<OrdemServico> ordemServicos = null;
-       try{
-           ordemServicos = em.createNamedQuery("OrdemServico.selecionar").setParameter("id",uc.getId()).getResultList();
-           oc.setOrdemServicos(ordemServicos);
-           if(oc.getOrdemServicos().get(0).getId()!=0){
-                return 1;
-           }
-           else
-               return 0;
-       } catch (Exception e){
-           return 0;
-       }
-       
-   }
     
         public double retornaValorTotal(){
             EntityManager em = getEntityManager();

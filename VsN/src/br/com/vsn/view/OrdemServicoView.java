@@ -1056,24 +1056,29 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         this.situacao = inputSituacao.getText();
         this.observacoes = inputObservacoes.getText().toUpperCase();
         ordemServico = new OrdemServico();
-        ordemServico.setCliente(cliente);
-        ordemServico.setCpf(cpf);
-        ordemServico.setVeiculo(veiculo);
-        ordemServico.setMarca(marca);
-        ordemServico.setAno(ano);
-        ordemServico.setModelo(modelo);
-        ordemServico.setPlaca(placa);
-        ordemServico.setServico(servico);
-        ordemServico.setAtendente(atendente);
-        Calendar c = Calendar.getInstance();
-        Calendar c2 = Calendar.getInstance();
-        c.setTime(dtInicio);
-        ordemServico.setDataInicio(c);
-        c2.setTime(pvEntrega);
-        ordemServico.setPrevisaoEntrega(c2);
-        ordemServico.setValor(valor);
-        ordemServico.setSituacao(situacao);
-        ordemServico.setObservacoes(observacoes);
+        if(!inputId.getText().isEmpty())
+            ordemServico = osc.pesquisarUnico(Integer.parseInt(inputId.getText())).get(0);
+        else{
+            ordemServico.setCliente(cliente);
+            ordemServico.setCpf(cpf);
+            ordemServico.setVeiculo(veiculo);
+            ordemServico.setMarca(marca);
+            ordemServico.setAno(ano);
+            ordemServico.setModelo(modelo);
+            ordemServico.setPlaca(placa);
+            ordemServico.setServico(servico);
+            ordemServico.setAtendente(atendente);
+            Calendar c = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c.setTime(dtInicio);
+            ordemServico.setDataInicio(c);
+            c2.setTime(pvEntrega);
+            ordemServico.setPrevisaoEntrega(c2);
+            ordemServico.setValor(valor);
+            ordemServico.setSituacao(situacao);
+            ordemServico.setObservacoes(observacoes);
+        }
+        osc = new OrdemServicoController();
         if(!buttonCadastrar.getText().equals("Salvar")){
             ordemServico.setOrcamento_id(osc.getOrdemServicos().get(index).getOrcamento_id());
             ordemServico.setPagamento_id(osc.getOrdemServicos().get(index).getPagamento_id());

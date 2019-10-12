@@ -95,6 +95,7 @@ public class OrdemServicoController {
         Usuario usuario = new Usuario();
         usuario.setId(uc.getId());
         ordemServico.setUsuario(usuario);
+        ordemServico.setAtendente(uc.getLogin());
         dao.create(ordemServico);
          
         JOptionPane.showMessageDialog(rootPane, "Cadastro realizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
@@ -125,7 +126,6 @@ public class OrdemServicoController {
         ordemServico.setAno(ano);
         ordemServico.setPlaca(placa);
         ordemServico.setServico(servico);
-        ordemServico.setAtendente(atendente);
         ordemServico.setDataInicio(caInicio);
         ordemServico.setPrevisaoEntrega(cFinal);
         ordemServico.setValor(valor);
@@ -136,6 +136,7 @@ public class OrdemServicoController {
         UsuarioController uc = new UsuarioController();
         Usuario usuario = new Usuario();
         usuario.setId(uc.getId());
+        ordemServico.setAtendente(uc.getLogin());
         ordemServico.setUsuario(usuario);
         
         Orcamento o = new Orcamento();

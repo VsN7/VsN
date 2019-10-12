@@ -22,52 +22,22 @@ import javax.persistence.TemporalType;
 
 @Entity(name = "Conta")
 @NamedQueries({
-        @NamedQuery(name = "Conta.filtroData", 
-                query = "SELECT c FROM Conta c WHERE MONTH(c.dataCompra) = :mes and c.usuario.id = :id "),
-    
         @NamedQuery(name = "Conta.buscaPorId", 
                 query = "SELECT c FROM Conta c WHERE c.id = :id "),        
     
-        @NamedQuery(name = "Conta.consultaId", 
-                query = "SELECT u.id FROM Usuario u WHERE u.login = :login and u.senha = :senha "),
-        
+    
         @NamedQuery(name = "Conta.selecionar", 
-                query = "SELECT c FROM Conta c WHERE c.usuario.id = :id ORDER BY id DESC"),
+                query = "SELECT c FROM Conta c ORDER BY id DESC"),
         
-        @NamedQuery(name = "Conta.selecionarValorPagar", 
-                query = "SELECT c.valorPagar FROM Conta c WHERE c.id = :id "),
         
-        @NamedQuery(name = "Conta.selecionarVezesPagar", 
-                query = "SELECT c.vezesPagar FROM Conta c WHERE c.id = :id "),
-        
-        @NamedQuery(name = "Conta.selecionarSituacao", 
-                query = "SELECT c.situacao FROM Conta c WHERE c.id = :id "),
-        
-        @NamedQuery(name = "Conta.selecionarValor", 
-                query = "SELECT c.valor FROM Conta c WHERE c.id = :id "),
-        
-        @NamedQuery(name = "Conta.selecionarVezes", 
-                query = "SELECT c.vezes FROM Conta c WHERE c.id = :id "),
-        
-        @NamedQuery(name = "Conta.filtroSituacao", 
-                query = "SELECT c FROM Conta c WHERE c.situacao = :situacao and c.usuario.id = :id "),
-        
-        @NamedQuery(name = "Conta.filtroDataVencimento", 
-                query = "SELECT c FROM Conta c WHERE MONTH(c.dataCompra) = :mes and c.situacao = 'Aberto' and c.usuario.id = :id "),
-        
-        @NamedQuery(name = "Conta.selecionarVencimento", 
-                query = "SELECT c.dataVencimento FROM Conta c WHERE c.id = :id"),
-        
-        @NamedQuery(name = "Conta.filtroVencimento", 
-                query = "SELECT c FROM Conta c WHERE MONTH(c.dataVencimento) = :mes and c.situacao = 'Aberto' and c.usuario.id = :id "),
         @NamedQuery(name = "Conta.buscaPorTitulo", 
-                query = "SELECT c FROM Conta c WHERE c.titulo like :titulo and c.usuario.id = :idU ORDER BY id DESC"),
+                query = "SELECT c FROM Conta c WHERE c.titulo like :titulo ORDER BY id DESC"),
         @NamedQuery(name = "Conta.buscaPorCliente",  
-                query = "SELECT c FROM Conta c WHERE c.cliente like :cliente and c.usuario.id = :idU ORDER BY id DESC"),
+                query = "SELECT c FROM Conta c WHERE c.cliente like :cliente ORDER BY id DESC"),
         @NamedQuery(name = "Conta.buscaPorIdC", 
-                query = "SELECT c FROM Conta c WHERE c.id = :id and c.usuario.id = :idU ORDER BY id DESC"),
+                query = "SELECT c FROM Conta c WHERE c.id = :id"),
         @NamedQuery(name = "Conta.contaUnico", 
-                query = "SELECT c FROM Conta c WHERE c.id = :idC and c.usuario.id = :id "),
+                query = "SELECT c FROM Conta c WHERE c.id = :idC"),
         @NamedQuery(name = "Conta.selecionarContaIdPagamento", 
                 query = "SELECT c FROM Conta c WHERE c.pagamento_id = :idP and c.usuario.id = :id "),
         @NamedQuery(name = "Conta.valorTotalD", 

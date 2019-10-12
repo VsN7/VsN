@@ -24,6 +24,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
         @NamedQuery(name = "OrdemServico.selecionar", 
                 query = "SELECT os FROM OrdemServico os WHERE os.usuario.id = :id "),
+        @NamedQuery(name = "OrdemServico.selecionarAll", 
+                query = "SELECT os FROM OrdemServico os"),
                 
         @NamedQuery(name = "OrdemServico.buscaPorId", 
                 query = "SELECT os FROM OrdemServico os WHERE os.id = :id "),
@@ -37,8 +39,12 @@ import javax.persistence.TemporalType;
                 query = "SELECT SUM(os.valor) FROM OrdemServico os where (os.situacao = :situacao OR os.situacao = :s2)"),
         @NamedQuery(name = "OrdemServico.buscaPorNome", 
                 query = "SELECT os FROM OrdemServico os WHERE os.cliente LIKE :nome and os.usuario.id = :id "),
+        @NamedQuery(name = "OrdemServico.buscaPorNomeAll", 
+                query = "SELECT os FROM OrdemServico os WHERE os.cliente LIKE :nome"),
         @NamedQuery(name = "OrdemServico.buscaPorServico", 
                 query = "SELECT os FROM OrdemServico os WHERE os.servico LIKE :servico and os.usuario.id = :id "),
+        @NamedQuery(name = "OrdemServico.buscaPorServicoAll", 
+                query = "SELECT os FROM OrdemServico os WHERE os.servico LIKE :servico"),
         
 })
 

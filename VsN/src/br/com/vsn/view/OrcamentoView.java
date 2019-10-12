@@ -1063,24 +1063,29 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         this.situacao = inputSituacao.getText();
         this.observacoes = inputObservacoes.getText().toUpperCase();
         orcamento = new Orcamento();
-        orcamento.setCliente(cliente);
-        orcamento.setCpf(cpf);
-        orcamento.setVeiculo(veiculo);
-        orcamento.setModelo(modelo);
-        orcamento.setMarca(marca);
-        orcamento.setAno(ano);
-        orcamento.setPlaca(placa);
-        orcamento.setServico(servico);
-        orcamento.setAtendente(atendente);
-        Calendar c = Calendar.getInstance();
-        Calendar c2 = Calendar.getInstance();
-        c.setTime(dtInicio);
-        orcamento.setDataInicio(c);
-        c2.setTime(pvEntrega);
-        orcamento.setPrevisaoEntrega(c2);
-        orcamento.setValor(valor);
-        orcamento.setSituacao(situacao);
-        orcamento.setObservacoes(observacoes);
+        if(!inputId.getText().isEmpty())
+            orcamento = oc.pesquisarUnico(Integer.parseInt(inputId.getText())).get(0);
+        else{
+            orcamento.setCliente(cliente);
+            orcamento.setCpf(cpf);
+            orcamento.setVeiculo(veiculo);
+            orcamento.setModelo(modelo);
+            orcamento.setMarca(marca);
+            orcamento.setAno(ano);
+            orcamento.setPlaca(placa);
+            orcamento.setServico(servico);
+            orcamento.setAtendente(atendente);
+            Calendar c = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c.setTime(dtInicio);
+            orcamento.setDataInicio(c);
+            c2.setTime(pvEntrega);
+            orcamento.setPrevisaoEntrega(c2);
+            orcamento.setValor(valor);
+            orcamento.setSituacao(situacao);
+            orcamento.setObservacoes(observacoes);
+        }
+        oc = new OrcamentoController();
     }
     
     

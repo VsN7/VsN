@@ -44,9 +44,10 @@ public class ParametroController {
         parametro.setUsuario(us);
         dao.create(parametro);
         JOptionPane.showMessageDialog(rootPane, "Parâmetros salvos!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-        JOptionPane.showMessageDialog(rootPane, "Reinicie o sistema para aplicar as alterações!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(rootPane, "Faça novamente o acesso ao sistema!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
         pesquisar();
         novo();
+        System.exit(0);
     }
     
     public void edit(Parametro parametro) throws Exception {
@@ -58,9 +59,11 @@ public class ParametroController {
         parametro.setUsuario(us);
         dao.edit(parametro);
         JOptionPane.showMessageDialog(rootPane, "Parâmetros salvos!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
-        JOptionPane.showMessageDialog(rootPane, "Reinicie o sistema para aplicar as alterações!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(rootPane, "Faça novamente o acesso ao sistema!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        
         pesquisar();
         novo();
+        System.exit(0);
     }
     public void novo() {
         parametro = new Parametro();
