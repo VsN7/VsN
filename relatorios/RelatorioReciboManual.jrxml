@@ -1,13 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioReciboManual" language="groovy" pageWidth="612" pageHeight="400" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e8ce9ac2-c7e9-4e32-9948-857165a9cffe">
-	<property name="ireport.zoom" value="1.9487171000000025"/>
-	<property name="ireport.x" value="517"/>
-	<property name="ireport.y" value="212"/>
-	<queryString language="SQL">
+	<property name="ireport.zoom" value="1.1000000000000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
 		<![CDATA[SELECT *
 FROM
-     `pagamento` pagamento]]>
+     `pagamento` pagamento, empresa]]>
 	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataFinalizacao" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ordemServico_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="troco" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bairro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cep" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnpj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="contribuinteIcms" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inscricaoEstadual" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="longradouro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomeFantasia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="razaoSocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -22,34 +82,6 @@ FROM
 			<rectangle>
 				<reportElement x="0" y="1" width="95" height="78" uuid="8c5d6ee7-da0d-4cf6-91a0-eaf22c965240"/>
 			</rectangle>
-			<staticText>
-				<reportElement x="95" y="1" width="363" height="26" forecolor="#660000" uuid="5d82e3ec-9375-4a05-be44-0193ead5d1f1"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Georgia" size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ESTETICAR]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="47" width="363" height="17" uuid="e8f5bf8b-d0cc-4ca6-9b84-01d28e00d7b9"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="SansSerif" size="10"/>
-				</textElement>
-				<text><![CDATA[Rua Narciso Fecchio 1386 - A , Rosana - SP, 19273-000]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="27" width="363" height="20" forecolor="#660000" uuid="6d9f2101-89fc-48a9-b2e5-ed6c5533a96a"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Georgia" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FUNILÁRIA E PINTURA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="64" width="363" height="15" uuid="1af3aef7-7966-464a-a0b9-f04d5c7e32ef"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="SansSerif" size="10"/>
-				</textElement>
-				<text><![CDATA[Telefone: (18) 98154-3068  Email: evandrolopes1@outlook.com.br]]></text>
-			</staticText>
 			<image>
 				<reportElement x="3" y="3" width="92" height="75" uuid="839914d1-1b89-427e-94ec-f325c8b06de2"/>
 				<imageExpression><![CDATA["C:\\VsN\\relatorios\\logo\\logo.jpeg"]]></imageExpression>
@@ -61,6 +93,34 @@ FROM
 				</textElement>
 				<text><![CDATA[N° RECIBO]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="95" y="26" width="363" height="20" forecolor="#660000" uuid="d73a6ed1-6723-4648-b100-4e6bfdcbeb1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Georgia" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FUNILARIA E PINTURA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="0" width="363" height="26" forecolor="#660000" uuid="037e4ee5-a8d5-49c8-9289-fa1f8e42085e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{razaoSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="46" width="363" height="17" uuid="08f9ae4c-8c9e-4164-82f5-89bf716987cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rua: "+$F{longradouro}+", "+$F{numero}+" - "+$F{bairro}+" - "+$F{cidade}+"/SP"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="63" width="363" height="16" uuid="8452fca8-8e65-4fd6-8b50-00eb87a271e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Telefone: "+$F{telefone}+"    E-mail: "+$F{email}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

@@ -62,6 +62,11 @@ public class FuncionarioController {
         return dao.funcionarioUnico(id);
     }
 
+    public Funcionario pesquisarUnicoIdUsuario(int id) {
+        funcionarios.clear();
+        return dao.pesquisarUnicoIdUsuario(id);
+    }
+    
     public List<Funcionario> pesquisarFiltroNome(String nome) {
         funcionarios.clear();
         nome+="%";
@@ -172,6 +177,10 @@ public class FuncionarioController {
         }
     }
 
+    public void editarLogin(Funcionario  funcionario) throws Exception{
+        dao.edit(funcionario);
+    }
+    
     public int retornaCpf(String cpf){
         return dao.retornaCpf(cpf);
     }

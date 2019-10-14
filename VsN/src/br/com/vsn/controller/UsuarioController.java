@@ -113,12 +113,29 @@ public class UsuarioController {
     public void destroy(int id) throws Exception{
         Component rootPane = null;
         if(validador == 1){
+            try{
+                ParametroController pc = new ParametroController();
+                pc.destroy(pc.pesquisarUnico(id).getId());
+            }catch(Exception e){
+                
+            }
             dao.destroy(id);
             validador = 0 ;
         }else{
             int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuario?", "Pergunta", JOptionPane.YES_NO_OPTION);
 
             if (resposta == JOptionPane.YES_OPTION) {
+                try{
+                    ParametroController pc = new ParametroController();
+                    pc.destroy(pc.pesquisarUnico(id).getId());
+                }catch(Exception e){
+                            
+                }
+                FuncionarioController fc = new FuncionarioController();
+                Funcionario funcionario = new Funcionario();
+                funcionario = fc.pesquisarUnicoIdUsuario(id);
+                funcionario.setLogin("Sem Acesso ao Sistema");
+                fc.editarLogin(funcionario);
                 dao.destroy(id);
                 JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
             }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="clienteIndividual" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="671c190b-da9f-4e88-9df4-819ee3015163">
-	<property name="ireport.zoom" value="0.9090909090909094"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="clienteIndividual" language="groovy" pageWidth="842" pageHeight="550" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="671c190b-da9f-4e88-9df4-819ee3015163">
+	<property name="ireport.zoom" value="1.0000000000000007"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select * from cliente where id = $P{id}]]>
+		<![CDATA[select cliente.*,empresa.razaoSocial as empresa_razaoSocial, empresa.longradouro as empresa_longradouro, empresa.numero as empresa_numero, empresa.bairro as empresa_bairro, empresa.cidade as empresa_cidade, empresa.telefone as empresa_telefone, empresa.email as empresa_email from cliente, empresa where cliente.id = $P{id}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -54,6 +54,13 @@
 	<field name="telefone" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="empresa_razaoSocial" class="java.lang.String"/>
+	<field name="empresa_longradouro" class="java.lang.String"/>
+	<field name="empresa_numero" class="java.lang.Integer"/>
+	<field name="empresa_bairro" class="java.lang.String"/>
+	<field name="empresa_cidade" class="java.lang.String"/>
+	<field name="empresa_telefone" class="java.lang.String"/>
+	<field name="empresa_email" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -86,13 +93,6 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="93" y="35" width="576" height="23" uuid="cc4646f0-557c-4c47-a611-5c9fadf84652"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Rua Pirambóia, numero 660, Rosana - SP]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="669" y="40" width="133" height="18" uuid="075868fc-09b2-4254-b211-b9a0180c5b72"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
@@ -103,26 +103,36 @@
 				<reportElement x="5" y="3" width="88" height="75" uuid="c429a7f3-ccf6-4e09-bc71-6a0698af726e"/>
 				<imageExpression><![CDATA["C:\\VsN\\relatorios\\logo\\logo.jpeg"]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="93" y="58" width="576" height="21" uuid="3cb8d501-8fd9-4c11-a6da-912b0aeee105"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Telefone: (67) 99138-2836  Email: vitor7_sn@hotmail.com]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="93" y="0" width="576" height="35" uuid="7f45d383-9c32-490e-b016-855fd553fa86"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ESTETICAR FUNILARIA E PINTURA]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="669" y="20" width="133" height="20" uuid="a86a58e4-0d26-4d85-a3c3-52fcc1a2cfdc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="63" width="576" height="16" uuid="fcbd7308-004c-4dc7-af1c-304a0bf930bb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Telefone: "+$F{empresa_telefone}+"    E-mail: "+$F{empresa_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="0" width="576" height="26" forecolor="#660000" uuid="e278be41-f056-4a08-87a4-53c8c0c9ef32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_razaoSocial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="93" y="26" width="576" height="20" forecolor="#660000" uuid="3b9797ec-5485-43f1-8270-2b055036ad12"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Georgia" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FUNILARIA E PINTURA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="93" y="46" width="576" height="17" uuid="74ffa172-750a-4c6a-a6d8-1031d7eb604d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Rua: "+$F{empresa_longradouro}+", "+$F{empresa_numero}+" - "+$F{empresa_bairro}+" - "+$F{empresa_cidade}+"/SP"]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

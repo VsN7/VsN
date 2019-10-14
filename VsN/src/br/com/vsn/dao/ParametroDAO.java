@@ -220,7 +220,7 @@ public class ParametroDAO implements Serializable {
         try {
             UsuarioController uc = new UsuarioController();
             List<Parametro> parametros = null;
-            parametros = em.createNamedQuery("Parametro.ParametroUnico").setParameter("id",uc.getId()).getResultList();
+            parametros = em.createNamedQuery("Parametro.ParametroUnico").setParameter("id",id).getResultList();
             return parametros.get(0);
         } catch(Exception e){
             return null;

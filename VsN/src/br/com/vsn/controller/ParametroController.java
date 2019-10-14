@@ -1,6 +1,7 @@
 package br.com.vsn.controller;
 
 import br.com.vsn.dao.ParametroDAO;
+import br.com.vsn.dao.exceptions.NonexistentEntityException;
 import br.com.vsn.model.Parametro;
 import br.com.vsn.model.Usuario;
 import java.awt.Component;
@@ -64,6 +65,9 @@ public class ParametroController {
         pesquisar();
         novo();
         System.exit(0);
+    }
+    public void destroy(int id) throws NonexistentEntityException{
+        dao.destroy(id);
     }
     public void novo() {
         parametro = new Parametro();

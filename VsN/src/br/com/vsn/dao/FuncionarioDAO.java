@@ -66,6 +66,19 @@ public class FuncionarioDAO {
         }
     }
     
+    public Funcionario pesquisarUnicoIdUsuario(int id) {
+        List<Funcionario> funcionarios = null;
+        EntityManager em = getEntityManager();
+        try{
+           funcionarios = em.createNamedQuery("Funcionario.buscaPorIdUsuario").setParameter("id",id).getResultList();
+           return funcionarios.get(0);
+        }catch(Exception e){
+            
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public List<Funcionario> funcionarioFiltroNome(String nome) {
         List<Funcionario> funcionarios = null;
         EntityManager em = getEntityManager();

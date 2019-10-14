@@ -736,19 +736,19 @@ public class EmpresaView extends javax.swing.JInternalFrame {
     public void valoresInput() throws ParseException{
         
 //        this.id = Integer.parseInt(inputId.getText());
-        this.razaoSocial = inputRazaoSocial.getText().toUpperCase();
-        this.nomeFantasia = inputNomeFantasia.getText().toUpperCase();
+        this.razaoSocial = inputRazaoSocial.getText();
+        this.nomeFantasia = inputNomeFantasia.getText();
         this.icms = (String) comboIcms.getSelectedItem();
         this.cnpj = inputCnpj.getText();
         this.inscricaoEstadual = inputInscricaoEstadual.getText();
-        this.longradouro = inputLongradouro.getText().toUpperCase();
+        this.longradouro = inputLongradouro.getText();
         this.numero = Integer.parseInt(inputNumero.getText());
-        this.bairro = inputBairro.getText().toUpperCase();
-        this.cidade = inputCidade.getText().toUpperCase();
+        this.bairro = inputBairro.getText();
+        this.cidade = inputCidade.getText();
         this.estado = (String) comboEstado.getSelectedItem();
         this.cep = inputCep.getText();
         this.telefone = inputTelefone.getText();
-        this.email = inputEmail.getText().toUpperCase();
+        this.email = inputEmail.getText();
         this.situacao = inputSituacao.getText();
     }
     

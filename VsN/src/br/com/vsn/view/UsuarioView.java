@@ -272,13 +272,14 @@ public class UsuarioView extends javax.swing.JInternalFrame {
             if(valorCollun()==1)
                 JOptionPane.showMessageDialog(null, "Impossivel remover esse usuário", "Aviso", JOptionPane.ERROR_MESSAGE);
             else{
+                UsuarioController.validador = 0;
                 uc.destroy(valorCollun());
                 
                 uc = new UsuarioController();
                 this.preencherTabela();
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Primeiro selecione algum usuário", "Aviso", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(UsuarioView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_removerButtonActionPerformed
 

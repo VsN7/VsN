@@ -25,6 +25,9 @@ import javax.persistence.TemporalType;
      @NamedQuery(name = "Funcionario.buscaPorId", 
                 query = "SELECT f FROM Funcionario f WHERE f.id = :id "),
      
+     @NamedQuery(name = "Funcionario.buscaPorIdUsuario", 
+                query = "SELECT f FROM Funcionario f WHERE f.Usuario_id = :id "),
+     
         @NamedQuery(name = "Funcionario.getIdCpf", 
                 query = "SELECT f.id FROM Funcionario f "
                         + "WHERE f.cpf = :cpf "),
