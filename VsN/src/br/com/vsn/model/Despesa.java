@@ -25,15 +25,17 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     
     @NamedQuery(name = "Despesa.findAll", 
-                query = "SELECT d FROM Despesa d WHERE d.usuario.id = :idU"),
+                query = "SELECT d FROM Despesa d"),
     
     @NamedQuery(name = "Despesa.buscaPorId", 
                 query = "SELECT d FROM Despesa d WHERE d.id = :id and d.usuario.id = :idU"),
     
     @NamedQuery(name = "Despesa.buscaPorDescricao", 
-                query = "SELECT d FROM Despesa d WHERE d.usuario.id = :idU and d.descricao LIKE :descricao"),
+                query = "SELECT d FROM Despesa d WHERE d.descricao LIKE :descricao"),
     @NamedQuery(name = "Despesa.valorTotalD", 
                 query = "SELECT SUM(d.valorPagar) FROM Despesa d where (d.id = :id) or (d.dataVencimento between :dInicio and :dFim AND (d.situacao like :situacao) AND (d.descricao like :descricao))"),
+    @NamedQuery(name = "Despesa.valorTotaLucro", 
+                query = "SELECT SUM(d.valorPagar) FROM Despesa d WHERE  d.dataVencimento between :dInicio and :dFim and d.situacao = 'ABERTO'"),
 })
 public class Despesa implements Serializable {
     @Id

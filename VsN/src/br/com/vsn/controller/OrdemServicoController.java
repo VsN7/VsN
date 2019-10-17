@@ -57,6 +57,26 @@ public class OrdemServicoController {
             JOptionPane.showMessageDialog(rootPane, "Alteração realizada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
         }
      }
+     
+     public void inativarOS(OrdemServico ordemServico) throws Exception{
+        UsuarioController uc = new UsuarioController();
+        int idOrcamento = ordemServico.getOrcamento_id();
+        Component rootPane = null;
+            if(idOrcamento!=0){
+                OrcamentoController.conta = 1;
+                OrcamentoController oc = new OrcamentoController();
+                Orcamento orcamento = new Orcamento();
+                orcamento = oc.pesquisarUnico(idOrcamento).get(0);
+                orcamento.setSituacao("ABERTO");
+                orcamento.setOrdemServico_id(0);
+                oc.editOrcamento(idOrcamento,orcamento);
+            }
+            ordemServico.setSituacao("INATIVO");
+            ordemServico.setAtendente(uc.getLogin());
+            dao.edit(ordemServico);
+            JOptionPane.showMessageDialog(rootPane, "A ordem de serviço foi inativada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
+        
+     }
 
     public OrdemServicoController() {
         ordemServico = new OrdemServico();
@@ -136,6 +156,7 @@ public class OrdemServicoController {
         UsuarioController uc = new UsuarioController();
         Usuario usuario = new Usuario();
         usuario.setId(uc.getId());
+        usuario.setLogin(uc.getLogin());
         ordemServico.setAtendente(uc.getLogin());
         ordemServico.setUsuario(usuario);
         
@@ -235,6 +256,10 @@ public class OrdemServicoController {
         }catch (Exception ex) {
             Logger.getLogger(OrcamentoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public double despesaLucro(String dInicio, String dFim){
+        return dao.retornaValorTotaLucro(dInicio, dFim);
     }
     
 }

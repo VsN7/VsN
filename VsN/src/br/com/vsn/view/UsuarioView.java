@@ -270,7 +270,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
     try {   
             if(valorCollun()==1)
-                JOptionPane.showMessageDialog(null, "Impossivel remover esse usuário", "Aviso", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Impossivel remover esse usuário!", "Aviso", JOptionPane.ERROR_MESSAGE);
             else{
                 UsuarioController.validador = 0;
                 uc.destroy(valorCollun());
@@ -279,7 +279,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
                 this.preencherTabela();
             }
         } catch (Exception ex) {
-            Logger.getLogger(UsuarioView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Primeiro selecione algujm usuário!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_removerButtonActionPerformed
 

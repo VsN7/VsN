@@ -274,6 +274,28 @@ public class OrdemServicoDAO implements Serializable {
             }
         }
         
+        public double retornaValorTotaLucro(String dInicio, String dFim){
+            EntityManager em = getEntityManager();
+            double id;
+            
+            try{
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Query query = em.createNamedQuery("OrdemServico.valorTotaLucro");
+                Calendar c = Calendar.getInstance();
+                c.setTime(sdf.parse(dInicio));
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(sdf.parse(dFim));
+                query.setParameter("dInicio", c);
+                query.setParameter("dFim", c2);
+                id = (double) query.getSingleResult();
+                return id;
+            }catch (Exception e){
+                Logger.getLogger(DespesaDAO.class.getName()).log(Level.SEVERE, null, e);
+                return 0;
+            }
+        }
+        
+        
         public double retornaValorTotalS(String situacao,String s2){
             EntityManager em = getEntityManager();
             double id;

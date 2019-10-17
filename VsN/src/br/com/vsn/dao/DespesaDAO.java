@@ -224,7 +224,7 @@ public class DespesaDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           despesas = em.createNamedQuery("Despesa.findAll").setParameter("idU",uc.getId()).getResultList();
+           despesas = em.createNamedQuery("Despesa.findAll").getResultList();
            return despesas;
         }catch(Exception e){
             System.out.println("Erro na linha 147 (DespesaDAO)!");
@@ -399,9 +399,8 @@ public class DespesaDAO implements Serializable {
     public List<Despesa> contaPagarFiltroDescricao(String descricao) {
         List<Despesa> despesas = null;
         EntityManager em = getEntityManager();
-        UsuarioController uc = new UsuarioController();
         try{
-           despesas = em.createNamedQuery("Despesa.buscaPorDescricao").setParameter("descricao",descricao).setParameter("idU",uc.getId()).getResultList();
+           despesas = em.createNamedQuery("Despesa.buscaPorDescricao").setParameter("descricao",descricao).getResultList();
            return despesas;
         }catch(Exception e){
             
@@ -430,6 +429,28 @@ public class DespesaDAO implements Serializable {
                 return id;
             }catch (Exception e){
                 System.out.println("Erro ao 218" + e.getMessage());
+                return 0;
+            }
+        }
+    
+     public double retornaValorTotaLucro(String dInicio, String dFim){
+            EntityManager em = getEntityManager();
+            double id;
+            
+            try{
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Query query = em.createNamedQuery("Despesa.valorTotaLucro");
+                Calendar c = Calendar.getInstance();
+                c.setTime(sdf.parse(dInicio));
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(sdf.parse(dFim));
+                query.setParameter("dInicio", c);
+                query.setParameter("dFim", c2);
+                id = (double) query.getSingleResult();
+                return id;
+            }catch (Exception e){
+                System.out.println("NÃO É UM ERRO!!!!");
+                Logger.getLogger(DespesaDAO.class.getName()).log(Level.SEVERE, null, e);
                 return 0;
             }
         }

@@ -45,6 +45,8 @@ import javax.persistence.TemporalType;
                 query = "SELECT os FROM OrdemServico os WHERE os.servico LIKE :servico and os.usuario.id = :id "),
         @NamedQuery(name = "OrdemServico.buscaPorServicoAll", 
                 query = "SELECT os FROM OrdemServico os WHERE os.servico LIKE :servico"),
+        @NamedQuery(name = "OrdemServico.valorTotaLucro", 
+                query = "SELECT SUM(os.valor) FROM OrdemServico os WHERE  os.previsaoEntrega between :dInicio and :dFim and os.situacao = 'O.S FINALIZADA'"),
         
 })
 
@@ -77,6 +79,7 @@ public class OrdemServico implements Serializable{
     private int ano;
     private String placa;
     private String atendente;
+    private String justificativa;
     private int pagamento_id;
     
     @ManyToOne
@@ -90,6 +93,14 @@ public class OrdemServico implements Serializable{
 
     public void setPagamento_id(int pagamento_id) {
         this.pagamento_id = pagamento_id;
+    }
+
+    public String getJustificativa() {
+        return justificativa;
+    }
+
+    public void setJustificativa(String justificativa) {
+        this.justificativa = justificativa;
     }
 
     

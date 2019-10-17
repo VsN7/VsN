@@ -7,10 +7,12 @@ import br.com.vsn.controller.UsuarioController;
 import br.com.vsn.model.Parametro;
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.theme.AbstractSkyTheme;
+import com.jgoodies.looks.plastic.theme.BrownSugar;
 import com.jgoodies.looks.plastic.theme.DarkStar;
 import com.jgoodies.looks.plastic.theme.DesertGreen;
 import com.jgoodies.looks.plastic.theme.DesertRed;
 import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
+import com.jgoodies.looks.plastic.theme.Silver;
 import com.jgoodies.looks.plastic.theme.SkyBlue;
 import com.jgoodies.looks.plastic.theme.SkyRed;
 import java.awt.Color;
@@ -130,6 +132,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
+        jMenu21 = new javax.swing.JMenu();
+        jMenuItem33 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -389,7 +393,6 @@ public class MenuView extends javax.swing.JFrame {
 
         selectContasM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/accounting.png"))); // NOI18N
         selectContasM.setText("Contas");
-        selectContasM.setToolTipText("");
         selectContasM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu22.setText("Contas a Pagar");
@@ -536,6 +539,20 @@ public class MenuView extends javax.swing.JFrame {
         jMenu16.add(jMenuItem23);
 
         selectRelatorio.add(jMenu16);
+
+        jMenu21.setText("Relatório de Lucros");
+        jMenu21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jMenuItem33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem33.setText("Relatório de Lucratividade Geral");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu21.add(jMenuItem33);
+
+        selectRelatorio.add(jMenu21);
 
         jMenuBar1.add(selectRelatorio);
 
@@ -930,6 +947,17 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenu11MouseClicked
 
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        LucratividadeGeralView lgv;
+        try {
+            lgv = new LucratividadeGeralView();
+            lgv.setVisible(true);
+            this.desktopPane.add(lgv);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
@@ -947,6 +975,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu20;
+    private javax.swing.JMenu jMenu21;
     private javax.swing.JMenu jMenu22;
     private javax.swing.JMenu jMenu23;
     private javax.swing.JMenu jMenu24;
@@ -980,6 +1009,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -1075,6 +1105,15 @@ public class MenuView extends javax.swing.JFrame {
                     Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, e);
                 }    
                 jMenuBar1.setBackground(new Color(150,150,150));
+                break;
+            case 7:
+                this.visualSilver();
+                break;
+            case 8:
+                this.visualRoyal();
+                break;
+            case 9:
+                this.visualBrownSugar();
                 break;
             default:
                 break;
@@ -1218,6 +1257,76 @@ public class MenuView extends javax.swing.JFrame {
         this.iconsDark();
     }
     
+    public void visualSilver() throws UnsupportedLookAndFeelException{
+        
+
+    // lookandfeel muda de cores
+    // biblioteca     looksdemo-2.3.1.jar
+
+              //SkyBlue()
+             //BrownSugar()
+             // DarkStar()  
+            //DesertGreen()
+            //Silver()
+            //ExperienceRoyale()
+              try {
+                    PlasticLookAndFeel.setPlasticTheme(new Silver());
+                  try {
+                      UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+                  } catch (InstantiationException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IllegalAccessException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (UnsupportedLookAndFeelException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+           
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+
+        jMenuBar1.setBackground(new Color(200,200,240));
+        //       painelIcons.setBackground(new Color(200,200,240));
+        this.iconsDark();
+    }
+    
+    public void visualRoyal() throws UnsupportedLookAndFeelException{
+        
+
+    // lookandfeel muda de cores
+    // biblioteca     looksdemo-2.3.1.jar
+
+              //SkyBlue()
+             //BrownSugar()
+             // DarkStar()  
+            //DesertGreen()
+            //Silver()
+            //ExperienceRoyale()
+              try {
+                    PlasticLookAndFeel.setPlasticTheme(new ExperienceRoyale());
+                  try {
+                      UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+                  } catch (InstantiationException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IllegalAccessException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (UnsupportedLookAndFeelException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+           
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+
+        jMenuBar1.setBackground(new Color(150,150,230));
+//        //       painelIcons.setBackground(new Color(230,255,230));
+        this.iconsDark();
+    }
+    
     public void iconsLight(){
         Icon iconCliente = new ImageIcon(getClass().getResource("/icon/oficial/white/customer.png"));
         jMenu2.setIcon(iconCliente);
@@ -1230,6 +1339,41 @@ public class MenuView extends javax.swing.JFrame {
         Icon iconContaPagar = new ImageIcon(getClass().getResource("/icon/oficial/white/accounting.png"));
         selectContasM.setIcon(iconContaPagar);
         
+    }
+    
+    public void visualBrownSugar() throws UnsupportedLookAndFeelException{
+        
+
+    // lookandfeel muda de cores
+    // biblioteca     looksdemo-2.3.1.jar
+
+              //SkyBlue()
+             //BrownSugar()
+             // DarkStar()  
+            //DesertGreen()
+            //Silver()
+            //ExperienceRoyale()
+              try {
+                    PlasticLookAndFeel.setPlasticTheme(new BrownSugar());
+                  try {
+                      UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+                  } catch (InstantiationException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IllegalAccessException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (UnsupportedLookAndFeelException ex) {
+                      Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+           
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+
+        jMenuBar1.setBackground(new Color(20,20,20));
+        //       painelIcons.setBackground(new Color(20,20,20));
+        this.iconsLight();
     }
     
     public void iconsDark(){

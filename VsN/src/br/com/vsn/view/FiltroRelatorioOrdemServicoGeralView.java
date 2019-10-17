@@ -150,7 +150,7 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
         jLabel6.setText("Situação:");
 
         comboSituacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "ABERTOS", "O.S EM PAGAMENTO", "O.S FINALIZADA" }));
+        comboSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "ABERTOS", "INATIVOS", "O.S EM PAGAMENTO", "O.S FINALIZADA" }));
         comboSituacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboSituacaoActionPerformed(evt);
@@ -297,6 +297,10 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
                 osc.relatorioOrdemServicoData(situacao,dataInicio,dataFim,cliente,servico,id);
             }else if(comboSituacao.getSelectedItem().toString().equals("ABERTOS")){
                 situacao = "ABERTO" + "%";
+                this.validaVazio();
+                osc.relatorioOrdemServicoData(situacao,dataInicio,dataFim,cliente,servico,id);
+            }else if(comboSituacao.getSelectedItem().toString().equals("INATIVOS")){
+                situacao = "INATIVO" + "%";
                 this.validaVazio();
                 osc.relatorioOrdemServicoData(situacao,dataInicio,dataFim,cliente,servico,id);
             }else if(comboSituacao.getSelectedItem().toString().equals("O.S EM PAGAMENTO")){

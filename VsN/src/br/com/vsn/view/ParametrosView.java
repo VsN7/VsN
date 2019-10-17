@@ -66,14 +66,14 @@ public class ParametrosView extends javax.swing.JInternalFrame {
         jLabel2.setText("Tema");
 
         comboTema.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboTema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Dark", "Sky Blue", "Desert Red", "Esmeralda", "Nimbus", "Motilos" }));
+        comboTema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Dark", "Sky Blue", "Desert Red", "Esmeralda", "Nimbus", "Motilos", "Silver", "Royal", "BrownSugar" }));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Escolha um botão padrão para o filtro");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Tecla do filtro");
+        jLabel4.setText("Tecla do filtro (tecla padrão F11)");
 
         inputTecla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         inputTecla.addKeyListener(new java.awt.event.KeyAdapter() {

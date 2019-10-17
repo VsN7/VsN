@@ -159,7 +159,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Cadastro de O.S");
-        setVisible(true);
+        setVisible(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ID");
@@ -243,7 +243,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         });
 
         buttonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonExcluir.setText("Excluir");
+        buttonExcluir.setText("Inativar");
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirActionPerformed(evt);
@@ -325,8 +325,8 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         jLabel27.setText("Observações");
 
         inputObservacoes.setColumns(20);
+        inputObservacoes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         inputObservacoes.setRows(5);
-        inputObservacoes.setPreferredSize(new java.awt.Dimension(164, 80));
         jScrollPane1.setViewportView(inputObservacoes);
 
         buttonOS.setBackground(new java.awt.Color(8, 90, 0));
@@ -415,8 +415,8 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         inputPlaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         inputServico.setColumns(20);
+        inputServico.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         inputServico.setRows(5);
-        inputServico.setPreferredSize(new java.awt.Dimension(164, 80));
         jScrollPane2.setViewportView(inputServico);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -455,26 +455,6 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel16)))
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonOS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonInicio))
-                                .addGap(39, 39, 39)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonAnterior))
-                                .addGap(48, 48, 48)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonProximo))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(calendarDtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -513,7 +493,27 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                             .addComponent(inputCpf)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonInicio))
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonAnterior))
+                                .addGap(48, 48, 48)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonProximo))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonFinal, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(buttonOS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -702,8 +702,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
 
         if(buttonEditar.getText().equals("Salvar")){
             try {
-                this.valoresInput();
-                osc = new OrdemServicoController();
+                this.editarDados();
                 osc.editOrdemServico(Integer.parseInt(inputId.getText()),ordemServico);
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
@@ -721,28 +720,22 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         if(inputSituacao.getText().equals("ABERTO")){
             try {
-                osc.destroy(Integer.parseInt(inputId.getText()),osc.getOrdemServicos().get(index).getOrcamento_id());
-
-                if(index<0 &&osc.getOrdemServicos().size()>0){
-                    index++;
+                this.editarDados();
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente inativar a ordem de serviço?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    JustivicativaView jv = new JustivicativaView();
+                    this.getParent().add(jv);
+                    jv.setVisible(true);
+                    JanelaDialogo jd = new JanelaDialogo();
+                    jd.geraDialogo(jv);
                 }
                 osc = new OrdemServicoController();
-                if(osc.getOrdemServicos().size()<=0){
-                    this.limparCampos();
-                    this.desativarTudo();
-                    this.ativarButtonCadastrar();
-                    if(buttonCadastrar.getText().equals("Salvar"))
-                    this.ativarInputCadastrar();
-                }else{
-                    osc = new OrdemServicoController();
-                    this.exibirDados();
-                }
-
+                this.exibirDados();
             } catch (Exception ex) {
                 Logger.getLogger(OrcamentoView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Imposivel Excluir Orçamento Vinculado", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Imposivel Inativar Ordem de Serviço Em Pagamento ou Paga!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
@@ -893,12 +886,15 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             } catch (Exception ex) {
                 Logger.getLogger(OrdemServicoView.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        }else if(buttonOS.getText().equals("Visualizar Pagamento")){
             PagamentoOsView posv = new PagamentoOsView();
             this.getParent().add(posv);
             posv.setVisible(true);
             //            JanelaDialogo jd = new JanelaDialogo();
             //            jd.geraDialogo(posv);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "ORDEM DE SERVIÇO : "+inputId.getText()+"\nATENDENTE RESPONSÁVEL: "+
+            osc.getOrdemServicos().get(index).getAtendente()+"\nMOTIVO DA INATIVAÇÃO: "+osc.getOrdemServicos().get(index).getJustificativa(), "Justificativa", JOptionPane.INFORMATION_MESSAGE, null);
         }
     }//GEN-LAST:event_buttonOSActionPerformed
 
@@ -1024,12 +1020,20 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
                 buttonEditar.setEnabled(true);
                 buttonCancelar.setEnabled(false);
                 inputSituacao.setForeground(Color.blue);
-            }else{
+            }else if(inputSituacao.getText().equals("O.S FINALIZADA")){
                 buttonOS.setText("Visualizar Pagamento");
                 buttonExcluir.setEnabled(false);
                 buttonEditar.setEnabled(false);
                 buttonCancelar.setEnabled(true);
-                inputSituacao.setForeground(new Color(172,30,20));
+                inputSituacao.setForeground(new Color(40,190,40));
+            }else{
+                buttonOS.setEnabled(true);
+                buttonOS.setText("Motivo da Inativação");
+                buttonCancelar.setEnabled(false);
+                buttonExcluir.setEnabled(false);
+                buttonEditar.setEnabled(false);
+                buttonCancelar.setEnabled(false);
+                inputSituacao.setForeground(new Color(192,40,40));
             }
             this.valoresInput();
         } catch (Exception ex) {
@@ -1088,6 +1092,45 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
         }
     }
     
+    public void editarDados() throws ParseException{
+        this.cliente = inputCliente.getText().toUpperCase();
+        this.cpf = inputCpf.getText();
+        this.veiculo = (String) comboVeiculo.getSelectedItem();
+        this.modelo = inputModelo.getText().toUpperCase();
+        this.marca = inputMarca.getText().toUpperCase();
+        this.ano = Integer.parseInt(inputAno.getText());
+        this.placa = inputPlaca.getText().toUpperCase();
+        this.servico = inputServico.getText().toUpperCase();
+        //this.atendente = inputAtendente.getText().toUpperCase();
+        this.dtInicio = sdf.parse(inputDataInicio.getText());
+        this.pvEntrega = sdf.parse(inputPrevisaoEntrega.getText());
+        this.valor = Double.parseDouble(inputValor.getText().replace(",", "."));
+        this.situacao = inputSituacao.getText();
+        this.observacoes = inputObservacoes.getText().toUpperCase();
+        ordemServico = new OrdemServico();
+        ordemServico = osc.pesquisarUnico(Integer.parseInt(inputId.getText())).get(0);
+        ordemServico.setCliente(cliente);
+        ordemServico.setCpf(cpf);
+        ordemServico.setVeiculo(veiculo);
+        ordemServico.setMarca(marca);
+        ordemServico.setAno(ano);
+        ordemServico.setModelo(modelo);
+        ordemServico.setPlaca(placa);
+        ordemServico.setServico(servico);
+        Calendar c = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c.setTime(dtInicio);
+        ordemServico.setDataInicio(c);
+        c2.setTime(pvEntrega);
+        ordemServico.setPrevisaoEntrega(c2);
+        ordemServico.setValor(valor);
+        ordemServico.setSituacao(situacao);
+        ordemServico.setObservacoes(observacoes);
+        
+        osc = new OrdemServicoController();
+        ordemServico.setOrcamento_id(osc.getOrdemServicos().get(index).getOrcamento_id());
+        ordemServico.setPagamento_id(osc.getOrdemServicos().get(index).getPagamento_id());
+    }
     
     public void limparCampos(){
         inputId.setText("");

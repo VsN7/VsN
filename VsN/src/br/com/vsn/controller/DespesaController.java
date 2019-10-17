@@ -218,4 +218,8 @@ public class DespesaController {
         }
     }
     
+    public double despesaLucro(String dInicio, String dFim){
+        return dao.retornaValorTotaLucro(dInicio, dFim);
+    }
+    
 }

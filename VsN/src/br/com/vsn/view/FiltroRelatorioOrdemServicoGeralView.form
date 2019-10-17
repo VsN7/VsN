@@ -244,11 +244,12 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="5">
                 <StringItem index="0" value="TODOS"/>
                 <StringItem index="1" value="ABERTOS"/>
-                <StringItem index="2" value="O.S EM PAGAMENTO"/>
-                <StringItem index="3" value="O.S FINALIZADA"/>
+                <StringItem index="2" value="INATIVOS"/>
+                <StringItem index="3" value="O.S EM PAGAMENTO"/>
+                <StringItem index="4" value="O.S FINALIZADA"/>
               </StringArray>
             </Property>
           </Properties>

@@ -824,12 +824,14 @@ public class ContaPagarView extends javax.swing.JInternalFrame {
 
     private void setParcelasP(){
         List<String> lista = new ArrayList<>();
-        for(int i = 1;i<despesa.getParcelasPagar();i++){
+        for(int i = 1;i<dc.getDespesas().get(index).getParcelasPagar();i++){
             lista.add(""+(i+1)+" Parcelas");
         }
         comboParcelas.removeAllItems();
         comboParcelas.addItem("1 Parcela");
+            System.out.println("lista::"+lista.get(0).toString());
         while(!lista.isEmpty()){
+            System.out.println("lista::"+lista.get(0));
             comboParcelas.addItem(lista.remove(0));
         }
     }

@@ -720,8 +720,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
 
         if(buttonEditar.getText().equals("Salvar")){
             try {
-                this.valoresInput();
-                oc = new OrcamentoController();
+                this.editarDados();
                 oc.editOrcamento(Integer.parseInt(inputId.getText()), orcamento);
                 buttonEditar.setText("Editar");
                 this.ativarTudo();
@@ -1088,6 +1087,43 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
         oc = new OrcamentoController();
     }
     
+    public void editarDados() throws ParseException{
+        this.cliente = inputCliente.getText().toUpperCase();
+        this.cpf = inputCpf.getText();
+        this.veiculo = (String) comboVeiculo.getSelectedItem();
+        this.modelo = inputModelo.getText().toUpperCase();
+        this.marca = inputMarca.getText().toUpperCase();
+        this.ano = Integer.parseInt(inputAno.getText());
+        this.placa = inputPlaca.getText().toUpperCase();
+        this.servico = inputServico.getText().toUpperCase();
+        //this.atendente = inputAtendente.getText().toUpperCase();
+        this.dtInicio = sdf.parse(inputDataInicio.getText());
+        this.pvEntrega = sdf.parse(inputPrevisaoEntrega.getText());
+        this.valor = Double.parseDouble(inputValor.getText().replace(",", "."));
+        this.situacao = inputSituacao.getText();
+        this.observacoes = inputObservacoes.getText().toUpperCase();
+        orcamento = new Orcamento();
+        
+        orcamento = oc.pesquisarUnico(Integer.parseInt(inputId.getText())).get(0);
+        
+        orcamento.setCliente(cliente);
+        orcamento.setCpf(cpf);
+        orcamento.setVeiculo(veiculo);
+        orcamento.setModelo(modelo);
+        orcamento.setMarca(marca);
+        orcamento.setAno(ano);
+        orcamento.setPlaca(placa);
+        orcamento.setServico(servico);
+        Calendar c = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c.setTime(dtInicio);
+        orcamento.setDataInicio(c);
+        c2.setTime(pvEntrega);
+        orcamento.setPrevisaoEntrega(c2);
+        orcamento.setValor(valor);
+        orcamento.setSituacao(situacao);
+        orcamento.setObservacoes(observacoes);
+    }
     
     public void limparCampos(){
         inputId.setText("");

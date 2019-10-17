@@ -21,6 +21,7 @@ public abstract class OrdemServico_ {
 	public static volatile SingularAttribute<OrdemServico, String> observacoes;
 	public static volatile SingularAttribute<OrdemServico, String> marca;
 	public static volatile SingularAttribute<OrdemServico, String> atendente;
+	public static volatile SingularAttribute<OrdemServico, String> justificativa;
 	public static volatile SingularAttribute<OrdemServico, String> cpf;
 	public static volatile SingularAttribute<OrdemServico, Usuario> usuario;
 	public static volatile SingularAttribute<OrdemServico, Integer> id;
