@@ -39,7 +39,6 @@ public class MenuView extends javax.swing.JFrame {
     public static int teclaPesquisa = 112;
     public static int autorizacao;
     public MenuView() {
-        setExtendedState(MAXIMIZED_BOTH);
         initComponents();
         try{
             //modificaVisual();
@@ -67,6 +66,8 @@ public class MenuView extends javax.swing.JFrame {
         }catch(Exception e){
             
         }
+        
+        setExtendedState(MAXIMIZED_BOTH);
         
     }
 
@@ -159,7 +160,7 @@ public class MenuView extends javax.swing.JFrame {
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(1248, Short.MAX_VALUE)
+                .addContainerGap(1281, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
