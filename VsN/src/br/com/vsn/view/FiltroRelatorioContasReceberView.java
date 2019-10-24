@@ -373,10 +373,10 @@ public class FiltroRelatorioContasReceberView extends javax.swing.JInternalFrame
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
         if (evt.getKeyCode() == MenuView.teclaPesquisa) {   
             try {
-                PesquisarContaReceberView pcrv = new PesquisarContaReceberView();
-                this.getParent().add(pcrv);
-                pcrv.setVisible(true);
-                PesquisarContaReceberView.validador = 1;
+                PesquisarClienteView pcv = new PesquisarClienteView();
+                this.getParent().add(pcv);
+                pcv.setVisible(true);
+                PesquisarClienteView.validador = 5;
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao tentar acessar o banco de dados", "Aviso", JOptionPane.ERROR_MESSAGE);
                 }

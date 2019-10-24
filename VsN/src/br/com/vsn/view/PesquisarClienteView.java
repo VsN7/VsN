@@ -179,6 +179,8 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
                         this.valoresInputContasReceber();
                     }else if(validador ==4){
                         this.valoresInputRelatorioClientesGeral();
+                    }else if(validador ==5){
+                        this.valoresInputRelatorioContasReceber();
                     }
                 }
                 this.dispose();
@@ -306,6 +308,9 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
     
     public void valoresInputContasReceber(){
         ContaReceberView.inputCliente.setText(""+cliente.getNome());
+    }
+    public void valoresInputRelatorioContasReceber(){
+        FiltroRelatorioContasReceberView.inputCliente.setText(""+cliente.getNome());
     }
 
 }

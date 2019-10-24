@@ -210,7 +210,7 @@ public class PagamentoOsView extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 147, -1, -1));
 
         comboVezes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboVezes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez", "2 vezes", "3 vezes", "4 vezes" }));
+        comboVezes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez", "2 vezes", "3 vezes", "4 vezes", "5 vezes", "6 vezes", "7 vezes", "8 vezes", "9 vezes" }));
         comboVezes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboVezesActionPerformed(evt);

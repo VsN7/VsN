@@ -73,7 +73,7 @@ public class ParametrosView extends javax.swing.JInternalFrame {
         jLabel3.setText("Escolha um botão padrão para o filtro");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Tecla do filtro (tecla padrão F11)");
+        jLabel4.setText("Tecla do filtro (tecla padrão F1)");
 
         inputTecla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         inputTecla.addKeyListener(new java.awt.event.KeyAdapter() {
