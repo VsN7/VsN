@@ -435,11 +435,10 @@ public class ContaDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           contas = (String) em.createNamedQuery("Conta.selecionarSituacao").setParameter("id",id).getSingleResult();
-            
+            contas = (String) em.createNamedQuery("Conta.selecionarSituacao").setParameter("id",id).getSingleResult();
            return contas;
         }catch(Exception e){
-            System.out.println("Erro na linha 147 (ContaDAO)!");
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
             return "false";
         }
     }
@@ -525,8 +524,12 @@ public class ContaDAO implements Serializable {
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Data inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }

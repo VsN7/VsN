@@ -50,20 +50,6 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        inputDataInicio = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter dataInicio= new javax.swing.text.MaskFormatter("##/##/####");
-            inputDataInicio = new javax.swing.JFormattedTextField(dataInicio);
-        }
-        catch (Exception e){
-        }
-        inputDataFinal = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter dataFinal= new javax.swing.text.MaskFormatter("##/##/####");
-            inputDataFinal = new javax.swing.JFormattedTextField(dataFinal);
-        }
-        catch (Exception e){
-        }
         jLabel4 = new javax.swing.JLabel();
         ButtonGerarRelatorio = new javax.swing.JButton();
         ImageIcon iconOrcamento = new ImageIcon(getClass().getResource("/icon/calendario.jpg")); Image imagem = iconOrcamento.getImage();
@@ -84,6 +70,8 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
         inputId = new javax.swing.JTextField();
         inputDescricao = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        inputDataInicio = new javax.swing.JFormattedTextField();
+        inputDataFinal = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -95,15 +83,6 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Vencimento De:");
-
-        inputDataInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        inputDataInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputDataInicioActionPerformed(evt);
-            }
-        });
-
-        inputDataFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Até");
@@ -173,6 +152,30 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Descrição:");
 
+        try {
+            inputDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        inputDataInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputDataInicio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputDataInicioFocusLost(evt);
+            }
+        });
+
+        try {
+            inputDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        inputDataFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputDataFinal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputDataFinalFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,17 +185,21 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(inputDataFinal))
+                        .addComponent(inputDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -200,11 +207,8 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(inputDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(inputDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(105, 105, 105)
@@ -253,10 +257,6 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void inputDataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDataInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputDataInicioActionPerformed
 
     private void ButtonGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGerarRelatorioActionPerformed
         try{
@@ -346,12 +346,24 @@ public class FiltroRelatorioContasPagarView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_inputDescricaoKeyPressed
 
+    private void inputDataInicioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputDataInicioFocusLost
+        
+        if(inputDataInicio.getValue().equals(""))
+            inputDataInicio.setValue("");
+    }//GEN-LAST:event_inputDataInicioFocusLost
+
+    private void inputDataFinalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputDataFinalFocusLost
+    
+        if(inputDataFinal.getValue().equals(""))
+            inputDataFinal.setValue("");
+    }//GEN-LAST:event_inputDataFinalFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonGerarRelatorio;
     private javax.swing.JComboBox<String> comboSituacao;
-    public static javax.swing.JTextField inputDataFinal;
-    public static javax.swing.JTextField inputDataInicio;
+    public static javax.swing.JFormattedTextField inputDataFinal;
+    public static javax.swing.JFormattedTextField inputDataInicio;
     public static javax.swing.JTextField inputDescricao;
     public static javax.swing.JTextField inputId;
     private javax.swing.JLabel jLabel1;

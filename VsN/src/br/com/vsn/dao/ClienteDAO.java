@@ -215,8 +215,12 @@ public class ClienteDAO implements Serializable {
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
         } catch (Exception ex) {
             Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -238,8 +242,12 @@ public class ClienteDAO implements Serializable {
         
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
     }
     
     public void relatorioClienteGeral(int id,String nome, String situacao){
@@ -260,7 +268,11 @@ public class ClienteDAO implements Serializable {
         
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
     }
 }

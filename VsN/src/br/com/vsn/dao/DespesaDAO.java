@@ -134,7 +134,7 @@ public class DespesaDAO implements Serializable {
         EntityManager em = getEntityManager();
         UsuarioController uc = new UsuarioController();
         try{
-           despesas = em.createNamedQuery("Despesa.buscaPorId").setParameter("id",id).setParameter("idU",uc.getId()).getResultList();
+           despesas = em.createNamedQuery("Despesa.buscaPorId").setParameter("id",id).getResultList();
            return despesas;
         }catch(Exception e){
             
@@ -476,8 +476,12 @@ public class DespesaDAO implements Serializable {
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Data inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }

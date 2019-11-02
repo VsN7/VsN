@@ -333,28 +333,6 @@ public class OrdemServicoDAO implements Serializable {
         jv.setExtendedState(MAXIMIZED_BOTH);
     }
     
-    public void relatorioOrdemServicosAll(){
-        Connection conn;
-        JasperPrint jasperPrint = null;
-        try {
-            conn = ConnectionFactory.getInstance().getConnection();
-        
-        
-        String src = "C:\\Refrival\\relatorios\\ordemServicosAll.jasper";
-        
-        
-        Map param = new HashMap();
-        param.put("total",this.retornaValorTotal());
-        jasperPrint = JasperFillManager.fillReport(src, param, conn);
-        } catch (Exception ex) {
-            Logger.getLogger(OrdemServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        JasperViewer jv = new JasperViewer(jasperPrint, false);
-        
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
-    }
     
     public void relatorioOrdemServicoData(String situacao,String dInicio, String dFim, String cliente,String servico, int id){
         Connection conn;
@@ -377,9 +355,12 @@ public class OrdemServicoDAO implements Serializable {
         param.put("id", id);
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
         JasperViewer jv = new JasperViewer(jasperPrint, false);
-        
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Data inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }

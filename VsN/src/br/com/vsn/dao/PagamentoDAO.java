@@ -278,8 +278,12 @@ public class PagamentoDAO implements Serializable {
         
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
     }
     
     public void relatorioReciboManual(){

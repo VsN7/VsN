@@ -9,6 +9,7 @@ import br.com.vsn.view.PagamentoContasReceberView;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -117,12 +118,21 @@ public class ContaController {
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente receber uma parcela desse titulo?", "Excluir", JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
             if(conta.getVezesPagar()-1 == 0){
+                Date data = new Date();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(data);
+                conta.setDataPagamento(cal);
                 conta.setSituacao("FECHADO");
             }else{
                 Calendar c = Calendar.getInstance();
                 c.setTime(conta.getDataVencimento().getTime());
                 c.set(Calendar.MONTH,c.get(Calendar.MONTH)+1 );
                 conta.setDataVencimento(c);
+                
+                Date data = new Date();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(data);
+                conta.setDataPagamento(cal);
             }
             conta.setVezesPagar(conta.getVezesPagar()-1);
             conta.setValorPagar(conta.getValorPagar()-(conta.getValor()/conta.getVezes()));
@@ -142,6 +152,7 @@ public class ContaController {
             conta.setDataVencimento(c);
             conta.setVezesPagar(conta.getVezes());
             conta.setValorPagar(conta.getValor());
+            conta.setDataPagamento(null);
             dao.edit(conta);
             JOptionPane.showMessageDialog(rootPane, "Titulo estornado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
         }

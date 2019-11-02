@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
                 query = "SELECT d FROM Despesa d"),
     
     @NamedQuery(name = "Despesa.buscaPorId", 
-                query = "SELECT d FROM Despesa d WHERE d.id = :id and d.usuario.id = :idU"),
+                query = "SELECT d FROM Despesa d WHERE d.id = :id"),
     
     @NamedQuery(name = "Despesa.buscaPorDescricao", 
                 query = "SELECT d FROM Despesa d WHERE d.descricao LIKE :descricao"),

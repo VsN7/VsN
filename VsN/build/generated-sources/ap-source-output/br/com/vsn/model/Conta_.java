@@ -10,6 +10,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Conta_ {
 
 	public static volatile SingularAttribute<Conta, String> situacao;
+	public static volatile SingularAttribute<Conta, Calendar> dataPagamento;
 	public static volatile SingularAttribute<Conta, Double> valor;
 	public static volatile SingularAttribute<Conta, String> titulo;
 	public static volatile SingularAttribute<Conta, Integer> pagamento_id;

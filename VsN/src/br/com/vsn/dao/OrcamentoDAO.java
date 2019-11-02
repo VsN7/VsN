@@ -434,8 +434,12 @@ public class OrcamentoDAO implements Serializable {
         jasperPrint = JasperFillManager.fillReport(src, param, conn);
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         
-        jv.setVisible(true);
-        jv.setExtendedState(MAXIMIZED_BOTH);
+        if(jasperPrint.getAnchorIndexes().size()<=0){
+            
+        }else{
+            jv.setVisible(true);
+            jv.setExtendedState(MAXIMIZED_BOTH);
+        }
         } catch (Exception ex) {
             Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1010,7 +1010,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
             this.ativarTudo();
             inputId.setText(""+oc.getOrcamentos().get(index).getId());
             inputCliente.setText(""+oc.getOrcamentos().get(index).getCliente());
-            inputCpf.setText(""+oc.getOrcamentos().get(index).getCpf());
+            inputCpf.setText(""+oc.getOrcamentos().get(index).getCpf().replaceAll("\\D", ""));
             comboVeiculo.setSelectedItem(""+oc.getOrcamentos().get(index).getVeiculo());
             inputModelo.setText(""+oc.getOrcamentos().get(index).getModelo());
             inputMarca.setText(""+oc.getOrcamentos().get(index).getMarca());
@@ -1018,8 +1018,8 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
             inputPlaca.setText(""+oc.getOrcamentos().get(index).getPlaca());
             inputServico.setText(""+oc.getOrcamentos().get(index).getServico());
             //inputAtendente.setText(""+oc.getOrcamentos().get(index).getAtendente());
-            inputDataInicio.setText(""+sdf.format(oc.getOrcamentos().get(index).getDataInicio().getTime()));
-            inputPrevisaoEntrega.setText(""+sdf.format(oc.getOrcamentos().get(index).getPrevisaoEntrega().getTime()));
+            inputDataInicio.setText(""+sdf.format(oc.getOrcamentos().get(index).getDataInicio().getTime()).replaceAll("\\D", ""));
+            inputPrevisaoEntrega.setText(""+sdf.format(oc.getOrcamentos().get(index).getPrevisaoEntrega().getTime()).replaceAll("\\D", ""));
             inputValor.setText(""+formatter.format(oc.getOrcamentos().get(index).getValor()));
             inputSituacao.setText(""+oc.getOrcamentos().get(index).getSituacao());
             inputObservacoes.setText(""+oc.getOrcamentos().get(index).getObservacoes());

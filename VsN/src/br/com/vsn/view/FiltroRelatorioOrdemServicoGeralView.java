@@ -52,20 +52,6 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        inputDataInicio = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter dataInicio= new javax.swing.text.MaskFormatter("##/##/####");
-            inputDataInicio = new javax.swing.JFormattedTextField(dataInicio);
-        }
-        catch (Exception e){
-        }
-        inputDataFinal = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter dataFinal= new javax.swing.text.MaskFormatter("##/##/####");
-            inputDataFinal = new javax.swing.JFormattedTextField(dataFinal);
-        }
-        catch (Exception e){
-        }
         jLabel4 = new javax.swing.JLabel();
         ButtonGerarRelatorio = new javax.swing.JButton();
         ImageIcon iconOrcamento = new ImageIcon(getClass().getResource("/icon/calendario.jpg")); Image imagem = iconOrcamento.getImage();
@@ -88,6 +74,8 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
         inputId = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         inputServico = new javax.swing.JTextField();
+        inputDataInicio = new javax.swing.JFormattedTextField();
+        inputDataFinal = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -99,15 +87,6 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Pv. Entrega de");
-
-        inputDataInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        inputDataInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputDataInicioActionPerformed(evt);
-            }
-        });
-
-        inputDataFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Até");
@@ -187,6 +166,30 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
             }
         });
 
+        try {
+            inputDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        inputDataInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputDataInicio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputDataInicioFocusLost(evt);
+            }
+        });
+
+        try {
+            inputDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        inputDataFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputDataFinal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputDataFinalFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -196,16 +199,16 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(inputDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +249,7 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
                     .addComponent(jLabel10))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4)
@@ -261,7 +264,7 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comboSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(ButtonGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -270,7 +273,9 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,10 +284,6 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void inputDataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDataInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputDataInicioActionPerformed
 
     private void ButtonGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGerarRelatorioActionPerformed
         try{
@@ -392,13 +393,24 @@ public class FiltroRelatorioOrdemServicoGeralView extends javax.swing.JInternalF
         }
     }//GEN-LAST:event_inputServicoKeyPressed
 
+    private void inputDataInicioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputDataInicioFocusLost
+        if(inputDataInicio.getValue().equals(""))
+        inputDataInicio.setValue("");
+    }//GEN-LAST:event_inputDataInicioFocusLost
+
+    private void inputDataFinalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputDataFinalFocusLost
+
+        if(inputDataFinal.getValue().equals(""))
+        inputDataFinal.setValue("");
+    }//GEN-LAST:event_inputDataFinalFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonGerarRelatorio;
     private javax.swing.JComboBox<String> comboSituacao;
     public static javax.swing.JTextField inputCliente;
-    public static javax.swing.JTextField inputDataFinal;
-    public static javax.swing.JTextField inputDataInicio;
+    public static javax.swing.JFormattedTextField inputDataFinal;
+    public static javax.swing.JFormattedTextField inputDataInicio;
     public static javax.swing.JTextField inputId;
     public static javax.swing.JTextField inputServico;
     private javax.swing.JLabel jLabel1;

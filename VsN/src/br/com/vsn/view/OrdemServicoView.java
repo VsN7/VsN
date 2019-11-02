@@ -993,7 +993,7 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             this.ativarTudo();
             inputId.setText(""+osc.getOrdemServicos().get(index).getId());
             inputCliente.setText(""+osc.getOrdemServicos().get(index).getCliente());
-            inputCpf.setText(""+osc.getOrdemServicos().get(index).getCpf());
+            inputCpf.setText(""+osc.getOrdemServicos().get(index).getCpf().replaceAll("\\D", ""));
             comboVeiculo.setSelectedItem(""+osc.getOrdemServicos().get(index).getVeiculo());
             inputModelo.setText(""+osc.getOrdemServicos().get(index).getModelo());
             inputMarca.setText(""+osc.getOrdemServicos().get(index).getMarca());
@@ -1001,8 +1001,8 @@ public class OrdemServicoView extends javax.swing.JInternalFrame {
             inputPlaca.setText(""+osc.getOrdemServicos().get(index).getPlaca());
             inputServico.setText(""+osc.getOrdemServicos().get(index).getServico());
             //inputAtendente.setText(""+osc.getOrdemServicos().get(index).getAtendente());
-            inputDataInicio.setText(""+sdf.format(osc.getOrdemServicos().get(index).getDataInicio().getTime()));
-            inputPrevisaoEntrega.setText(""+sdf.format(osc.getOrdemServicos().get(index).getPrevisaoEntrega().getTime()));
+            inputDataInicio.setText(""+sdf.format(osc.getOrdemServicos().get(index).getDataInicio().getTime()).replaceAll("\\D", ""));
+            inputPrevisaoEntrega.setText(""+sdf.format(osc.getOrdemServicos().get(index).getPrevisaoEntrega().getTime()).replaceAll("\\D", ""));
             inputValor.setText(""+formatter.format(osc.getOrdemServicos().get(index).getValor()));
             inputSituacao.setText(""+osc.getOrdemServicos().get(index).getSituacao());
             inputObservacoes.setText(""+osc.getOrdemServicos().get(index).getObservacoes());

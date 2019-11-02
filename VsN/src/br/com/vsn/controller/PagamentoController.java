@@ -59,8 +59,9 @@ public class PagamentoController {
                     }
                         int tamanhoConta = cct.buscaContaIdPagamento(id).size();
                         for(int i = 0; i < tamanhoConta;i++){
-                            if(cct.retornaContaSituacao(cct.buscaContaIdPagamento(id).get(i).getId()).equals("FECHADO"))
+                            if(cct.buscaContaIdPagamento(id).get(i).getVezes() != cct.buscaContaIdPagamento(id).get(i).getVezesPagar())
                                 validaExcluir = 1;
+                            System.out.println("VALIDA EXCLUIR::"+validaExcluir);
                         }
                     if(validaCartao == 1 && validaExcluir == 0){
                         tamanhoConta = cct.buscaContaIdPagamento(id).size();
@@ -87,7 +88,7 @@ public class PagamentoController {
                         JOptionPane.showMessageDialog(rootPane, "Pagamento reaberto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, null);
                         conta = 0;
                     }else{
-                        JOptionPane.showMessageDialog(rootPane, "Não é possivel reabrir o pagamento, pois existem titulos já pagos!", "Aviso", JOptionPane.ERROR_MESSAGE, null);
+                        JOptionPane.showMessageDialog(rootPane, "Não é possivel reabrir o pagamento, pois existem titulos que já possuem parcelas recebidas!", "Aviso", JOptionPane.ERROR_MESSAGE, null);
                     }
                 }
          }  

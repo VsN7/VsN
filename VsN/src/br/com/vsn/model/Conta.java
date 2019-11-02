@@ -40,6 +40,8 @@ import javax.persistence.TemporalType;
                 query = "SELECT c FROM Conta c WHERE c.id = :idC"),
         @NamedQuery(name = "Conta.selecionarContaIdPagamento", 
                 query = "SELECT c FROM Conta c WHERE c.pagamento_id = :idP and c.usuario.id = :id "),
+        @NamedQuery(name = "Conta.selecionarSituacao", 
+                query = "SELECT c.situacao FROM Conta c WHERE c.id = :id"),
         @NamedQuery(name = "Conta.valorTotalD", 
                 query = "SELECT SUM(c.valorPagar) FROM Conta c where (c.id = :id) or (c.dataVencimento between :dInicio and :dFim AND (c.situacao like :situacao) AND (c.titulo like :titulo) AND (c.cliente like :cliente) )"),
 })
@@ -57,6 +59,8 @@ public class Conta implements Serializable {
     private int pagamento_id;
     private String cliente;
     
+    @Temporal(TemporalType.DATE)
+    private Calendar dataPagamento;
     @Temporal(TemporalType.DATE)
     private Calendar dataCompra;
     @Temporal(TemporalType.DATE)
@@ -178,6 +182,16 @@ public class Conta implements Serializable {
         this.vezes = vezes;
     }
 
+    public Calendar getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public void setDataPagamento(Calendar dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
+
+    
+    
     public Calendar getDataCompra() {
         return dataCompra;
     }

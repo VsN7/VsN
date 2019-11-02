@@ -207,7 +207,6 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(4);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(120);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
@@ -446,6 +445,7 @@ public class ContaReceberView extends javax.swing.JInternalFrame {
                 try{
                     int i = 0;
                     int id = conta.getId();
+                    cc.pesquisar();
                     Iterator iterator = cc.getContas().iterator();
                     do{
                         if(id == cc.getContas().get(i).getId()){

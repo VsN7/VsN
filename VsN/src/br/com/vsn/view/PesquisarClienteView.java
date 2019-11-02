@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -69,6 +70,7 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         inputSelecionado = new javax.swing.JTextField();
         comboFiltro = new javax.swing.JComboBox<>();
+        comboTipoFiltro = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Pesquisar Cliente");
@@ -112,6 +114,8 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
 
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF" }));
 
+        comboTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Começa Com", "Contém" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,20 +124,24 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(comboFiltro, 0, 225, Short.MAX_VALUE)
+                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addComponent(comboTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(inputSelecionado))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(inputSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -194,13 +202,19 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
         try{
             valorCombo=comboFiltro.getSelectedItem().toString().toLowerCase();
             if(valorCombo.equals("nome")){
-                this.preencherTabelaFiltroNome();
+                if(comboTipoFiltro.getSelectedIndex() == 0)
+                this.preencherTabelaFiltroNome("");
+                else
+                this.preencherTabelaFiltroNome("%");
             }else if(valorCombo.equals("cpf")){
-                this.preencherTabelaFiltroCpf();
+                if(comboTipoFiltro.getSelectedIndex() == 0)
+                this.preencherTabelaFiltroCpf("");
+                else
+                this.preencherTabelaFiltroCpf("%");
             }
-            
+
         }catch(Exception e){
-            Logger.getLogger(PesquisarClienteView.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Você está digitando muito rápido\nFeche o filtro e abra novamente!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_inputSelecionadoKeyReleased
 
@@ -208,6 +222,7 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboFiltro;
+    private javax.swing.JComboBox<String> comboTipoFiltro;
     private javax.swing.JTextField inputSelecionado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -231,33 +246,33 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
         
     }
     
-    public void preencherTabelaFiltroNome() throws Exception{
+    public void preencherTabelaFiltroNome(String like) throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
-        for(int i=0; i<cc.pesquisarFiltroNome(inputSelecionado.getText()).size(); i++){
+        for(int i=0; i<cc.pesquisarFiltroNome(like+inputSelecionado.getText()).size(); i++){
             modelo.addRow(new Object[]{
-             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getId(),
-             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getNome(),
-             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getCpf(),
-             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getTelefone(),
-             cc.pesquisarFiltroNome(inputSelecionado.getText()).get(i).getSituacao()
+             cc.pesquisarFiltroNome(like+inputSelecionado.getText()).get(i).getId(),
+             cc.pesquisarFiltroNome(like+inputSelecionado.getText()).get(i).getNome(),
+             cc.pesquisarFiltroNome(like+inputSelecionado.getText()).get(i).getCpf(),
+             cc.pesquisarFiltroNome(like+inputSelecionado.getText()).get(i).getTelefone(),
+             cc.pesquisarFiltroNome(like+inputSelecionado.getText()).get(i).getSituacao()
              });
         }
         
     }
     
-    public void preencherTabelaFiltroCpf() throws Exception{
+    public void preencherTabelaFiltroCpf(String like) throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
-        for(int i=0; i<cc.pesquisarFiltroCpf(inputSelecionado.getText()).size(); i++){
+        for(int i=0; i<cc.pesquisarFiltroCpf(like+inputSelecionado.getText()).size(); i++){
             modelo.addRow(new Object[]{
-             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getId(),
-             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getNome(),
-             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getCpf(),
-             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getTelefone(),
-             cc.pesquisarFiltroCpf(inputSelecionado.getText()).get(i).getSituacao()
+             cc.pesquisarFiltroCpf(like+inputSelecionado.getText()).get(i).getId(),
+             cc.pesquisarFiltroCpf(like+inputSelecionado.getText()).get(i).getNome(),
+             cc.pesquisarFiltroCpf(like+inputSelecionado.getText()).get(i).getCpf(),
+             cc.pesquisarFiltroCpf(like+inputSelecionado.getText()).get(i).getTelefone(),
+             cc.pesquisarFiltroCpf(like+inputSelecionado.getText()).get(i).getSituacao()
              });
         }
         

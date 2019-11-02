@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioLucratividadeGeral" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="3d4fd781-569c-44d7-807a-48471163d02c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString>
+		<![CDATA[SELECT
+     conta.`id` AS conta_id,
+     conta.`cliente` AS conta_cliente,
+     conta.`dataCompra` AS conta_dataCompra,
+     conta.`dataPagamento` AS conta_dataPagamento,
+     conta.`dataVencimento` AS conta_dataVencimento,
+     conta.`pagamento_id` AS conta_pagamento_id,
+     conta.`parcelado` AS conta_parcelado,
+     conta.`situacao` AS conta_situacao,
+     conta.`titulo` AS conta_titulo,
+     conta.`valor` AS conta_valor,
+     conta.`valorPagar` AS conta_valorPagar,
+     conta.`vezes` AS conta_vezes,
+     conta.`vezesPagar` AS conta_vezesPagar,
+     conta.`usuario_id` AS conta_usuario_id,
+     despesa.`id` AS despesa_id,
+     despesa.`Parcelas` AS despesa_Parcelas,
+     despesa.`ParcelasPagar` AS despesa_ParcelasPagar,
+     despesa.`dataInicio` AS despesa_dataInicio,
+     despesa.`dataVencimento` AS despesa_dataVencimento,
+     despesa.`descricao` AS despesa_descricao,
+     despesa.`situacao` AS despesa_situacao,
+     despesa.`valor` AS despesa_valor,
+     despesa.`valorPagar` AS despesa_valorPagar,
+     despesa.`usuario_id` AS despesa_usuario_id,
+     ordemservico.`id` AS ordemservico_id,
+     ordemservico.`ano` AS ordemservico_ano,
+     ordemservico.`atendente` AS ordemservico_atendente,
+     ordemservico.`cliente` AS ordemservico_cliente,
+     ordemservico.`cpf` AS ordemservico_cpf,
+     ordemservico.`dataFinalizacao` AS ordemservico_dataFinalizacao,
+     ordemservico.`dataInicio` AS ordemservico_dataInicio,
+     ordemservico.`justificativa` AS ordemservico_justificativa,
+     ordemservico.`marca` AS ordemservico_marca,
+     ordemservico.`modelo` AS ordemservico_modelo,
+     ordemservico.`observacoes` AS ordemservico_observacoes,
+     ordemservico.`orcamento_id` AS ordemservico_orcamento_id,
+     ordemservico.`pagamento_id` AS ordemservico_pagamento_id,
+     ordemservico.`placa` AS ordemservico_placa,
+     ordemservico.`previsaoEntrega` AS ordemservico_previsaoEntrega,
+     ordemservico.`servico` AS ordemservico_servico,
+     ordemservico.`situacao` AS ordemservico_situacao,
+     ordemservico.`valor` AS ordemservico_valor,
+     ordemservico.`veiculo` AS ordemservico_veiculo,
+     ordemservico.`usuario_id` AS ordemservico_usuario_id,
+     pagamento.`id` AS pagamento_id,
+     pagamento.`dataFinalizacao` AS pagamento_dataFinalizacao,
+     pagamento.`ordemServico_id` AS pagamento_ordemServico_id,
+     pagamento.`situacao` AS pagamento_situacao,
+     pagamento.`troco` AS pagamento_troco,
+     pagamento.`valor` AS pagamento_valor,
+     pagamento.`usuario_id` AS pagamento_usuario_id
+FROM
+     `conta` conta,
+     `despesa` despesa,
+     `ordemservico` ordemservico,
+     `pagamento` pagamento]]>
+	</queryString>
+	<field name="conta_id" class="java.lang.Integer"/>
+	<field name="conta_cliente" class="java.lang.String"/>
+	<field name="conta_dataCompra" class="java.sql.Date"/>
+	<field name="conta_dataPagamento" class="java.sql.Date"/>
+	<field name="conta_dataVencimento" class="java.sql.Date"/>
+	<field name="conta_pagamento_id" class="java.lang.Integer"/>
+	<field name="conta_parcelado" class="java.lang.Boolean"/>
+	<field name="conta_situacao" class="java.lang.String"/>
+	<field name="conta_titulo" class="java.lang.String"/>
+	<field name="conta_valor" class="java.lang.Double"/>
+	<field name="conta_valorPagar" class="java.lang.Double"/>
+	<field name="conta_vezes" class="java.lang.Integer"/>
+	<field name="conta_vezesPagar" class="java.lang.Integer"/>
+	<field name="conta_usuario_id" class="java.lang.Integer"/>
+	<field name="despesa_id" class="java.lang.Integer"/>
+	<field name="despesa_Parcelas" class="java.lang.Integer"/>
+	<field name="despesa_ParcelasPagar" class="java.lang.Integer"/>
+	<field name="despesa_dataInicio" class="java.sql.Date"/>
+	<field name="despesa_dataVencimento" class="java.sql.Date"/>
+	<field name="despesa_descricao" class="java.lang.String"/>
+	<field name="despesa_situacao" class="java.lang.String"/>
+	<field name="despesa_valor" class="java.lang.Double"/>
+	<field name="despesa_valorPagar" class="java.lang.Double"/>
+	<field name="despesa_usuario_id" class="java.lang.Integer"/>
+	<field name="ordemservico_id" class="java.lang.Integer"/>
+	<field name="ordemservico_ano" class="java.lang.Integer"/>
+	<field name="ordemservico_atendente" class="java.lang.String"/>
+	<field name="ordemservico_cliente" class="java.lang.String"/>
+	<field name="ordemservico_cpf" class="java.lang.String"/>
+	<field name="ordemservico_dataFinalizacao" class="java.sql.Date"/>
+	<field name="ordemservico_dataInicio" class="java.sql.Date"/>
+	<field name="ordemservico_justificativa" class="java.lang.String"/>
+	<field name="ordemservico_marca" class="java.lang.String"/>
+	<field name="ordemservico_modelo" class="java.lang.String"/>
+	<field name="ordemservico_observacoes" class="java.lang.String"/>
+	<field name="ordemservico_orcamento_id" class="java.lang.Integer"/>
+	<field name="ordemservico_pagamento_id" class="java.lang.Integer"/>
+	<field name="ordemservico_placa" class="java.lang.String"/>
+	<field name="ordemservico_previsaoEntrega" class="java.sql.Date"/>
+	<field name="ordemservico_servico" class="java.lang.String"/>
+	<field name="ordemservico_situacao" class="java.lang.String"/>
+	<field name="ordemservico_valor" class="java.lang.Double"/>
+	<field name="ordemservico_veiculo" class="java.lang.String"/>
+	<field name="ordemservico_usuario_id" class="java.lang.Integer"/>
+	<field name="pagamento_id" class="java.lang.Integer"/>
+	<field name="pagamento_dataFinalizacao" class="java.sql.Date"/>
+	<field name="pagamento_ordemServico_id" class="java.lang.Integer"/>
+	<field name="pagamento_situacao" class="java.lang.String"/>
+	<field name="pagamento_troco" class="java.lang.Double"/>
+	<field name="pagamento_valor" class="java.lang.Double"/>
+	<field name="pagamento_usuario_id" class="java.lang.Integer"/>
+	<group name="conta_dataVencimento">
+		<groupExpression><![CDATA[$F{conta_dataVencimento}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="143" y="13" width="657" height="24" forecolor="#000000" uuid="f74dcc5b-6b3d-464a-94ec-15c487f69d18"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{conta_dataVencimento}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="97" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="d4886e13-7ae6-4654-98f9-d20ca6657b92"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="30">
+				<frame>
+					<reportElement mode="Opaque" x="652" y="0" width="150" height="30" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="dca67424-7965-4654-ba5c-29d0f68c903f"/>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="575" splitType="Stretch">
+			<image vAlign="Bottom">
+				<reportElement mode="Opaque" x="0" y="234" width="85" height="241" backcolor="#000000" uuid="2c452234-24cc-456b-a6bb-1522478e227b"/>
+				<imageExpression><![CDATA["silhouette2.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="-20" y="234" width="20" height="241" backcolor="#000000" uuid="959f4614-8a8c-4b75-904f-61316706f77b"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="475" width="105" height="100" backcolor="#666666" uuid="12adee76-6ccf-4ee1-ad3e-7e109f7a97f6"/>
+				<textField>
+					<reportElement style="Column header" x="0" y="0" width="104" height="73" forecolor="#000000" uuid="b141317d-5125-4aa3-8916-3abe8e55e6d0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="58" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="0" y="77" width="104" height="20" forecolor="#000000" uuid="a3ae6b34-e095-4210-8311-191094a648e1"/>
+					<box leftPadding="4" rightPadding="4"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement mode="Transparent" x="42" y="73" width="20" height="1" backcolor="#FFFFFF" uuid="034776cf-1250-411f-8e92-481e8291ca09"/>
+				</line>
+			</frame>
+		</band>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="802" height="67" uuid="0f51a5d9-286f-4b1d-9c84-db4e58ee0fe7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="54" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[SILHOUETTE TITLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="232" y="67" width="568" height="37" uuid="93032f59-1648-4652-981a-57160743fe9f"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Silhouette SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="97" y="5" width="705" height="20" backcolor="#666666" uuid="d76ecdc7-aaf2-44a2-933e-783b76b43b5f"/>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="14" height="15" uuid="49800865-6a9e-4299-be82-af74aa1718b9"/>
+					<text><![CDATA[conta_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="14" y="0" width="14" height="15" uuid="cc4534d4-3ec0-4d4c-b404-904ed08848a0"/>
+					<text><![CDATA[conta_cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="28" y="0" width="14" height="15" uuid="c51852c5-eb49-4df6-8837-dd8d120b1561"/>
+					<text><![CDATA[conta_dataCompra]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="42" y="0" width="14" height="15" uuid="f1597d1a-205b-49fd-99e2-d82bfa204776"/>
+					<text><![CDATA[conta_dataPagamento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="56" y="0" width="14" height="15" uuid="4352fa1d-9e46-4d08-ae90-12a65fab2205"/>
+					<text><![CDATA[conta_pagamento_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="70" y="0" width="14" height="15" uuid="4fcd339c-8e65-4a74-9384-716a46640d41"/>
+					<text><![CDATA[conta_parcelado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="84" y="0" width="14" height="15" uuid="465c5d08-865f-4093-8282-c68d16f2b3de"/>
+					<text><![CDATA[conta_situacao]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="98" y="0" width="14" height="15" uuid="37b69b67-45ce-4c2b-9aaa-c1fa79dc3881"/>
+					<text><![CDATA[conta_titulo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="112" y="0" width="14" height="15" uuid="91226435-4147-4694-bb4b-9fbbd6675ee8"/>
+					<text><![CDATA[conta_valor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="126" y="0" width="14" height="15" uuid="3922f32f-ca26-4eee-a6f8-0e2d938cf14c"/>
+					<text><![CDATA[conta_valorPagar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="140" y="0" width="14" height="15" uuid="0bcbe305-3645-4d9a-ae46-c5fa1c577c19"/>
+					<text><![CDATA[conta_vezes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="154" y="0" width="14" height="15" uuid="b7c695d5-ed6a-4cdf-bdd2-9698536459c9"/>
+					<text><![CDATA[conta_vezesPagar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="168" y="0" width="14" height="15" uuid="8c2864c1-3f74-4b15-8b28-0d2cf08fd15f"/>
+					<text><![CDATA[conta_usuario_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="182" y="0" width="14" height="15" uuid="d993fd4a-feef-4aa1-9c21-191f2b5e2325"/>
+					<text><![CDATA[despesa_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="196" y="0" width="14" height="15" uuid="02ded6f7-a39f-4d5b-ba54-61dcd2c69636"/>
+					<text><![CDATA[despesa_Parcelas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="210" y="0" width="14" height="15" uuid="8d2abfcb-b6de-46c5-96bb-d935e70619ef"/>
+					<text><![CDATA[despesa_ParcelasPagar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="224" y="0" width="14" height="15" uuid="88e0eee7-f97f-42e4-888d-557128eba8f1"/>
+					<text><![CDATA[despesa_dataInicio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="238" y="0" width="14" height="15" uuid="2d8885e5-651b-4773-be6d-c4e479836f95"/>
+					<text><![CDATA[despesa_dataVencimento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="252" y="0" width="14" height="15" uuid="69b58351-81aa-4e23-9548-3a8889105afe"/>
+					<text><![CDATA[despesa_descricao]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="266" y="0" width="14" height="15" uuid="b1d5b648-5232-4c09-94c6-2737fc02024f"/>
+					<text><![CDATA[despesa_situacao]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="280" y="0" width="14" height="15" uuid="9a25397d-0f89-423b-8fc7-731441f5cfc1"/>
+					<text><![CDATA[despesa_valor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="294" y="0" width="14" height="15" uuid="dc543d7d-96ba-4d11-adec-22aeb271b03b"/>
+					<text><![CDATA[despesa_valorPagar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="308" y="0" width="14" height="15" uuid="36847848-12ff-454a-8eaa-37f1195c7d00"/>
+					<text><![CDATA[despesa_usuario_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="322" y="0" width="14" height="15" uuid="3180144c-77b1-4344-ae27-9ea4d8593ffa"/>
+					<text><![CDATA[ordemservico_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="336" y="0" width="14" height="15" uuid="48aea987-d7b8-4bdd-bd29-8057f3b12dc1"/>
+					<text><![CDATA[ordemservico_ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="350" y="0" width="14" height="15" uuid="17c00bc3-f363-41dd-9dca-fb41f332c299"/>
+					<text><![CDATA[ordemservico_atendente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="364" y="0" width="14" height="15" uuid="46a11bfd-913a-48d4-83ac-8cb59b773e3b"/>
+					<text><![CDATA[ordemservico_cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="378" y="0" width="14" height="15" uuid="ec454d45-26fc-48c6-9813-30f5e52db4cc"/>
+					<text><![CDATA[ordemservico_cpf]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="392" y="0" width="14" height="15" uuid="00704029-7940-40f6-b641-f5f23d4e6976"/>
+					<text><![CDATA[ordemservico_dataFinalizacao]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="406" y="0" width="14" height="15" uuid="544840f9-11a0-4646-acb0-aba8c3d0b65d"/>
+					<text><![CDATA[ordemservico_dataInicio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="420" y="0" width="14" height="15" uuid="84781567-570c-4efd-b786-cea34a27a99a"/>
+					<text><![CDATA[ordemservico_justificativa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="434" y="0" width="14" height="15" uuid="09e732dd-c131-4271-9c22-3b8877bb7eb4"/>
+					<text><![CDATA[ordemservico_marca]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="448" y="0" width="14" height="15" uuid="53cf7952-9811-49f6-87c8-d4331963ef0e"/>
+					<text><![CDATA[ordemservico_modelo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="462" y="0" width="14" height="15" uuid="361b72ec-4832-48e8-ba16-6cf39dfd2014"/>
+					<text><![CDATA[ordemservico_observacoes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="476" y="0" width="14" height="15" uuid="0dc17036-5c26-4637-9440-8f5211d34f0e"/>
+					<text><![CDATA[ordemservico_orcamento_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="490" y="0" width="14" height="15" uuid="8a7e0294-9df8-4bc3-8aa2-65f5f72393de"/>
+					<text><![CDATA[ordemservico_pagamento_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="504" y="0" width="14" height="15" uuid="e14eff2c-ea5e-4215-9d15-8a4500785e83"/>
+					<text><![CDATA[ordemservico_placa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="518" y="0" width="14" height="15" uuid="41f616cb-f215-4af2-879e-0617ac231335"/>
+					<text><![CDATA[ordemservico_previsaoEntrega]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="532" y="0" width="14" height="15" uuid="218bca9b-b381-424d-ba83-71925ccbe0bf"/>
+					<text><![CDATA[ordemservico_servico]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="546" y="0" width="14" height="15" uuid="07449960-bfde-48f9-a715-c8bdf159a21c"/>
+					<text><![CDATA[ordemservico_situacao]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="560" y="0" width="14" height="15" uuid="53f93dc3-bcee-453a-902e-033955a08bb0"/>
+					<text><![CDATA[ordemservico_valor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="574" y="0" width="14" height="15" uuid="b365be01-18a9-4e4b-bb78-1eb07301b3e4"/>
+					<text><![CDATA[ordemservico_veiculo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="588" y="0" width="14" height="15" uuid="1a033195-2d78-415e-8ea4-b9b4e66ac72d"/>
+					<text><![CDATA[ordemservico_usuario_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="602" y="0" width="14" height="15" uuid="a68a9fea-a776-4f8e-85e0-57396b1208cd"/>
+					<text><![CDATA[pagamento_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="616" y="0" width="14" height="15" uuid="8bfe55b3-7235-4efb-aa76-0e33b02f5c9d"/>
+					<text><![CDATA[pagamento_dataFinalizacao]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="630" y="0" width="14" height="15" uuid="076fe333-1a65-4518-a3a4-7feee3e53fa9"/>
+					<text><![CDATA[pagamento_ordemServico_id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="644" y="0" width="14" height="15" uuid="2807afbd-53a1-46b1-800d-2d9faa0e684c"/>
+					<text><![CDATA[pagamento_situacao]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="658" y="0" width="14" height="15" uuid="e5ecadfb-facd-4daf-8b38-f2dc90d7661a"/>
+					<text><![CDATA[pagamento_troco]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="672" y="0" width="14" height="15" uuid="5775ea89-cde8-459d-81e9-c9f83b5135eb"/>
+					<text><![CDATA[pagamento_valor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="686" y="0" width="14" height="15" uuid="8e0d9387-3433-4a72-9856-85b07e2fdc14"/>
+					<text><![CDATA[pagamento_usuario_id]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement x="97" y="1" width="705" height="15" uuid="a70dfb94-1de6-4b1b-8654-94dce38f484d"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="14" height="15" uuid="f12e09f2-1fd4-4ace-a78c-6eda7ac9fe57"/>
+					<textFieldExpression><![CDATA[$F{conta_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="14" y="0" width="14" height="15" uuid="c62382b1-7e1f-4eea-b8a8-747361dd2ee3"/>
+					<textFieldExpression><![CDATA[$F{conta_cliente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="28" y="0" width="14" height="15" uuid="d73ca355-5be5-4efd-a7c2-efda78744b0a"/>
+					<textFieldExpression><![CDATA[$F{conta_dataCompra}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="42" y="0" width="14" height="15" uuid="2a3dda7d-4769-42aa-ac79-1b9a571dcc34"/>
+					<textFieldExpression><![CDATA[$F{conta_dataPagamento}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="56" y="0" width="14" height="15" uuid="9492afb4-e711-4606-9c00-938a6d12a15b"/>
+					<textFieldExpression><![CDATA[$F{conta_pagamento_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="70" y="0" width="14" height="15" uuid="b60ce835-f4cb-4fce-a3ba-8c166ac46441"/>
+					<textFieldExpression><![CDATA[$F{conta_parcelado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="84" y="0" width="14" height="15" uuid="224ac43f-0a54-42ce-80ee-c5b37efade84"/>
+					<textFieldExpression><![CDATA[$F{conta_situacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="98" y="0" width="14" height="15" uuid="f326cdf4-f929-45a0-bb2f-d519d9d1f6da"/>
+					<textFieldExpression><![CDATA[$F{conta_titulo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="112" y="0" width="14" height="15" uuid="73864b83-48fc-4f9d-b0ad-bd74dfda9976"/>
+					<textFieldExpression><![CDATA[$F{conta_valor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="126" y="0" width="14" height="15" uuid="39a11fbb-9342-4f79-8a8f-29086e4bfed1"/>
+					<textFieldExpression><![CDATA[$F{conta_valorPagar}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="140" y="0" width="14" height="15" uuid="45e47f52-afb9-46c6-82eb-cc8fbac4dce0"/>
+					<textFieldExpression><![CDATA[$F{conta_vezes}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="154" y="0" width="14" height="15" uuid="f906412f-fb28-4cd7-bc50-fb7865be917a"/>
+					<textFieldExpression><![CDATA[$F{conta_vezesPagar}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="168" y="0" width="14" height="15" uuid="3f542db4-1415-46d4-aa22-0c489b549c8e"/>
+					<textFieldExpression><![CDATA[$F{conta_usuario_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="182" y="0" width="14" height="15" uuid="dea9ec7c-6743-40d5-a6e6-0b8565b5c8aa"/>
+					<textFieldExpression><![CDATA[$F{despesa_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="196" y="0" width="14" height="15" uuid="2fcb74fc-7f60-4a27-aade-09121b357d78"/>
+					<textFieldExpression><![CDATA[$F{despesa_Parcelas}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="210" y="0" width="14" height="15" uuid="e28092c0-d2db-45d6-91f5-bd0bc45b3a71"/>
+					<textFieldExpression><![CDATA[$F{despesa_ParcelasPagar}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="224" y="0" width="14" height="15" uuid="3e49907b-284e-4ea4-a28c-ddca8c084902"/>
+					<textFieldExpression><![CDATA[$F{despesa_dataInicio}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="238" y="0" width="14" height="15" uuid="0a209279-df1a-4bf8-9999-70c1ef00d45d"/>
+					<textFieldExpression><![CDATA[$F{despesa_dataVencimento}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="252" y="0" width="14" height="15" uuid="f5ed0433-0219-450a-a522-89f8860c96b7"/>
+					<textFieldExpression><![CDATA[$F{despesa_descricao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="266" y="0" width="14" height="15" uuid="1daf0824-dc86-4561-bf39-b7c70b829998"/>
+					<textFieldExpression><![CDATA[$F{despesa_situacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="280" y="0" width="14" height="15" uuid="8bae4178-5602-41ab-94e0-7857af8d1e4e"/>
+					<textFieldExpression><![CDATA[$F{despesa_valor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="294" y="0" width="14" height="15" uuid="22485db7-1e84-4892-963d-64da9f799762"/>
+					<textFieldExpression><![CDATA[$F{despesa_valorPagar}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="308" y="0" width="14" height="15" uuid="f08f7aa4-efa5-4842-b20f-54c7f809e79d"/>
+					<textFieldExpression><![CDATA[$F{despesa_usuario_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="322" y="0" width="14" height="15" uuid="758aec8e-55eb-4c26-ba39-9f7aa17a611f"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="336" y="0" width="14" height="15" uuid="01278f4b-60ce-44ee-b379-0391bb2067c4"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_ano}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="350" y="0" width="14" height="15" uuid="a24e0e4f-83ae-4e5d-bca3-af4b7b2d7d85"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_atendente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="364" y="0" width="14" height="15" uuid="db7de684-91fd-4b98-96c0-56c44732b60f"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_cliente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="378" y="0" width="14" height="15" uuid="a92e2570-8c9b-4f14-a57e-8755d5a72eef"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_cpf}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="392" y="0" width="14" height="15" uuid="b7b56903-ed25-4658-9b4d-6ea27c58d615"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_dataFinalizacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="406" y="0" width="14" height="15" uuid="0afa37c6-c494-4aac-b2e0-ba64fac9a76a"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_dataInicio}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="420" y="0" width="14" height="15" uuid="5c6f2d6b-3881-4c2d-9710-c1bbda42c530"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_justificativa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="434" y="0" width="14" height="15" uuid="f26aa3b1-d68a-4da2-bac8-9e65b38c12cc"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_marca}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="448" y="0" width="14" height="15" uuid="f179cb1d-6f66-4b70-aaa5-42de2c59ec1e"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_modelo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="462" y="0" width="14" height="15" uuid="aa726810-a52b-4489-b85e-41a322a66b78"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_observacoes}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="476" y="0" width="14" height="15" uuid="87e0b512-9c12-4ec9-bb2f-e65423d6422f"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_orcamento_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="490" y="0" width="14" height="15" uuid="0df3eca6-53bd-46d2-a250-04fd6a4e943a"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_pagamento_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="504" y="0" width="14" height="15" uuid="9da404a0-e962-49e1-b17d-16956a697189"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_placa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="518" y="0" width="14" height="15" uuid="fc593d46-796c-47f7-bcf0-79461f5f24b5"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_previsaoEntrega}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="532" y="0" width="14" height="15" uuid="71f41f5d-cd19-4d5f-adc5-374e75c83707"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_servico}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="546" y="0" width="14" height="15" uuid="7b328d5c-8abc-49de-a76f-b1ec18e3af10"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_situacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="560" y="0" width="14" height="15" uuid="4f023c02-cc37-4d9a-8766-d3addcf393ab"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_valor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="574" y="0" width="14" height="15" uuid="0126e789-83fd-4ef5-bced-66fec301b222"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_veiculo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="588" y="0" width="14" height="15" uuid="0bbcbe60-76fd-414b-91d0-1063818677ec"/>
+					<textFieldExpression><![CDATA[$F{ordemservico_usuario_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="602" y="0" width="14" height="15" uuid="65df11b4-5223-4182-9958-8cdd41125624"/>
+					<textFieldExpression><![CDATA[$F{pagamento_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="616" y="0" width="14" height="15" uuid="67aa117b-0e39-421f-8a88-12381344ed74"/>
+					<textFieldExpression><![CDATA[$F{pagamento_dataFinalizacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="630" y="0" width="14" height="15" uuid="80ac3827-1913-4b83-a166-0978c89c0210"/>
+					<textFieldExpression><![CDATA[$F{pagamento_ordemServico_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="644" y="0" width="14" height="15" uuid="e23555e3-a4ca-4f1c-85b5-55ccfdb002b4"/>
+					<textFieldExpression><![CDATA[$F{pagamento_situacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="658" y="0" width="14" height="15" uuid="89e44008-6b8d-4a65-9c92-03a54905a4a3"/>
+					<textFieldExpression><![CDATA[$F{pagamento_troco}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="672" y="0" width="14" height="15" uuid="d0d4fe49-2e74-4c2b-9e86-15d12c97db8f"/>
+					<textFieldExpression><![CDATA[$F{pagamento_valor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="686" y="0" width="14" height="15" uuid="7b7ea02e-837e-4268-8e4e-b65470ea503e"/>
+					<textFieldExpression><![CDATA[$F{pagamento_usuario_id}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="97" y="16" width="705" height="1" uuid="73444061-a1f1-4eb7-9c5a-b2b62966aaed"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="671" y="0" width="131" height="20" forecolor="#000000" uuid="a14968fc-729a-4506-8592-d4acde573d3a"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="96" y="0" width="267" height="20" uuid="e8e02324-e7aa-4b22-ab01-f69a6aaee3c1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Silhouette Title Report]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

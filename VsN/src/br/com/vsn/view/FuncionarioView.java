@@ -115,7 +115,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         inputImagem = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        buttonCaminhoImg = new javax.swing.JToggleButton();
         fotografiaFuncionario = new javax.swing.JLabel();
         inputSituacao = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -144,6 +143,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         comboAutorizacao = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
+        buttonCaminhoImg = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -230,14 +230,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Caminho da Foto");
-
-        buttonCaminhoImg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonCaminhoImg.setText("...");
-        buttonCaminhoImg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCaminhoImgActionPerformed(evt);
-            }
-        });
 
         fotografiaFuncionario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         fotografiaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -360,6 +352,20 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Nivel de Autorização");
 
+        buttonCaminhoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/oficial/imagem.png"))); // NOI18N
+        buttonCaminhoImg.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        buttonCaminhoImg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonCaminhoImgMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonCaminhoImgMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonCaminhoImgMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -406,7 +412,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(calendarioDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,16 +420,16 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(inputImagem))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonCaminhoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(inputImagem)
+                                        .addGap(52, 52, 52))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -438,9 +444,9 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
                                             .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonCaminhoImg, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(10, 10, 10)))
                         .addComponent(fotografiaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,24 +484,28 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                             .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel16)
-                                        .addComponent(jLabel8))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(22, 22, 22)
-                                    .addComponent(calendarioDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(inputImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(buttonCaminhoImg)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(calendarioDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel8))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(inputImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(buttonCaminhoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(inputDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(5, 5, 5)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -620,21 +630,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private void inputDtNascimentoinputTitulo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDtNascimentoinputTitulo5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputDtNascimentoinputTitulo5ActionPerformed
-
-    private void buttonCaminhoImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCaminhoImgActionPerformed
-        try{
-            JFileChooser buscarImg = new JFileChooser();
-            buscarImg.setCurrentDirectory(new java.io.File("C:\\VsN\\VsN\\src\\imagens\\usuarios"));
-            buscarImg.setDialogTitle("Carregar Foto do Funcionario");
-            buscarImg.showOpenDialog(this);
-            String foto = ""+buscarImg.getSelectedFile().getName();
-            inputImagem.setText(foto);
-            this.preencherImagem();
-
-        }catch(Exception e){
-
-        }
-    }//GEN-LAST:event_buttonCaminhoImgActionPerformed
 
     private void fotografiaFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiaFuncionarioMouseClicked
         // TODO add your handling code here:
@@ -869,11 +864,34 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonSenhaActionPerformed
 
+    private void buttonCaminhoImgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCaminhoImgMouseClicked
+        try{
+            JFileChooser buscarImg = new JFileChooser();
+            buscarImg.setCurrentDirectory(new java.io.File("C:\\VsN\\VsN\\src\\imagens\\usuarios"));
+            buscarImg.setDialogTitle("Carregar Foto do Funcionario");
+            buscarImg.showOpenDialog(this);
+            String foto = ""+buscarImg.getSelectedFile().getName();
+            inputImagem.setText(foto);
+            this.preencherImagem();
+
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_buttonCaminhoImgMouseClicked
+
+    private void buttonCaminhoImgMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCaminhoImgMouseEntered
+        buttonCaminhoImg.setBorder(new LineBorder(new Color(70, 40, 240), 1, true));
+    }//GEN-LAST:event_buttonCaminhoImgMouseEntered
+
+    private void buttonCaminhoImgMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCaminhoImgMouseExited
+        buttonCaminhoImg.setBorder(new LineBorder(Color.black, 0, true));
+    }//GEN-LAST:event_buttonCaminhoImgMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAnterior;
     private javax.swing.JButton buttonCadastrar;
-    public static javax.swing.JToggleButton buttonCaminhoImg;
+    public static javax.swing.JLabel buttonCaminhoImg;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinal;
@@ -927,13 +945,13 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             this.ativarTudo();
             inputId.setText(""+fc.getFuncionarios().get(index).getId());
             inputNome.setText(""+fc.getFuncionarios().get(index).getNome());
-            inputCpf.setText(""+fc.getFuncionarios().get(index).getCpf());
-            inputDtNascimento.setText(""+sdf.format(fc.getFuncionarios().get(index).getDataNascimento().getTime()));
+            inputCpf.setText(""+fc.getFuncionarios().get(index).getCpf().replaceAll("\\D", ""));
+            inputDtNascimento.setText(""+sdf.format(fc.getFuncionarios().get(index).getDataNascimento().getTime()).replaceAll("\\D", ""));
             inputLogin.setText(""+fc.getFuncionarios().get(index).getLogin());
             inputFuncao.setText(""+fc.getFuncionarios().get(index).getFuncao());
             comboSexo.setSelectedItem(""+fc.getFuncionarios().get(index).getSexo());
             inputImagem.setText(""+fc.getFuncionarios().get(index).getCaminhoImg());
-            inputTelefone.setText(""+fc.getFuncionarios().get(index).getTelefone());
+            inputTelefone.setText(""+fc.getFuncionarios().get(index).getTelefone().replaceAll("\\D", ""));
             inputEmail.setText(""+fc.getFuncionarios().get(index).getEmail());
             comboAutorizacao.setSelectedIndex(fc.getFuncionarios().get(index).getAutorizacao());
             inputSituacao.setText(""+fc.getFuncionarios().get(index).getSituacao());

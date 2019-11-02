@@ -119,27 +119,4 @@ public class PagamentoTabelaController {
     public void cancelar(){
         pagamentoTabela = new PagamentoTabela();
     }
-    
-    public void relatorioPagamentoTabelasGeral(int id){
-        dao.relatorioPagamentoTabelasGeral(id);
-    }
-    
-    public void relatorioPagamentoTabelaAll(){
-        dao.relatorioPagamentoTabelasAll();
-    }
-    
-    public void relatorioPagamentoTabelaData(int combobox,String dInicio, String dFinal){
-        Component rootPane = null;
-        try{
-            dao.relatorioPagamentoTabelaData(combobox,dInicio,dFinal);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Campos Invalidos", "Aviso", JOptionPane.ERROR_MESSAGE, null);
-        }
-    }
-    
-    
-    public void relatorioSituacao(int comboBox){
-        dao.relatorioPagamentoTabelaSituacao(comboBox);
-    }
-    
 }

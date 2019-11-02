@@ -168,13 +168,14 @@ public class PesquisarContaPagarView extends javax.swing.JInternalFrame {
               
                 this.id = this.valorCollun();
                 DespesaController dc = new DespesaController();
+                System.out.println("AQQ::"+id);
                 despesa = dc.despesaUnico(id).get(0);
                 try{
                     if(validador == 0){
+                        System.out.println("AQ");
                         this.valoresInputContasPagar();
                         //ContaPagarView.ativarInputCadastrar();
                         ContaPagarView.inputId.setEnabled(true);
-                        System.out.println("AQ");
                     }else if(validador == 1){
                        this.valoresInputRelatorioDespesasGeral();
                     }

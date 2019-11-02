@@ -225,10 +225,6 @@ public class OrdemServicoController {
         dao.relatorioOrdemServicosGeral(id);
     }
     
-    public void relatorioOrdemServicoAll(){
-        dao.relatorioOrdemServicosAll();
-    }
-    
     public void editSituacao(int index, Calendar c, String situacao) throws Exception{
         Component rootPane = null;
         OrdemServico ordemServico = new OrdemServico();
