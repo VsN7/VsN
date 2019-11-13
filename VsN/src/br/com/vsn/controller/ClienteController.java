@@ -46,6 +46,11 @@ public class ClienteController {
         return dao.clienteUnico(id);
     }
     
+    public List<Cliente> pesquisarFiltroAll() {
+        clientes.clear();
+        return dao.pesquisarFiltroAll();
+    }
+    
     public List<Cliente> pesquisarFiltroNome(String nome) {
         clientes.clear();
         nome+="%";

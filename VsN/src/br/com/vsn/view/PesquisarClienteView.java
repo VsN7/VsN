@@ -234,13 +234,13 @@ public class PesquisarClienteView extends javax.swing.JInternalFrame {
         ClienteController cc = new ClienteController();
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
-        for(int i=0; i<cc.getClientes().size(); i++){
+        for(int i=0; i<cc.pesquisarFiltroAll().size(); i++){
             modelo.addRow(new Object[]{
-             cc.getClientes().get(i).getId(),
-             cc.getClientes().get(i).getNome(),
-             cc.getClientes().get(i).getCpf(),
-             cc.getClientes().get(i).getTelefone(),
-             cc.getClientes().get(i).getSituacao()
+             cc.pesquisarFiltroAll().get(i).getId(),
+             cc.pesquisarFiltroAll().get(i).getNome(),
+             cc.pesquisarFiltroAll().get(i).getCpf(),
+             cc.pesquisarFiltroAll().get(i).getTelefone(),
+             cc.pesquisarFiltroAll().get(i).getSituacao()
              });
         }
         

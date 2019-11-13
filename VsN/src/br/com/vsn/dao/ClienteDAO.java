@@ -55,6 +55,17 @@ public class ClienteDAO implements Serializable {
             return null;
         }
     }
+    public List<Cliente> pesquisarFiltroAll(){
+        List<Cliente> clientes = null;
+        EntityManager em = getEntityManager();
+        try{
+           clientes = em.createNamedQuery("Cliente.findAllP").getResultList();
+           return clientes;
+        }catch(Exception e){
+            System.out.println("Erro na linha 147 (ContaDAO)!");
+            return null;
+        }
+    }
     
     
     

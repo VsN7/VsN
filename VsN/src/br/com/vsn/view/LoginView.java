@@ -18,6 +18,7 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         uc = new UsuarioController();
         initComponents();
+        
         this.getContentPane().setBackground(Color.black);
         loginButton.setForeground(Color.WHITE);
     }

@@ -83,6 +83,8 @@ public class MenuView extends javax.swing.JFrame {
             }
         };
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         selectEmpresa1 = new javax.swing.JMenuItem();
@@ -106,6 +108,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu15 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -122,18 +125,18 @@ public class MenuView extends javax.swing.JFrame {
         jMenu12 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenu20 = new javax.swing.JMenu();
+        selectRelFuncionario = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
-        jMenu24 = new javax.swing.JMenu();
+        selectRelContaPagar = new javax.swing.JMenu();
         jMenuItem30 = new javax.swing.JMenuItem();
-        jMenu25 = new javax.swing.JMenu();
+        selectRelContaReceber = new javax.swing.JMenu();
         jMenuItem32 = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
-        jMenu21 = new javax.swing.JMenu();
+        selectRelLucros = new javax.swing.JMenu();
         jMenuItem33 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
@@ -153,14 +156,28 @@ public class MenuView extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Versão 1.0.0.1");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("USUÁRIO: ");
+
+        user.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        user.setForeground(new java.awt.Color(255, 255, 255));
+        user.setText("SUPORTE");
+
         desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(user, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(1281, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1083, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -168,7 +185,10 @@ public class MenuView extends javax.swing.JFrame {
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
                 .addContainerGap(581, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(user))
                 .addContainerGap())
         );
 
@@ -260,7 +280,6 @@ public class MenuView extends javax.swing.JFrame {
         jMenu6.setText("Contas a Pagar");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenuItem31.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem31.setText("Cadastro de Contas");
         jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +294,6 @@ public class MenuView extends javax.swing.JFrame {
         jMenu7.setText("Contas a Receber");
         jMenu7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem7.setText("Cadastro de Titulos");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -344,6 +362,15 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem5);
+
+        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem9.setText("Sair");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem9);
 
         jMenuBar1.add(jMenu1);
 
@@ -462,8 +489,8 @@ public class MenuView extends javax.swing.JFrame {
 
         selectRelatorio.add(jMenu12);
 
-        jMenu20.setText("Relatório de Funcionarios");
-        jMenu20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectRelFuncionario.setText("Relatório de Funcionarios");
+        selectRelFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem18.setText("Relatório de Funcionarios Geral");
@@ -472,7 +499,7 @@ public class MenuView extends javax.swing.JFrame {
                 jMenuItem18ActionPerformed(evt);
             }
         });
-        jMenu20.add(jMenuItem18);
+        selectRelFuncionario.add(jMenuItem18);
 
         jMenuItem17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem17.setText("Relatório de Funcionarios Aniversariantes");
@@ -481,12 +508,12 @@ public class MenuView extends javax.swing.JFrame {
                 jMenuItem17ActionPerformed(evt);
             }
         });
-        jMenu20.add(jMenuItem17);
+        selectRelFuncionario.add(jMenuItem17);
 
-        selectRelatorio.add(jMenu20);
+        selectRelatorio.add(selectRelFuncionario);
 
-        jMenu24.setText("Relatório de Contas a Pagar");
-        jMenu24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectRelContaPagar.setText("Relatório de Contas a Pagar");
+        selectRelContaPagar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem30.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem30.setText("Relatório de Contas a Pagar Geral");
@@ -495,12 +522,12 @@ public class MenuView extends javax.swing.JFrame {
                 jMenuItem30ActionPerformed(evt);
             }
         });
-        jMenu24.add(jMenuItem30);
+        selectRelContaPagar.add(jMenuItem30);
 
-        selectRelatorio.add(jMenu24);
+        selectRelatorio.add(selectRelContaPagar);
 
-        jMenu25.setText("Relatório de Contas a Receber");
-        jMenu25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectRelContaReceber.setText("Relatório de Contas a Receber");
+        selectRelContaReceber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem32.setText("Relatório de Contas a Receber Geral");
@@ -509,9 +536,9 @@ public class MenuView extends javax.swing.JFrame {
                 jMenuItem32ActionPerformed(evt);
             }
         });
-        jMenu25.add(jMenuItem32);
+        selectRelContaReceber.add(jMenuItem32);
 
-        selectRelatorio.add(jMenu25);
+        selectRelatorio.add(selectRelContaReceber);
 
         jMenu13.setText("Relatório de Orçamentos");
         jMenu13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -541,8 +568,8 @@ public class MenuView extends javax.swing.JFrame {
 
         selectRelatorio.add(jMenu16);
 
-        jMenu21.setText("Relatório de Lucros");
-        jMenu21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectRelLucros.setText("Relatório de Lucros");
+        selectRelLucros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenuItem33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem33.setText("Relatório de Lucratividade Geral");
@@ -551,9 +578,9 @@ public class MenuView extends javax.swing.JFrame {
                 jMenuItem33ActionPerformed(evt);
             }
         });
-        jMenu21.add(jMenuItem33);
+        selectRelLucros.add(jMenuItem33);
 
-        selectRelatorio.add(jMenu21);
+        selectRelatorio.add(selectRelLucros);
 
         jMenuBar1.add(selectRelatorio);
 
@@ -959,10 +986,15 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem33ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -975,12 +1007,8 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu18;
     private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu20;
-    private javax.swing.JMenu jMenu21;
     private javax.swing.JMenu jMenu22;
     private javax.swing.JMenu jMenu23;
-    private javax.swing.JMenu jMenu24;
-    private javax.swing.JMenu jMenu25;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu6;
@@ -1016,13 +1044,19 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu selectContas;
     private javax.swing.JMenu selectContasM;
     private javax.swing.JMenuItem selectEmpresa;
     private javax.swing.JMenuItem selectEmpresa1;
     private javax.swing.JMenuItem selectFuncionario;
+    private javax.swing.JMenu selectRelContaPagar;
+    private javax.swing.JMenu selectRelContaReceber;
+    private javax.swing.JMenu selectRelFuncionario;
+    private javax.swing.JMenu selectRelLucros;
     private javax.swing.JMenu selectRelatorio;
     private javax.swing.JMenuItem selectUsuario;
+    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 
     public void verificaAutorizacao(){
@@ -1033,8 +1067,11 @@ public class MenuView extends javax.swing.JFrame {
         selectFuncionario.setEnabled(true);
         selectRelatorio.setEnabled(true);
         selectUsuario.setEnabled(true);
-//        labeContasPagar.setVisible(true);
-//        labeContasReceber.setVisible(true);
+        selectRelContaPagar.setEnabled(true);
+        selectRelContaReceber.setEnabled(true);
+        selectRelFuncionario.setEnabled(true);
+        selectRelLucros.setEnabled(true);
+        user.setText(uc.getLogin());
             
         }else if (autorizacao == 7){
             selectContas.setEnabled(true);
@@ -1043,8 +1080,11 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(true);
             selectUsuario.setEnabled(true);
             selectRelatorio.setEnabled(true);
-//            labeContasPagar.setVisible(true);
-//            labeContasReceber.setVisible(true);
+            selectRelContaPagar.setEnabled(true);
+            selectRelContaReceber.setEnabled(true);
+            selectRelFuncionario.setEnabled(true);
+            selectRelLucros.setEnabled(true);
+            user.setText("SUPORTE");
         }else if(autorizacao == 1){
             selectContas.setEnabled(false);
             selectContasM.setEnabled(false);
@@ -1052,8 +1092,11 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(false);
             selectUsuario.setEnabled(false);
             selectRelatorio.setEnabled(true);
-//            labeContasPagar.setVisible(false);
-//            labeContasReceber.setVisible(false);
+            selectRelContaPagar.setEnabled(false);
+            selectRelContaReceber.setEnabled(false);
+            selectRelFuncionario.setEnabled(false);
+            selectRelLucros.setEnabled(false);
+            user.setText(uc.getLogin());
         }else{
             selectContas.setEnabled(false);
             selectContasM.setEnabled(false);
@@ -1061,8 +1104,7 @@ public class MenuView extends javax.swing.JFrame {
             selectFuncionario.setEnabled(false);
             selectUsuario.setEnabled(false);
             selectRelatorio.setEnabled(false);
-//            labeContasPagar.setVisible(false);
-//            labeContasReceber.setVisible(false);
+            user.setText(uc.getLogin());
         }
     }
     

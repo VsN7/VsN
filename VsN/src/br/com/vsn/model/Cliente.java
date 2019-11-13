@@ -25,14 +25,17 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Cliente.findAll", 
                 query = "SELECT c FROM Cliente c"),
     
+    @NamedQuery(name = "Cliente.findAllP", 
+                query = "SELECT c FROM Cliente c WHERE c.situacao = 'ATIVO'"),
+    
      @NamedQuery(name = "Cliente.buscaPorId", 
                 query = "SELECT c FROM Cliente c WHERE c.id = :id "),
      
      @NamedQuery(name = "Cliente.buscaPorNome", 
-                query = "SELECT c FROM Cliente c WHERE c.nome LIKE :nome "),
+                query = "SELECT c FROM Cliente c WHERE c.nome LIKE :nome and c.situacao = 'ATIVO'"),
      
      @NamedQuery(name = "Cliente.buscaPorCpf", 
-                query = "SELECT c FROM Cliente c WHERE c.cpf LIKE :cpf "),
+                query = "SELECT c FROM Cliente c WHERE c.cpf LIKE :cpf and c.situacao = 'ATIVO'"),
     
 })
 public class Cliente implements Serializable {
