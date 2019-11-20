@@ -666,7 +666,7 @@ public class OrcamentoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_inputClienteActionPerformed
 
     private void inputClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputClienteKeyPressed
-        if(buttonSelecionar.getText().equals("Buscar") || buttonCadastrar.getText().equals("Salvar")){
+        if(buttonSelecionar.getText().equals("Buscar") || buttonCadastrar.getText().equals("Salvar") || buttonEditar.getText().equals("Salvar")){
             if (evt.getKeyCode() == MenuView.teclaPesquisa) {
                 if(buttonSelecionar.getText().equals("Buscar")){
                     try {
