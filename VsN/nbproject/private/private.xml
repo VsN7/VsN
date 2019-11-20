@@ -5,9 +5,11 @@
         <group>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/TutorialView.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/OrdemServicoView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/util/CriptografiaUtil.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/MenuView.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/PagamentoContasReceberView.java</file>
             <file>file:/C:/VsN/VsN/src/br/com/vsn/view/OrcamentoView.java</file>
+            <file>file:/C:/VsN/VsN/src/br/com/vsn/view/FiltroRelatorioOrdemServicoGeralView.java</file>
         </group>
     </open-files>
 </project-private>
